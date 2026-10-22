@@ -1,0 +1,1110 @@
+@article{Hollenbach2020Selection,
+   abstract = {Predicting the binding mode of flexible polypeptides to proteins is an important task that falls outside the domain of applicability of most small molecule and protein−protein docking tools. Here, we test the small molecule flexible ligand docking program Glide on a set of 19 non-α-helical peptides and systematically improve pose prediction accuracy bynhancing Glide sampling for flexible polypeptides. In addition, scoring of the poses was improved by post-processing with physics-based implicit solvent MM- GBSA calculations. Using the best RMSD among the top 10 scoring poses as a metric, the success rate (RMSD ≤ 2.0 Å for the interface backbone atoms) increased from 21% with default Glide SP settings to 58% with the enhanced peptide sampling and scoring protocol in the case of redocking to the native protein structure. This approaches the accuracy of the recently developed Rosetta FlexPepDock method (63% success for these 19 peptides) while being over 100 times faster. Cross-docking was performed for a subset of cases where an unbound receptor structure was available, and in that case, 40% of peptides were docked successfully. We analyze the results and find that the optimized polypeptide protocol is most accurate for extended peptides of limited size and number of formal charges, defining a domain of applicability for this approach.},
+   author = {Florian M. Hollenbach and Jacob M. Montgomery},
+   doi = {10.4135/9781526486387.N52},
+   journal = {The SAGE Handbook of Research Methods in Political Science and International Relations},
+   month = {4},
+   pages = {937-960},
+   publisher = {SAGE Publications Ltd},
+   title = {Bayesian Model Selection, Model Comparison, and Model Averaging},
+   year = {2020}
+}
+
+@article{Nakagawa2025location,
+   abstract = {<p> <list> <list-item> <p>Biological data often violate the assumption of constant variance, yet such heteroscedasticity can reflect meaningful biological processes such as plasticity, canalization or stress responses. Despite this, most models treat variance as statistical noise. Here, we reintroduce location–scale regression as a general framework that jointly models the mean (location) and variance (scale) components of a response. We describe three hierarchical extensions: (1) fixed‐effects, (2) mixed‐effects and (3) double‐hierarchical models, which allow researchers to formally test variance structures alongside mean effects, enhancing biological interpretation.</p> </list-item> <list-item> <p>This framework is highly flexible and can extend beyond Gaussian assumptions to accommodate real‐world data. The framework accommodates over‐dispersed, under‐dispersed and zero‐inflated count data through the use of negative binomial and Conway–Maxwell–Poisson distributions, and bounded proportion data through beta‐binomial and beta regressions. Submodels can also be incorporated to account for structural zeros and ones when boundary outcomes are common. These extensions allow researchers to capture ecological processes such as presence–absence, success rates and bounded response rates.</p> </list-item> <list-item> <p> Using worked examples from published evolutionary and behavioural ecological studies, we illustrate how location–scale models can uncover biologically meaningful variance patterns that are overlooked in models focused solely on means. For instance, we show how food supplementation, hatching order and predation risk influence not only average trait values but also their variability. Each example corresponds to one of the model types and is implemented using widely used R packages such as <styled-content>glmmTMB</styled-content> and <styled-content>brms</styled-content> . All examples are accompanied by a freely accessible, step‐by‐step online tutorial, thereby lowering technical barriers and fostering broader adoption of location–scale modelling in ecological and evolutionary research. </p> </list-item> <list-item> <p>Finally, we propose a practical workflow for model selection and diagnostics and highlight recent extensions of the framework. These include multi‐response models, meta‐analytic models, phylogenetic comparative models and models including shape parameters such as skewness. Treating variance as a biologically informative response opens new avenues for us to explore the evolutionary, ecological and environmental processes that shape biological systems across diverse contexts.</p> </list-item> </list> </p>},
+   author = {Shinichi Nakagawa and Santiago Ortega and Elena Gazzea and Malgorzata Lagisz and Anna Lenz and Erick Lundgren and Ayumi Mizuno},
+   doi = {10.1111/2041-210x.70203},
+   issn = {2041-210X},
+   journal = {Methods in Ecology and Evolution},
+   keywords = {Bayesian statistics,GLMM,dispersion,distributional regression,effects models,homoscedasticity,inflation,linear modelling,mixed,over,zero},
+   month = {12},
+   pages = {1-13},
+   publisher = {John Wiley \& Sons, Ltd},
+   title = {Location–scale models in ecology and evolution: Heteroscedasticity in continuous, count and proportion data},
+   volume = {00},
+   url = {https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210x.70203},
+   year = {2025}
+}
+
+@article{Yao2018averaging,
+   abstract = {Bayesian model averaging is flawed in the M-open setting in which the true data-generating process is not one of the candidate models being fit. We take the idea of stacking from the point estimation literature and generalize to the combination of predictive distributions. We extend the utility function to any proper scoring rule and use Pareto smoothed importance sampling to efficiently compute the required leave-one-out posterior distributions. We compare stacking of predictive distributions to several alternatives: stacking of means, Bayesian model averaging (BMA), Pseudo-BMA, and a variant of Pseudo-BMA that is stabilized using the Bayesian bootstrap. Based on simulations and real-data applications, we recommend stacking of predictive distributions, with bootstrapped-Pseudo-BMA as an approximate alternative when computation cost is an issue.},
+   author = {Yuling Yao and Aki Vehtari and Daniel Simpson and Andrew Gelman},
+   doi = {10.1214/17-ba1091},
+   issn = {1936-0975},
+   issue = {3},
+   journal = {https://doi.org/10.1214/17-BA1091},
+   keywords = {Bayesian model averaging,Stan,model combination,predictive distribution,proper scoring rule,stacking},
+   month = {9},
+   pages = {917-1007},
+   publisher = {International Society for Bayesian Analysis},
+   title = {Using Stacking to Average Bayesian Predictive Distributions (with Discussion)},
+   volume = {13},
+   url = {https://projecteuclid.org/journals/bayesian-analysis/volume-13/issue-3/Using-Stacking-to-Average-Bayesian-Predictive-Distributions-with-Discussion/10.1214/17-BA1091.full https://projecteuclid.org/journals/bayesian-analysis/volume-13/issue-3/Using-Stacking-to-Average-Bayesian-Predictive-Distributions-with-Discussion/10.1214/17-BA1091.short},
+   year = {2018}
+}
+
+@article{Vehtari2016loo,
+   abstract = {Leave-one-out cross-validation (LOO) and the widely applicable information criterion (WAIC) are methods for estimating pointwise out-of-sample prediction accuracy from a fitted Bayesian model using the log-likelihood evaluated at the posterior simulations of the parameter values. LOO and WAIC have various advantages over simpler estimates of predictive error such as AIC and DIC but are less used in practice because they involve additional computational steps. Here we lay out fast and stable computations for LOO and WAIC that can be performed using existing simulation draws. We introduce an efficient computation of LOO using Pareto-smoothed importance sampling (PSIS), a new procedure for regularizing importance weights. Although WAIC is asymptotically equal to LOO, we demonstrate that PSIS-LOO is more robust in the finite case with weak priors or influential observations. As a byproduct of our calculations, we also obtain approximate standard errors for estimated predictive errors and for comparison of predictive errors between two models. We implement the computations in an R package called loo and demonstrate using models fit with the Bayesian inference package Stan.},
+   author = {Aki Vehtari and Andrew Gelman and Jonah Gabry},
+   doi = {10.1007/s11222-016-9696-4},
+   issn = {15731375},
+   issue = {5},
+   journal = {Statistics and Computing 2016 27:5},
+   keywords = {Artificial Intelligence,Probability and Statistics in Computer Science,Stan,Statistical Theory and Methods,Statistics and Computing/Statistics Programs,Widely applicable information criterion (WAIC)},
+   month = {8},
+   pages = {1413-1432},
+   publisher = {Springer},
+   title = {Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC},
+   volume = {27},
+   url = {https://link.springer.com/article/10.1007/s11222-016-9696-4},
+   year = {2016}
+}
+
+@misc{Vermote2019avhrr,
+   author = {Eric Vermote and NOAA CDR Program},
+   doi = {10.7289/V5ZG6QH9},
+   publisher = {NOAA National Centers for Environmental Information},
+   title = {NOAA Climate Data Record (CDR) of AVHRR Normalized Difference Vegetation Index (NDVI)},
+   year = {2019}
+}
+
+@misc{Vermote2022viirs,
+   author = {Eric Vermote and NOAA CDR Program},
+   doi = {https://doi.org/10.25921/gakh-st76},
+   publisher = {NOAA National Centers for Environmental Information},
+   title = {NOAA Climate Data Record (CDR) of VIIRS Normalized Difference Vegetation Index (NDVI)},
+   year = {2022}
+}
+
+@article{Jnsson2004time,
+   abstract = {Three different least-squares methods for processing time-series of satellite sensor data are presented. The first method uses local polynomial functions and can be classified as an adaptive Savitzky-Golay filter. The other two methods are more clear cut least-squares methods, where data are fit to a basis of harmonic functions and asymmetric Gaussian functions, respectively. The methods incorporate qualitative information on cloud contamination from ancillary datasets. The resulting smooth curves are used for extracting seasonal parameters related to the growing seasons. The methods are implemented in a computer program, TIMESAT, and applied to NASA/NOAA Pathfinder AVHRR Land Normalized Difference Vegetation Index data over Africa, giving spatially coherent images of seasonal parameters such as beginnings and ends of growing seasons, seasonally integrated NDVI and seasonal amplitudes. Based on general principles, the TIMESAT program can be used also for other types of satellite-derived time-series data. © 2004 Elsevier Ltd. All rights reserved.},
+   author = {Per Jönsson and Lars Eklundh},
+   doi = {10.1016/J.CAGEO.2004.05.006},
+   issn = {0098-3004},
+   issue = {8},
+   journal = {Computers \& Geosciences},
+   keywords = {CLAVR,Data smoothing,Function fitting,NDVI,NOAA AVHRR,Phenology,Seasonality,TIMESAT},
+   month = {10},
+   pages = {833-845},
+   publisher = {Pergamon},
+   title = {TIMESAT—a program for analyzing time-series of satellite sensor data},
+   volume = {30},
+   url = {https://www.sciencedirect.com/science/article/pii/S0098300404000974?utm_source=chatgpt.com},
+   year = {2004}
+}
+
+@article{Zhang2003vegetation,
+   abstract = {Accurate measurements of regional to global scale vegetation dynamics (phenology) are required to improve models and understanding of inter-annual variability in terrestrial ecosystem carbon exchange and climate-biosphere interactions. Since the mid-1980s, satellite data have been used to study these processes. In this paper, a new methodology to monitor global vegetation phenology from time series of satellite data is presented. The method uses series of piecewise logistic functions, which are fit to remotely sensed vegetation index (VI) data, to represent intra-annual vegetation dynamics. Using this approach, transition dates for vegetation activity within annual time series of VI data can be determined from satellite data. The method allows vegetation dynamics to be monitored at large scales in a fashion that it is ecologically meaningful and does not require pre-smoothing of data or the use of user-defined thresholds. Preliminary results based on an annual time series of Moderate Resolution Imaging Spectroradiometer (MODIS) data for the northeastern United States demonstrate that the method is able to monitor vegetation phenology with good success. © 2002 Elsevier Science Inc. All rights reserved.},
+   author = {Xiaoyang Zhang and Mark A. Friedl and Crystal B. Schaaf and Alan H. Strahler and John C.F. Hodges and Feng Gao and Bradley C. Reed and Alfredo Huete},
+   doi = {10.1016/S0034-4257(02)00135-9},
+   issn = {0034-4257},
+   issue = {3},
+   journal = {Remote Sensing of Environment},
+   keywords = {MODIS,Remote sensing,Vegetation phenology},
+   month = {3},
+   pages = {471-475},
+   publisher = {Elsevier},
+   title = {Monitoring vegetation phenology using MODIS},
+   volume = {84},
+   url = {https://www.sciencedirect.com/science/article/pii/S0034425702001359?utm_source=chatgpt.com},
+   year = {2003}
+}
+
+@misc{OpenStreetMapcontributors2024,
+   abstract = {Data retrieved from OpenStreetMap and available under the Open Database License (ODbL)},
+   author = {OpenStreetMap contributors},
+   title = {OpenStreetMap},
+   url = {https://www.openstreetmap.org/#map=3/71.34/-96.82},
+   year = {2024}
+}
+
+@article{Ortega2026collapse,
+   abstract = {Climate change can alter not only when seasonal events occur on average, but also how predictable they are from year to year. Many long-lived seabirds show a paradox: breeding dates remain stable even as populations decline. Using two decades of data from Blue-footed Boobies (Sula nebouxii), we tested whether loss of environmental predictability could reduce reproductive success even when mean timing remained stable. Mean timing of the winter–spring phytoplankton bloom and mean breeding mismatch showed no clear trend, but year-to-year variability in bloom timing increased markedly. Mismatch relative to bloom onset became more variable, and both expected nest success and its consistency declined. These results show that predictability loss can erode synchrony and demography even when mean timing appears unchanged},
+   author = {Santiago Ortega and Cristina Rodriguez and Ayumi Mizuno and Laura Arroyo and Hugh Drummond and Shinichi Nakagawa},
+   doi = {10.32942/X2W37C},
+   month = {3},
+   Journal = {EcoEvoRxiv},
+   title = {The collapse of environmental predictability erodes reproductive success in a Tropical seabird},
+   url = {https://ecoevorxiv.org/repository/view/12355/},
+   year = {2026}
+}
+
+@article{Arct2025incubation,
+    author = {Arct, Aneta and Skorb, Karolina and Gustafsson, Lars and Drobniak, Szymon M and Martyka, Rafał},
+    title = {Ecological drivers and fitness consequences of incubation period in {{\textit{Ficedula albicollis}}} (Collared Flycatcher): Insights from a long-term data set},
+    journal = {Ornithology},
+    volume = {142},
+    number = {4},
+    pages = {ukaf019},
+    year = {2025},
+    month = {06},
+    abstract = {Using a 37-year dataset of Ficedula albicollis (Collared Flycatcher) we examined how incubation duration is influenced by environmental conditions and female characteristics. In our study, we clearly demonstrated that the length of the incubation period exhibits variability and may be subject to selection. Our findings indicate that the duration of the incubation period tended to affect hatching success but played a more substantial role in recruitment, which is a key indicator of fitness. We found that incubation duration is significantly affected by laying date, clutch size, female body condition, and ambient temperature, including its variability. Interestingly, both low and high ambient temperatures are linked to shorter incubation periods. In turn, an increase in temperature variability is associated with shortening incubation periods. Further research is needed to explore the long-term impacts of these incubation strategies on population viability, particularly in the face of increasing climate variability.• Using a 37-year dataset of Ficedula albicollis (Collared Flycatcher), we examined how environmental conditions and female characteristics influence incubation duration and its consequences for hatching success and recruitment of the offspring.• Our study indicates that the duration of the incubation period has the potential to affect hatching success, but it apparently plays a crucial role in offspring recruitment, which is a key indicator of fitness.• We found that clutch size, female body condition, and ambient temperature, including its variability, significantly affect incubation duration.• Low and high temperatures are linked to shorter incubation periods, while an increase in temperature variability is associated with shortening incubation periods.• These findings provide insights into how environmental conditions may influence incubation as a key avian reproductive trait, with potential implications for bird responses to climate change.},
+    issn = {0004-8038},
+    doi = {10.1093/ornithology/ukaf019},
+    url = {https://doi.org/10.1093/ornithology/ukaf019},
+    eprint = {https://academic.oup.com/auk/article-pdf/142/4/ukaf019/63415064/ukaf019.pdf},
+}
+
+@article{Parmesan2007,
+   abstract = {New analyses are presented addressing the global impacts of recent climate change on phenology of plant and animal species. A meta-analysis spanning 203 species was conducted on published datasets from the northern hemisphere. Phenological response was examined with respect to two factors: distribution of species across latitudes and taxonomic affiliation or functional grouping of target species. Amphibians had a significantly stronger shift toward earlier breeding than all other taxonomic/functional groups, advancing more than twice as fast as trees, birds and butterflies. In turn, butterfly emergence or migratory arrival showed three times stronger advancement than the first flowering of herbs, perhaps portending increasing asynchrony in insect-plant interactions. Response was significantly stronger at higher latitudes where warming has been stronger, but latitude explained < 4% of the variation. Despite expectation, latitude was not yet an important predictor of climate change impacts on phenology. The only two previously published estimates of the magnitude of global response are quite different: 2.3 and 5.1 days decade-1 advancement. The scientific community has assumed this difference to be real and has attempted to explain it in terms of biologically relevant phenomena: specifically, differences in distribution of data across latitudes, taxa or time periods. Here, these and other possibilities are explored. All analyses indicate that the difference in estimated response is primarily due to differences between the studies in criteria for incorporating data. It is a clear and automatic consequence of the exclusion by one study of data on 'stable' (nonresponsive) species. Once this is accounted for, the two studies support each other, generating similar conclusions despite analyzing substantially nonoverlapping datasets. Analyses here on a new expanded dataset estimate an overall spring advancement across the northern hemisphere of 2.8 days decade-1. This is the first quantitative analysis showing that data-sampling methodologies significantly impact global (synthetic) estimates of magnitude of global warming response. © 2007 Blackwell Publishing Ltd.},
+   author = {Camille Parmesan},
+   doi = {10.1111/j.1365-2486.2007.01404.x},
+   issn = {13541013},
+   issue = {9},
+   journal = {Global Change Biology},
+   keywords = {Animal,Climate change,Global warming,Insect-plant interactions,Latitude,Meta-analysis,Phenology,Plant,Temperature,Trophic interactions},
+   month = {9},
+   pages = {1860-1872},
+   publisher = {John Wiley \& Sons, Ltd},
+   title = {Influences of species, latitudes and methodologies on estimates of phenological response to global warming},
+   volume = {13},
+   url = {/doi/pdf/10.1111/j.1365-2486.2007.01404.x https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1365-2486.2007.01404.x https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2486.2007.01404.x},
+   year = {2007}
+}
+
+@article{Visser2019mismatch,
+   author = {Marcel E Visser and Phillip Gienapp},
+   doi = {10.1038/s41559-019-0880-8},
+   issn = {2397-334X},
+   issue = {6},
+   journal = {Nature Ecology \& Evolution},
+   month = {4},
+   note = {Publisher: Springer Science and Business Media LLC},
+   pages = {879-885},
+   title = {Evolutionary and demographic consequences of phenological mismatches},
+   volume = {3},
+   url = {https://www.nature.com/articles/s41559-019-0880-8},
+   year = {2019}
+}
+
+@article{Visser2005caterpillar,
+   abstract = {Timing of reproduction has major fitness consequences, which can only be understood when the phenology of the food for the offspring is quantified. For insectivorous birds, like great tits (Parus major), synchronisation of their offspring needs and abundance of caterpillars is the main selection pressure. We measured caterpillar biomass over a 20-year period and showed that the annual peak date is correlated with temperatures from 8 March to 17 May. Laying dates also correlate with temperatures, but over an earlier period (16 March – 20 April). However, as we would predict from a reliable cue used by birds to time their reproduction, also the food peak correlates with these temperatures. Moreover, the slopes of the phenology of the birds and caterpillar biomass, when regressed against the temperatures in this earlier period, do not differ. The major difference is that due to climate change, the relationship between the timing of the food peak and the temperatures over the 16 March – 20 April period is changing, while this is not so for great tit laying dates. As a consequence, the synchrony between offspring needs and the caterpillar biomass has been disrupted in the recent warm decades. This may have severe consequences as we show that both the number of fledglings as well as their fledging weight is affected by this synchrony. We use the descriptive models for both the caterpillar biomass peak as for the great tit laying dates to predict shifts in caterpillar and bird phenology 2005–2100, using an IPCC climate scenario. The birds will start breeding earlier and this advancement is predicted to be at the same rate as the advancement of the food peak, and hence they will not reduce the amount of the current mistiming of about 10 days.},
+   author = {Marcel E. Visser and Leonard J.M. Holleman and Phillip Gienapp},
+   doi = {10.1007/S00442-005-0299-6},
+   issn = {1432-1939},
+   issue = {1},
+   journal = {Oecologia 2005 147:1},
+   keywords = {Ecology,Hydrology/Water Resources,Phenology,Plant Sciences,Timing of reproduction},
+   month = {12},
+   pages = {164-172},
+   pmid = {16328547},
+   publisher = {Springer},
+   title = {Shifts in caterpillar biomass phenology due to climate change and its impact on the breeding biology of an insectivorous bird},
+   volume = {147},
+   url = {https://link.springer.com/article/10.1007/s00442-005-0299-6},
+   year = {2005}
+}
+
+@article{Miller-Rushing2010demo,
+   abstract = {Climate change is altering the phenology of species across the world, but what are the consequences of these phenological changes for the demography and population dynamics of species? Time-sensitive relationships, such as migration, breeding and predation, may be disrupted or altered, which may in turn alter the rates of reproduction and survival, leading some populations to decline and others to increase in abundance. However, finding evidence for disrupted relationships, or lack thereof, and their demographic effects, is difficult because the necessary detailed observational data are rare. Moreover, we do not know how sensitive species will generally be to phenological mismatches when they occur. Existing long-term studies provide preliminary data for analysing the phenology and demography of species in several locations. In many instances, though, observational protocols may need to be optimized to characterize timing-based multi-trophic interactions. As a basis for future research, we outline some of the key questions and approaches to improving our understanding of the relationships among phenology, demography and climate in a multi-trophic context. There are many challenges associated with this line of research, not the least of which is the need for detailed, long-term data on many organisms in a single system. However, we identify key questions that can be addressed with data that already exist and propose approaches that could guide future research.},
+   author = {Abraham J Miller-Rushing and Toke Thomas Høye and David W Inouye and Eric Post},
+   doi = {10.1098/rstb.2010.0148},
+   issn = {0962-8436, 1471-2970},
+   issue = {1555},
+   journal = {Philosophical Transactions of the Royal Society B: Biological Sciences},
+   month = {10},
+   note = {Publisher: The Royal Society},
+   pages = {3177-3186},
+   title = {The effects of phenological mismatches on demography},
+   volume = {365},
+   url = {https://royalsocietypublishing.org/doi/10.1098/rstb.2010.0148},
+   year = {2010}
+}
+
+@article{Visser2005yard,
+   abstract = {Climate change has led to shifts in phenology in many species distributed widely across taxonomic groups. It is, however, unclear how we should interpret these shifts without some sort of a yardstick: a measure that will reflect how much a species should be shifting to match the change in its environment caused by climate change. Here, we assume that the shift in the phenology of a species' food abundance is, by a first approximation, an appropriate yardstick. We review the few examples that are available, ranging from birds to marine plankton. In almost all of these examples, the phenology of the focal species shifts either too little (five out of 11) or too much (three out of 11) compared to the yardstick. Thus, many species are becoming mistimed due to climate change. We urge researchers with long-term datasets on phenology to link their data with those that may serve as a yardstick, because documentation of the incidence of climate change-induced mistiming is crucial in assessing the impact of global climate change on the natural world. © 2005 The Royal Society.},
+   author = {Marcel E. Visser and Christiaan Both},
+   doi = {10.1098/RSPB.2005.3356},
+   issn = {0962-8452},
+   issue = {1581},
+   journal = {Proceedings of the Royal Society B: Biological Sciences},
+   keywords = {Climate change,Food chains,Mistiming,Phenology},
+   month = {12},
+   pages = {2561-2569},
+   pmid = {16321776},
+   publisher = {The Royal Society},
+   title = {Shifts in phenology due to global climate change: the need for a yardstick},
+   volume = {272},
+   url = {https://dx.doi.org/10.1098/rspb.2005.3356},
+   year = {2005}
+}
+
+@article{Cohen2018,
+   abstract = {Shifts in phenology are already resulting in disruptions to the timing of migration and breeding, and asynchronies between interacting species1–5. Recent syntheses have concluded that trophic level 1 , latitude 6 and how phenological responses are measured 7 are key to determining the strength of phenological responses to climate change. However, researchers still lack a comprehensive framework that can predict responses to climate change globally and across diverse taxa. Here, we synthesize hundreds of published time series of animal phenology from across the planet to show that temperature primarily drives phenological responses at mid-latitudes, with precipitation becoming important at lower latitudes, probably reflecting factors that drive seasonality in each region. Phylogeny and body size are associated with the strength of phenological shifts, suggesting emerging asynchronies between interacting species that differ in body size, such as hosts and parasites and predators and prey. Finally, although there are many compelling biological explanations for spring phenological delays, some examples of delays are associated with short annual records that are prone to sampling error. Our findings arm biologists with predictions concerning which climatic variables and organismal traits drive phenological shifts. A synthesis of animal phenology shows that temperature primarily drives mid-latitude responses, with precipitation important at lower latitudes. Phylogeny and body size are associated with the strength of phenological shifts.},
+   author = {Jeremy M. Cohen and Marc J. Lajeunesse and Jason R. Rohr},
+   doi = {10.1038/s41558-018-0067-3},
+   isbn = {4155801800673},
+   issn = {17586798},
+   issue = {3},
+   journal = {Nature Climate Change 2018 8:3},
+   keywords = {Animal migration,Phenology},
+   month = {2},
+   pages = {224-228},
+   publisher = {Nature Publishing Group},
+   title = {A global synthesis of animal phenological responses to climate change},
+   volume = {8},
+   url = {https://www.nature.com/articles/s41558-018-0067-3},
+   year = {2018}
+}
+
+@article{Thackeray2016,
+   abstract = {Differences in phenological responses to climate change among species can desynchronise ecological interactions and thereby threaten ecosystem function. To assess these threats, we must quantify the relative impact of climate change on species at different trophic levels. Here, we apply a Climate Sensitivity Profile approach to 10,003 terrestrial and aquatic phenological data sets, spatially matched to temperature and precipitation data, to quantify variation in climate sensitivity. The direction, magnitude and timing of climate sensitivity varied markedly among organisms within taxonomic and trophic groups. Despite this variability, we detected systematic variation in the direction and magnitude of phenological climate sensitivity. Secondary consumers showed consistently lower climate sensitivity than other groups. We used mid-century climate change projections to estimate that the timing of phenological events could change more for primary consumers than for species in other trophic levels (6.2 versus 2.5-2.9 days earlier on average), with substantial taxonomic variation (1.1-14.8 days earlier on average).},
+   author = {Stephen J. Thackeray and Peter A. Henrys and Deborah Hemming and James R. Bell and Marc S. Botham and Sarah Burthe and Pierre Helaouet and David G. Johns and Ian D. Jones and David I. Leech and Eleanor B. MacKay and Dario Massimino and Sian Atkinson and Philip J. Bacon and Tom M. Brereton and Laurence Carvalho and Tim H. Clutton-Brock and Callan Duck and Martin Edwards and J. Malcolm Elliott and Stephen J.G. Hall and Richard Harrington and James W. Pearce-Higgins and Toke T. Høye and Loeske E.B. Kruuk and Josephine M. Pemberton and Tim H. Sparks and Paul M. Thompson and Ian White and Ian J. Winfield and Sarah Wanless},
+   doi = {10.1038/NATURE18608},
+   issn = {1476-4687},
+   issue = {7611},
+   journal = {Nature},
+   keywords = {Animals,Aquatic Organisms,Climate,Climate Change / statistics & numerical data*,Datasets as Topic,Ecosystem*,Forecasting,MEDLINE,NCBI,NIH,NLM,National Center for Biotechnology Information,National Institutes of Health,National Library of Medicine,Non-U.S. Gov't,Peter A Henrys,PubMed Abstract,Rain,Research Support,Sarah Wanless,Seasons,Species Specificity,Stephen J Thackeray,Temperature,Time Factors,United Kingdom,doi:10.1038/nature18608,pmid:27362222},
+   pages = {241-245},
+   pmid = {27362222},
+   publisher = {Nature},
+   title = {Phenological sensitivity to climate across taxa and trophic levels},
+   volume = {535},
+   url = {https://pubmed.ncbi.nlm.nih.gov/27362222/},
+   year = {2016}
+}
+
+@article{Halupka2017,
+   abstract = {Many bird species are advancing the timing of their egg-laying in response to a warming climate. Little is known, however, of whether this advancement affects the respective length of the breeding seasons. A meta-analysis of 65 long-term studies of 54 species from the Northern Hemisphere has revealed that within the last 45 years an average population has lengthened the season by 1.4 days per decade, which was independent from changes in mean laying dates. Multi-brooded birds have prolonged their seasons by 4 days per decade, while single-brooded have shortened by 2 days. Changes in season lengths covaried with local climate changes:warmingwas correlated with prolonged seasons in multi-brooded species, but not in single-brooders. This might be a result of higher ecological flexibility of multi-brooded birds, whereas single brooders may have problems with synchronizing their reproduction with the peak of food resources. Sedentary species and shortdistance migrants prolonged their breeding seasons more than long-distance migrants, which probably cannot track conditions at their breeding grounds. We conclude that as long as climatewarming continues without major changes in ecological conditions, multi-brooded or sedentary species will probably increase their reproductive output, while the opposite effect may occur in single-brooded or migratory birds.},
+   author = {Lucyna Halupka and Konrad Halupka},
+   doi = {10.1098/rspb.2017.1710},
+   issn = {14712954},
+   issue = {1867},
+   journal = {Proceedings of the Royal Society B: Biological Sciences},
+   keywords = {Birds,Climate change,Duration of breeding season,Laying dates,Multi-brooded species,Single-brooded species},
+   month = {11},
+   pmid = {29167360},
+   publisher = {Royal Society Publishing},
+   title = {The effect of climate change on the duration of avian breeding seasons: A meta-analysis},
+   volume = {284},
+   url = {https://dx.doi.org/10.1098/rspb.2017.1710},
+   year = {2017}
+}
+
+@article{Screen2018,
+   abstract = {Purpose of Review: Dynamic manifestations of climate change, i.e. those related to circulation, are less well understood than are thermodynamic, or temperature-related aspects. However, this knowledge gap is narrowing. We review recent progress in understanding the causes of observed changes in polar tropospheric and stratospheric circulation, and in interpreting climate model projections of their future changes. Recent Findings: Trends in the annular modes reflect the influences of multiple drivers. In the Northern Hemisphere, there appears to be a “tug-of-war” between the opposing effects of Arctic near-surface warming and tropical upper tropospheric warming, two predominant features of the atmospheric response to increasing greenhouse gases. Future trends in the Southern Hemisphere largely depend on the competing effects of stratospheric ozone recovery and increasing greenhouse gases. Summary: Human influence on the Antarctic circulation is detectable in the strengthening of the stratospheric polar vortex and the poleward shift of the tropospheric westerly winds. Observed Arctic circulation changes cannot be confidently separated from internal atmospheric variability.},
+   author = {J. A. Screen and T. J. Bracegirdle and I. Simmonds},
+   doi = {10.1007/S40641-018-0111-4/FIGURES/1},
+   issn = {21986061},
+   issue = {4},
+   journal = {Current Climate Change Reports},
+   keywords = {Annular modes,Antarctic,Arctic,Climate change,Cyclones,Stratospheric polar vortex},
+   month = {12},
+   pages = {383-395},
+   publisher = {Springer},
+   title = {Polar Climate Change as Manifest in Atmospheric Circulation},
+   volume = {4},
+   url = {https://link.springer.com/article/10.1007/s40641-018-0111-4},
+   year = {2018}
+}
+
+@article{Lehmann2015,
+   abstract = {In the last decade record-breaking rainfall events have occurred in many places around the world causing severe impacts to human society and the environment including agricultural losses and floodings. There is now medium confidence that human-induced greenhouse gases have contributed to changes in heavy precipitation events at the global scale. Here, we present the first analysis of record-breaking daily rainfall events using observational data. We show that over the last three decades the number of record-breaking events has significantly increased in the global mean. Globally, this increase has led to 12 % more record-breaking rainfall events over 1981–2010 compared to those expected in stationary time series. The number of record-breaking rainfall events peaked in 2010 with an estimated 26 % chance that a new rainfall record is due to long-term climate change. This increase in record-breaking rainfall is explained by a statistical model which accounts for the warming of air and associated increasing water holding capacity only. Our results suggest that whilst the number of rainfall record-breaking events can be related to natural multi-decadal variability over the period from 1901 to 1980, observed record-breaking rainfall events significantly increased afterwards consistent with rising temperatures.},
+   author = {Jascha Lehmann and Dim Coumou and Katja Frieler},
+   doi = {10.1007/S10584-015-1434-Y},
+   issn = {1573-1480},
+   issue = {4},
+   journal = {Climatic Change 2015 132:4},
+   keywords = {Atmospheric Sciences,Climate Change/Climate Change Impacts},
+   month = {7},
+   pages = {501-515},
+   publisher = {Springer},
+   title = {Increased record-breaking precipitation events under global warming},
+   volume = {132},
+   url = {https://link.springer.com/article/10.1007/s10584-015-1434-y},
+   year = {2015}
+}
+
+@article{Rudeva2021,
+   abstract = {For the last few decades the Northern Hemisphere midlatitudes have seen an increasing number of temperature extreme events. It has been suggested that some of these extremes are related to planetary wave activity. In this study we identify wave propagation regions at 300 hPa using the ERA-Interim dataset from 1980 to 2017 and link them to temperature extremes in densely populated regions of the Northern Hemisphere. Most studies have used background flow fields at monthly or seasonal scale to investigate wave propagation. For a phenomenon that is influenced by threshold incidents and nonlinear processes, this can distort the net Rossby wave signal. A novel aspect of our investigation lies in the use of daily data to study wave propagation allowing it to be diagnosed for limited but important periods across a wider range of latitudes, including the polar region. We show that winter temperature extremes in the midlatitudes can be associated with circulation anomalies in both the Arctic and the tropics, while the relative importance of these areas differs according to the specific midlatitude region. In particular, wave trains connecting the tropical Pacific and Atlantic may be associated with temperature anomalies in North America and Siberia. Arctic seas are markedly important for Eurasian regions. Analysis of synoptic temperature extremes suggests that preexisting local temperature anomalies play a key role in the development of those extremes, as well as amplification of large-scale wave trains. We also demonstrate that warm Arctic regions can create cold outbreaks in both Siberia and North America.},
+   author = {Irina Rudeva and Ian Simmonds and Irina Rudeva and Ian Simmonds},
+   doi = {10.1175/JCLI-D-20-0371.1},
+   issn = {0894-8755},
+   issue = {10},
+   journal = {Journal of Climate},
+   keywords = {Arctic,Extreme events,North Atlantic Oscillation,Pacific-North American pattern/oscillation,Rossby waves,Sea ice,Stationary waves,Teleconnections},
+   month = {5},
+   pages = {3733-3749},
+   publisher = {American Meteorological Society},
+   title = {Midlatitude Winter Extreme Temperature Events and Connections with Anomalies in the Arctic and Tropics},
+   volume = {34},
+   url = {https://journals.ametsoc.org/view/journals/clim/34/10/JCLI-D-20-0371.1.xml},
+   year = {2021}
+}
+
+@misc{Pendersen2025patch,
+   author = {Thomas Pendersen},
+   doi = {10.32614/CRAN.package.patchwork},
+   title = {patchwork: The Composer of Plots},
+   year = {2025}
+}
+
+@misc{Kay2024tidybayes,
+   abstract = {New features:
+
+
+
+Add support for draw_indices parameter in spread_draws() and
+gather_draws(). (#323)
+
+
+Bug fixes:
+
+
+
+Support for matrix columns in nest_rvars() and unnest_rvars(). (#316)
+
+Fix some named dimensions being converted to numeric indices in
+spread_draws() on R = 4.5.},
+   author = {Matthew Kay},
+   doi = {10.32614/CRAN.package.tidybayes},
+   institution = {Comprehensive R Archive Network},
+   journal = {CRAN: Contributed Packages},
+   month = {8},
+   publisher = {R},
+   title = {tidybayes: Tidy Data and 'Geoms' for Bayesian Models},
+   url = {https://CRAN.R-project.org/package=tidybayes},
+   year = {2024}
+}
+
+@article{Wickham2011ggplot,
+   abstract = { This article discusses ggplot2, an open source R package, based on a grammatical theory of graphics. The underlying theory has been discussed in depth elsewhere so this article illustrates some of the consequences of the theory for creating new graphics, the importance of programmable graphics, and the rich ecosystem that has grown up around ggplot2. WIREs Comp Stat 2011 3 180–185 DOI: 10.1002/wics.147 },
+   author = {Hadley Wickham},
+   doi = {10.1002/wics.147},
+   issn = {1939-5108},
+   issue = {2},
+   journal = {WIREs Computational Statistics},
+   month = {3},
+   pages = {180-185},
+   title = {ggplot2},
+   volume = {3},
+   url = {https://wires.onlinelibrary.wiley.com/doi/10.1002/wics.147},
+   year = {2011}
+}
+
+@misc{RCoreTeam2026,
+   author = {R Core Team},
+   city = {Vienna, Austria},
+   publisher = {R Foundation for Statistical Computing},
+   title = {R: A Language and Environment for Statistical Computing},
+   year = {2026}
+}
+
+@misc{Positteam2026,
+   author = {Posit team},
+   city = {Boston, MA},
+   publisher = {Posit Software, pbc},
+   title = {RStudio: Integrated Development Environment for R},
+   url = {http://www.posit.co/},
+   year = {2026}
+}
+
+@misc{StanDevelopmentTeam2025,
+   author = {Stan Development Team},
+   title = {Stan Reference Manual},
+   year = {2025}
+}
+
+@article{Brkner2017,
+   abstract = {The brms package implements Bayesian multilevel models in R using the probabilistic programming language Stan. A wide range of distributions and link functions are supported, allowing users to fit  -  among others  -  linear, robust linear, binomial, Poisson, survival, ordinal, zero-inflated, hurdle, and even non-linear models all in a multilevel context. Further modeling options include autocorrelation of the response variable, user defined covariance structures, censored data, as well as meta-analytic standard errors. Prior specifications are flexible and explicitly encourage users to apply prior distributions that actually reflect their beliefs. In addition, model fit can easily be assessed and compared with the Watanabe-Akaike information criterion and leave-one-out cross-validation.},
+   author = {Paul Christian Bürkner},
+   doi = {10.18637/JSS.V080.I01},
+   issn = {1548-7660},
+   journal = {Journal of Statistical Software},
+   keywords = {Bayesian inference,MCMC,R,Stan,multilevel model,ordinal data},
+   month = {8},
+   pages = {1-28},
+   publisher = {American Statistical Association},
+   title = {brms: An R Package for Bayesian Multilevel Models Using Stan},
+   volume = {80},
+   url = {https://www.jstatsoft.org/index.php/jss/article/view/v080i01},
+   year = {2017}
+}
+
+@article{Gabry2019vis,
+   abstract = {Bayesian data analysis is about more than just computing a posterior distribution, and Bayesian visualization is about more than trace plots of Markov chains. Practical Bayesian data analysis, like all data analysis, is an iterative process of model building, inference, model checking and evaluation, and model expansion. Visualization is helpful in each of these stages of the Bayesian workflow and it is indispensable when drawing inferences from the types of modern, high dimensional models that are used by applied researchers.},
+   author = {Jonah Gabry and Daniel Simpson and Aki Vehtari and Michael Betancourt and Andrew Gelman},
+   doi = {10.1111/RSSA.12378;PAGE:STRING:ARTICLE/CHAPTER},
+   issn = {1467985X},
+   issue = {2},
+   journal = {Journal of the Royal Statistical Society. Series A: Statistics in Society},
+   keywords = {Bayesian data analysis,Statistical graphics,Statistical workflow},
+   month = {2},
+   pages = {389-402},
+   publisher = {Blackwell Publishing Ltd},
+   title = {Visualization in Bayesian workflow},
+   volume = {182},
+   url = {/doi/pdf/10.1111/rssa.12378 https://onlinelibrary.wiley.com/doi/abs/10.1111/rssa.12378 https://rss.onlinelibrary.wiley.com/doi/10.1111/rssa.12378},
+   year = {2019}
+}
+
+@article{svensson1992i,
+  title={Identification guide to European passerines},
+  author={Svensson, L},
+  journal={Edicao do autor. Stockholm},
+  year={1992}
+}
+
+@article{visser_evolutionary_2019,
+	title = {Evolutionary and demographic consequences of phenological mismatches},
+	volume = {3},
+	rights = {2019 Springer Nature Limited},
+	issn = {2397-334X},
+	url = {https://www.nature.com/articles/s41559-019-0880-8},
+	doi = {10.1038/s41559-019-0880-8},
+	abstract = {Climate change has often led to unequal shifts in the seasonal timing (phenology) of interacting species, such as consumers and their resource, leading to phenological ‘mismatches’. Mismatches occur when the time at which a consumer species’s demands for a resource are high does not match with the period when this resource is abundant. Here, we review the evolutionary and population-level consequences of such mismatches and how these depend on other ecological factors, such as additional drivers of selection and density-dependent recruitment. This review puts the research on phenological mismatches into a conceptual framework, applies this framework beyond consumer–resource interactions and illustrates this framework using examples drawn from the vast body of literature on mismatches. Finally, we point out priority questions for research on this key impact of climate change.},
+	pages = {879--885},
+	number = {6},
+	journaltitle = {Nature Ecology \& Evolution},
+	shortjournal = {Nat Ecol Evol},
+	publisher = {Nature Publishing Group},
+	author = {Visser, Marcel E. and Gienapp, Phillip},
+	urldate = {2026-04-14},
+	date = {2019-06},
+	langid = {english},
+	keywords = {Evolution, Evolutionary ecology},
+	file = {Full Text PDF:C\:\\Users\\aneta\\Zotero\\storage\\M2GUUMRP\\Visser i Gienapp - 2019 - Evolutionary and demographic consequences of phenological mismatches.pdf:application/pdf},
+}
+
+@article{samplonius2021strengthening,
+  title={Strengthening the evidence base for temperature-mediated phenological asynchrony and its impacts},
+  author={Samplonius, Jelmer M and Atkinson, Angus and Hassall, Christopher and Keogan, Katharine and Thackeray, Stephen J and Assmann, Jakob J and Burgess, Malcolm D and Johansson, Jacob and Macphie, Kirsty H and Pearce-Higgins, James W and others},
+  journal={Nature Ecology \& Evolution},
+  volume={5},
+  number={2},
+  pages={155--164},
+  year={2021},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{both2009,
+  title={Climate change and unequal phenological changes across four trophic levels: constraints or adaptations?},
+  author={Both, Christiaan and Van Asch, Margriet and Bijlsma, Rob G and Van Den Burg, Arnold B and Visser, Marcel E},
+  journal={Journal of Animal Ecology},
+  volume={78},
+  number={1},
+  pages={73--83},
+  year={2009},
+  publisher={Wiley Online Library}
+}
+
+@article{visser2010,
+  title={Phenology, seasonal timing and circannual rhythms: towards a unified framework},
+  author={Visser, Marcel E and Caro, Samuel P and Van Oers, Kees and Schaper, Sonja V and Helm, Barbara},
+  journal={Philosophical Transactions of the Royal Society B: Biological Sciences},
+  volume={365},
+  number={1555},
+  pages={3113--3127},
+  year={2010},
+  publisher={The Royal Society}
+}
+
+@article{both2006,
+  title={Climate change and population declines in a long-distance migratory bird},
+  author={Both, Christiaan and Bouwhuis, Sandra and Lessells, CM and Visser, Marcel E},
+  journal={Nature},
+  volume={441},
+  number={7089},
+  pages={81--83},
+  year={2006},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{shipley_birds_2020,
+	title = {Birds advancing lay dates with warming springs face greater risk of chick mortality},
+	volume = {117},
+	url = {https://www.pnas.org/doi/abs/10.1073/pnas.2009864117},
+	doi = {10.1073/pnas.2009864117},
+	abstract = {In response to a warming planet with earlier springs, migratory animals are adjusting the timing of essential life stages. Although these adjustments may be essential for keeping pace with resource phenology, they may prove insufficient, as evidenced by population declines in many species. However, even when species can match the tempo of climate change, other consequences may emerge when exposed to novel conditions earlier in the year. Here, using three long-term datasets on bird reproduction, daily insect availability, and weather, we investigated the complex mechanisms affecting reproductive success in an aerial insectivore, the tree swallow (Tachycineta bicolor). By examining breeding records over nearly half a century, we discovered that tree swallows have continuously advanced their egg laying by ∼3 d per decade. However, earlier-hatching offspring are now exposed to inclement weather events twice as often as they were in the 1970s. Our long-term daily insect biomass dataset shows no long-term trends over 25 y but precipitous drops in flying insect numbers on days with low ambient temperatures. Insect availability has a considerable impact on chick survival: Even a single inclement weather event can reduce offspring survival by {\textgreater}50\%. Our results highlight the multifaceted threats that climate change poses on migrating species. The decoupling between cold snap occurrence and generally warming spring temperatures can affect reproductive success and threaten long-term persistence of populations. Understanding the exact mechanisms that endanger aerial insectivores is especially timely because this guild is experiencing the steepest and most widespread declines across North America and Europe.},
+	pages = {25590--25594},
+	number = {41},
+	journaltitle = {Proceedings of the National Academy of Sciences},
+	publisher = {Proceedings of the National Academy of Sciences},
+	author = {Shipley, J. Ryan and Twining, Cornelia W. and Taff, Conor C. and Vitousek, Maren N. and Flack, Andrea and Winkler, David W.},
+	urldate = {2026-04-15},
+	date = {2020-10-13},
+	file = {Full Text PDF:C\:\\Users\\aneta\\Zotero\\storage\\XNVDYPQG\\Shipley et al. - 2020 - Birds advancing lay dates with warming springs face greater risk of chick mortality.pdf:application/pdf},
+}
+
+@article{martyka2023age,
+  title={Age-and trait-dependent breeding responses to environmental variation in a short-lived songbird},
+  author={Martyka, Rafa{\l} and Arct, Aneta and Kotowska, Dorota and Gustafsson, Lars},
+  journal={Scientific Reports},
+  volume={13},
+  number={1},
+  pages={14967},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{cichon2003does,
+  title={Does prior breeding experience improve reproductive success in collared flycatcher females?},
+  author={Cicho{\~n}, Mariusz},
+  journal={Oecologia},
+  volume={134},
+  number={1},
+  pages={78--81},
+  year={2003},
+  publisher={Springer}
+}
+
+@article{arct2025impact,
+  title={The impact of weather conditions on avian breeding performance: insights from a long-term study},
+  author={Arct, Aneta and Martyka, Rafa{\l} and Miler, Krzysztof and Skorb, Karolina and Gustafsson, Lars and Drobniak, Szymon M},
+  journal={Frontiers in Zoology},
+  volume={22},
+  number={1},
+  pages={23},
+  year={2025},
+  publisher={Springer}
+}
+
+@article{cole2015predicting,
+  title={Predicting bird phenology from space: Satellite-derived vegetation green-up signal uncovers spatial variation in phenological synchrony between birds and their environment},
+  author={Cole, Ella F and Long, Peter R and Zelazowski, Przemyslaw and Szulkin, Marta and Sheldon, Ben C},
+  journal={Ecology and Evolution},
+  volume={5},
+  number={21},
+  pages={5057--5074},
+  year={2015},
+  publisher={Wiley Online Library}
+}
+
+@article{aybar2020rgee,
+  title={rgee: An R package for interacting with Google Earth Engine},
+  author={Aybar, Cesar and Wu, Qiusheng and Bautista, Lesly and Yali, Roy and Barja, Antony},
+  journal={Journal of Open Source Software},
+  volume={5},
+  number={51},
+  pages={2272},
+  year={2020}
+}
+
+@misc{vermote2022climate,
+  title={Climate Data Record (CDR) Program: Climate Algorithm Theoretical Basis Document (C-ATBD)},
+  author={Vermote, Eric and Villaescusa, JL},
+  journal={ATBD CDRP-ATBD-1267. VIIRS Land Bundle-Surface Reflectance and Normalized Difference Vegetation Index},
+  pages={1--34},
+  year={2022},
+  publisher={NOAA US}
+}
+
+@misc{vermote_noaa_2018,
+	title = {{NOAA} Climate Data Record ({CDR}) of {AVHRR} Normalized Difference Vegetation Index ({NDVI}), Version 5},
+	url = {https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C01558/html},
+	doi = {10.7289/V5ZG6QH9},
+	publisher = {{NOAA} National Centers for Environmental Information},
+	author = {Vermote, Eric and {NOAA CDR Program}},
+	urldate = {2026-06-29},
+	date = {2018},
+}
+
+@misc{OpenStreetMap2024,
+  author       = {{OpenStreetMap contributors}},
+  title        = {{OpenStreetMap}},
+  year         = {2024},
+  howpublished = {\url{https://www.openstreetmap.org/#map=3/71.34/-96.82}},
+  note         = {Accessed 2026-06-29}
+}
+
+@book{wood2017generalized,
+  title={Generalized additive models: an introduction with R},
+  author={Wood, Simon N},
+  year={2017},
+  publisher={chapman and hall/CRC}
+}
+
+@article{jonsson2004timesat,
+  title={TIMESAT—a program for analyzing time-series of satellite sensor data},
+  author={J{\"o}nsson, Per and Eklundh, Lars},
+  journal={Computers \& geosciences},
+  volume={30},
+  number={8},
+  pages={833--845},
+  year={2004},
+  publisher={Elsevier}
+}
+
+@article{zhang2003monitoring,
+  title={Monitoring vegetation phenology using MODIS},
+  author={Zhang, Xiaoyang and Friedl, Mark A and Schaaf, Crystal B and Strahler, Alan H and Hodges, John CF and Gao, Feng and Reed, Bradley C and Huete, Alfredo},
+  journal={Remote sensing of environment},
+  volume={84},
+  number={3},
+  pages={471--475},
+  year={2003},
+  publisher={Elsevier}
+}
+
+@article{brooks2017modeling,
+  title={Modeling zero-inflated count data with glmmTMB},
+  author={Brooks, Mollie E and Kristensen, Kasper and Van Benthem, Koen J and Magnusson, Arni and Berg, Casper W and Nielsen, Anders and Skaug, Hans J and Maechler, Martin and Bolker, Benjamin M},
+  journal={BioRxiv},
+  pages={132753},
+  year={2017},
+  publisher={Cold Spring Harbor Laboratory}
+}
+
+@article{charmantier2014climate,
+  title={Climate change and timing of avian breeding and migration: evolutionary versus plastic changes},
+  author={Charmantier, Anne and Gienapp, Phillip},
+  journal={Evolutionary applications},
+  volume={7},
+  number={1},
+  pages={15--28},
+  year={2014},
+  publisher={Wiley Online Library}
+}
+
+@article{tomotani2018climate,
+  title={Climate change leads to differential shifts in the timing of annual cycle stages in a migratory bird},
+  author={Tomotani, Barbara M and van der Jeugd, Henk and Gienapp, Phillip and de la Hera, Iv{\'a}n and Pilzecker, Jos and Teichmann, Corry and Visser, Marcel E},
+  journal={Global change biology},
+  volume={24},
+  number={2},
+  pages={823--835},
+  year={2018},
+  publisher={Wiley Online Library}
+}
+
+@article{van2009keeping,
+  title={Keeping up with early springs: rapid range expansion in an avian herbivore incurs a mismatch between reproductive timing and food supply},
+  author={Van Der Jeugd, Henk P and Eichhorn, G{\"o}tz and Litvin, Konstantin E and Stahl, Julia and Larsson, Kjell and Van Der Graaf, Alexandra J and Drent, Rudi H},
+  journal={Global Change Biology},
+  volume={15},
+  number={5},
+  pages={1057--1071},
+  year={2009},
+  publisher={Wiley Online Library}
+}
+
+@article{phillimore2016passerines,
+  title={Passerines may be sufficiently plastic to track temperature-mediated shifts in optimum lay date},
+  author={Phillimore, Albert B and Leech, David I and Pearce-Higgins, James W and Hadfield, Jarrod D},
+  journal={Global change biology},
+  volume={22},
+  number={10},
+  pages={3259--3272},
+  year={2016},
+  publisher={Wiley Online Library}
+}
+
+@article{bulluck2013age,
+  title={Age-specific responses to spring temperature in a migratory songbird: older females attempt more broods in warmer springs},
+  author={Bulluck, L and Huber, S and Viverette, C and Blem, C},
+  journal={Ecology and Evolution},
+  volume={3},
+  number={10},
+  pages={3298--3306},
+  year={2013},
+  publisher={Wiley Online Library}
+}
+
+@article{iler2021demographic,
+  title={Demographic consequences of phenological shifts in response to climate change},
+  author={Iler, Amy M and CaraDonna, Paul J and Forrest, Jessica RK and Post, Eric},
+  journal={Annual review of ecology, evolution, and systematics},
+  volume={52},
+  number={1},
+  pages={221--245},
+  year={2021},
+  publisher={Annual Reviews}
+}
+
+@article{knudsen2011challenging,
+  title={Challenging claims in the study of migratory birds and climate change},
+  author={Knudsen, Endre and Lind{\'e}n, Andreas and Both, Christiaan and Jonz{\'e}n, Niclas and Pulido, Francisco and Saino, Nicola and Sutherland, William J and Bach, Lars A and Coppack, Timothy and Ergon, Torbj{\o}rn and others},
+  journal={Biological Reviews},
+  volume={86},
+  number={4},
+  pages={928--946},
+  year={2011},
+  publisher={Wiley Online Library}
+}
+
+@article{forrest2010toward,
+  title={Toward a synthetic understanding of the role of phenology in ecology and evolution},
+  author={Forrest, Jessica and Miller-Rushing, Abraham J},
+  journal={Philosophical Transactions of the Royal Society B: Biological Sciences},
+  volume={365},
+  number={1555},
+  pages={3101},
+  year={2010}
+}
+
+@article{ramakers2019phenological,
+  title={Phenological mismatch drives selection on elevation, but not on slope, of breeding time plasticity in a wild songbird},
+  author={Ramakers, Jip JC and Gienapp, Phillip and Visser, Marcel E},
+  journal={Evolution},
+  volume={73},
+  number={2},
+  pages={175--187},
+  year={2019},
+  publisher={Blackwell Publishing Inc Malden, USA}
+}
+
+@article{jiang2023continuous,
+  title={Continuous advance in the onset of vegetation green-up in the Northern Hemisphere, during hiatuses in spring warming},
+  author={Jiang, Nan and Shen, Miaogen and Chen, Jin and Yang, Wei and Zhu, Xiaolin and Wang, Xufeng and Pe{\~n}uelas, Josep},
+  journal={NPJ Climate and Atmospheric Science},
+  volume={6},
+  number={1},
+  pages={7},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{forslund1995age,
+  title={Age and reproduction in birds—hypotheses and tests},
+  author={Forslund, P{\"a}r and P{\"a}rt, Tomas},
+  journal={Trends in Ecology \& Evolution},
+  volume={10},
+  number={9},
+  pages={374--378},
+  year={1995},
+  publisher={Elsevier}
+}
+
+@article{cleasby2015quantifying,
+  title={Quantifying the predictability of behaviour: statistical approaches for the study of between-individual variation in the within-individual variance},
+  author={Cleasby, Ian R and Nakagawa, Shinichi and Schielzeth, Holger},
+  journal={Methods in Ecology and Evolution},
+  volume={6},
+  number={1},
+  pages={27--37},
+  year={2015},
+  publisher={Wiley Online Library}
+}
+
+@article{cauchard2021inter,
+  title={Inter-individual variation in provisioning rate, prey size and number, and links to total prey biomass delivered to nestlings in the Collared Flycatcher (Ficedula albicollis)},
+  author={Cauchard, Laure and Macqueen, Elise Isabella and Lilley, Rhona and Bize, Pierre and Doligez, Blandine},
+  journal={Avian Research},
+  volume={12},
+  number={1},
+  pages={15},
+  year={2021},
+  publisher={Springer}
+}
+
+@incollection{gustafsson1989,
+  author    = {Gustafsson, Lars},
+  title     = {Collared flycatcher},
+  booktitle = {Lifetime reproduction in birds},
+  editor    = {Newton, Ian},
+  publisher = {Academic Press},
+  address   = {London},
+  year      = {1989},
+  pages     = {75--88}
+}
+
+@article{bull2021climate,
+  title={Climate causes shifts in grey seal phenology by modifying age structure},
+  author={Bull, James C and Jones, Owen R and B{\"o}rger, Luca and Franconi, Novella and Banga, Roma and Lock, Kate and Stringell, Thomas B},
+  journal={Proceedings of the Royal Society B: Biological Sciences},
+  volume={288},
+  number={1964},
+  pages={20212284},
+  year={2021}
+}
+
+@article{cordes2020contrasting,
+  title={Contrasting effects of climate change on seasonal survival of a hibernating mammal},
+  author={Cordes, Line S and Blumstein, Daniel T and Armitage, Kenneth B and CaraDonna, Paul J and Childs, Dylan Z and Gerber, Brian D and Martin, Julien GA and Oli, Madan K and Ozgul, Arpat},
+  journal={Proceedings of the National Academy of Sciences},
+  volume={117},
+  number={30},
+  pages={18119--18126},
+  year={2020},
+  publisher={National Academy of Sciences}
+}
+
+@article{qvarnstrom2009life,
+  title={Life-history divergence facilitates regional coexistence of competing Ficedula flycatchers},
+  author={Qvarnstr{\"o}m, Anna and Wiley, Chris and Svedin, Nina and Vallin, Niclas},
+  journal={Ecology},
+  volume={90},
+  number={7},
+  pages={1948--1957},
+  year={2009},
+  publisher={Wiley Online Library}
+}
+
+@article{zettlemoyer2022dissecting,
+  title={Dissecting impacts of phenological shifts for performance across biological scales},
+  author={Zettlemoyer, Meredith A and DeMarche, Megan L},
+  journal={Trends in Ecology \& Evolution},
+  volume={37},
+  number={2},
+  pages={147--157},
+  year={2022},
+  publisher={Elsevier}
+}
+
+@article{fernando2024systematic,
+  title={Systematic review on effects of global climate change on birds},
+  author={Fernando, Hewanahannadige Melisha Shavindi and Gunawardena, Medhisha Pasan},
+  journal={Environmental Quality Management},
+  volume={34},
+  number={1},
+  pages={e22196},
+  year={2024},
+  publisher={Wiley Online Library}
+}
+
+@article{bellard2012impacts,
+  title={Impacts of climate change on the future of biodiversity},
+  author={Bellard, C{\'e}line and Bertelsmeier, Cleo and Leadley, Paul and Thuiller, Wilfried and Courchamp, Franck},
+  journal={Ecology letters},
+  volume={15},
+  number={4},
+  pages={365--377},
+  year={2012},
+  publisher={Wiley Online Library}
+}
+
+@article{jenouvrier2013impacts,
+  title={Impacts of climate change on avian populations},
+  author={Jenouvrier, Stephanie},
+  journal={Global Change Biology},
+  volume={19},
+  number={7},
+  pages={2036--2057},
+  year={2013},
+  publisher={Wiley Online Library}
+}
+
+@article{garcia2013changes,
+  title={Are changes in the mean or variability of climate signals more important for long-term stochastic growth rate?},
+  author={Garc{\'\i}a-Carreras, Bernardo and Reuman, Daniel C},
+  journal={PLoS One},
+  volume={8},
+  number={5},
+  pages={e63974},
+  year={2013},
+  publisher={Public Library of Science San Francisco, USA}
+}
+
+@article{romano2023temporal,
+  title={Temporal shifts in avian phenology across the circannual cycle in a rapidly changing climate: A global meta-analysis},
+  author={Romano, Andrea and Garamszegi, L{\'a}szl{\'o} Zsolt and Rubolini, Diego and Ambrosini, Roberto},
+  journal={Ecological Monographs},
+  volume={93},
+  number={1},
+  pages={e1552},
+  year={2023},
+  publisher={Wiley Online Library}
+}
+
+@article{gustafsson1990acceleration,
+  title={Acceleration of senescence in the collared flycatcher {{\textit{Ficedula albicollis}}} by reproductive costs},
+  author={Gustafsson, Lars and P{\"a}rt, Tomas},
+  journal={Nature},
+  volume={347},
+  number={6290},
+  pages={279--281},
+  year={1990},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{oro2014recruitment,
+  title={From recruitment to senescence: food shapes the age-dependent pattern of breeding performance in a long-lived bird},
+  author={Oro, Daniel and Hern{\'a}ndez, Noelia and Jover, Lluis and Genovart, Meritxell},
+  journal={Ecology},
+  volume={95},
+  number={2},
+  pages={446--457},
+  year={2014},
+  publisher={Wiley Online Library}
+}
+
+@article{o2022unifying,
+  title={Unifying individual differences in personality, predictability and plasticity: a practical guide},
+  author={O'Dea, Rose E and Noble, Daniel WA and Nakagawa, Shinichi},
+  journal={Methods in Ecology and Evolution},
+  volume={13},
+  number={2},
+  pages={278--293},
+  year={2022},
+  publisher={Wiley Online Library}
+}
+
+@article{hertel2021biologging,
+  title={Biologging reveals individual variation in behavioural predictability in the wild},
+  author={Hertel, Anne G and Royaut{\'e}, Rapha{\"e}l and Zedrosser, Andreas and Mueller, Thomas},
+  journal={Journal of Animal Ecology},
+  volume={90},
+  number={3},
+  pages={723--737},
+  year={2021},
+  publisher={Wiley Online Library}
+}
+
+@article{wiggins1994seasonal,
+  title={Seasonal decline in collared flycatcher {{\textit{Ficedula albicollis}}} reproductive success: an experimental approach},
+  author={Wiggins, David A and P{\"a}rt, Tomas and Gustafsson, Lars},
+  journal={Oikos},
+  pages={359--364},
+  year={1994},
+  publisher={JSTOR}
+}
+
+@article{verhulst2007timing,
+  title={The timing of birds' breeding seasons: a review of experiments that manipulated timing of breeding},
+  author={Verhulst, Simon and Nilsson, Jan-Åke},
+  journal={Philosophical Transactions of the Royal Society B: Biological Sciences},
+  volume={363},
+  number={1490},
+  pages={399},
+  year={2007}
+}
+
+@article{charmantier2008adaptive,
+  author = {Charmantier, Anne and McCleery, Robin H. and Cole, Lucy R. and Perrins, Christopher and Kruuk, Loeske E. B. and Sheldon, Ben C.},
+  title = {Adaptive phenotypic plasticity in response to climate change in a wild bird population},
+  journal = {Science},
+  year = {2008},
+  volume = {320},
+  pages = {800--803}
+}
+
+@article{dunn2014changes,
+  author = {Dunn, Peter O. and Møller, Anders P.},
+  title = {Changes in breeding phenology and population size of birds},
+  journal = {Journal of Animal Ecology},
+  year = {2014},
+  volume = {83},
+  pages = {729--739}
+}
+
+@article{visser2009temperature,
+  author = {Visser, Marcel E. and Holleman, Leonard J. M. and Caro, Samuel P.},
+  title = {Temperature has a causal effect on avian timing of reproduction},
+  journal = {Proceedings of the Royal Society B},
+  year = {2009},
+  volume = {276},
+  pages = {2323--2331}
+}
+
+@article{vandepol2016identifying,
+  author = {van de Pol, Martijn and Bailey, Liam D. and McLean, Nina and Rijsdijk, Lyanne and Lawson, Callum R. and Brouwer, Lyanne},
+  title = {Identifying the best climatic predictors in ecology and evolution},
+  journal = {Methods in Ecology and Evolution},
+  year = {2016},
+  volume = {7},
+  pages = {1246--1257}
+}
+
+@article{brooks2017balances,
+  author = {Brooks, Mollie E. and Kristensen, Kasper and van Benthem, Koen J. and Magnusson, Arni and Berg, Casper W. and Nielsen, Anders and Skaug, Hans J. and Maechler, Martin and Bolker, Benjamin M.},
+  title = {glmmTMB balances speed and flexibility among packages for zero-inflated generalized linear mixed modeling},
+  journal = {The R Journal},
+  year = {2017},
+  volume = {9},
+  pages = {378--400}
+}
+
+@article{verhulst2008timing,
+  author = {Verhulst, Simon and Nilsson, Jan-Åke},
+  title = {The timing of birds' breeding seasons: a review of experiments that manipulated timing of breeding},
+  journal = {Philosophical Transactions of the Royal Society B},
+  year = {2008},
+  volume = {363},
+  pages = {399--410}
+}
+@article{burger2012climate,
+  title={Climate change, breeding date and nestling diet: how temperature differentially affects seasonal changes in pied flycatcher diet depending on habitat variation},
+  author={Burger, Claudia and Belskii, Eugen and Eeva, Tapio and Laaksonen, Toni and M{\"a}gi, Marko and M{\"a}nd, Raivo and Qvarnstr{\"o}m, Anna and Slagsvold, Tore and Veen, Thor and Visser, Marcel E and others},
+  journal={Journal of Animal Ecology},
+  volume={81},
+  number={4},
+  pages={926--936},
+  year={2012},
+  publisher={Wiley Online Library}
+}
+@article{helm2019evolutionary,
+  title={Evolutionary response to climate change in migratory pied flycatchers},
+  author={Helm, Barbara and Van Doren, Benjamin M and Hoffmann, Dieter and Hoffmann, Ute},
+  journal={Current Biology},
+  volume={29},
+  number={21},
+  pages={3714--3719},
+  year={2019},
+  publisher={Elsevier}
+}
+@article{samplonius2018phenological,
+  title={Phenological sensitivity to climate change is higher in resident than in migrant bird populations among European cavity breeders},
+  author={Samplonius, Jelmer M and Barto{\v{s}}ov{\'a}, Lenka and Burgess, Malcolm D and Bushuev, Andrey V and Eeva, Tapio and Ivankina, Elena V and Kerimov, Anvar B and Krams, Indrikis and Laaksonen, Toni and M{\"a}gi, Marko and others},
+  journal={Global change biology},
+  volume={24},
+  number={8},
+  pages={3780--3790},
+  year={2018},
+  publisher={Wiley Online Library}
+}
+@article{visser2015effects,
+  title={Effects of spring temperatures on the strength of selection on timing of reproduction in a long-distance migratory bird},
+  author={Visser, Marcel E and Gienapp, Phillip and Husby, Arild and Morrisey, Michael and de la Hera, Iv{\'a}n and Pulido, Francisco and Both, Christiaan},
+  journal={PLoS Biology},
+  volume={13},
+  number={4},
+  pages={e1002120},
+  year={2015},
+  publisher={Public Library of Science San Francisco, CA USA}
+}
+
+@article{drobniak2026aidit,
+  author = {Drobniak, Szymon M. and Cendrowska-Pek, Martyna and Gudowska, Agnieszka and Janas, Katarzyna and Podkowa, Paweł and Skorb, Karolina and Gronowska, Monika and Oleś, Wioleta and Bikmurzina, Faina and Boroń, Natalia and Zagalska-Neubauer, Magdalena and Nakagawa, Shinichi and Łagisz, Małgorzata and Arct, Aneta and Rutkowska, Joanna},
+  title = {A systematic map of generative AI guidelines and reporting in ecology and evolutionary biology: towards the framework of AI disclosure for Improved Transparency (AIdIT)},
+  journal = {Research Integrity and Peer Review},
+  year = {2026},
+  doi = {10.1186/s41073-026-00230-1}
+}
+
+
+@article{bailey2016climwin,
+  title={climwin: An R Toolbox for Climate Window Analysis},
+  author={Bailey, Liam D. and van de Pol, Martijn},
+  journal={PLoS ONE},
+  volume={11},
+  number={12},
+  pages={e0167980},
+  year={2016},
+  doi={10.1371/journal.pone.0167980}
+}
+
+
+@article{visser2006shifts,
+  title={Shifts in caterpillar biomass phenology due to climate change and its impact on the breeding biology of an insectivorous bird},
+  author={Visser, Marcel E. and Holleman, Leonard J. M. and Gienapp, Phillip},
+  journal={Oecologia},
+  volume={147},
+  number={1},
+  pages={164--172},
+  year={2006},
+  doi={10.1007/s00442-005-0299-6}
+}
+
+@article{hinks2015scaled,
+  title={Scale-Dependent Phenological Synchrony between Songbirds and Their Caterpillar Food Source},
+  author={Hinks, Amy E. and Cole, Ella F. and Daniels, Katherine J. and Wilkin, Teddy A. and Nakagawa, Shinichi and Sheldon, Ben C.},
+  journal={The American Naturalist},
+  volume={186},
+  number={1},
+  pages={84--97},
+  year={2015},
+  doi={10.1086/681572}
+}
+
+
+
+@article{Vehtari2017loo,
+  author = {Vehtari, Aki and Gelman, Andrew and Gabry, Jonah},
+  title = {Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC},
+  journal = {Statistics and Computing},
+  year = {2017},
+  volume = {27},
+  number = {5},
+  pages = {1413--1432},
+  doi = {10.1007/s11222-016-9696-4}
+}

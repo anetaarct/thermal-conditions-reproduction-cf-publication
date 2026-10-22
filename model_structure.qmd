@@ -1,0 +1,75 @@
+---
+title: "Mean reproductive performance and reproductive consistency"
+bibliography: references.bib
+execute:
+  enabled: false
+---
+
+# S1.9 Full model equations and prediction targets
+
+We used location--scale models to examine temporal change in spring thermal conditions and to examine variation in clutch size and egg-to-fledging success [@Nakagawa2025location]. For COM-Poisson clutch counts, log mean and log inverse shape jointly determine conditional SD. For fledging success, location and precision refer to the beta-binomial component; the full-mixture mean and variance also depend on the extra-zero probability, as specified below. Because the interpretation of scale depends on the response distribution and the observational unit, it is described separately for each model below. Following @Ortega2026collapse, we use *environmental predictability* for the year-to-year reliability of environmental conditions, operationalised here as lower residual inter-annual variability around the mean temporal trend. We use *consistency* for lower conditional dispersion of reproductive outcomes among breeding attempts and *inconsistency* for greater dispersion. These terms describe distinct levels of variability; the interpretation and direction of each scale parameter are specified for its response distribution. These reproductive scale effects describe conditional heterogeneity among breeding attempts, not repeatability or stability of the same female's outcomes across attempts.
+
+# Spring thermal conditions
+
+We fitted a Gaussian location--scale model to the 46 annual mean temperatures available for 1980--2025. Weather observations were available for 2020 despite the absence of field data on breeding attempts in that year. For year $t$, $$\begin{aligned}
+T_t &\sim \mathcal{N}(\mu_t,\sigma_t^2),\\
+\mu_t &= \beta_0 + \beta_{\mathrm{time}}\,\mathrm{Time}_t,\\
+\log(\sigma_t) &= \gamma_0 + \gamma_{\mathrm{time}}\,\mathrm{Time}_t,
+\end{aligned}$$ where $\mathrm{Time}_t$ is the calendar year centered on the midpoint of the study period. The location component describes the directional warming. The scale component describes residual variability in annual mean temperature among years after accounting for the mean trend: larger $\sigma_t$ indicates greater environmental unpredictability, in the operational sense used here. This is distinct from the standard deviation of daily temperatures within each year's thermal window.
+
+Both components were fitted jointly by maximum likelihood in glmmTMB, with no random effects because there is one environmental observation per year. The glmmTMB version (1.1.14) models Gaussian dispersion on the log standard-deviation scale, so dispersion coefficients and standard errors are reported directly as effects on log residual standard deviation. We report Wald 95% CIs and assessed the time-dependent scale against a constant-scale model using a likelihood-ratio test. Convergence, a positive-definite Hessian and agreement between two optimisers were required; standardised residuals were inspected for departures from normality and serial correlation. We also repeated the analysis for the 45 years excluding 2020. An ordinary least squares regression of daily-temperature SD on year was retained solely as a supplementary environmental diagnostic. Neither metric is a direct test of an organism's ability to forecast resources.
+
+# Clutch size
+
+Clutch size was analysed as a count using a mean-parameterised COM-Poisson mixed model fitted by maximum likelihood. This distribution accommodates conditional underdispersion relative to Poisson without treating integer outcomes as continuous. The model choice was based on the response scale, numerical stability and predictive checks, rather than the significance of individual associations. Relative laying date, spring temperature, centred calendar year and female age class entered both the log-mean and log inverse-shape equations. Independent female and year random intercepts entered the log-mean equation.
+
+For brood $r$, $$\begin{aligned}
+P(C_r=k)&=\frac{\lambda_r^k}{(k!)^{\nu_r}Z(\lambda_r,\nu_r)},\quad k=0,1,\ldots,\\
+Z(\lambda,\nu)&=\sum_{k=0}^{\infty}\frac{\lambda^k}{(k!)^\nu},\qquad
+E(C_r\mid u,v)=\mu_r,\qquad \psi_r=1/\nu_r,\\
+\log\mu_r&=\beta_0^{(\mu)}+\beta_{\mathrm{date}}^{(\mu)}\mathrm{Date}_r
++\beta_{\mathrm{temp}}^{(\mu)}T_r+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r
++\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+u_{y[r]}+v_{f[r]},\\
+\log\psi_r&=\gamma_0+\gamma_{\mathrm{date}}\mathrm{Date}_r
++\gamma_{\mathrm{temp}}T_r+\gamma_{\mathrm{time}}\mathrm{Time}_r
++\gamma_{\mathrm{age}}\mathrm{Age}_r.
+\end{aligned}$$ Here $\lambda_r$ is determined numerically to yield mean $\mu_r$; $u_y$ and $v_f$ are independent zero-mean Gaussian random intercepts. The response $C_r$ is the number of eggs and $T_r$ is mean temperature in the pre-laying window. The observed range of 2--9 eggs was not imposed as a distributional bound. Inverse shape $\psi$ is not residual SD and is distinct from fledging precision $\phi$. We calculated conditional variance from the COM-Poisson probabilities, $$s_r^2=\sum_{k=0}^{\infty}(k-\mu_r)^2P(C_r=k),$$ and report $s_r$ in eggs to describe variability among broods at given predictors and random effects. It depends jointly on mean and inverse shape; a dispersion coefficient alone does not quantify its change.
+
+Centred calendar year remains a fixed predictor in log inverse shape, allowing a systematic temporal trend in dispersion. A separate random year intercept would describe additional between-season differences in dispersion beyond that trend and the other fixed predictors. This extension reached the lower optimisation bound with negligible likelihood improvement and was omitted from the primary COM-Poisson model. The boundary result does not establish absence of biological year variation. The interior-solution and convergence checks reported in Supplementary Materials S1.8 concern the retained model without this additional dispersion random intercept.
+
+We report maximum-likelihood coefficients with Wald 95% confidence intervals (CIs). Response-scale curves use point estimates and pointwise 95% CIs from 4,000 joint asymptotic coefficient draws, preserving covariance between location and dispersion. Contrasts hold other continuous predictors at zero, age at yearling and random effects at zero; they are reference-condition associations, not population-marginal effects. Ordinary Poisson provides a comparison with equidispersion. Predictive checks assess count frequencies and mean and variance overall and within groups, with simulation targets and remaining limitations specified in S1.8.
+
+# Fledging success
+
+Fledging success was defined as the number of fledged offspring $K_r$ relative to the number of eggs laid $n_r$ in brood $r$. This measures egg-to-fledging success, combining hatching failure and subsequent offspring loss. All zero-success broods were retained. Clutch size enters as the binomial denominator, not as an additional predictor of the success probability. Modelling clutch size separately describes reproductive investment; the success model describes the subsequent fate of those eggs. These are complementary outcomes rather than a joint model of total fledgling production.
+
+The primary fledging model was a zero-inflated beta-binomial model fitted by maximum likelihood in glmmTMB, with an independent year random intercept in the extra-zero component. Relative laying date, age class, spring temperature and centred year entered both location and log precision. Location included year and female random intercepts, and log precision included an independent year random intercept. Neither component included interactions. The extra-zero equation included an intercept and an independent year random intercept, without covariate slopes. We adopted this distribution after exploratory ordinary beta-binomial fits underrepresented complete failures and overrepresented complete successes; model development and comparison outputs are retained in the analysis archive. This choice was motivated by outcome calibration rather than whether particular coefficients excluded zero. The zero component is a statistical representation of otherwise unmodelled heterogeneity, not evidence for a biologically distinct class of failures.
+
+For brood $r$, the primary model was $$\begin{aligned}
+K_r &\sim \pi_{y[r]}\,\delta_0+(1-\pi_{y[r]})\,\mathrm{BetaBinomial}(n_r,\mu_r,\phi_r),\\
+\operatorname{logit}(\mu_r) &= \beta_0^{(\mu)}+\beta_{\mathrm{date}}^{(\mu)}\mathrm{Date}_r
++\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+\beta_{\mathrm{temp}}^{(\mu)}T_r
++\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r+u_{y[r]}+v_{f[r]},\\
+\log(\phi_r) &= \beta_0^{(\phi)}+\beta_{\mathrm{date}}^{(\phi)}\mathrm{Date}_r
++\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r+\beta_{\mathrm{temp}}^{(\phi)}T_r
++\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+w_{y[r]},\\
+\operatorname{logit}(\pi_{y[r]})&=\alpha_0+z_{y[r]}.
+\end{aligned}$$ Here $\delta_0$ is a point mass at zero, and the beta-binomial component has beta shape parameters $\mu_r\phi_r$ and $(1-\mu_r)\phi_r$. Independent zero-mean Gaussian random intercepts $u_y$, $v_f$, $w_y$ and $z_y$ describe year variation in location, female variation in location, year variation in log precision and year variation in logit extra-zero probability, respectively. Cross-component random-effect correlations were not estimated.
+
+The expected success proportion for the full mixture and the probability of complete failure are $$\begin{aligned}
+E(K_r/n_r)&=(1-\pi_{y[r]})\mu_r,\\
+\Pr(K_r=0)&=\pi_{y[r]}+(1-\pi_{y[r]})\Pr_{\mathrm{BB}}(K_r=0).
+\end{aligned}$$ Thus, $\pi_{y[r]}$ is not the total failure probability and does not identify a particular biological mechanism. The component mean $\mu_r$ is also not the mean conditional on a positive outcome: the beta-binomial component itself can generate zeros. Higher $\phi_r$ indicates lower dispersion of that component at a given $\mu_r$ and $n_r$. The full-mixture variance is $$\begin{equation}
+\operatorname{Var}(K_r/n_r)=(1-\pi_{y[r]})\frac{\mu_r(1-\mu_r)(n_r+\phi_r)}{n_r(1+\phi_r)}
++\pi_{y[r]}(1-\pi_{y[r]})\mu_r^2.
+\end{equation}$$ Consequently, precision alone does not measure overall consistency of the mixture. Because $\pi_y$ has no covariate slopes and is fixed within a given year, the direction of a covariate association with $\mu_r$ also determines its direction for expected full-mixture success, with other predictors and random effects held fixed.
+
+The primary fledging model was fitted by maximum likelihood in glmmTMB 1.1.14 to the same 9,790 brood records. Mean and log-precision predictors, links and random effects were retained from the former ML fit; the only extension was an independent year random intercept in logit extra-zero probability. An initial unrestricted nlminb attempt failed with NA/NaN gradients and was excluded. A scaled, bounded L-BFGS-B fit yielded an interior solution (minimum relative distance to bounds 0.261). Independent unbounded BFGS refinement gave convergence code zero and a positive-definite Hessian; the two log likelihoods agreed within $10^{-7}$ and maximum absolute SE-scaled gradients were below $3.8\times10^{-4}$. Log likelihood was $-16632.0562$, with 15 parameters and AIC 33294.11, versus 33463.58 for the constant-extra-zero ML model (14 parameters). We report AIC rather than an ordinary chi-square likelihood-ratio p-value because the null random-effect variance lies on a boundary. This comparison concerns fitted marginal likelihood, not out-of-sample validation.
+
+Curves use ML point estimates and pointwise 95% CIs from 8,000 joint asymptotic coefficient draws, including covariance across location, precision and extra-zero coefficients. Every random effect is set to zero, including precision-year and extra-zero-year effects. We computed $\mu=\operatorname{logit}^{-1}(X\widehat\beta)$, $\phi=\exp(Z\widehat\gamma)$ and $\pi_0=\operatorname{logit}^{-1}(\widehat\alpha_0)$ explicitly, and verified them against native predictions with grouping variables set to missing. In glmmTMB 1.1.14, `re.form=NA` alone did not remove precision-year and extra-zero-year contributions for an existing year. Explicit fixed designs prevent these contributions entering reference curves. Curves are conditional reference predictions, not averages over the distribution of years or individual-brood prediction intervals.
+
+The clutch-size analysis included 12,627 broods from 8,894 females across 44 seasons in 1981--2025 (excluding 2020). Fledging data included 9,790 broods from 7,132 females across 39 seasons in 1981--2019, including 2,315 complete failures (23.65%).
+
+# Reporting and limitations.
+
+Both reproductive models were fitted by ML in glmmTMB 1.1.14 using R 4.6.1. We report Wald 95% confidence intervals for fixed effects. Curves use ML point estimates and joint asymptotic coefficient draws (4,000 for clutch size and 8,000 for fledging success), including cross-component covariance. Random effects are zero in reference predictions. Simulation envelopes are descriptive checks, omit parameter-estimation uncertainty and are not individual-brood prediction intervals or held-out validation. All reported terms are additive; age is a predictor in both location and scale.

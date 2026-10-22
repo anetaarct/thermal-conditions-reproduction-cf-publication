@@ -1,0 +1,8 @@
+"model","component","group","SD"
+"Current_ML","cond","female_id",0.315190850942741
+"Current_ML","cond","year_f",0.388835504584827
+"Current_ML","disp","year_f",0.441298092792379
+"ZI_year","cond","female_id",0.30025823943742
+"ZI_year","cond","year_f",0.309608546517611
+"ZI_year","zi","year_f",0.526058431521361
+"ZI_year","disp","year_f",0.249035787139773

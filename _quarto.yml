@@ -1,0 +1,108 @@
+project:
+  type: website
+  output-dir: docs
+  execute-dir: project
+  render:
+    - index.qmd
+    - climate_window.qmd
+    - data_preparation.qmd
+    - model_structure.qmd
+    - clutch_size.qmd
+    - fledging_success.qmd
+    - figure_code.qmd
+  resources:
+    - tables/final_models_20261019/COM_age_mean.csv
+    - tables/final_models_20261019/COM_age_sd.csv
+    - tables/final_models_20261019/COM_centering.csv
+    - tables/final_models_20261019/COM_date_mean.csv
+    - tables/final_models_20261019/COM_date_sd.csv
+    - tables/final_models_20261019/COM_final_diagnostics.csv
+    - tables/final_models_20261019/COM_temperature_mean.csv
+    - tables/final_models_20261019/COM_temperature_sd.csv
+    - tables/final_models_20261019/COM_year_mean.csv
+    - tables/final_models_20261019/COM_year_sd.csv
+    - tables/final_models_20261019/count_coefficients.csv
+    - tables/primary_ZIyear_ML_20261021/annual_calibration.csv
+    - tables/primary_ZIyear_ML_20261021/calibration_summary.csv
+    - tables/primary_ZIyear_ML_20261021/fixed_effects.csv
+    - tables/primary_ZIyear_ML_20261021/full_mixture_contrasts.csv
+    - tables/primary_ZIyear_ML_20261021/model_comparison.csv
+    - tables/primary_ZIyear_ML_20261021/optimizer_comparison.csv
+    - tables/primary_ZIyear_ML_20261021/random_SD.csv
+    - tables/primary_ZIyear_ML_20261021/simulation_checks.csv
+    - tables/primary_ZIyear_ML_20261021/simulation_outside_counts.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_age_phi.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_age_success.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_date_phi.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_date_success.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_random_SD_intervals.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_reference_zi.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_temperature_phi.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_year_phi.csv
+    - tables/primary_ZIyear_ML_20261021/ZIyear_year_success.csv
+    - tables/primary_ZIyear_ML_20261021/README.txt
+    - figures/Fig2_temperature_location_scale_time.pdf
+    - figures/Fig2_temperature_location_scale_time.png
+    - figures/Fig3_audited_temperature.pdf
+    - figures/Fig3_audited_temperature.png
+    - figures/Fig4_concise_date.pdf
+    - figures/Fig4_concise_date.png
+    - figures/FigS_audited_temperature.pdf
+    - figures/FigS_audited_temperature.png
+    - figures/Fig3_COM_M1_temperature.pdf
+    - figures/Fig3_COM_M1_temperature.png
+    - figures/Fig4_COM_M1_time.pdf
+    - figures/Fig4_COM_M1_time.png
+    - figures/Fig5_COM_M1_date.pdf
+    - figures/Fig5_COM_M1_date.png
+    - figures/Fig6_COM_M1_age.pdf
+    - figures/Fig6_COM_M1_age.png
+    - R/75_verify_COM_Poisson.R
+    - R/76_export_COM_predictions.R
+    - R/81_fit_ZIyear_fledging.R
+    - R/82_export_ZIyear_primary.R
+    - R/25_environment_temperature_location_scale.R
+    - scripts/plot_final_models.py
+
+website:
+  site-url: "https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/"
+  repo-url: "https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication"
+  repo-branch: main
+  title: "Warmer springs and reproductive performance in the collared flycatcher"
+  navbar:
+    left:
+      - text: "Overview"
+        href: index.qmd
+      - text: "Thermal window and temperature data"
+        href: climate_window.qmd
+      - text: "Data and study population"
+        href: data_preparation.qmd
+      - text: "Model structure"
+        href: model_structure.qmd
+      - text: "Clutch size"
+        href: clutch_size.qmd
+      - text: "Fledging success"
+        href: fledging_success.qmd
+      - text: "Figure code"
+        href: figure_code.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    fig-responsive: true
+
+execute:
+  warning: false
+  message: false
+  freeze: auto
+
+editor: source

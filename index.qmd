@@ -1,0 +1,32 @@
+---
+title: "Mean reproductive performance and reproductive consistency"
+bibliography: references.bib
+execute:
+  enabled: false
+---
+
+Rising spring temperatures are a well-documented signal of climate change, yet their associations with reproductive performance vary across traits and populations. Analyses focused on average outcomes may overlook another dimension of reproductive change: reproductive consistency, or how similar outcomes are among breeding attempts under comparable conditions.
+
+Using long-term individual-based records from collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, we applied a location--scale modelling framework to clutch size and egg-to-fledging success. This framework estimates associations with both mean reproductive performance and model-based measures of reproductive consistency. Spring temperature was averaged over a pre-laying window informed by a sliding-window analysis of annual median laying date. Mean temperature increased by approximately 0.44 °C per decade, but we found no clear evidence that spring thermal conditions became more unpredictable over the study period.
+
+The two reproductive traits showed opposite associations with spring temperature. Warmer springs were associated with larger clutches but lower egg-to-fledging success. Evidence that temperature was associated with reproductive consistency was inconclusive for both traits. Later-laying females produced smaller clutches and had lower fledging success; relative laying date was also clearly associated with greater reproductive inconsistency, expressed as higher clutch-size SD and lower model-based fledging consistency. Older females laid larger clutches, whereas age-related differences in fledging success remained uncertain. Mean clutch size also increased slightly with calendar year after accounting for temperature and the other predictors.
+
+These findings distinguish reproductive investment from its realised success: spring conditions associated with greater investment in eggs were also associated with a lower expected proportion of eggs producing fledglings. Examining mean reproductive performance alongside reproductive consistency provides a broader assessment of reproductive responses to climate change, while requiring measures of consistency that reflect the outcome distribution. These observational associations do not establish causal effects of temperature.
+
+## Final model set
+
+Both reproductive models use maximum likelihood in glmmTMB: COM-Poisson for clutch size and zero-inflated beta-binomial for egg-to-fledging success, with independent year effects in location, precision and extra-zero probability. Age, temperature, relative laying date and calendar year enter location and scale without interactions. Reproductive consistency is interpreted using the distribution-specific measures defined in [Model structure](model_structure.qmd).
+
+## Main findings
+
+Warmer springs were associated with larger clutches and lower egg-to-fledging success. Temperature associations with reproductive consistency were uncertain. Relative laying date was clearly associated with greater reproductive inconsistency: later broods had higher clutch-size SD and lower model-based fledging consistency, alongside lower mean reproductive performance. Older females laid larger and more consistent clutches in the COM-Poisson model; age differences in fledging success remained uncertain. Model checks retain discrepancies described on the analysis pages.
+
+## Navigation
+
+[Thermal-window validation](climate_window.qmd) · [Study sample and predictors](data_preparation.qmd) · [Model structure](model_structure.qmd) · [Clutch size](clutch_size.qmd) · [Fledging success](fledging_success.qmd) · [Figures and code](figure_code.qmd)
+
+## Code and published results
+
+[Publication repository](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication) · [Results website](https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/)
+
+The repository contains the final model exports, diagnostic summaries, prediction data, figures and website source. Individual-level field records and fitted model objects are not public. See the repository README for the scope of reproducibility.

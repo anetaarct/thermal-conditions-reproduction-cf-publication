@@ -1,0 +1,29 @@
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
+base<-'glmmTMB_comparison_20261016/clutch_counts'
+out<-file.path(base,'primary_export');dir.create(out,showWarnings=FALSE)
+m<-readRDS(file.path(base,'COM_selected.rds'));d<-m$frame
+capture.output(sessionInfo(),file=file.path(out,'session_info.txt'))
+set.seed(20261019)
+ix<-which(names(m$fit$par)%in%c('beta','betadisp'))
+bb<-MASS::mvrnorm(4000,m$fit$par[ix],m$sdr$cov.fixed[ix,ix])
+summ<-function(z,est)data.frame(estimate=est,CI_low=apply(z,1,quantile,.025),CI_high=apply(z,1,quantile,.975))
+cent<-read.csv('/home/arct/CF_thermal_phenology_run/data_derived/clutch_size_model_data.csv')
+tc<-unique(round(cent$temp_mean-cent$temp_mean_c,10));yc<-unique(round(as.numeric(as.character(d$year_f))-d$year_c,10))
+stopifnot(length(tc)==1,length(yc)==1)
+for(kind in c('temperature','date','year','age')){
+ n<-if(kind=='age')2 else if(kind=='year')45 else 120
+ nd<-d[rep(1,n),];nd$rel_LD<-0;nd$temp_mean_c<-0;nd$year_c<-0
+ nd$age_class<-factor(rep(levels(d$age_class)[1],n),levels=levels(d$age_class))
+ if(kind=='temperature'){nd$temp_mean_c<-seq(quantile(d$temp_mean_c,.05),quantile(d$temp_mean_c,.95),length.out=n);xx<-nd$temp_mean_c+tc}
+ if(kind=='date'){nd$rel_LD<-seq(quantile(d$rel_LD,.05),quantile(d$rel_LD,.95),length.out=n);xx<-nd$rel_LD}
+ if(kind=='year'){xx<-1981:2025;nd$year_c<-xx-yc}
+ if(kind=='age'){nd$age_class<-factor(levels(d$age_class),levels=levels(d$age_class));xx<-1:2}
+ X<-model.matrix(~rel_LD+temp_mean_c+year_c+age_class,nd)
+ mu<-exp(X%*%t(bb[,1:5]));psi<-exp(X%*%t(bb[,6:10]))
+ sd<-matrix(sqrt(compois()$variance(as.vector(mu),as.vector(psi))),n,4000)
+ em<-exp(drop(X%*%fixef(m)$cond));ep<-exp(drop(X%*%fixef(m)$disp));es<-sqrt(compois()$variance(em,ep))
+ for(comp in c('mean','sd'))write.csv(cbind(x=xx,age_class=nd$age_class,summ(if(comp=='mean')mu else sd,if(comp=='mean')em else es)),file.path(out,paste0(kind,'_',comp,'.csv')),row.names=FALSE)
+}
+write.csv(data.frame(temperature_center=tc,year_center=yc),file.path(out,'centering.csv'),row.names=FALSE)
+writeLines('Primary COM-Poisson curves: ML point estimates, joint asymptotic 95% CIs, exact conditional SD, zero random effects.',file.path(out,'COMPLETE.txt'))

@@ -1,0 +1,5 @@
+"model","predictor","contrast","target","estimate","lower","upper","reference_success","contrast_success"
+"Current_ML","temp_mean_c",1,"full-mixture probability difference; YOUNG; other covariates centred; all random effects zero",-0.0475960660574919,-0.0739344556223418,-0.0222520362985698,0.607414086544481,0.559818020486989
+"Current_ML","rel_LD",1,"full-mixture probability difference; YOUNG; other covariates centred; all random effects zero",-0.0124406348942617,-0.0141599679007862,-0.0107436037447192,0.607414086544481,0.59497345165022
+"ZI_year","temp_mean_c",1,"full-mixture probability difference; YOUNG; other covariates centred; all random effects zero",-0.0311549253735635,-0.0517614269064588,-0.0116507678485203,0.616496186311383,0.585341260937819
+"ZI_year","rel_LD",1,"full-mixture probability difference; YOUNG; other covariates centred; all random effects zero",-0.0119292701911692,-0.0136492781655217,-0.0102847661212143,0.616496186311383,0.604566916120214

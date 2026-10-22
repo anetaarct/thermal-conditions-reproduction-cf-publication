@@ -1,0 +1,26 @@
+---
+title: "Data and study population"
+bibliography: references.bib
+execute:
+  enabled: false
+---
+
+# S1.1 Data curation
+
+Laying-date records covered 1980--2025, except 2020 when fieldwork was interrupted. Fledging records are fully validated through 2019. The 1980 season marked the beginning of the study, but female-age data were not available for that year; it was therefore excluded from analyses of reproductive investment, which begin in 1981. We retained only breeding attempts of individually ringed, unambiguously identified *Ficedula albicollis* females, excluded ambiguous duplicate attempts and experimental females, and cross-checked clutch size and fledgling counts. For the fledging analysis, the number of eggs that did not produce a fledgling was derived as clutch size minus fledgling count. This derived count combines eggs that failed to hatch and offspring lost after hatching; the data used here do not distinguish those causes. Relative laying date was the first-egg date minus the median laying date in the same season.
+
+The clutch-size analysis included 12,627 broods from 8,894 females across 44 seasons (1981--2025, excluding 2020). The fledging-success analysis included 9,790 broods from 7,132 females across 39 seasons (1981--2019), including 2,315 complete brood failures.
+
+# S1.2 Age composition of the analysed sample
+
+The proportion of breeding records attributed to older females increased over the study period. This is a change in the age composition of the sampled broods; age class was included as a predictor in both the location and scale components of the reproductive models.
+
+# S1.3 Repeated observations and thermal exposure
+
+We replaced the annual thermal-window value with mean temperature during the 42 days preceding each female's laying date. Moreover, we added a female-specific random slope for individual thermal exposure. These were earlier maximum-likelihood clutch-size extensions. Neither extension produced an admissible model: the individual-window fit had a non-positive-definite Hessian, an absolute gradient exceeding 34,000 and undefined likelihood-based criteria, while the random-slope fit also had a non-positive-definite Hessian and undefined AIC.
+
+The data provide limited replication for estimating individual thermal reaction norms. Of 8,894 females, 2,549 contributed at least two broods and 841 contributed at least three; the median was one brood and the mean 1.42 broods per female. We therefore retain the annual-window random-intercept model for inference.
+
+# S1.4 Fixed-predictor collinearity
+
+The fixed predictors in both reproductive models were relative laying date, age class, centred spring temperature and centred calendar year. Clutch-size VIFs were 1.21 for temperature and 1.22 for year. For the exact 9,790-record fledging sample (7,132 females and 39 seasons, 1981--2019), VIFs were 1.04551 for relative laying date, 1.05498 for age, 1.26692 for temperature and 1.26909 for year. Each VIF was calculated as $1/(1-R_j^2)$ from regression of one non-intercept design column on the others. The design had full column rank. Location and precision share the fixed predictors, so the design VIFs apply to both. The extra-zero equation has no covariate slopes. Temperature--year correlations were 0.53170 across annual values and 0.45577 across brood records. These are design-matrix diagnostics, not estimates of the effective number of independent seasons. Low VIFs do not establish independence of broods sharing a year.

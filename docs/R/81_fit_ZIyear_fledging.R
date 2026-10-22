@@ -1,0 +1,61 @@
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+Sys.setenv(OMP_NUM_THREADS=1,OPENBLAS_NUM_THREADS=1)
+suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
+setwd('/home/arct/CF_model_comparison_20261013')
+out<-'zi_year_sensitivity_20261020';dir.create(out,showWarnings=FALSE)
+logmsg<-function(...){cat(format(Sys.time()),...,'\n');flush.console()}
+put<-function(x,n)write.csv(x,file.path(out,n),row.names=FALSE)
+p<-'glmmTMB_comparison_20261016/M1_selected.rds';original_hash<-tools::md5sum(p);base<-readRDS(p);d<-readRDS('glmmTMB_comparison_20261016/analysis_data.rds')
+stopifnot(nobs(base)==9790,base$fit$convergence==0,isTRUE(base$sdr$pdHess))
+diagrow<-function(m,label,opt)data.frame(model=label,optimizer=opt,n=nobs(m),parameters=attr(logLik(m),'df'),logLik=as.numeric(logLik(m)),AIC=AIC(m),BIC=BIC(m),convergence=m$fit$convergence,pdHess=m$sdr$pdHess,max_gradient=max(abs(m$sdr$gradient.fixed)),scaled_gradient=max(abs(m$sdr$gradient.fixed*sqrt(diag(m$sdr$cov.fixed)))))
+lo<-c(rep(-10,11),rep(-9,4));hi<-c(rep(10,11),rep(log(10),4));ps<-c(1,1/30,1,1,1/100,1,1,1/30,1,1,1/100,rep(1,4));ctl<-glmmTMBControl(optimizer=optim,optArgs=list(method='L-BFGS-B',lower=lo,upper=hi),optCtrl=list(maxit=10000,factr=1e5,pgtol=1e-7,parscale=ps),parallel=1)
+f<-file.path(out,'zi_year_LBFGSB.rds')
+logmsg('Fit zero-component random year intercept; all other terms retained')
+if(file.exists(f))a<-readRDS(f) else {
+ bb<-fixef(base);st<-list(beta=bb$cond,betadisp=bb$disp,betazi=bb$zi,theta=unname(base$fit$par[names(base$fit$par)=='theta']),thetadisp=unname(base$fit$par[names(base$fit$par)=='thetadisp']),thetazi=log(.3))
+ pl<-base$obj$env$parList(par=base$fit$parfull);st$b<-pl$b;st$bdisp<-pl$bdisp;st$bzi<-rep(0,nlevels(d$year_f))
+ a<-glmmTMB(cbind(fledged,clutch-fledged)~rel_LD+age_class+temp_mean_c+year_c+(1|female_id)+(1|year_f),dispformula=~rel_LD+age_class+temp_mean_c+year_c+(1|year_f),ziformula=~1+(1|year_f),family=betabinomial(link='logit'),data=d,start=st,control=ctl)
+ saveRDS(a,f)
+}
+print(diagrow(a,'ZI_year','L-BFGS-B'));cat('Minimum relative distance to bounds:',min(pmin(a$fit$par-lo,hi-a$fit$par)/(hi-lo)),'\n');flush.console()
+st<-list(beta=fixef(a)$cond,betadisp=fixef(a)$disp,betazi=fixef(a)$zi,theta=unname(a$fit$par[names(a$fit$par)=='theta']),thetadisp=unname(a$fit$par[names(a$fit$par)=='thetadisp']),thetazi=unname(a$fit$par[names(a$fit$par)=='thetazi']))
+f2<-file.path(out,'zi_year_BFGS.rds');logmsg('Independent BFGS verification')
+if(file.exists(f2))b<-readRDS(f2) else {b<-update(a,start=st,control=glmmTMBControl(optimizer=optim,optArgs=list(method='BFGS'),optCtrl=list(maxit=10000,reltol=1e-12),parallel=1));saveRDS(b,f2)}
+dg<-rbind(diagrow(base,'Current_ML','selected'),diagrow(a,'ZI_year','L-BFGS-B'),diagrow(b,'ZI_year','BFGS'));put(dg,'optimizer_comparison.csv');print(dg,digits=12);flush.console()
+good<-function(x)x$fit$convergence==0&&isTRUE(x$sdr$pdHess)&&is.finite(as.numeric(logLik(x)))&&max(abs(x$sdr$gradient.fixed*sqrt(diag(x$sdr$cov.fixed))))<.005
+cand<-list(a,b);ok<-vapply(cand,good,logical(1));if(!any(ok))stop('No admissible extended fit; do not interpret')
+m<-cand[[which(ok)[which.max(vapply(cand[ok],function(x)as.numeric(logLik(x)),numeric(1)))]]];saveRDS(m,file.path(out,'zi_year_selected.rds'))
+stopifnot(identical(model.response(model.frame(base)),model.response(model.frame(m))),nobs(m)==nobs(base))
+mods<-list(Current_ML=base,ZI_year=m);put(data.frame(model=names(mods),n=sapply(mods,nobs),parameters=sapply(mods,function(x)attr(logLik(x),'df')),logLik=sapply(mods,function(x)as.numeric(logLik(x))),AIC=sapply(mods,AIC),BIC=sapply(mods,BIC)),'model_comparison.csv')
+fixed<-list();random<-list();contrasts<-list();annual<-list()
+for(label in names(mods)){
+ mm<-mods[[label]];co<-summary(mm)$coefficients
+ fixed[[label]]<-do.call(rbind,lapply(names(co),function(cmp){v<-co[[cmp]];if(!length(v))return(NULL);data.frame(model=label,component=cmp,term=rownames(v),estimate=v[,1],SE=v[,2],lower=v[,1]-qnorm(.975)*v[,2],upper=v[,1]+qnorm(.975)*v[,2])}))
+ re<-VarCorr(mm);random[[label]]<-do.call(rbind,lapply(names(re),function(cmp)do.call(rbind,lapply(names(re[[cmp]]),function(gr)data.frame(model=label,component=cmp,group=gr,SD=attr(re[[cmp]][[gr]],'stddev'))))))
+ capture.output(summary(mm),glmmTMB::diagnose(mm),file=file.path(out,paste0(label,'_summary.txt')))
+ # Same reference condition in both models; all random effects zero, including zi.
+ cf<-fixef(mm);bn<-c(names(cf$cond),paste0('zi~',names(cf$zi)));V<-vcov(mm,full=TRUE)[bn,bn,drop=FALSE];stopifnot(min(eigen(V,symmetric=TRUE,only.values=TRUE)$values)>0)
+ beta<-c(unname(cf$cond),unname(cf$zi));set.seed(20261020);draw<-MASS::mvrnorm(8000,beta,V);nc<-length(cf$cond)
+ X0<-model.matrix(~rel_LD+age_class+temp_mean_c+year_c,d[1,,drop=FALSE]);X0[,]<-0;X0[1,'(Intercept)']<-1
+ for(kind in c('temp_mean_c','rel_LD')){
+  X1<-X0;X1[1,kind]<-1
+  p0<-(1-plogis(cf$zi[1]))*plogis(drop(X0%*%cf$cond));p1<-(1-plogis(cf$zi[1]))*plogis(drop(X1%*%cf$cond));d0<-(1-plogis(draw[,nc+1]))*plogis(drop(draw[,1:nc,drop=FALSE]%*%t(X0)));d1<-(1-plogis(draw[,nc+1]))*plogis(drop(draw[,1:nc,drop=FALSE]%*%t(X1)))
+  contrasts[[paste(label,kind)]]<-data.frame(model=label,predictor=kind,contrast=1,target='full-mixture probability difference; YOUNG; other covariates centred; all random effects zero',estimate=p1-p0,lower=quantile(d1-d0,.025),upper=quantile(d1-d0,.975),reference_success=p0,contrast_success=p1)
+ }
+ mu<-predict(mm,type='conditional');phi<-predict(mm,type='disp');zi<-predict(mm,type='zprob');pz<-zi+(1-zi)*exp(lbeta(mu*phi,(1-mu)*phi+d$clutch)-lbeta(mu*phi,(1-mu)*phi))
+ for(yr in levels(d$year_f)){ix<-d$year_f==yr;annual[[paste(label,yr)]]<-data.frame(model=label,year=yr,n=sum(ix),observed_zero=mean(d$fledged[ix]==0),predicted_zero=mean(pz[ix]),extra_zero_probability=mean(zi[ix]),observed_success=mean(d$fledged[ix]/d$clutch[ix]),predicted_success=mean((1-zi[ix])*mu[ix]))}
+}
+put(do.call(rbind,fixed),'fixed_effects.csv');put(do.call(rbind,random),'random_SD.csv');put(do.call(rbind,contrasts),'full_mixture_contrasts.csv');put(do.call(rbind,annual),'annual_calibration.csv')
+print(do.call(rbind,fixed)[do.call(rbind,fixed)$term %in% c('temp_mean_c','rel_LD'),],digits=8);print(do.call(rbind,contrasts),digits=8);flush.console()
+# Matched conditional and new-group plug-in checks; same simulation targets and seed.
+bins<-function(x)cut(x,breaks=unique(quantile(x,seq(0,1,length.out=6))),include.lowest=TRUE)
+groups<-list(overall=rep('all',nrow(d)),year=d$year_f,age=d$age_class,date=bins(d$rel_LD),temperature=bins(d$temp_mean_c));ppc<-list()
+checksim<-function(yp,label,target){res<-list();for(gn in names(groups))for(lv in unique(as.character(groups[[gn]]))){ix<-which(as.character(groups[[gn]])==lv);yy<-yp[,ix,drop=FALSE];nn<-d$clutch[ix];y<-d$fledged[ix];fr<-sweep(yy,2,nn,'/');ss<-list(mean_fraction=rowMeans(fr),zero_fraction=rowMeans(yy==0),complete_success=rowMeans(sweep(yy,2,nn,'==')),variance_fraction=apply(fr,1,var));obs<-c(mean_fraction=mean(y/nn),zero_fraction=mean(y==0),complete_success=mean(y==nn),variance_fraction=var(y/nn));for(s in names(ss))res[[length(res)+1]]<-data.frame(model=label,target=target,group=gn,level=lv,n=length(ix),statistic=s,observed=obs[s],predicted=mean(ss[[s]]),lower=quantile(ss[[s]],.025),upper=quantile(ss[[s]],.975))};do.call(rbind,res)}
+for(label in names(mods)){
+ logmsg('Simulation checks',label);mm<-mods[[label]];mu<-predict(mm,type='conditional');phi<-predict(mm,type='disp');zi<-predict(mm,type='zprob');set.seed(20261020)
+ yp<-t(replicate(1000,{pr<-rbeta(nrow(d),mu*phi,(1-mu)*phi);y<-rbinom(nrow(d),d$clutch,pr);y[runif(nrow(d))<zi]<-0;y}));ppc[[paste(label,'conditional')]]<-checksim(yp,label,'conditional_plugin');rm(yp);gc()
+ sim<-simulate(mm,nsim=1000,seed=20261020);yp<-t(vapply(sim,function(x)if(is.matrix(x))x[,1] else x,numeric(nrow(d))));stopifnot(all(yp>=0),all(sweep(yp,2,d$clutch,'<=')));ppc[[paste(label,'new_groups')]]<-checksim(yp,label,'new_groups_plugin');rm(sim,yp);gc()
+}
+pp<-do.call(rbind,ppc);put(pp,'simulation_checks.csv');pp$outside<-with(pp,observed<lower|observed>upper);cov<-aggregate(outside~model+target+group+statistic,pp,sum);put(cov,'simulation_outside_counts.csv');print(pp[pp$group=='overall',],digits=8)
+ann<-do.call(rbind,annual);scores<-do.call(rbind,lapply(split(ann,ann$model),function(x)data.frame(model=x$model[1],unweighted_year_zero_RMSE=sqrt(mean((x$observed_zero-x$predicted_zero)^2)),brood_weighted_year_zero_RMSE=sqrt(weighted.mean((x$observed_zero-x$predicted_zero)^2,x$n)),observed_zero=weighted.mean(x$observed_zero,x$n),predicted_zero=weighted.mean(x$predicted_zero,x$n))));put(scores,'calibration_summary.csv');print(scores)
+stopifnot(identical(original_hash,tools::md5sum(p)));capture.output(sessionInfo(),file=file.path(out,'session_info.txt'));writeLines(c('Completed isolated sensitivity comparison; primary models, manuscript and website unchanged.','AIC comparison is in-sample, not held-out validation. Variance-component boundary precludes ordinary chi-square LRT interpretation.','Simulation intervals are plug-in and omit parameter-estimation uncertainty. Conditional calibration uses fitted year effects and is not out-of-sample performance.'),file.path(out,'COMPLETE.txt'));logmsg('COMPLETE')

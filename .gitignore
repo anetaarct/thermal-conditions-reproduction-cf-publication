@@ -1,0 +1,13 @@
+/.quarto/
+/_freeze/
+/.Rproj.user/
+/.Rlib/
+.Rhistory
+.RData
+*.rds
+*.log
+__pycache__/
+data_raw/
+models/
+
+**/*.quarto_ipynb

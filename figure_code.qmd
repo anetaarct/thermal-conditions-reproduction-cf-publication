@@ -1,0 +1,34 @@
+---
+title: "Figures and ML analysis code"
+bibliography: references.bib
+execute:
+  enabled: false
+---
+
+All displayed reproductive estimates and prediction curves use maximum likelihood. Clutch-size curves use 4,000 joint asymptotic coefficient draws and fledging curves use 8,000; both retain cross-component covariance. Bands are pointwise 95% CIs, not intervals for individual broods. Other continuous predictors are centred and random effects are zero. These are adjusted associations rather than observed historical trajectories.
+
+[Plotting script](scripts/plot_final_models.py) · [COM-Poisson numerical verification](R/75_verify_COM_Poisson.R) · [COM-Poisson prediction export](R/76_export_COM_predictions.R) · [Fledging ML fitting and comparison](R/81_fit_ZIyear_fledging.R) · [Fledging prediction export](R/82_export_ZIyear_primary.R) · [Environmental ML model](R/25_environment_temperature_location_scale.R)
+
+## Temperature
+
+![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
+
+[Download figure PDF](figures/Fig3_COM_M1_temperature.pdf)
+
+## Adjusted calendar year
+
+![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+
+[Download figure PDF](figures/Fig4_COM_M1_time.pdf)
+
+## Relative laying date
+
+![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)
+
+[Download figure PDF](figures/Fig5_COM_M1_date.pdf)
+
+## Female age class
+
+![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)
+
+[Download figure PDF](figures/Fig6_COM_M1_age.pdf)
