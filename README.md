@@ -40,7 +40,7 @@ The website uses the archived final exports. Rendering does not refit the reprod
 
 ## Scope of reproducibility and data access
 
-Individual-level field records and fitted model objects are not included. The retained R scripts record the original ML workflow and may refer to the authors' computational paths, saved inputs and fitted objects. They are not a standalone, one-command refit from the public files alone. Full model refitting requires the original curated individual-level data, centring constants, fitted starting objects where used, and the recorded software environment. The figure script uses public prediction exports and requires Python with pandas, NumPy and Matplotlib. It is supplied as code; this migration did not rerun it or change any published figure.
+Individual-level field records and fitted model objects are not included in this public repository. Curated brood-level data can be made available to reviewers on request. The retained R scripts record the original ML workflow and may refer to the authors' computational paths, saved inputs and fitted objects. They are not a standalone, one-command refit from the public files alone. Full model refitting requires the original curated individual-level data, centring constants, fitted starting objects where used, and the recorded software environment. The figure script uses public prediction exports and requires Python with pandas, NumPy and Matplotlib. It is supplied as code; this migration did not rerun it or change any published figure.
 
 Daily weather observations originate from the Swedish Meteorological and Hydrological Institute (SMHI). Field-data enquiries should be directed to the corresponding author listed in the manuscript.
 
