@@ -14,6 +14,11 @@ def curve(ax,d,label,xlabel,col):
     ax.fill_between(d.x,d.CI_low,d.CI_high,color=col,alpha=.18,lw=0)
     ax.set(xlabel=xlabel,ylabel=label)
 for kind,name,xlabel in [('temperature','Fig3_COM_M1_temperature','Mean spring temperature (°C)'),('year','Fig4_COM_M1_time','Year'),('date','Fig5_COM_M1_date','Relative laying date (days)')]:
+    if kind=='year':
+        # Dedicated temporal refits omit temperature in both model equations.
+        import runpy
+        runpy.run_path(str(Path(__file__).with_name('plot_temporal_models.py')),run_name='__main__')
+        continue
     fig,ax=plt.subplots(2,2,figsize=(9.5,7.4),layout='constrained')
     for j,comp in enumerate(['mean','sd']):
         curve(ax[0,j],pd.read_csv(C/f'COM_{kind}_{comp}.csv'),['Mean clutch size (eggs)','Clutch conditional SD (eggs)'][j],xlabel,[blue,orange][j])

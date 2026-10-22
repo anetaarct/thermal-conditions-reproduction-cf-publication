@@ -9,6 +9,7 @@ project:
     - model_structure.qmd
     - clutch_size.qmd
     - fledging_success.qmd
+    - temporal_trends.qmd
     - figure_code.qmd
   resources:
     - tables/final_models_20261019/COM_age_mean.csv
@@ -19,8 +20,6 @@ project:
     - tables/final_models_20261019/COM_final_diagnostics.csv
     - tables/final_models_20261019/COM_temperature_mean.csv
     - tables/final_models_20261019/COM_temperature_sd.csv
-    - tables/final_models_20261019/COM_year_mean.csv
-    - tables/final_models_20261019/COM_year_sd.csv
     - tables/final_models_20261019/count_coefficients.csv
     - tables/primary_ZIyear_ML_20261021/annual_calibration.csv
     - tables/primary_ZIyear_ML_20261021/calibration_summary.csv
@@ -41,8 +40,6 @@ project:
     - tables/primary_ZIyear_ML_20261021/ZIyear_reference_zi.csv
     - tables/primary_ZIyear_ML_20261021/ZIyear_temperature_phi.csv
     - tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv
-    - tables/primary_ZIyear_ML_20261021/ZIyear_year_phi.csv
-    - tables/primary_ZIyear_ML_20261021/ZIyear_year_success.csv
     - tables/primary_ZIyear_ML_20261021/README.txt
     - figures/Fig2_temperature_location_scale_time.pdf
     - figures/Fig2_temperature_location_scale_time.png
@@ -67,6 +64,23 @@ project:
     - R/25_environment_temperature_location_scale.R
     - scripts/plot_final_models.py
 
+    - tables/temporal_models_20261022/clutch_year_mean.csv
+    - tables/temporal_models_20261022/clutch_year_sd.csv
+    - tables/temporal_models_20261022/fixed_effects.csv
+    - tables/temporal_models_20261022/fledging_year_phi.csv
+    - tables/temporal_models_20261022/fledging_year_success.csv
+    - tables/temporal_models_20261022/observed_annual.csv
+    - tables/temporal_models_20261022/optimizer_comparison.csv
+    - tables/temporal_models_20261022/random_SD.csv
+    - tables/temporal_models_20261022/README.txt
+    - tables/temporal_models_20261022/temporal_changes.csv
+    - tables/temporal_models_20261022/temporal_simulation_checks.csv
+    - R/83_fit_temporal_without_temperature.R
+    - R/84_export_temporal_without_temperature.R
+    - scripts/plot_temporal_models.py
+    - figures/Fig5_concise_clutch.pdf
+    - figures/Fig5_concise_clutch.png
+
 website:
   site-url: "https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/"
   repo-url: "https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication"
@@ -86,6 +100,8 @@ website:
         href: clutch_size.qmd
       - text: "Fledging success"
         href: fledging_success.qmd
+      - text: "Temporal trends"
+        href: temporal_trends.qmd
       - text: "Figure code"
         href: figure_code.qmd
 

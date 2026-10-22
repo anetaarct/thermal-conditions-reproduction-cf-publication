@@ -1,0 +1,77 @@
+---
+title: "Temporal trends without temperature"
+execute:
+  enabled: false
+---
+
+## Two different questions
+
+**Temporal change:** how did mean reproductive performance and reproductive consistency change over calendar time? These models were refitted without temperature in both location and scale. Age class, relative laying date, the original response distributions and all random-effect structures were retained.
+
+**Temperature associations:** how were the reproductive traits associated with spring temperature? These use the unchanged models containing temperature and calendar year together. Their temperature-adjusted year coefficients are disclosed on the model pages but are not used as the reported temporal trends. The temperature, laying-date and age results and their figures remain unchanged.
+
+## Temporal results
+
+At yearling age, relative laying date zero and all random effects zero:
+
+| Trait | Period | Expected first → last value | Change (95% CI) |
+| --- | --- | --- | --- |
+| Clutch size | 1981–2025 | 5.84 → 6.26 eggs | +0.43 eggs (+0.26 to +0.60) |
+| Egg-to-fledging success | 1981–2019 | 67.5% → 57.2% | −10.3 percentage points (−16.3 to −4.1) |
+
+Evidence of temporal change in reproductive consistency was inconclusive for both traits: the first-to-last clutch-size SD ratio was 1.063 (95% CI 0.994–1.136), and the fledging precision ratio was 0.780 (0.513–1.189). Both intervals include one. Lower clutch-size SD indicates greater consistency; higher fledging precision indicates greater consistency at a fixed component mean and clutch size.
+
+These trends are **not adjusted for temperature**, but are standardised for age and relative laying date. They are not unadjusted population trajectories and do not identify how much change was caused by warming. The two traits also cover different periods. The observed annual means are supplied separately for descriptive comparison.
+
+![Temporal trends from models refitted without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected full-mixture fledging success and (D) reproductive consistency measured by precision. Yearlings, relative laying date zero, all random effects zero; bands show pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+
+[Download complete temporal figure](figures/Fig4_COM_M1_time.pdf)
+
+## Models and uncertainty
+
+Clutch size uses the mean-parameterised COM-Poisson distribution, with female and year random intercepts in location and no year random intercept in scale. Fledging success uses the zero-inflated beta-binomial distribution, with female and year random intercepts in location and separate year random intercepts in precision and extra-zero probability. The extra-zero equation has no covariate slopes. No interactions are included.
+
+Both temporal models converged with positive-definite Hessians. Their log likelihoods were reproduced within 10⁻⁷ by BFGS refinement without the initial Hessian-based coordinate transformation. Clutch size: 10 parameters, log likelihood −13776.6071, AIC 27573.21. Fledging: 13 parameters, log likelihood −16637.7042, AIC 33301.41. AICs for the unchanged temperature-association models were 27561.10 and 33294.11. These comparisons describe fit and do not replace the distinction between the scientific questions.
+
+Pointwise 95% CIs for temporal curves use 6,000 joint asymptotic coefficient draws, retaining cross-component covariance. Clutch-size SD is computed from the exact COM-Poisson distribution. Fledging mean success is the full expectation (1−π)μ; precision describes the conditional consistency measure rather than all variability in the mixture. Intervals concern expected curves and are not individual-brood prediction intervals.
+
+## Model checks and limitations
+
+We simulated 500 conditional plug-in datasets per temporal model at estimated parameters and fitted group effects. These checks omit parameter-estimation uncertainty and do not assess held-out prediction. The exact COM-Poisson probability sampler was verified against the fitted mean and variance; a native new-group sampler returned non-finite values and its simulations were excluded. Conditional variance remained underestimated in both traits, while overall means and fledging complete-failure and complete-success frequencies fell within their simulation intervals. The distributional limitations documented on the [clutch-size](clutch_size.qmd) and [fledging-success](fledging_success.qmd) pages remain relevant. Both model sets use the same data and are not independent replication.
+
+## Full numerical results
+
+Fixed-effect estimates use log links for clutch mean and scale, a logit link for fledging component mean and extra-zero probability, and a log link for fledging precision.
+
+| trait | component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | (Intercept) | 1.79888 | 0.00445 | 1.79015 | 1.80760 |
+| clutch | cond | rel_LD | -0.00842 | 0.00025 | -0.00890 | -0.00794 |
+| clutch | cond | year_c | 0.00160 | 0.00033 | 0.00096 | 0.00224 |
+| clutch | cond | age_classOLD | 0.03006 | 0.00238 | 0.02540 | 0.03472 |
+| clutch | disp | (Intercept) | -2.81055 | 0.03313 | -2.87549 | -2.74561 |
+| clutch | disp | rel_LD | 0.05261 | 0.00291 | 0.04691 | 0.05831 |
+| clutch | disp | year_c | 0.00142 | 0.00151 | -0.00154 | 0.00437 |
+| clutch | disp | age_classOLD | -0.12622 | 0.03588 | -0.19655 | -0.05588 |
+| fledging | cond | (Intercept) | 1.08148 | 0.07351 | 0.93739 | 1.22557 |
+| fledging | cond | rel_LD | -0.07508 | 0.00456 | -0.08402 | -0.06613 |
+| fledging | cond | age_classOLD | 0.00809 | 0.04481 | -0.07974 | 0.09592 |
+| fledging | cond | year_c | -0.01807 | 0.00555 | -0.02894 | -0.00720 |
+| fledging | zi | (Intercept) | -1.55368 | 0.09270 | -1.73538 | -1.37198 |
+| fledging | disp | (Intercept) | 1.15477 | 0.09226 | 0.97395 | 1.33559 |
+| fledging | disp | rel_LD | -0.06959 | 0.00690 | -0.08311 | -0.05607 |
+| fledging | disp | age_classOLD | 0.02506 | 0.08422 | -0.14001 | 0.19013 |
+| fledging | disp | year_c | -0.00654 | 0.00565 | -0.01762 | 0.00455 |
+
+### Overall conditional simulation checks
+
+| trait | statistic | observed | predicted | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| clutch | mean | 6.19189 | 6.19574 | 6.18448 | 6.20722 |
+| clutch | variance | 0.65595 | 0.56474 | 0.55011 | 0.57756 |
+| fledging | mean | 0.58607 | 0.58139 | 0.57372 | 0.58901 |
+| fledging | variance | 0.15455 | 0.15185 | 0.14954 | 0.15404 |
+| fledging | zero_fraction | 0.23647 | 0.23131 | 0.22370 | 0.23958 |
+| fledging | complete_success | 0.28856 | 0.28624 | 0.27799 | 0.29551 |
+
+[Fixed effects](tables/temporal_models_20261022/fixed_effects.csv) · [First-to-last changes](tables/temporal_models_20261022/temporal_changes.csv) · [Numerical verification](tables/temporal_models_20261022/optimizer_comparison.csv) · [Random-effect SDs](tables/temporal_models_20261022/random_SD.csv) · [All simulation checks](tables/temporal_models_20261022/temporal_simulation_checks.csv) · [Observed annual summaries](tables/temporal_models_20261022/observed_annual.csv) · [Prediction scope](tables/temporal_models_20261022/README.txt)

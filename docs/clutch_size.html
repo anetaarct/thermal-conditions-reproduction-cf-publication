@@ -184,6 +184,10 @@ window.Quarto = {
 <span class="menu-text">Fledging success</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./temporal_trends.html">
+<span class="menu-text">Temporal trends</span></a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="./figure_code.html"> 
 <span class="menu-text">Figure code</span></a>
   </li>  
@@ -211,7 +215,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#final-prediction-data" id="toc-final-prediction-data" class="nav-link" data-scroll-target="#final-prediction-data"><span class="header-section-number">5.1</span> Final prediction data</a></li>
   <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature"><span class="header-section-number">5.2</span> Temperature</a></li>
-  <li><a href="#adjusted-calendar-year" id="toc-adjusted-calendar-year" class="nav-link" data-scroll-target="#adjusted-calendar-year"><span class="header-section-number">5.3</span> Adjusted calendar year</a></li>
+  <li><a href="#temporal-trends-without-temperature" id="toc-temporal-trends-without-temperature" class="nav-link" data-scroll-target="#temporal-trends-without-temperature"><span class="header-section-number">5.3</span> Temporal trends without temperature</a></li>
   <li><a href="#relative-laying-date" id="toc-relative-laying-date" class="nav-link" data-scroll-target="#relative-laying-date"><span class="header-section-number">5.4</span> Relative laying date</a></li>
   <li><a href="#female-age-class" id="toc-female-age-class" class="nav-link" data-scroll-target="#female-age-class"><span class="header-section-number">5.5</span> Female age class</a></li>
   </ul></li>
@@ -240,6 +244,7 @@ window.Quarto = {
 </header>
 
 
+<p>The specifications, estimates and checks below describe the <strong>unchanged temperature-association model</strong>. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the <a href="./temporal_trends.html">Temporal trends</a> section.</p>
 <section id="s1.8-clutch-size-final-com-poisson-and-ml-poisson-comparison" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> S1.8 Clutch size: final COM-Poisson and ML Poisson comparison</h1>
 </section>
@@ -414,12 +419,13 @@ window.Quarto = {
 </div>
 <p><a href="figures/Fig3_COM_M1_temperature.pdf">Download figure PDF</a></p>
 </section>
-<section id="adjusted-calendar-year" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="adjusted-calendar-year"><span class="header-section-number">5.3</span> Adjusted calendar year</h2>
+<section id="temporal-trends-without-temperature" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="temporal-trends-without-temperature"><span class="header-section-number">5.3</span> Temporal trends without temperature</h2>
+<p>The following year curves come from separate models refitted <strong>without temperature</strong> in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <a href="./temporal_trends.html">Temporal trends</a> page.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig4_COM_M1_time.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
+<figcaption>Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.</figcaption>
 </figure>
 </div>
 <p><a href="figures/Fig4_COM_M1_time.pdf">Download figure PDF</a></p>
@@ -909,89 +915,94 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># S1.8 Clutch size: final COM-Poisson and ML Poisson comparison</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data and specifications.</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Both count fits used the same ordered 12,627 records, 8,894 females and 44 seasons; response, predictor and grouping columns were checked row by row. Clutch sizes ranged from 2 to 9 eggs, with mean 6.19189 and variance 0.65595. The observed range was not imposed as a statistical bound. Maximum-likelihood models were fitted in glmmTMB 1.1.14 under R 4.6.1. Their location equation was $$\log\mu_i=\beta_0+\beta_D D_i+\beta_T T_i+\beta_Y Y_i+\beta_A A_i+u_{f(i)}+v_{y(i)},$$ with independent Gaussian female and year intercepts. Poisson assumes $\operatorname{Var}(C_i\mid u,v)=\mu_i$ and has no separate scale equation. For mean-parameterised COM-Poisson, $$P(C_i=k)=\frac{\lambda_i^k}{(k!)^{\nu_i}Z(\lambda_i,\nu_i)},\quad k=0,1,\ldots,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>\qquad Z(\lambda,\nu)=\sum_{k=0}^{\infty}\frac{\lambda^k}{(k!)^\nu},$$ where $\lambda_i$ is determined numerically so that $E(C_i)=\mu_i$. We denote inverse shape by $\psi_i=1/\nu_i$ to distinguish it from fledging beta-binomial precision. The dispersion equation was $$\log\psi_i=\gamma_0+\gamma_D D_i+\gamma_T T_i+\gamma_Y Y_i+\gamma_A A_i.$$ Inverse shape is not Gaussian residual SD: conditional variance was calculated from the exact COM-Poisson distribution. We therefore compare response-scale mean contrasts and conditional-SD ratios, rather than equating coefficients across link scales.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The specifications, estimates and checks below describe the **unchanged temperature-association model**. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the <span class="co">[</span><span class="ot">Temporal trends</span><span class="co">](temporal_trends.qmd)</span> section.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># S1.8 Clutch size: final COM-Poisson and ML Poisson comparison</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data and specifications.</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># Optimisation and the year-dispersion extension.</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>The full Poisson fit converged with a positive-definite Hessian but estimated female SD near zero ($5.8\times10^{-6}$ on the log-mean scale). A boundary verification omitting that negligible random effect reproduced its likelihood and fixed effects; a separate nlminb restart reported false convergence and was not selected. The accepted fit's maximum SE-scaled gradient was 0.00108; the boundary verification's was $1.25\times10^{-5}$.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Unrestricted COM-Poisson searches encountered costly extreme trial values. Rescaled optimisation with finite parameter bounds yielded an interior solution: the minimum distance from a bound was 28% of the corresponding allowed range. Independent nlminb and L-BFGS-B fits had convergence code zero, positive-definite Hessians, maximum SE-scaled gradients below 0.00021 and log likelihoods agreeing to $2\times10^{-9}$. The constant-dispersion and predictor-dependent fits had log likelihoods $-13973.982$ and $-13768.552$, respectively. The predictor-dependent COM-Poisson AIC was 27561.10, compared with 47627.49 for Poisson.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Adding a random year intercept to log inverse shape gave a year SD of $\exp(-10)=4.54\times10^{-5}$ at the imposed lower bound, with essentially the same likelihood. Agreement of optimisers at that bound does not demonstrate an interior optimum or absence of biological year variation. The reported primary COM-Poisson model therefore omits this random effect while retaining centred calendar year as a fixed predictor of log inverse shape. The fixed coefficient tests a systematic temporal trend; the omitted random intercept would represent additional between-season dispersion beyond that trend and the other fixed predictors. The interior convergence checks for the retained COM-Poisson model must not be interpreted as validation of an interior optimum for this random-effect extension. Female and year location SDs were 0.06028 and 0.02186 on the log-mean scale. The reference inverse shape was approximately 0.060, consistent with strong underdispersion relative to Poisson. Earlier failed COM-Poisson attempts remain archived and do not supply inferential results.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  Component    Predictor                                Poisson                    COM-Poisson</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  ------------ ----------------- ------------------------------ ------------------------------</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  Location     Intercept              1.8041 <span class="sc">\[</span>1.7899, 1.8183<span class="sc">\]</span>      1.8015 <span class="sc">\[</span>1.7937, 1.8093<span class="sc">\]</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  Location     Relative date       -0.0092 <span class="sc">\[</span>-0.0106, -0.0078<span class="sc">\]</span>   -0.0084 <span class="sc">\[</span>-0.0089, -0.0079<span class="sc">\]</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  Location     Temperature            0.0130 <span class="sc">\[</span>0.0039, 0.0221<span class="sc">\]</span>      0.0159 <span class="sc">\[</span>0.0082, 0.0237<span class="sc">\]</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  Location     Year                   0.0012 <span class="sc">\[</span>0.0004, 0.0020<span class="sc">\]</span>      0.0009 <span class="sc">\[</span>0.0003, 0.0015<span class="sc">\]</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  Location     Older--yearling        0.0293 <span class="sc">\[</span>0.0134, 0.0452<span class="sc">\]</span>      0.0300 <span class="sc">\[</span>0.0253, 0.0347<span class="sc">\]</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  Dispersion   Intercept                                     --   -2.8150 <span class="sc">\[</span>-2.8813, -2.7487<span class="sc">\]</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  Dispersion   Relative date                                 --      0.0528 <span class="sc">\[</span>0.0470, 0.0585<span class="sc">\]</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  Dispersion   Temperature                                   --    -0.0263 <span class="sc">\[</span>-0.0613, 0.0087<span class="sc">\]</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  Dispersion   Year                                          --     0.0025 <span class="sc">\[</span>-0.0008, 0.0058<span class="sc">\]</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  Dispersion   Older--yearling                               --   -0.1259 <span class="sc">\[</span>-0.1964, -0.0553<span class="sc">\]</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  : Count-model fixed effects. Estimates and Wald 95% CIs are on the log-mean scale (location) or log inverse-shape scale (COM-Poisson dispersion). Poisson has no free dispersion equation.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictions and uncertainty.</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>We generated 1,000 conditional datasets per model and 300 datasets with newly drawn, shared female and year effects at the observed covariates. Conditional simulations held parameter estimates and fitted group modes fixed; new-group simulations redrew group effects but not parameters. These checks do not include parameter-estimation uncertainty or evaluate held-out prediction. Group checks used year, age and five quantile-based groups each for relative laying date and temperature. COM-Poisson probabilities were normalised over an adequately extended integer support and verified against the exact mean and variance.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  Model         Simulation target                       Mean                 Variance</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  ------------- ------------------- ------------------------ ------------------------</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  Poisson       Fitted groups         6.192 <span class="sc">\[</span>6.149, 6.237<span class="sc">\]</span>   6.311 <span class="sc">\[</span>6.146, 6.467<span class="sc">\]</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  Poisson       New groups            6.184 <span class="sc">\[</span>6.138, 6.234<span class="sc">\]</span>   6.299 <span class="sc">\[</span>6.153, 6.463<span class="sc">\]</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  COM-Poisson   Fitted groups         6.196 <span class="sc">\[</span>6.185, 6.207<span class="sc">\]</span>   0.565 <span class="sc">\[</span>0.551, 0.578<span class="sc">\]</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  COM-Poisson   New groups            6.184 <span class="sc">\[</span>6.134, 6.234<span class="sc">\]</span>   0.656 <span class="sc">\[</span>0.632, 0.684<span class="sc">\]</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  : Overall predictive checks. Entries are simulation means <span class="sc">\[</span>95% simulation intervals<span class="sc">\]</span>. Observed mean is 6.1919 eggs and variance is 0.6560. Intervals condition on estimated parameters.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Poisson reproduced the mean but predicted almost ten times the observed variance and 11.51% of broods outside the observed 2--9 range. Conditional simulations predicted 15.86% six-egg clutches versus 51.23% observed. COM-Poisson predicted 51.98% six-egg clutches, but its conditional plug-in variance was too low (0.565; interval 0.551--0.578). With newly drawn group effects its variance was 0.656 (0.632--0.684). It also overpredicted five-egg clutches (13.67% versus 11.91%) and slightly underpredicted seven-egg clutches (30.48% versus 31.35%). These differences must not be concealed by the adequate overall new-group variance.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  Model                   Year         Age   Date groups   Temperature groups</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  ------------- -------------- ----------- ------------- --------------------</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  Poisson         1/44 / 44/44   0/2 / 2/2     2/5 / 5/5            1/5 / 5/5</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  COM-Poisson     0/44 / 21/44   0/2 / 2/2     5/5 / 3/5            0/5 / 4/5</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  : Numbers of groups whose observed mean / variance fell outside the conditional 95% simulation intervals. These correlated, descriptive checks are not independent tests. ML intervals omit parameter uncertainty.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Biological interpretation.</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>At centred date, temperature and year, yearling age and zero random effects, a 1 °C increase corresponded to 0.0976 more eggs (95% CI 0.0486--0.1454). The temperature SD ratio was 0.9945 (0.9744--1.0141). A one-day delay corresponded to $-0.0508$ eggs ($-0.0536$ to $-0.0478$) and an SD ratio of 1.0254 (1.0219--1.0292). Older females had 0.1848 more eggs (0.1561--0.2133) and an SD ratio of 0.9533 (0.9185--0.9908). Lower conditional SD indicates greater reproductive consistency. Intervals use 4,000 joint asymptotic coefficient draws, preserving location--scale covariance. These are reference-condition estimates, not population-marginal effects. Model checks show remaining departures from the assumed count distribution; adequate overall new-group variance does not establish complete distributional fit. No refit-based bootstrap or cross-validation was performed.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final prediction data</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">COM-Poisson mean and SD data</span><span class="co">](tables/final_models_20261019/COM_temperature_mean.csv)</span> · <span class="co">[</span><span class="ot">Numerical diagnostics</span><span class="co">](tables/final_models_20261019/COM_final_diagnostics.csv)</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adjusted calendar year</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig4_COM_M1_time.pdf)</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative laying date</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig5_COM_M1_date.pdf)</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Female age class</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig6_COM_M1_age.pdf)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Both count fits used the same ordered 12,627 records, 8,894 females and 44 seasons; response, predictor and grouping columns were checked row by row. Clutch sizes ranged from 2 to 9 eggs, with mean 6.19189 and variance 0.65595. The observed range was not imposed as a statistical bound. Maximum-likelihood models were fitted in glmmTMB 1.1.14 under R 4.6.1. Their location equation was $$\log\mu_i=\beta_0+\beta_D D_i+\beta_T T_i+\beta_Y Y_i+\beta_A A_i+u_{f(i)}+v_{y(i)},$$ with independent Gaussian female and year intercepts. Poisson assumes $\operatorname{Var}(C_i\mid u,v)=\mu_i$ and has no separate scale equation. For mean-parameterised COM-Poisson, $$P(C_i=k)=\frac{\lambda_i^k}{(k!)^{\nu_i}Z(\lambda_i,\nu_i)},\quad k=0,1,\ldots,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>\qquad Z(\lambda,\nu)=\sum_{k=0}^{\infty}\frac{\lambda^k}{(k!)^\nu},$$ where $\lambda_i$ is determined numerically so that $E(C_i)=\mu_i$. We denote inverse shape by $\psi_i=1/\nu_i$ to distinguish it from fledging beta-binomial precision. The dispersion equation was $$\log\psi_i=\gamma_0+\gamma_D D_i+\gamma_T T_i+\gamma_Y Y_i+\gamma_A A_i.$$ Inverse shape is not Gaussian residual SD: conditional variance was calculated from the exact COM-Poisson distribution. We therefore compare response-scale mean contrasts and conditional-SD ratios, rather than equating coefficients across link scales.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># Optimisation and the year-dispersion extension.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>The full Poisson fit converged with a positive-definite Hessian but estimated female SD near zero ($5.8\times10^{-6}$ on the log-mean scale). A boundary verification omitting that negligible random effect reproduced its likelihood and fixed effects; a separate nlminb restart reported false convergence and was not selected. The accepted fit's maximum SE-scaled gradient was 0.00108; the boundary verification's was $1.25\times10^{-5}$.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Unrestricted COM-Poisson searches encountered costly extreme trial values. Rescaled optimisation with finite parameter bounds yielded an interior solution: the minimum distance from a bound was 28% of the corresponding allowed range. Independent nlminb and L-BFGS-B fits had convergence code zero, positive-definite Hessians, maximum SE-scaled gradients below 0.00021 and log likelihoods agreeing to $2\times10^{-9}$. The constant-dispersion and predictor-dependent fits had log likelihoods $-13973.982$ and $-13768.552$, respectively. The predictor-dependent COM-Poisson AIC was 27561.10, compared with 47627.49 for Poisson.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Adding a random year intercept to log inverse shape gave a year SD of $\exp(-10)=4.54\times10^{-5}$ at the imposed lower bound, with essentially the same likelihood. Agreement of optimisers at that bound does not demonstrate an interior optimum or absence of biological year variation. The reported primary COM-Poisson model therefore omits this random effect while retaining centred calendar year as a fixed predictor of log inverse shape. The fixed coefficient tests a systematic temporal trend; the omitted random intercept would represent additional between-season dispersion beyond that trend and the other fixed predictors. The interior convergence checks for the retained COM-Poisson model must not be interpreted as validation of an interior optimum for this random-effect extension. Female and year location SDs were 0.06028 and 0.02186 on the log-mean scale. The reference inverse shape was approximately 0.060, consistent with strong underdispersion relative to Poisson. Earlier failed COM-Poisson attempts remain archived and do not supply inferential results.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  Component    Predictor                                Poisson                    COM-Poisson</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  ------------ ----------------- ------------------------------ ------------------------------</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  Location     Intercept              1.8041 <span class="sc">\[</span>1.7899, 1.8183<span class="sc">\]</span>      1.8015 <span class="sc">\[</span>1.7937, 1.8093<span class="sc">\]</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  Location     Relative date       -0.0092 <span class="sc">\[</span>-0.0106, -0.0078<span class="sc">\]</span>   -0.0084 <span class="sc">\[</span>-0.0089, -0.0079<span class="sc">\]</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  Location     Temperature            0.0130 <span class="sc">\[</span>0.0039, 0.0221<span class="sc">\]</span>      0.0159 <span class="sc">\[</span>0.0082, 0.0237<span class="sc">\]</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  Location     Year                   0.0012 <span class="sc">\[</span>0.0004, 0.0020<span class="sc">\]</span>      0.0009 <span class="sc">\[</span>0.0003, 0.0015<span class="sc">\]</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  Location     Older--yearling        0.0293 <span class="sc">\[</span>0.0134, 0.0452<span class="sc">\]</span>      0.0300 <span class="sc">\[</span>0.0253, 0.0347<span class="sc">\]</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  Dispersion   Intercept                                     --   -2.8150 <span class="sc">\[</span>-2.8813, -2.7487<span class="sc">\]</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  Dispersion   Relative date                                 --      0.0528 <span class="sc">\[</span>0.0470, 0.0585<span class="sc">\]</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  Dispersion   Temperature                                   --    -0.0263 <span class="sc">\[</span>-0.0613, 0.0087<span class="sc">\]</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  Dispersion   Year                                          --     0.0025 <span class="sc">\[</span>-0.0008, 0.0058<span class="sc">\]</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  Dispersion   Older--yearling                               --   -0.1259 <span class="sc">\[</span>-0.1964, -0.0553<span class="sc">\]</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  : Count-model fixed effects. Estimates and Wald 95% CIs are on the log-mean scale (location) or log inverse-shape scale (COM-Poisson dispersion). Poisson has no free dispersion equation.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Predictions and uncertainty.</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>We generated 1,000 conditional datasets per model and 300 datasets with newly drawn, shared female and year effects at the observed covariates. Conditional simulations held parameter estimates and fitted group modes fixed; new-group simulations redrew group effects but not parameters. These checks do not include parameter-estimation uncertainty or evaluate held-out prediction. Group checks used year, age and five quantile-based groups each for relative laying date and temperature. COM-Poisson probabilities were normalised over an adequately extended integer support and verified against the exact mean and variance.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  Model         Simulation target                       Mean                 Variance</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  ------------- ------------------- ------------------------ ------------------------</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  Poisson       Fitted groups         6.192 <span class="sc">\[</span>6.149, 6.237<span class="sc">\]</span>   6.311 <span class="sc">\[</span>6.146, 6.467<span class="sc">\]</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  Poisson       New groups            6.184 <span class="sc">\[</span>6.138, 6.234<span class="sc">\]</span>   6.299 <span class="sc">\[</span>6.153, 6.463<span class="sc">\]</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  COM-Poisson   Fitted groups         6.196 <span class="sc">\[</span>6.185, 6.207<span class="sc">\]</span>   0.565 <span class="sc">\[</span>0.551, 0.578<span class="sc">\]</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  COM-Poisson   New groups            6.184 <span class="sc">\[</span>6.134, 6.234<span class="sc">\]</span>   0.656 <span class="sc">\[</span>0.632, 0.684<span class="sc">\]</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  : Overall predictive checks. Entries are simulation means <span class="sc">\[</span>95% simulation intervals<span class="sc">\]</span>. Observed mean is 6.1919 eggs and variance is 0.6560. Intervals condition on estimated parameters.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Poisson reproduced the mean but predicted almost ten times the observed variance and 11.51% of broods outside the observed 2--9 range. Conditional simulations predicted 15.86% six-egg clutches versus 51.23% observed. COM-Poisson predicted 51.98% six-egg clutches, but its conditional plug-in variance was too low (0.565; interval 0.551--0.578). With newly drawn group effects its variance was 0.656 (0.632--0.684). It also overpredicted five-egg clutches (13.67% versus 11.91%) and slightly underpredicted seven-egg clutches (30.48% versus 31.35%). These differences must not be concealed by the adequate overall new-group variance.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  Model                   Year         Age   Date groups   Temperature groups</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  ------------- -------------- ----------- ------------- --------------------</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  Poisson         1/44 / 44/44   0/2 / 2/2     2/5 / 5/5            1/5 / 5/5</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  COM-Poisson     0/44 / 21/44   0/2 / 2/2     5/5 / 3/5            0/5 / 4/5</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  : Numbers of groups whose observed mean / variance fell outside the conditional 95% simulation intervals. These correlated, descriptive checks are not independent tests. ML intervals omit parameter uncertainty.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Biological interpretation.</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>At centred date, temperature and year, yearling age and zero random effects, a 1 °C increase corresponded to 0.0976 more eggs (95% CI 0.0486--0.1454). The temperature SD ratio was 0.9945 (0.9744--1.0141). A one-day delay corresponded to $-0.0508$ eggs ($-0.0536$ to $-0.0478$) and an SD ratio of 1.0254 (1.0219--1.0292). Older females had 0.1848 more eggs (0.1561--0.2133) and an SD ratio of 0.9533 (0.9185--0.9908). Lower conditional SD indicates greater reproductive consistency. Intervals use 4,000 joint asymptotic coefficient draws, preserving location--scale covariance. These are reference-condition estimates, not population-marginal effects. Model checks show remaining departures from the assumed count distribution; adequate overall new-group variance does not establish complete distributional fit. No refit-based bootstrap or cross-validation was performed.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final prediction data</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">COM-Poisson mean and SD data</span><span class="co">](tables/final_models_20261019/COM_temperature_mean.csv)</span> · <span class="co">[</span><span class="ot">Numerical diagnostics</span><span class="co">](tables/final_models_20261019/COM_final_diagnostics.csv)</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temporal trends without temperature</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <span class="co">[</span><span class="ot">Temporal trends</span><span class="co">](temporal_trends.qmd)</span> page.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="al">![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig4_COM_M1_time.pdf)</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative laying date</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig5_COM_M1_date.pdf)</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## Female age class</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig6_COM_M1_age.pdf)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

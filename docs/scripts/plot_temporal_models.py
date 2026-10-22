@@ -1,0 +1,45 @@
+"""Render temporal trends without temperature; retain original age estimates."""
+from pathlib import Path
+import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+root=Path(__file__).resolve().parent.parent
+figdir=root/'figures';T=root/'tables/temporal_models_20261022';C=root/'tables/final_models_20261019'
+plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42})
+blue='#0072B2';orange='#D55E00'
+
+def curve(ax,path,label,color,percentage=False):
+    d=pd.read_csv(path);scale=100 if percentage else 1
+    ax.plot(d.x,d.estimate*scale,color=color,lw=1.7)
+    ax.fill_between(d.x,d.CI_low*scale,d.CI_high*scale,color=color,alpha=.18,lw=0)
+    ax.set(xlabel='Year',ylabel=label)
+
+def age(ax,path,label):
+    d=pd.read_csv(path)
+    for i,(cl,col) in enumerate([('YOUNG',blue),('OLD',orange)]):
+        z=d[d.age_class==cl].iloc[0]
+        ax.errorbar(i,z.estimate,yerr=[[z.estimate-z.CI_low],[z.CI_high-z.estimate]],fmt='o',color=col,capsize=4)
+    ax.set(xticks=[0,1],xticklabels=['Yearling','Older'],ylabel=label,xlim=(-.6,1.6))
+
+fig,axes=plt.subplots(2,2,figsize=(9.5,7.4),layout='constrained')
+curve(axes[0,0],T/'clutch_year_mean.csv','Mean clutch size (eggs)',blue)
+curve(axes[0,1],T/'clutch_year_sd.csv','Clutch-size SD (eggs)',orange)
+curve(axes[1,0],T/'fledging_year_success.csv','Expected egg-to-fledging success',blue)
+axes[1,0].set_ylim(0,1)
+curve(axes[1,1],T/'fledging_year_phi.csv','Fledging reproductive consistency (φ)',orange)
+for ax,l in zip(axes.flat,'ABCD'):ax.set_title(l,loc='left',fontweight='bold')
+for ext in ['pdf','png']:fig.savefig(figdir/f'Fig4_COM_M1_time.{ext}',dpi=180)
+plt.close(fig)
+
+fig,axes=plt.subplots(2,2,figsize=(9.5,6.5),layout='constrained')
+curve(axes[0,0],T/'clutch_year_mean.csv','Mean clutch size (eggs)',blue)
+curve(axes[0,1],T/'fledging_year_success.csv','Expected egg-to-fledging success (%)',blue,True)
+axes[0,1].set_ylim(0,100)
+age(axes[1,0],C/'COM_age_mean.csv','Mean clutch size (eggs)')
+age(axes[1,1],C/'COM_age_sd.csv','Clutch-size SD (eggs)')
+for ax,l in zip(axes.flat,'ABCD'):ax.set_title(l,loc='left',fontweight='bold')
+for ext in ['pdf','png']:fig.savefig(figdir/f'Fig5_concise_clutch.{ext}',dpi=180)
+plt.close(fig)
+print('Temporal figures generated from models without temperature; age predictions retained unchanged.')

@@ -1,0 +1,102 @@
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+Sys.setenv(OMP_NUM_THREADS=1,OPENBLAS_NUM_THREADS=1)
+suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
+setwd('/home/arct/CF_model_comparison_20261013')
+out <- 'year_without_temperature_20261022'
+dir.create(out,showWarnings=FALSE)
+put <- function(x,n) write.csv(x,file.path(out,n),row.names=FALSE)
+msg <- function(...) {cat(format(Sys.time()),...,'\n');flush.console()}
+paths <- c(clutch='glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds',fledging='zi_year_sensitivity_20261020/zi_year_selected.rds')
+hashes <- tools::md5sum(paths)
+diagrow <- function(m,trait,label,reference=NULL) {
+ V<-if(is.null(m$sdr))reference$sdr$cov.fixed else m$sdr$cov.fixed
+ gr<-if(is.null(m$sdr))m$obj$gr(m$fit$par) else m$sdr$gradient.fixed
+ data.frame(trait=trait,model=label,n=nobs(m),df=attr(logLik(m),'df'),logLik=as.numeric(logLik(m)),AIC=AIC(m),convergence=m$fit$convergence,pdHess=if(is.null(m$sdr))NA else m$sdr$pdHess,scaled_gradient=max(abs(gr*sqrt(diag(V)))))
+}
+good <- function(m) m$fit$convergence==0 && isTRUE(m$sdr$pdHess) && is.finite(as.numeric(logLik(m))) && max(abs(m$sdr$gradient.fixed*sqrt(diag(m$sdr$cov.fixed))))<.005
+whitened <- function(par,fn,gr,control=list(),...) {
+ msg('Computing optimizer Hessian preconditioner')
+ H<-optimHess(par,fn,gr);ee<-eigen((H+t(H))/2,symmetric=TRUE)
+ S<-ee$vectors%*%diag(1/sqrt(pmax(ee$values,max(ee$values)*1e-9)));initial<-par
+ ff<-function(q)fn(drop(initial+S%*%q));gg<-function(q)drop(crossprod(S,gr(drop(initial+S%*%q))))
+ z<-optim(rep(0,length(par)),ff,gg,method='BFGS',control=list(maxit=1000,reltol=1e-12,trace=1,REPORT=5))
+ list(par=drop(initial+S%*%z$par),objective=z$value,convergence=z$convergence,message=z$message)
+}
+all_diag <- list();all_fixed <- list();all_trend <- list();all_annual <- list();all_curves <- list()
+for(trait in names(paths)) {
+ msg('START',trait)
+ old <- readRDS(paths[trait])
+ d <- readRDS(if(trait=='clutch') 'glmmTMB_comparison_20261016/clutch_counts/data.rds' else 'glmmTMB_comparison_20261016/analysis_data.rds')
+ stopifnot(nobs(old)==nrow(d))
+ cf <- fixef(old);pl <- old$obj$env$parList(par=old$fit$parfull)
+ st <- pl[intersect(c('beta','betadisp','betazi','theta','thetadisp','thetazi','b','bdisp','bzi'),names(pl))]
+ st <- st[vapply(st,length,integer(1))>0]
+ st$beta <- unname(cf$cond[names(cf$cond)!='temp_mean_c'])
+ st$betadisp <- unname(cf$disp[names(cf$disp)!='temp_mean_c'])
+ form <- if(trait=='clutch') clutch~rel_LD+year_c+age_class+(1|female_id)+(1|year_f) else cbind(fledged,clutch-fledged)~rel_LD+age_class+year_c+(1|female_id)+(1|year_f)
+ disp <- if(trait=='clutch') ~rel_LD+year_c+age_class else ~rel_LD+age_class+year_c+(1|year_f)
+ if(trait=='clutch') {
+  lo<-c(1.6,-.03,-.008,-.15,-5,rep(-.5,3),rep(-10,2));hi<-c(2,.01,.008,.15,0,rep(.5,3),rep(0,2));ps<-c(1,.01,.005,.1,1,.01,.005,.1,1,1)
+ } else {
+  lo<-c(rep(-10,9),rep(-9,4));hi<-c(rep(10,9),rep(log(10),4));ps<-c(1,1/30,1,1/100,1,1,1/30,1,1/100,rep(1,4))
+ }
+ ctl <- glmmTMBControl(optimizer=optim,optArgs=list(method='L-BFGS-B',lower=lo,upper=hi),optCtrl=list(maxit=10000,factr=1e4,pgtol=1e-7,parscale=ps),parallel=1)
+ ctl<-glmmTMBControl(optimizer=whitened,parallel=1)
+ file_a<-file.path(out,paste0(trait,'_LBFGS.rds'))
+ if(file.exists(file_a)) a<-readRDS(file_a) else {a<-update(old,formula=form,dispformula=disp,data=d,start=st,control=ctl);saveRDS(a,file_a)}
+ print(diagrow(a,trait,'without_temperature_LBFGS'));msg('Bound distance',min(pmin(a$fit$par-lo,hi-a$fit$par)/(hi-lo)))
+ pl2<-a$obj$env$parList(par=a$fit$parfull)
+ st2<-pl2[intersect(c('beta','betadisp','betazi','theta','thetadisp','thetazi','b','bdisp','bzi'),names(pl2))];st2<-st2[vapply(st2,length,integer(1))>0]
+ file_b<-file.path(out,paste0(trait,'_BFGS.rds'))
+ msg('Independent optimizer check',trait)
+ if(file.exists(file_b)) b<-readRDS(file_b) else {b<-update(a,data=d,start=st2,se=FALSE,control=glmmTMBControl(optimizer=optim,optArgs=list(method='BFGS'),optCtrl=list(maxit=10000,reltol=1e-12),parallel=1));saveRDS(b,file_b)}
+ dg<-rbind(diagrow(old,trait,'with_temperature'),diagrow(a,trait,'without_temperature_LBFGS'),diagrow(b,trait,'without_temperature_BFGS',reference=a))
+ print(dg,digits=10);put(dg,paste0(trait,'_diagnostics.csv'));all_diag[[trait]]<-dg
+ stopifnot(good(a),b$fit$convergence==0,dg$scaled_gradient[3]<.005,abs(as.numeric(logLik(a)-logLik(b)))<.01)
+ new<-a
+ stopifnot(identical(model.response(model.frame(old)),model.response(model.frame(new))))
+ saveRDS(new,file.path(out,paste0(trait,'_selected.rds')))
+ for(label in c('with_temperature','without_temperature')) {
+  m<-if(label=='with_temperature') old else new
+  capture.output(summary(m),glmmTMB::diagnose(m),file=file.path(out,paste0(trait,'_',label,'_summary.txt')))
+  co<-summary(m)$coefficients
+  all_fixed[[paste(trait,label)]]<-do.call(rbind,lapply(names(co),function(cmp){v<-co[[cmp]];if(!length(v))return(NULL);data.frame(trait=trait,model=label,component=cmp,term=rownames(v),estimate=v[,1],SE=v[,2],lower=v[,1]-1.96*v[,2],upper=v[,1]+1.96*v[,2])}))
+  cf<-fixef(m);nc<-length(cf$cond);nd<-length(cf$disp);nz<-length(cf$zi)
+  bn<-c(names(cf$cond),paste0('disp~',names(cf$disp)),if(nz)paste0('zi~',names(cf$zi)))
+  V<-vcov(m,full=TRUE)
+  # glmmTMB full covariance uses component-prefixed names.
+  if(!all(bn %in% colnames(V))) stop(paste('Unexpected covariance names:',paste(colnames(V),collapse=',')))
+  V<-V[bn,bn,drop=FALSE];beta<-c(unname(cf$cond),unname(cf$disp),unname(cf$zi));set.seed(20261022)
+  draws<-MASS::mvrnorm(6000,beta,V)
+  yrs<-sort(unique(as.integer(as.character(d$year_f))));offset<-median(as.integer(as.character(d$year_f))-d$year_c)
+  grid<-data.frame(year=yrs,year_c=yrs-offset)
+  X<-matrix(0,nrow(grid),nc,dimnames=list(NULL,names(cf$cond)));X[,'(Intercept)']<-1;X[,'year_c']<-grid$year_c
+  Z<-matrix(0,nrow(grid),nd,dimnames=list(NULL,names(cf$disp)));Z[,'(Intercept)']<-1;Z[,'year_c']<-grid$year_c
+  mu<-if(trait=='clutch') exp(drop(X%*%cf$cond)) else plogis(drop(X%*%cf$cond))
+  mud<-if(trait=='clutch') exp(X%*%t(draws[,seq_len(nc),drop=FALSE])) else plogis(X%*%t(draws[,seq_len(nc),drop=FALSE]))
+  phi<-exp(drop(Z%*%cf$disp));phid<-exp(Z%*%t(draws[,nc+seq_len(nd),drop=FALSE]))
+  if(trait=='fledging') {mu<-mu*(1-plogis(cf$zi[1]));mud<-sweep(mud,2,1-plogis(draws[,nc+nd+1]),'*')}
+  loq<-function(x)apply(x,1,quantile,.025);hiq<-function(x)apply(x,1,quantile,.975)
+  all_curves[[paste(trait,label)]]<-data.frame(trait=trait,model=label,year=yrs,mean=mu,mean_lower=loq(mud),mean_upper=hiq(mud),dispersion=phi,dispersion_lower=loq(phid),dispersion_upper=hiq(phid))
+  diffdraw<-mud[nrow(grid),]-mud[1,];ratio<-phid[nrow(grid),]/phid[1,]
+  all_trend[[paste(trait,label)]]<-data.frame(trait=trait,model=label,first_year=min(yrs),last_year=max(yrs),reference_year=offset,mean_first=mu[1],mean_last=tail(mu,1),mean_change=tail(mu,1)-mu[1],mean_change_lower=quantile(diffdraw,.025),mean_change_upper=quantile(diffdraw,.975),dispersion_ratio=tail(phi,1)/phi[1],dispersion_ratio_lower=quantile(ratio,.025),dispersion_ratio_upper=quantile(ratio,.975))
+  if(trait=='clutch') {
+   ii<-c(1,nrow(grid));sdp<-sqrt(compois()$variance(mu[ii],phi[ii]));sdd<-matrix(sqrt(compois()$variance(as.vector(mud[ii,]),as.vector(phid[ii,]))),2,ncol(mud));rr<-sdd[2,]/sdd[1,]
+   all_trend[[paste(trait,label)]]$response_SD_ratio<-sdp[2]/sdp[1]
+   all_trend[[paste(trait,label)]]$response_SD_ratio_lower<-quantile(rr,.025)
+   all_trend[[paste(trait,label)]]$response_SD_ratio_upper<-quantile(rr,.975)
+  } else {
+   all_trend[[paste(trait,label)]]$response_SD_ratio<-NA
+   all_trend[[paste(trait,label)]]$response_SD_ratio_lower<-NA
+   all_trend[[paste(trait,label)]]$response_SD_ratio_upper<-NA
+  }
+ }
+ all_annual[[trait]]<-do.call(rbind,lapply(split(d,d$year_f),function(x){y<-if(trait=='clutch')x$clutch else x$fledged/x$clutch;data.frame(trait=trait,year=as.integer(as.character(x$year_f[1])),n=nrow(x),observed_mean=mean(y),observed_SD=sd(y),older_fraction=mean(x$age_class=='OLD'),mean_relative_date=mean(x$rel_LD),mean_temperature=mean(x$temp_mean_c),zero_fraction=if(trait=='fledging')mean(x$fledged==0)else NA)}))
+ msg('FINISHED',trait)
+}
+put(do.call(rbind,all_diag),'optimizer_comparison.csv');put(do.call(rbind,all_fixed),'fixed_effects.csv');put(do.call(rbind,all_trend),'temporal_changes.csv');put(do.call(rbind,all_curves),'reference_curves.csv');put(do.call(rbind,all_annual),'observed_annual.csv')
+stopifnot(identical(hashes,tools::md5sum(paths)))
+put(data.frame(path=names(hashes),md5_before=unname(hashes),md5_after=unname(tools::md5sum(paths))),'original_model_hashes.csv')
+capture.output(sessionInfo(),file=file.path(out,'session_info.txt'))
+writeLines(c('COMPLETE: original final models unchanged. No manuscript or site changes.','New models remove temperature from conditional and dispersion formulas; retain age, relative laying date, and all random effects.','Reference curves: young females, relative laying date zero, all random effects zero; temperature zero in old model.','Model trends are still adjusted for age and relative laying date; observed annual summaries are descriptive and unadjusted.','Dispersion is COM-Poisson inverse shape or beta-binomial precision, not total response variability.','Intervals are approximate 95% confidence intervals from joint asymptotic coefficient draws.'),file.path(out,'COMPLETE.txt'))
+msg('COMPLETE')

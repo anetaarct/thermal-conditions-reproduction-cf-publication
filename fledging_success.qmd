@@ -5,6 +5,9 @@ execute:
   enabled: false
 ---
 
+
+The specifications, estimates and checks below describe the **unchanged temperature-association model**. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the [Temporal trends](temporal_trends.qmd) section.
+
 # S1.7 Fledging success: final ML estimates and diagnostics
 
 # Primary structure and numerical verification.
@@ -60,9 +63,11 @@ Conditional annual zero frequencies lay within simulation intervals in all 39 se
 
 [Download figure PDF](figures/Fig3_COM_M1_temperature.pdf)
 
-## Adjusted calendar year
+## Temporal trends without temperature
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the [Temporal trends](temporal_trends.qmd) page.
+
+![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
 
 [Download figure PDF](figures/Fig4_COM_M1_time.pdf)
 
