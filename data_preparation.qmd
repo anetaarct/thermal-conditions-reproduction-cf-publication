@@ -27,3 +27,5 @@ In the temperature-association models, the fixed predictors were relative laying
 
 
 The temporal models use the identical trait-specific records, age classes, relative laying dates and centred calendar years, but omit temperature from both location and scale. Their trends are therefore unadjusted for temperature but remain adjusted for age and relative laying date.
+
+Both temperature (°C) and calendar year are continuous, centred fixed predictors in the temperature-association models. In the temporal models, year remains continuous and temperature is omitted. Categorical year identifiers define the separate random-intercept groups.
