@@ -1,95 +1,107 @@
 ---
-title: "Clutch size"
+title: "Clutch-size analysis"
+number-sections: false
 bibliography: references.bib
 execute:
   enabled: false
 ---
 
+## Data preparation
 
-The specifications, estimates and checks below describe the **unchanged temperature-association model**. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the [Temporal trends](temporal_trends.qmd) section.
+Curated clutch records and the starting COM-Poisson fit were loaded from the original analysis directory.
 
-# S1.8 Clutch size: final COM-Poisson and ML Poisson comparison
+<details class="analysis-code" open>
+<summary>Show R code</summary>
 
-# Data and specifications.
+```r
+out <- "glmmTMB_comparison_20261016/clutch_counts"
+d <- readRDS(file.path(out, "data.rds"))
+m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
+```
 
-Both count fits used the same ordered 12,627 records, 8,894 females and 44 seasons; response, predictor and grouping columns were checked row by row. Clutch sizes ranged from 2 to 9 eggs, with mean 6.19189 and variance 0.65595. The observed range was not imposed as a statistical bound. Maximum-likelihood models were fitted in glmmTMB 1.1.14 under R 4.6.1. Their location equation was $$\log\mu_i=\beta_0+\beta_D D_i+\beta_T T_i+\beta_Y Y_i+\beta_A A_i+u_{f(i)}+v_{y(i)},$$ with independent Gaussian female and year intercepts. Poisson assumes $\operatorname{Var}(C_i\mid u,v)=\mu_i$ and has no separate scale equation. For mean-parameterised COM-Poisson, $$P(C_i=k)=\frac{\lambda_i^k}{(k!)^{\nu_i}Z(\lambda_i,\nu_i)},\quad k=0,1,\ldots,
-\qquad Z(\lambda,\nu)=\sum_{k=0}^{\infty}\frac{\lambda^k}{(k!)^\nu},$$ where $\lambda_i$ is determined numerically so that $E(C_i)=\mu_i$. We denote inverse shape by $\psi_i=1/\nu_i$ to distinguish it from fledging beta-binomial precision. The dispersion equation was $$\log\psi_i=\gamma_0+\gamma_D D_i+\gamma_T T_i+\gamma_Y Y_i+\gamma_A A_i.$$ Inverse shape is not Gaussian residual SD: conditional variance was calculated from the exact COM-Poisson distribution. We therefore compare response-scale mean contrasts and conditional-SD ratios, rather than equating coefficients across link scales.
+</details>
 
-# Optimisation and the year-dispersion extension.
+## Fit and verify the model
 
-The full Poisson fit converged with a positive-definite Hessian but estimated female SD near zero ($5.8\times10^{-6}$ on the log-mean scale). A boundary verification omitting that negligible random effect reproduced its likelihood and fixed effects; a separate nlminb restart reported false convergence and was not selected. The accepted fit's maximum SE-scaled gradient was 0.00108; the boundary verification's was $1.25\times10^{-5}$.
+COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
 
-Unrestricted COM-Poisson searches encountered costly extreme trial values. Rescaled optimisation with finite parameter bounds yielded an interior solution: the minimum distance from a bound was 28% of the corresponding allowed range. Independent nlminb and L-BFGS-B fits had convergence code zero, positive-definite Hessians, maximum SE-scaled gradients below 0.00021 and log likelihoods agreeing to $2\times10^{-9}$. The constant-dispersion and predictor-dependent fits had log likelihoods $-13973.982$ and $-13768.552$, respectively. The predictor-dependent COM-Poisson AIC was 27561.10, compared with 47627.49 for Poisson.
+<details class="analysis-code">
+<summary>Show original code: 75_verify_COM_Poisson.R</summary>
 
-Adding a random year intercept to log inverse shape gave a year SD of $\exp(-10)=4.54\times10^{-5}$ at the imposed lower bound, with essentially the same likelihood. Agreement of optimisers at that bound does not demonstrate an interior optimum or absence of biological year variation. The reported primary COM-Poisson model therefore omits this random effect while retaining centred calendar year as a fixed predictor of log inverse shape. In this temperature-association model, the fixed-year coefficient describes a linear association conditional on temperature and the other fixed predictors. Temporal trends without temperature are estimated separately. The omitted random intercept would represent additional between-season dispersion beyond the included fixed predictors. The interior convergence checks for the retained COM-Poisson model must not be interpreted as validation of an interior optimum for this random-effect extension. Female and year location SDs were 0.06028 and 0.02186 on the log-mean scale. The reference inverse shape was approximately 0.060, consistent with strong underdispersion relative to Poisson. Earlier failed COM-Poisson attempts remain archived and do not supply inferential results.
+{{< include _includes/75_verify_COM_Poisson.qmd >}}
 
-  Component    Predictor                                Poisson                    COM-Poisson
-  ------------ ----------------- ------------------------------ ------------------------------
-  Location     Intercept              1.8041 \[1.7899, 1.8183\]      1.8015 \[1.7937, 1.8093\]
-  Location     Relative date       -0.0092 \[-0.0106, -0.0078\]   -0.0084 \[-0.0089, -0.0079\]
-  Location     Temperature            0.0130 \[0.0039, 0.0221\]      0.0159 \[0.0082, 0.0237\]
-  Location     Year                   0.0012 \[0.0004, 0.0020\]      0.0009 \[0.0003, 0.0015\]
-  Location     Older--yearling        0.0293 \[0.0134, 0.0452\]      0.0300 \[0.0253, 0.0347\]
-  Dispersion   Intercept                                     --   -2.8150 \[-2.8813, -2.7487\]
-  Dispersion   Relative date                                 --      0.0528 \[0.0470, 0.0585\]
-  Dispersion   Temperature                                   --    -0.0263 \[-0.0613, 0.0087\]
-  Dispersion   Year                                          --     0.0025 \[-0.0008, 0.0058\]
-  Dispersion   Older--yearling                               --   -0.1259 \[-0.1964, -0.0553\]
+</details>
 
-  : Count-model fixed effects. Estimates and Wald 95% CIs are on the log-mean scale (location) or log inverse-shape scale (COM-Poisson dispersion). Poisson has no free dispersion equation.
+| row | code | pdHess | logLik | scaled_gradient | bound_distance |
+| --- | --- | --- | --- | --- | --- |
+| nlminb | 0 | TRUE | -13769 | 0.00020724 | 0.28087 |
+| LBFGS | 0 | TRUE | -13769 | 0.00019347 | 0.28087 |
 
-# Predictions and uncertainty.
+[Download CSV](tables/final_models_20261019/COM_final_diagnostics.csv)
+## Export predictions from the saved fit
 
-We generated 1,000 conditional datasets per model and 300 datasets with newly drawn, shared female and year effects at the observed covariates. Conditional simulations held parameter estimates and fitted group modes fixed; new-group simulations redrew group effects but not parameters. These checks do not include parameter-estimation uncertainty or evaluate held-out prediction. Group checks used year, age and five quantile-based groups each for relative laying date and temperature. COM-Poisson probabilities were normalised over an adequately extended integer support and verified against the exact mean and variance.
+<details class="analysis-code">
+<summary>Show original code: 76_export_COM_predictions.R</summary>
 
-  Model         Simulation target                       Mean                 Variance
-  ------------- ------------------- ------------------------ ------------------------
-  Poisson       Fitted groups         6.192 \[6.149, 6.237\]   6.311 \[6.146, 6.467\]
-  Poisson       New groups            6.184 \[6.138, 6.234\]   6.299 \[6.153, 6.463\]
-  COM-Poisson   Fitted groups         6.196 \[6.185, 6.207\]   0.565 \[0.551, 0.578\]
-  COM-Poisson   New groups            6.184 \[6.134, 6.234\]   0.656 \[0.632, 0.684\]
+{{< include _includes/76_export_COM_predictions.qmd >}}
 
-  : Overall predictive checks. Entries are simulation means \[95% simulation intervals\]. Observed mean is 6.1919 eggs and variance is 0.6560. Intervals condition on estimated parameters.
+</details>
 
-Poisson reproduced the mean but predicted almost ten times the observed variance and 11.51% of broods outside the observed 2--9 range. Conditional simulations predicted 15.86% six-egg clutches versus 51.23% observed. COM-Poisson predicted 51.98% six-egg clutches, but its conditional plug-in variance was too low (0.565; interval 0.551--0.578). With newly drawn group effects its variance was 0.656 (0.632--0.684). It also overpredicted five-egg clutches (13.67% versus 11.91%) and slightly underpredicted seven-egg clutches (30.48% versus 31.35%). These differences must not be concealed by the adequate overall new-group variance.
+<details class="analysis-code">
+<summary>Show R code</summary>
 
-  Model                   Year         Age   Date groups   Temperature groups
-  ------------- -------------- ----------- ------------- --------------------
-  Poisson         1/44 / 44/44   0/2 / 2/2     2/5 / 5/5            1/5 / 5/5
-  COM-Poisson     0/44 / 21/44   0/2 / 2/2     5/5 / 3/5            0/5 / 4/5
+```r
+fixed <- read.csv("tables/final_models_20261019/count_coefficients.csv")
+temperature <- read.csv("tables/final_models_20261019/COM_temperature_mean.csv")
+fixed
+head(temperature)
+```
 
-  : Numbers of groups whose observed mean / variance fell outside the conditional 95% simulation intervals. These correlated, descriptive checks are not independent tests. ML intervals omit parameter uncertainty.
+</details>
 
-# Biological interpretation.
+<details class="analysis-code">
+<summary>Show saved output: count_coefficients.csv</summary>
 
-At centred date, temperature and year, yearling age and zero random effects, a 1 °C increase corresponded to 0.0976 more eggs (95% CI 0.0486--0.1454). The temperature SD ratio was 0.9945 (0.9744--1.0141). A one-day delay corresponded to $-0.0508$ eggs ($-0.0536$ to $-0.0478$) and an SD ratio of 1.0254 (1.0219--1.0292). Older females had 0.1848 more eggs (0.1561--0.2133) and an SD ratio of 0.9533 (0.9185--0.9908). Lower conditional SD indicates greater reproductive consistency. Intervals use 4,000 joint asymptotic coefficient draws, preserving location--scale covariance. These are reference-condition estimates, not population-marginal effects. Model checks show remaining departures from the assumed count distribution; adequate overall new-group variance does not establish complete distributional fit. No refit-based bootstrap or cross-validation was performed.
+| model | component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- | --- |
+| Poisson | cond | (Intercept) | 1.8041 | 0.0072243 | 1.7899 | 1.8183 |
+| Poisson | cond | rel_LD | -0.0091874 | 0.0007333 | -0.010625 | -0.0077502 |
+| Poisson | cond | temp_mean_c | 0.012959 | 0.0046411 | 0.0038621 | 0.022055 |
+| Poisson | cond | year_c | 0.0011838 | 0.00042043 | 0.00035973 | 0.0020078 |
+| Poisson | cond | age_classOLD | 0.029299 | 0.0081295 | 0.013365 | 0.045233 |
+| COM_Poisson | cond | (Intercept) | 1.8015 | 0.0039731 | 1.7937 | 1.8093 |
+| COM_Poisson | cond | rel_LD | -0.0084151 | 0.00024559 | -0.0088965 | -0.0079338 |
+| COM_Poisson | cond | temp_mean_c | 0.015931 | 0.0039557 | 0.0081783 | 0.023685 |
+| COM_Poisson | cond | year_c | 0.00090282 | 0.00033014 | 0.00025575 | 0.0015499 |
+| COM_Poisson | cond | age_classOLD | 0.029991 | 0.0023773 | 0.025331 | 0.03465 |
+| COM_Poisson | disp | (Intercept) | -2.815 | 0.033822 | -2.8813 | -2.7487 |
+| COM_Poisson | disp | rel_LD | 0.052751 | 0.0029211 | 0.047025 | 0.058476 |
+| COM_Poisson | disp | temp_mean_c | -0.026297 | 0.017867 | -0.061317 | 0.0087223 |
+| COM_Poisson | disp | year_c | 0.0024938 | 0.0016643 | -0.00076827 | 0.0057558 |
+| COM_Poisson | disp | age_classOLD | -0.12586 | 0.036005 | -0.19643 | -0.05529 |
 
-## Final prediction data
+[Download CSV](tables/final_models_20261019/count_coefficients.csv)
 
-[COM-Poisson mean and SD data](tables/final_models_20261019/COM_temperature_mean.csv) · [Numerical diagnostics](tables/final_models_20261019/COM_final_diagnostics.csv)
 
-## Temperature
+</details>
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
+| x | age_class | estimate | CI_low | CI_high |
+| --- | --- | --- | --- | --- |
+| 3.5279 | YOUNG | 5.9058 | 5.8262 | 5.9877 |
+| 3.5514 | YOUNG | 5.908 | 5.8296 | 5.989 |
+| 3.5748 | YOUNG | 5.9102 | 5.8331 | 5.99 |
+| 3.5983 | YOUNG | 5.9124 | 5.8358 | 5.9916 |
+| 3.6217 | YOUNG | 5.9146 | 5.8388 | 5.993 |
 
-[Download figure PDF](figures/Fig3_COM_M1_temperature.pdf)
+[Download CSV](tables/final_models_20261019/COM_temperature_mean.csv)
+## Figure
 
-## Temporal trends without temperature
+![Saved temperature predictions for both reproductive traits: clutch mean and SD (A–B), fledging success and precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 
-The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the [Temporal trends](temporal_trends.qmd) page.
+[PDF](figures/Fig3_COM_M1_temperature.pdf) · [Figure code — final chapter](figure_code.qmd#temperature-date-and-age)
 
-![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+## Main conclusions
 
-[Download figure PDF](figures/Fig4_COM_M1_time.pdf)
-
-## Relative laying date
-
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)
-
-[Download figure PDF](figures/Fig5_COM_M1_date.pdf)
-
-## Female age class
-
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)
-
-[Download figure PDF](figures/Fig6_COM_M1_age.pdf)
+- Warmer springs: larger clutches; association with clutch-size consistency uncertain.
+- Later laying: smaller and more variable clutches. Older females: larger and more consistent clutches.
+- COM-Poisson improved on Poisson, but conditional variance and some count frequencies remained imperfectly reproduced.

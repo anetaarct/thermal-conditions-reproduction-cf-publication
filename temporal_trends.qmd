@@ -1,77 +1,158 @@
 ---
-title: "Temporal trends without temperature"
+title: "Calendar-year analyses"
+number-sections: false
+bibliography: references.bib
 execute:
   enabled: false
 ---
 
-## Two different questions
+## Data preparation
 
-**Temporal change:** how did mean reproductive performance and reproductive consistency change over calendar time? These models were refitted without temperature in both location and scale. Age class, relative laying date, the original response distributions and all random-effect structures were retained.
+Load the same trait-specific records and selected fits used for the temperature models.
 
-**Temperature associations:** how were the reproductive traits associated with spring temperature? These use the unchanged models containing temperature and calendar year together. Their temperature-adjusted year coefficients are disclosed on the model pages but are not used as the reported temporal trends. The temperature, laying-date and age results and their figures remain unchanged.
+<details class="analysis-code" open>
+<summary>Show data-loading excerpt from script 83</summary>
 
-## Temporal results
+```r
+library(glmmTMB)
+paths <- c(
+  clutch = "glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds",
+  fledging = "zi_year_sensitivity_20261020/zi_year_selected.rds"
+)
+for (trait in names(paths)) {
+  old <- readRDS(paths[trait])
+  d <- readRDS(if (trait == "clutch")
+    "glmmTMB_comparison_20261016/clutch_counts/data.rds" else
+    "glmmTMB_comparison_20261016/analysis_data.rds")
+  stopifnot(nobs(old) == nrow(d))
+}
+```
 
-At yearling age, relative laying date zero and all random effects zero:
+</details>
 
-| Trait | Period | Expected first → last value | Change (95% CI) |
-| --- | --- | --- | --- |
-| Clutch size | 1981–2025 | 5.84 → 6.26 eggs | +0.43 eggs (+0.26 to +0.60) |
-| Egg-to-fledging success | 1981–2019 | 67.5% → 57.2% | −10.3 percentage points (−16.3 to −4.1) |
+## Fit models
 
-Evidence of temporal change in reproductive consistency was inconclusive for both traits: the first-to-last clutch-size SD ratio was 1.063 (95% CI 0.994–1.136), and the fledging precision ratio was 0.780 (0.513–1.189). Both intervals include one. Lower clutch-size SD indicates greater consistency; higher fledging precision indicates greater consistency at a fixed component mean and clutch size.
+Calendar year, laying date and age enter both components; temperature is omitted. The original script also checks optimiser agreement and saves the selected `.rds` fits.
 
-These trends are **not adjusted for temperature**, but are standardised for age and relative laying date. They are not unadjusted population trajectories and do not identify how much change was caused by warming. The two traits also cover different periods. The observed annual means are supplied separately for descriptive comparison.
+<details class="analysis-code">
+<summary>Show original code: 83_fit_temporal_without_temperature.R</summary>
 
-![Temporal trends from models refitted without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected full-mixture fledging success and (D) reproductive consistency measured by precision. Yearlings, relative laying date zero, all random effects zero; bands show pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+{{< include _includes/83_fit_temporal_without_temperature.qmd >}}
 
-[Download complete temporal figure](figures/Fig4_COM_M1_time.pdf)
+</details>
 
-## Models and uncertainty
+## Read the saved output
 
-Clutch size uses the mean-parameterised COM-Poisson distribution, with female and year random intercepts in location and no year random intercept in scale. Fledging success uses the zero-inflated beta-binomial distribution, with female and year random intercepts in location and separate year random intercepts in precision and extra-zero probability. The extra-zero equation has no covariate slopes. No interactions are included.
+The site displays the exported CSV files; the fit is not run when a page is opened.
 
-Both temporal models converged with positive-definite Hessians. Their log likelihoods were reproduced within 10⁻⁷ by BFGS refinement without the initial Hessian-based coordinate transformation. Clutch size: 10 parameters, log likelihood −13776.6071, AIC 27573.21. Fledging: 13 parameters, log likelihood −16637.7042, AIC 33301.41. AICs for the unchanged temperature-association models were 27561.10 and 33294.11. These comparisons describe fit and do not replace the distinction between the scientific questions.
+<details class="analysis-code" open>
+<summary>Show R code</summary>
 
-Pointwise 95% CIs for temporal curves use 6,000 joint asymptotic coefficient draws, retaining cross-component covariance. Clutch-size SD is computed from the exact COM-Poisson distribution. Fledging mean success is the full expectation (1−π)μ; precision describes the conditional consistency measure rather than all variability in the mixture. Intervals concern expected curves and are not individual-brood prediction intervals.
+```r
+changes <- read.csv("tables/temporal_models_20261022/temporal_changes.csv")
+fixed <- read.csv("tables/temporal_models_20261022/fixed_effects.csv")
+changes
+fixed
+```
 
-## Model checks and limitations
+</details>
 
-We simulated 500 conditional plug-in datasets per temporal model at estimated parameters and fitted group effects. These checks omit parameter-estimation uncertainty and do not assess held-out prediction. The exact COM-Poisson probability sampler was verified against the fitted mean and variance; a native new-group sampler returned non-finite values and its simulations were excluded. Conditional variance remained underestimated in both traits, while overall means and fledging complete-failure and complete-success frequencies fell within their simulation intervals. The distributional limitations documented on the [clutch-size](clutch_size.qmd) and [fledging-success](fledging_success.qmd) pages remain relevant. Both model sets use the same data and are not independent replication.
+| trait | first_year | last_year | mean_first | mean_last | mean_change | mean_change_lower | mean_change_upper |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | 1981 | 2025 | 5.8377 | 6.2629 | 0.42515 | 0.26106 | 0.59682 |
+| fledging | 1981 | 2019 | 0.67494 | 0.57201 | -0.10293 | -0.16349 | -0.040747 |
 
-## Full numerical results
+[Download CSV](tables/temporal_models_20261022/temporal_changes.csv)
+<details class="analysis-code">
+<summary>Show consistency contrasts</summary>
 
-Fixed-effect estimates use log links for clutch mean and scale, a logit link for fledging component mean and extra-zero probability, and a log link for fledging precision.
-
-| trait | component | term | estimate | SE | lower | upper |
+| trait | dispersion_ratio | dispersion_ratio_lower | dispersion_ratio_upper | response_SD_ratio | response_SD_ratio_lower | response_SD_ratio_upper |
 | --- | --- | --- | --- | --- | --- | --- |
-| clutch | cond | (Intercept) | 1.79888 | 0.00445 | 1.79015 | 1.80760 |
-| clutch | cond | rel_LD | -0.00842 | 0.00025 | -0.00890 | -0.00794 |
-| clutch | cond | year_c | 0.00160 | 0.00033 | 0.00096 | 0.00224 |
-| clutch | cond | age_classOLD | 0.03006 | 0.00238 | 0.02540 | 0.03472 |
-| clutch | disp | (Intercept) | -2.81055 | 0.03313 | -2.87549 | -2.74561 |
-| clutch | disp | rel_LD | 0.05261 | 0.00291 | 0.04691 | 0.05831 |
-| clutch | disp | year_c | 0.00142 | 0.00151 | -0.00154 | 0.00437 |
-| clutch | disp | age_classOLD | -0.12622 | 0.03588 | -0.19655 | -0.05588 |
-| fledging | cond | (Intercept) | 1.08148 | 0.07351 | 0.93739 | 1.22557 |
-| fledging | cond | rel_LD | -0.07508 | 0.00456 | -0.08402 | -0.06613 |
-| fledging | cond | age_classOLD | 0.00809 | 0.04481 | -0.07974 | 0.09592 |
-| fledging | cond | year_c | -0.01807 | 0.00555 | -0.02894 | -0.00720 |
-| fledging | zi | (Intercept) | -1.55368 | 0.09270 | -1.73538 | -1.37198 |
-| fledging | disp | (Intercept) | 1.15477 | 0.09226 | 0.97395 | 1.33559 |
-| fledging | disp | rel_LD | -0.06959 | 0.00690 | -0.08311 | -0.05607 |
-| fledging | disp | age_classOLD | 0.02506 | 0.08422 | -0.14001 | 0.19013 |
-| fledging | disp | year_c | -0.00654 | 0.00565 | -0.01762 | 0.00455 |
+| clutch | 1.0643 | 0.93607 | 1.209 | 1.063 | 0.99393 | 1.1358 |
+| fledging | 0.78001 | 0.51329 | 1.189 |  |  |  |
 
-### Overall conditional simulation checks
 
-| trait | statistic | observed | predicted | lower | upper |
-| --- | --- | --- | --- | --- | --- |
-| clutch | mean | 6.19189 | 6.19574 | 6.18448 | 6.20722 |
-| clutch | variance | 0.65595 | 0.56474 | 0.55011 | 0.57756 |
-| fledging | mean | 0.58607 | 0.58139 | 0.57372 | 0.58901 |
-| fledging | variance | 0.15455 | 0.15185 | 0.14954 | 0.15404 |
-| fledging | zero_fraction | 0.23647 | 0.23131 | 0.22370 | 0.23958 |
-| fledging | complete_success | 0.28856 | 0.28624 | 0.27799 | 0.29551 |
 
-[Fixed effects](tables/temporal_models_20261022/fixed_effects.csv) · [First-to-last changes](tables/temporal_models_20261022/temporal_changes.csv) · [Numerical verification](tables/temporal_models_20261022/optimizer_comparison.csv) · [Random-effect SDs](tables/temporal_models_20261022/random_SD.csv) · [All simulation checks](tables/temporal_models_20261022/temporal_simulation_checks.csv) · [Observed annual summaries](tables/temporal_models_20261022/observed_annual.csv) · [Prediction scope](tables/temporal_models_20261022/README.txt)
+</details>
+
+<details class="analysis-code">
+<summary>Show saved output: fixed_effects.csv</summary>
+
+| trait | model | component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | without_temperature | cond | (Intercept) | 1.7989 | 0.0044506 | 1.7902 | 1.8076 |
+| clutch | without_temperature | cond | rel_LD | -0.008421 | 0.00024536 | -0.0089019 | -0.0079401 |
+| clutch | without_temperature | cond | year_c | 0.0015977 | 0.00032546 | 0.00095977 | 0.0022356 |
+| clutch | without_temperature | cond | age_classOLD | 0.030062 | 0.0023787 | 0.0254 | 0.034724 |
+| clutch | without_temperature | disp | (Intercept) | -2.8105 | 0.033132 | -2.8755 | -2.7456 |
+| clutch | without_temperature | disp | rel_LD | 0.052608 | 0.0029075 | 0.04691 | 0.058307 |
+| clutch | without_temperature | disp | year_c | 0.001416 | 0.0015062 | -0.0015362 | 0.0043681 |
+| clutch | without_temperature | disp | age_classOLD | -0.12622 | 0.035883 | -0.19655 | -0.055885 |
+| fledging | without_temperature | cond | (Intercept) | 1.0815 | 0.073514 | 0.93739 | 1.2256 |
+| fledging | without_temperature | cond | rel_LD | -0.075076 | 0.0045627 | -0.084019 | -0.066133 |
+| fledging | without_temperature | cond | age_classOLD | 0.0080903 | 0.044813 | -0.079744 | 0.095925 |
+| fledging | without_temperature | cond | year_c | -0.018067 | 0.0055458 | -0.028937 | -0.0071973 |
+| fledging | without_temperature | zi | (Intercept) | -1.5537 | 0.092704 | -1.7354 | -1.372 |
+| fledging | without_temperature | disp | (Intercept) | 1.1548 | 0.092256 | 0.97395 | 1.3356 |
+| fledging | without_temperature | disp | rel_LD | -0.069589 | 0.0068985 | -0.08311 | -0.056068 |
+| fledging | without_temperature | disp | age_classOLD | 0.025058 | 0.08422 | -0.14001 | 0.19013 |
+| fledging | without_temperature | disp | year_c | -0.006538 | 0.0056549 | -0.017622 | 0.0045457 |
+
+[Download CSV](tables/temporal_models_20261022/fixed_effects.csv)
+
+
+</details>
+
+## Export predictions and check the fits
+
+<details class="analysis-code">
+<summary>Show original code: 84_export_temporal_without_temperature.R</summary>
+
+{{< include _includes/84_export_temporal_without_temperature.qmd >}}
+
+</details>
+
+<details class="analysis-code">
+<summary>Show saved output: optimizer_comparison.csv</summary>
+
+| trait | model | n | df | logLik | AIC | convergence | pdHess | scaled_gradient |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | with_temperature | 12627 | 12 | -13769 | 27561 | 0 | TRUE | 0.00019347 |
+| clutch | without_temperature_LBFGS | 12627 | 10 | -13777 | 27573 | 0 | TRUE | 9.6224e-06 |
+| clutch | without_temperature_BFGS | 12627 | 10 | -13777 | 27573 | 0 | NA | 9.2348e-06 |
+| fledging | with_temperature | 9790 | 15 | -16632 | 33294 | 0 | TRUE | 0.00036322 |
+| fledging | without_temperature_LBFGS | 9790 | 13 | -16638 | 33301 | 0 | TRUE | 2.7277e-06 |
+| fledging | without_temperature_BFGS | 9790 | 13 | -16638 | 33301 | 0 | TRUE | 2.9166e-06 |
+
+[Download CSV](tables/temporal_models_20261022/optimizer_comparison.csv)
+
+
+</details>
+
+<details class="analysis-code">
+<summary>Show saved output: temporal_simulation_checks.csv</summary>
+
+| trait | target | group | n | statistic | observed | predicted | lower | upper |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | conditional_plugin | overall | 12627 | mean | 6.1919 | 6.1957 | 6.1845 | 6.2072 |
+| clutch | conditional_plugin | overall | 12627 | variance | 0.65595 | 0.56474 | 0.55011 | 0.57756 |
+| fledging | conditional_plugin | overall | 9790 | mean | 0.58607 | 0.58139 | 0.57372 | 0.58901 |
+| fledging | conditional_plugin | overall | 9790 | variance | 0.15455 | 0.15185 | 0.14954 | 0.15404 |
+| fledging | conditional_plugin | overall | 9790 | zero_fraction | 0.23647 | 0.23131 | 0.2237 | 0.23958 |
+| fledging | conditional_plugin | overall | 9790 | complete_success | 0.28856 | 0.28624 | 0.27799 | 0.29551 |
+
+[Download complete CSV](tables/temporal_models_20261022/temporal_simulation_checks.csv)
+
+</details>
+
+## Figure
+
+![Saved temporal predictions: clutch mean and SD, full-mixture fledging success and component precision. Yearlings, relative laying date zero, random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+
+[PDF](figures/Fig4_COM_M1_time.pdf) · [Figure code — final chapter](figure_code.qmd#calendar-year-trends)
+
+## Main conclusions
+
+- Mean clutch size increased; egg-to-fledging success declined.
+- Temporal changes in consistency were uncertain: clutch SD ratio 1.063 (0.994–1.136); fledging precision ratio 0.780 (0.513–1.189).
+- Conditional variance remained underestimated in both traits; simulation checks condition on fitted parameters and group effects.

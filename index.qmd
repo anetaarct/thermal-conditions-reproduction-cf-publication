@@ -20,41 +20,30 @@ execute:
 </div></section>
 ```
 
-## A long-term view of reproduction
+## Project aims
 
 ::: {.overview-background-panel}
 ```{=html}
 <figure class="overview-species-photo"><img src="images/overview-flycatcher.png" alt="Collared flycatcher perched on a branch."></figure>
 ```
-Using long-term records of collared flycatchers (*Ficedula albicollis*), we examine both average reproductive performance and **reproductive consistency**: how similarly breeding attempts perform under comparable conditions.
+Using long-term records of collared flycatchers (*Ficedula albicollis*) on Gotland, we ask:
 
-Clutch size increased and egg-to-fledging success declined over calendar time, with no clear temporal change in reproductive consistency. Mean spring temperature increased by approximately **0.44°C per decade**, without a clear increase in variability among years. Warmer springs were associated with larger clutches but lower fledging success; temperature associations with consistency remained uncertain.
-
-Later-laying females had smaller clutches, lower success and greater estimated reproductive inconsistency. Older females laid larger and more consistent clutches; age differences in fledging performance and consistency remained uncertain.
-
-We predicted declining consistency **over time**. Temporal trends and temperature associations answer separate questions and do not establish a causal effect of warming.
+1. How did mean spring temperature and its variability change over the study period?
+2. How did mean clutch size, egg-to-fledging success and reproductive consistency change over calendar time?
+3. How were spring temperatures associated with mean reproductive performance and reproductive consistency?
+4. How were laying date and female age associated with these reproductive traits?
 :::
 
-## Follow the analysis
-
-Field records and Swedish weather observations come first. A phenology-based sliding-window analysis informs the thermal exposure window; calendar-year trends then precede temperature associations in the reproductive results.
+## Analysis chapters
 
 ```{=html}
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3>Data & preparation</h3><p>Load the breeding database, obtain SMHI weather and construct analysis inputs.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Candidate periods, randomisation, temporal validation and the operational window.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Changes in reproductive performance and consistency from models without temperature.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3>03 · Temperature & reproduction</h3><p>Temperature, laying date and age: clutch size and egg-to-fledging success.</p></a>
+<a class="overview-tile" href="workflow.html"><h3>Data preparation</h3><p>Required files, database loading, SMHI observations and software versions.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Inputs, analysis settings, saved results and the thermal exposure window.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Data preparation, model code, saved output and the figure.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3>03 · Clutch size</h3><p>Model fitting, prediction export and saved results.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3>04 · Egg-to-fledging success</h3><p>Model fitting, prediction export and saved results.</p></a>
+<a class="overview-tile" href="model_structure.html"><h3>Model equations & checks</h3><p>Model specifications and diagnostic outputs.</p></a>
+<a class="overview-tile" href="figure_code.html"><h3>Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
 </div>
 ```
-
-[Egg-to-fledging results](fledging_success.qmd) · [Model equations and checks](model_structure.qmd) · [Figures and code](figure_code.qmd)
-
-## Study records
-
-| Analysis | Breeding attempts | Females | Seasons |
-|---|---:|---:|---|
-| Clutch size | 12,627 | 8,894 | 1981–2025, excluding 2020 |
-| Egg-to-fledging success | 9,790 | 7,132 | 1981–2019 |
-
-Weather covers 1980–2025. Window selection uses 45 seasons with laying-date records. See [the input and code inventory](workflow.qmd#what-is-available) for available files and remaining reproducibility gaps.

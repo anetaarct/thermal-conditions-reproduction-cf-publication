@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Figures and ML analysis code – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Figure code – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./figure_code.html">Figures &amp; analysis code</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./figure_code.html">Figure code</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+ <span class="menu-text">Data preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year trends</span></a>
+ <span class="menu-text">Calendar-year analyses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Figures &amp; analysis code</span></a>
+ <span class="menu-text">Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -245,19 +245,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#temporal-trends-without-temperature" id="toc-temporal-trends-without-temperature" class="nav-link active" data-scroll-target="#temporal-trends-without-temperature"><span class="header-section-number">1</span> Temporal trends without temperature</a></li>
-  <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature"><span class="header-section-number">2</span> Temperature</a></li>
-  <li><a href="#relative-laying-date" id="toc-relative-laying-date" class="nav-link" data-scroll-target="#relative-laying-date"><span class="header-section-number">3</span> Relative laying date</a></li>
-  <li><a href="#female-age-class" id="toc-female-age-class" class="nav-link" data-scroll-target="#female-age-class"><span class="header-section-number">4</span> Female age class</a></li>
+  <li><a href="#files-and-packages" id="toc-files-and-packages" class="nav-link active" data-scroll-target="#files-and-packages">Files and packages</a></li>
+  <li><a href="#calendar-year-trends" id="toc-calendar-year-trends" class="nav-link" data-scroll-target="#calendar-year-trends">Calendar-year trends</a></li>
+  <li><a href="#temperature-date-and-age" id="toc-temperature-date-and-age" class="nav-link" data-scroll-target="#temperature-date-and-age">Temperature, date and age</a>
+  <ul class="collapse">
+  <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature">Temperature</a></li>
+  <li><a href="#relative-laying-date" id="toc-relative-laying-date" class="nav-link" data-scroll-target="#relative-laying-date">Relative laying date</a></li>
+  <li><a href="#female-age" id="toc-female-age" class="nav-link" data-scroll-target="#female-age">Female age</a></li>
+  </ul></li>
+  <li><a href="#spring-temperature-figure" id="toc-spring-temperature-figure" class="nav-link" data-scroll-target="#spring-temperature-figure">Spring-temperature figure</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./figure_code.html">Figures &amp; analysis code</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./figure_code.html">Figure code</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Figures and ML analysis code</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Figure code</h1>
 </div>
 
 
@@ -274,51 +279,221 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>All reproductive estimates use maximum likelihood. Temperature, laying-date and age figures retain the existing temperature-association models and their 4,000 clutch-size or 8,000 fledging-success joint coefficient draws. Year figures use separate models refitted without temperature in either location or scale, with 6,000 draws for each trait. Bands are pointwise 95% CIs and retain cross-component covariance. Year curves hold age and relative laying date fixed; all reference curves set random effects to zero and are not observed population trajectories.</p>
-<p><a href="R/83_fit_temporal_without_temperature.R">Temporal-model fitting</a> · <a href="R/84_export_temporal_without_temperature.R">Temporal export and checks</a> · <a href="scripts/plot_temporal_models.py">Temporal figure script</a> · <a href="scripts/plot_final_models.py">Plotting script</a> · <a href="R/75_verify_COM_Poisson.R">COM-Poisson numerical verification</a> · <a href="R/76_export_COM_predictions.R">COM-Poisson prediction export</a> · <a href="R/81_fit_ZIyear_fledging.R">Fledging ML fitting and comparison</a> · <a href="R/82_export_ZIyear_primary.R">Fledging prediction export</a> · <a href="R/25_environment_temperature_location_scale.R">Environmental ML model</a></p>
-<section id="temporal-trends-without-temperature" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="temporal-trends-without-temperature"><span class="header-section-number">1</span> Temporal trends without temperature</h2>
-<p>The following year curves come from separate models refitted <strong>without temperature</strong> in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <a href="./temporal_trends.html">Temporal trends</a> page.</p>
+<section id="files-and-packages" class="level2">
+<h2 class="anchored" data-anchor-id="files-and-packages">Files and packages</h2>
+<p>Download the <a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip">repository ZIP</a>. The scripts read CSV prediction tables in <code>tables/</code> and write figures to <code>figures/</code>; no model fitting is required. Python packages: pandas, matplotlib (and their dependencies).</p>
+</section>
+<section id="calendar-year-trends" class="level2">
+<h2 class="anchored" data-anchor-id="calendar-year-trends">Calendar-year trends</h2>
+<details class="analysis-code">
+<summary>
+Show original code: plot_temporal_models.py
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scripts/plot_temporal_models.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="scripts/plot_temporal_models.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Render temporal trends without temperature; retain original age estimates."""</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>matplotlib.use(<span class="st">'Agg'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>root<span class="op">=</span>Path(<span class="va">__file__</span>).resolve().parent.parent</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>figdir<span class="op">=</span>root<span class="op">/</span><span class="st">'figures'</span><span class="op">;</span>T<span class="op">=</span>root<span class="op">/</span><span class="st">'tables/temporal_models_20261022'</span><span class="op">;</span>C<span class="op">=</span>root<span class="op">/</span><span class="st">'tables/final_models_20261019'</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>:<span class="dv">10</span>,<span class="st">'axes.spines.top'</span>:<span class="va">False</span>,<span class="st">'axes.spines.right'</span>:<span class="va">False</span>,<span class="st">'pdf.fonttype'</span>:<span class="dv">42</span>})</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>blue<span class="op">=</span><span class="st">'#0072B2'</span><span class="op">;</span>orange<span class="op">=</span><span class="st">'#D55E00'</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> curve(ax,path,label,color,percentage<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>pd.read_csv(path)<span class="op">;</span>scale<span class="op">=</span><span class="dv">100</span> <span class="cf">if</span> percentage <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(d.x,d.estimate<span class="op">*</span>scale,color<span class="op">=</span>color,lw<span class="op">=</span><span class="fl">1.7</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(d.x,d.CI_low<span class="op">*</span>scale,d.CI_high<span class="op">*</span>scale,color<span class="op">=</span>color,alpha<span class="op">=</span><span class="fl">.18</span>,lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">'Year'</span>,ylabel<span class="op">=</span>label)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> age(ax,path,label):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>pd.read_csv(path)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i,(cl,col) <span class="kw">in</span> <span class="bu">enumerate</span>([(<span class="st">'YOUNG'</span>,blue),(<span class="st">'OLD'</span>,orange)]):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>d[d.age_class<span class="op">==</span>cl].iloc[<span class="dv">0</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        ax.errorbar(i,z.estimate,yerr<span class="op">=</span>[[z.estimate<span class="op">-</span>z.CI_low],[z.CI_high<span class="op">-</span>z.estimate]],fmt<span class="op">=</span><span class="st">'o'</span>,color<span class="op">=</span>col,capsize<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xticks<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>],xticklabels<span class="op">=</span>[<span class="st">'Yearling'</span>,<span class="st">'Older'</span>],ylabel<span class="op">=</span>label,xlim<span class="op">=</span>(<span class="op">-</span><span class="fl">.6</span>,<span class="fl">1.6</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>fig,axes<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="fl">9.5</span>,<span class="fl">7.4</span>),layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">0</span>,<span class="dv">0</span>],T<span class="op">/</span><span class="st">'clutch_year_mean.csv'</span>,<span class="st">'Mean clutch size (eggs)'</span>,blue)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">0</span>,<span class="dv">1</span>],T<span class="op">/</span><span class="st">'clutch_year_sd.csv'</span>,<span class="st">'Clutch-size SD (eggs)'</span>,orange)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">1</span>,<span class="dv">0</span>],T<span class="op">/</span><span class="st">'fledging_year_success.csv'</span>,<span class="st">'Expected egg-to-fledging success'</span>,blue)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">1</span>,<span class="dv">1</span>],T<span class="op">/</span><span class="st">'fledging_year_phi.csv'</span>,<span class="st">'Fledging reproductive consistency (φ)'</span>,orange)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax,l <span class="kw">in</span> <span class="bu">zip</span>(axes.flat,<span class="st">'ABCD'</span>):ax.set_title(l,loc<span class="op">=</span><span class="st">'left'</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ext <span class="kw">in</span> [<span class="st">'pdf'</span>,<span class="st">'png'</span>]:fig.savefig(figdir<span class="op">/</span><span class="ss">f'Fig4_COM_M1_time.</span><span class="sc">{</span>ext<span class="sc">}</span><span class="ss">'</span>,dpi<span class="op">=</span><span class="dv">180</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>fig,axes<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="fl">9.5</span>,<span class="fl">6.5</span>),layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">0</span>,<span class="dv">0</span>],T<span class="op">/</span><span class="st">'clutch_year_mean.csv'</span>,<span class="st">'Mean clutch size (eggs)'</span>,blue)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>curve(axes[<span class="dv">0</span>,<span class="dv">1</span>],T<span class="op">/</span><span class="st">'fledging_year_success.csv'</span>,<span class="st">'Expected egg-to-fledging success (%)'</span>,blue,<span class="va">True</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_ylim(<span class="dv">0</span>,<span class="dv">100</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>age(axes[<span class="dv">1</span>,<span class="dv">0</span>],C<span class="op">/</span><span class="st">'COM_age_mean.csv'</span>,<span class="st">'Mean clutch size (eggs)'</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>age(axes[<span class="dv">1</span>,<span class="dv">1</span>],C<span class="op">/</span><span class="st">'COM_age_sd.csv'</span>,<span class="st">'Clutch-size SD (eggs)'</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax,l <span class="kw">in</span> <span class="bu">zip</span>(axes.flat,<span class="st">'ABCD'</span>):ax.set_title(l,loc<span class="op">=</span><span class="st">'left'</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ext <span class="kw">in</span> [<span class="st">'pdf'</span>,<span class="st">'png'</span>]:fig.savefig(figdir<span class="op">/</span><span class="ss">f'Fig5_concise_clutch.</span><span class="sc">{</span>ext<span class="sc">}</span><span class="ss">'</span>,dpi<span class="op">=</span><span class="dv">180</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.close(fig)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Temporal figures generated from models without temperature; age predictions retained unchanged.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<details class="analysis-code" open="">
+<summary>
+Show command
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/plot_temporal_models.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig4_COM_M1_time.png" class="img-fluid figure-img"></p>
-<figcaption>Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.</figcaption>
+<figcaption>Saved calendar-year figure.</figcaption>
 </figure>
 </div>
-<p><a href="figures/Fig4_COM_M1_time.pdf">Download figure PDF</a></p>
+<p><a href="figures/Fig4_COM_M1_time.pdf">PDF</a></p>
 </section>
-<section id="temperature" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="temperature"><span class="header-section-number">2</span> Temperature</h2>
+<section id="temperature-date-and-age" class="level2">
+<h2 class="anchored" data-anchor-id="temperature-date-and-age">Temperature, date and age</h2>
+<details class="analysis-code">
+<summary>
+Show original code: plot_final_models.py
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>scripts/plot_final_models.py</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="scripts/plot_final_models.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>P<span class="op">=</span>Path(<span class="va">__file__</span>).resolve().parent.parent<span class="op">/</span><span class="st">'figures'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>matplotlib.use(<span class="st">'Agg'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>C<span class="op">=</span>P.parent<span class="op">/</span><span class="st">'tables/final_models_20261019'</span><span class="op">;</span> F<span class="op">=</span>P.parent<span class="op">/</span><span class="st">'tables/primary_ZIyear_ML_20261021'</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'font.size'</span>:<span class="dv">10</span>,<span class="st">'axes.spines.top'</span>:<span class="va">False</span>,<span class="st">'axes.spines.right'</span>:<span class="va">False</span>,<span class="st">'pdf.fonttype'</span>:<span class="dv">42</span>})</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>blue<span class="op">=</span><span class="st">'#0072B2'</span><span class="op">;</span>orange<span class="op">=</span><span class="st">'#D55E00'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> curve(ax,d,label,xlabel,col):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(d.x,d.estimate,color<span class="op">=</span>col,lw<span class="op">=</span><span class="fl">1.7</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(d.x,d.CI_low,d.CI_high,color<span class="op">=</span>col,alpha<span class="op">=</span><span class="fl">.18</span>,lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span>xlabel,ylabel<span class="op">=</span>label)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> kind,name,xlabel <span class="kw">in</span> [(<span class="st">'temperature'</span>,<span class="st">'Fig3_COM_M1_temperature'</span>,<span class="st">'Mean spring temperature (°C)'</span>),(<span class="st">'year'</span>,<span class="st">'Fig4_COM_M1_time'</span>,<span class="st">'Year'</span>),(<span class="st">'date'</span>,<span class="st">'Fig5_COM_M1_date'</span>,<span class="st">'Relative laying date (days)'</span>)]:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> kind<span class="op">==</span><span class="st">'year'</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Dedicated temporal refits omit temperature in both model equations.</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="im">import</span> runpy</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        runpy.run_path(<span class="bu">str</span>(Path(<span class="va">__file__</span>).with_name(<span class="st">'plot_temporal_models.py'</span>)),run_name<span class="op">=</span><span class="st">'__main__'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="fl">9.5</span>,<span class="fl">7.4</span>),layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j,comp <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">'mean'</span>,<span class="st">'sd'</span>]):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        curve(ax[<span class="dv">0</span>,j],pd.read_csv(C<span class="op">/</span><span class="ss">f'COM_</span><span class="sc">{</span>kind<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>comp<span class="sc">}</span><span class="ss">.csv'</span>),[<span class="st">'Mean clutch size (eggs)'</span>,<span class="st">'Clutch conditional SD (eggs)'</span>][j],xlabel,[blue,orange][j])</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j,comp <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">'success'</span>,<span class="st">'phi'</span>]):</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span>pd.read_csv(F<span class="op">/</span><span class="ss">f'ZIyear_</span><span class="sc">{</span>kind<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>comp<span class="sc">}</span><span class="ss">.csv'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kind<span class="op">==</span><span class="st">'temperature'</span>:d.x<span class="op">+=</span><span class="fl">5.098595980711215</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>[<span class="st">'Expected egg-to-fledging success'</span>,<span class="st">'Component precision (phi)'</span>][j]</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kind<span class="op">==</span><span class="st">'date'</span>:</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> age,col <span class="kw">in</span> [(<span class="st">'YOUNG'</span>,blue),(<span class="st">'OLD'</span>,orange)]:curve(ax[<span class="dv">1</span>,j],d[d.age_class<span class="op">==</span>age],label,xlabel,col)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            ax[<span class="dv">1</span>,j].legend(ax[<span class="dv">1</span>,j].lines,[<span class="st">'Yearling'</span>,<span class="st">'Older'</span>],frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:curve(ax[<span class="dv">1</span>,j],d,label,xlabel,[blue,orange][j])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a,l <span class="kw">in</span> <span class="bu">zip</span>(ax.flat,<span class="st">'ABCD'</span>):a.set_title(l,loc<span class="op">=</span><span class="st">'left'</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    fig.savefig(P<span class="op">/</span>(name<span class="op">+</span><span class="st">'.pdf'</span>))<span class="op">;</span>fig.savefig(P<span class="op">/</span>(name<span class="op">+</span><span class="st">'.png'</span>),dpi<span class="op">=</span><span class="dv">150</span>)<span class="op">;</span>plt.close(fig)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>fig,ax<span class="op">=</span>plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>),layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a,d,label,l <span class="kw">in</span> <span class="bu">zip</span>(ax.flat,[pd.read_csv(C<span class="op">/</span><span class="st">'COM_age_mean.csv'</span>),pd.read_csv(C<span class="op">/</span><span class="st">'COM_age_sd.csv'</span>),pd.read_csv(F<span class="op">/</span><span class="st">'ZIyear_age_success.csv'</span>),pd.read_csv(F<span class="op">/</span><span class="st">'ZIyear_age_phi.csv'</span>)],[<span class="st">'Mean clutch size (eggs)'</span>,<span class="st">'Clutch conditional SD (eggs)'</span>,<span class="st">'Expected egg-to-fledging success'</span>,<span class="st">'Component precision (phi)'</span>],<span class="st">'ABCD'</span>):</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i,age <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">'YOUNG'</span>,<span class="st">'OLD'</span>]):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>d[d.age_class<span class="op">==</span>age].iloc[<span class="dv">0</span>]<span class="op">;</span>a.errorbar(i,z.estimate,yerr<span class="op">=</span>[[z.estimate<span class="op">-</span>z.CI_low],[z.CI_high<span class="op">-</span>z.estimate]],fmt<span class="op">=</span><span class="st">'o'</span>,color<span class="op">=</span>[blue,orange][i],capsize<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    a.<span class="bu">set</span>(xticks<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>],xticklabels<span class="op">=</span>[<span class="st">'Yearling'</span>,<span class="st">'Older'</span>],ylabel<span class="op">=</span>label,xlim<span class="op">=</span>(<span class="op">-</span><span class="fl">.6</span>,<span class="fl">1.6</span>))<span class="op">;</span>a.set_title(l,loc<span class="op">=</span><span class="st">'left'</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>fig.savefig(P<span class="op">/</span><span class="st">'Fig6_COM_M1_age.pdf'</span>)<span class="op">;</span>fig.savefig(P<span class="op">/</span><span class="st">'Fig6_COM_M1_age.png'</span>,dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Four primary ML COM-Poisson / M1 figures generated from archived prediction tables.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<details class="analysis-code" open="">
+<summary>
+Show command
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/plot_final_models.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<section id="temperature" class="level3">
+<h3 class="anchored" data-anchor-id="temperature">Temperature</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig3_COM_M1_temperature.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
+<figcaption>Saved temperature figure.</figcaption>
 </figure>
 </div>
-<p><a href="figures/Fig3_COM_M1_temperature.pdf">Download figure PDF</a></p>
+<p><a href="figures/Fig3_COM_M1_temperature.pdf">PDF</a></p>
 </section>
-<section id="relative-laying-date" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="relative-laying-date"><span class="header-section-number">3</span> Relative laying date</h2>
+<section id="relative-laying-date" class="level3">
+<h3 class="anchored" data-anchor-id="relative-laying-date">Relative laying date</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig5_COM_M1_date.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
+<figcaption>Saved relative laying-date figure.</figcaption>
 </figure>
 </div>
-<p><a href="figures/Fig5_COM_M1_date.pdf">Download figure PDF</a></p>
+<p><a href="figures/Fig5_COM_M1_date.pdf">PDF</a></p>
 </section>
-<section id="female-age-class" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="female-age-class"><span class="header-section-number">4</span> Female age class</h2>
+<section id="female-age" class="level3">
+<h3 class="anchored" data-anchor-id="female-age">Female age</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig6_COM_M1_age.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
+<figcaption>Saved age figure, separate from temporal trends.</figcaption>
 </figure>
 </div>
-<p><a href="figures/Fig6_COM_M1_age.pdf">Download figure PDF</a></p>
+<p><a href="figures/Fig6_COM_M1_age.pdf">PDF</a></p>
+</section>
+</section>
+<section id="spring-temperature-figure" class="level2">
+<h2 class="anchored" data-anchor-id="spring-temperature-figure">Spring-temperature figure</h2>
+<details class="analysis-code">
+<summary>
+Show retained R plotting block
+</summary>
+<p>This block uses <code>annual</code>, <code>plot_data</code> and <code>scale_data</code> produced by the <a href="./model_structure.html#spring-temperature-model">temperature-model code</a>. It draws the mean and residual-SD panels. The saved publication image also includes a within-window daily-SD panel; the code for assembling that extra panel is not retained here.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/25_environment_temperature_location_scale.R — plotting excerpt</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="R/25_environment_temperature_location_scale.R — plotting excerpt"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">&lt;-</span> <span class="st">"#0072B2"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(annual, <span class="fu">aes</span>(year, temp_mean)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(blue, <span class="fl">0.20</span>)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> estimate), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> blue, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"grey25"</span>, <span class="at">size =</span> <span class="fl">2.2</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">stroke =</span> <span class="fl">0.55</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1980</span>, <span class="dv">2025</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Mean spring temperature (°C)"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Thermal window: 26 March-7 May"</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"grey92"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.png"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.pdf"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> cairo_pdf)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>p_scale <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(scale_data, <span class="fu">aes</span>(year, sigma)) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high), <span class="at">fill =</span> orange <span class="ot">&lt;-</span> <span class="st">"#D55E00"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> orange, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Interannual residual SD (σ)"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> (p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="cn">NULL</span>)) <span class="sc">+</span> p_scale <span class="sc">+</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>, combined,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">8.4</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_scale.png"</span>, p_scale,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">6.4</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Fig2_temperature_location_scale_time.png" class="img-fluid figure-img"></p>
+<figcaption>Saved spring-temperature figure.</figcaption>
+</figure>
+</div>
+<p><a href="figures/Fig2_temperature_location_scale_time.pdf">PDF</a></p>
 
-
-<!-- -->
 
 </section>
 
@@ -393,57 +568,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -782,44 +906,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   <div class="nav-page nav-page-next">
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Figures and ML analysis code"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>All reproductive estimates use maximum likelihood. Temperature, laying-date and age figures retain the existing temperature-association models and their 4,000 clutch-size or 8,000 fledging-success joint coefficient draws. Year figures use separate models refitted without temperature in either location or scale, with 6,000 draws for each trait. Bands are pointwise 95% CIs and retain cross-component covariance. Year curves hold age and relative laying date fixed; all reference curves set random effects to zero and are not observed population trajectories.</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Temporal-model fitting</span><span class="co">](R/83_fit_temporal_without_temperature.R)</span> · <span class="co">[</span><span class="ot">Temporal export and checks</span><span class="co">](R/84_export_temporal_without_temperature.R)</span> · <span class="co">[</span><span class="ot">Temporal figure script</span><span class="co">](scripts/plot_temporal_models.py)</span> · <span class="co">[</span><span class="ot">Plotting script</span><span class="co">](scripts/plot_final_models.py)</span> · <span class="co">[</span><span class="ot">COM-Poisson numerical verification</span><span class="co">](R/75_verify_COM_Poisson.R)</span> · <span class="co">[</span><span class="ot">COM-Poisson prediction export</span><span class="co">](R/76_export_COM_predictions.R)</span> · <span class="co">[</span><span class="ot">Fledging ML fitting and comparison</span><span class="co">](R/81_fit_ZIyear_fledging.R)</span> · <span class="co">[</span><span class="ot">Fledging prediction export</span><span class="co">](R/82_export_ZIyear_primary.R)</span> · <span class="co">[</span><span class="ot">Environmental ML model</span><span class="co">](R/25_environment_temperature_location_scale.R)</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temporal trends without temperature</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <span class="co">[</span><span class="ot">Temporal trends</span><span class="co">](temporal_trends.qmd)</span> page.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="al">![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig4_COM_M1_time.pdf)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative laying date</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig5_COM_M1_date.pdf)</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Female age class</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig6_COM_M1_age.pdf)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

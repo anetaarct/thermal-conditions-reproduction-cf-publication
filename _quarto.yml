@@ -104,13 +104,13 @@ website:
         href: index.qmd
       - section: "Start here"
         contents:
-          - text: "Data loading & SMHI weather"
+          - text: "Data preparation"
             href: workflow.qmd
           - text: "Sliding-window approach"
             href: climate_window.qmd
       - section: "Analyses & results"
         contents:
-          - text: "Calendar-year trends"
+          - text: "Calendar-year analyses"
             href: temporal_trends.qmd
           - text: "Clutch size"
             href: clutch_size.qmd
@@ -122,7 +122,7 @@ website:
             href: data_preparation.qmd
           - text: "Model structure & diagnostics"
             href: model_structure.qmd
-          - text: "Figures & analysis code"
+          - text: "Figure code"
             href: figure_code.qmd
 
 format:
@@ -133,7 +133,7 @@ format:
     number-sections: true
     code-fold: true
     code-summary: "Show code"
-    code-tools: true
+    code-tools: false
     fig-responsive: true
 
 execute:

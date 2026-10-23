@@ -1,84 +1,129 @@
 ---
-title: "Fledging success"
+title: "Egg-to-fledging analysis"
+number-sections: false
 bibliography: references.bib
 execute:
   enabled: false
 ---
 
+## Data preparation
 
-The specifications, estimates and checks below describe the **unchanged temperature-association model**. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the [Temporal trends](temporal_trends.qmd) section.
+The original script loads the curated fledging dataset and an existing beta-binomial fit before adding year variation in the extra-zero component.
 
-# S1.7 Fledging success: final ML estimates and diagnostics
+<details class="analysis-code" open>
+<summary>Show R code</summary>
 
-# Primary structure and numerical verification.
+```r
+base <- readRDS("glmmTMB_comparison_20261016/M1_selected.rds")
+d <- readRDS("glmmTMB_comparison_20261016/analysis_data.rds")
+stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
+          isTRUE(base$sdr$pdHess))
+```
 
-The primary fledging model was fitted by maximum likelihood in glmmTMB 1.1.14 to the same 9,790 brood records. Mean and log-precision predictors, links and random effects were retained from the former ML fit; the only extension was an independent year random intercept in logit extra-zero probability. An initial unrestricted nlminb attempt failed with NA/NaN gradients and was excluded. A scaled, bounded L-BFGS-B fit yielded an interior solution (minimum relative distance to bounds 0.261). Independent unbounded BFGS refinement gave convergence code zero and a positive-definite Hessian; the two log likelihoods agreed within $10^{-7}$ and maximum absolute SE-scaled gradients were below $3.8\times10^{-4}$. Log likelihood was $-16632.0562$, with 15 parameters and AIC 33294.11, versus 33463.58 for the constant-extra-zero ML model (14 parameters). We report AIC rather than an ordinary chi-square likelihood-ratio p-value because the null random-effect variance lies on a boundary. This comparison concerns fitted marginal likelihood, not out-of-sample validation.
+</details>
 
-# Reference predictions.
+## Fit and verify the model
 
-Curves use ML point estimates and pointwise 95% CIs from 8,000 joint asymptotic coefficient draws, including covariance across location, precision and extra-zero coefficients. Every random effect is set to zero, including precision-year and extra-zero-year effects. We computed $\mu=\operatorname{logit}^{-1}(X\widehat\beta)$, $\phi=\exp(Z\widehat\gamma)$ and $\pi_0=\operatorname{logit}^{-1}(\widehat\alpha_0)$ explicitly, and verified them against native predictions with grouping variables set to missing. In glmmTMB 1.1.14, `re.form=NA` alone did not remove precision-year and extra-zero-year contributions for an existing year. Explicit fixed designs prevent these contributions entering reference curves. Curves are conditional reference predictions, not averages over the distribution of years or individual-brood prediction intervals.
+Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
 
-  Component          Predictor           Estimate       SE      2.5%     97.5%
-  ------------------ ----------------- ---------- -------- --------- ---------
-  Location           Intercept             1.0829   0.0665    0.9525    1.2132
-  Location           Relative date        -0.0751   0.0046   -0.0841   -0.0662
-  Location           Older--yearling       0.0074   0.0448   -0.0804    0.0953
-  Location           Temperature          -0.1910   0.0597   -0.3080   -0.0739
-  Location           Year                 -0.0086   0.0057   -0.0198    0.0026
-  Logit extra-zero   Intercept            -1.5524   0.0931   -1.7348   -1.3700
-  Log precision      Intercept             1.1555   0.0905    0.9781    1.3328
-  Log precision      Relative date        -0.0702   0.0069   -0.0838   -0.0566
-  Log precision      Older--yearling       0.0239   0.0844   -0.1415    0.1894
-  Log precision      Temperature           0.0776   0.0643   -0.0484    0.2037
-  Log precision      Year                 -0.0107   0.0063   -0.0231    0.0017
+<details class="analysis-code">
+<summary>Show original code: 81_fit_ZIyear_fledging.R</summary>
 
-  : Primary year-zero ML fledging fixed effects. Estimates and Wald 95% CIs use logit links for location and extra-zero probability and a log link for precision.
+{{< include _includes/81_fit_ZIyear_fledging.qmd >}}
 
-# Random effects and extra-zero probability.
+</details>
 
-Primary location SDs were 0.3003 for females (approximate 95% CI 0.2119--0.4254) and 0.3096 for years (0.2395--0.4003). Year SD was 0.2490 in log precision (0.1611--0.3849) and 0.5261 in logit extra-zero probability (0.4025--0.6876). Intervals were obtained on the log-SD scale and back-transformed. At zero extra-zero-year effect, $\pi_0=0.1747$ (95% CI 0.1500--0.2026); this is neither mean annual extra-zero probability nor total failure probability.
+| model | n | logLik | AIC | convergence | pdHess | scaled_gradient |
+| --- | --- | --- | --- | --- | --- | --- |
+| ZI_year_primary_ML | 9790 | -16632 | 33294 | 0 | TRUE | 0.00036322 |
 
-# Primary simulation checks and limitations.
+[Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)
+## Export predictions from the saved fit
 
-We generated 1,000 conditional plug-in datasets at estimated parameters and fitted group modes and 1,000 new-group plug-in datasets with newly drawn random effects, using the original covariates and clutch-size denominators. Matched comparisons used seed 20261020 for both ML structures. Overall observed mean success (0.5861), zero fraction (0.2365) and complete-success fraction (0.2886) lay within the primary conditional simulation intervals. Conditional variance was slightly underestimated: observed 0.15455 versus simulation mean 0.15191 and 95% interval 0.14962--0.15430. All four overall statistics were covered by new-group plug-in intervals. These intervals omit parameter-estimation uncertainty; a refit-based bootstrap was not performed. Coverage at a single 95% threshold is descriptive and subject to Monte Carlo variation.
+<details class="analysis-code">
+<summary>Show original code: 82_export_ZIyear_primary.R</summary>
 
-  Statistic                   Observed              Fitted groups                 New groups
-  ------------------------- ---------- -------------------------- --------------------------
-  Mean success                  0.5861   0.5809 \[0.5738,0.5887\]   0.5864 \[0.5583,0.6151\]
-  Zero fraction                 0.2365   0.2318 \[0.2234,0.2400\]   0.2212 \[0.1933,0.2500\]
-  Complete success              0.2886   0.2859 \[0.2771,0.2945\]   0.2879 \[0.2581,0.3177\]
-  Variance of proportions       0.1546   0.1519 \[0.1496,0.1543\]   0.1491 \[0.1410,0.1566\]
+{{< include _includes/82_export_ZIyear_primary.qmd >}}
 
-  : Primary year-zero ML plug-in checks. Simulation means \[95% intervals\] omit parameter-estimation uncertainty. Fitted-group checks condition on fitted random effects; new-group checks draw new effects.
+</details>
 
-Conditional annual zero frequencies lay within simulation intervals in all 39 seasons, versus 16/39 seasons outside for the former constant-extra-zero ML fit in this matched rerun. For new-group simulations the corresponding counts outside were 3/39 and 13/39. Conditional annual means and variances were all covered, but complete-success frequency was outside in 1/39 years. Group discrepancies remained: conditional zero frequencies were outside in 1/2 age classes and 4/5 laying-date groups; means were outside in 1/2 age classes and 4/5 date groups, and variances in 1/2 age classes and 3/5 date groups. These are correlated descriptive checks, not independent adjusted tests. Calibration using fitted year effects is in-sample and cannot establish performance for unseen seasons. The extra-zero-year effect is statistical heterogeneity, not identification of a biological mechanism of complete failure.
+<details class="analysis-code">
+<summary>Show R code</summary>
 
-## Final ML downloads
+```r
+fixed <- read.csv("tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv")
+pred <- read.csv("tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv")
+fixed
+head(pred)
+```
 
-[Fixed effects](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv) · [Random-effect SDs and CIs](tables/primary_ZIyear_ML_20261021/ZIyear_random_SD_intervals.csv) · [Numerical diagnostics](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv) · [ML structure comparison](tables/primary_ZIyear_ML_20261021/model_comparison.csv) · [Simulation checks](tables/primary_ZIyear_ML_20261021/simulation_checks.csv)
+</details>
 
-## Temperature
+<details class="analysis-code">
+<summary>Show saved output: ZIyear_fixed.csv</summary>
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.0829 | 0.066497 | 0.95253 | 1.2132 |
+| cond | rel_LD | -0.07511 | 0.0045682 | -0.084063 | -0.066157 |
+| cond | age_classOLD | 0.0074456 | 0.044841 | -0.080441 | 0.095332 |
+| cond | temp_mean_c | -0.19096 | 0.059702 | -0.30797 | -0.073942 |
+| cond | year_c | -0.0086032 | 0.0057265 | -0.019827 | 0.0026205 |
+| zi | (Intercept) | -1.5524 | 0.093054 | -1.7348 | -1.37 |
+| disp | (Intercept) | 1.1555 | 0.09047 | 0.97815 | 1.3328 |
+| disp | rel_LD | -0.070223 | 0.0069397 | -0.083825 | -0.056621 |
+| disp | age_classOLD | 0.023935 | 0.084412 | -0.14151 | 0.18938 |
+| disp | temp_mean_c | 0.077644 | 0.064312 | -0.048404 | 0.20369 |
+| disp | year_c | -0.010688 | 0.0063211 | -0.023077 | 0.0017014 |
 
-[Download figure PDF](figures/Fig3_COM_M1_temperature.pdf)
+[Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv)
 
-## Temporal trends without temperature
 
-The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the [Temporal trends](temporal_trends.qmd) page.
+</details>
 
-![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+| x | age_class | estimate | CI_low | CI_high |
+| --- | --- | --- | --- | --- |
+| -1.5707 | YOUNG | 0.65974 | 0.62186 | 0.69427 |
+| -1.5425 | YOUNG | 0.65903 | 0.6216 | 0.69334 |
+| -1.5143 | YOUNG | 0.65831 | 0.62102 | 0.69256 |
+| -1.4861 | YOUNG | 0.6576 | 0.62057 | 0.69163 |
+| -1.4579 | YOUNG | 0.65688 | 0.62002 | 0.69066 |
 
-[Download figure PDF](figures/Fig4_COM_M1_time.pdf)
+[Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)
+<details class="analysis-code">
+<summary>Show saved output: simulation_checks.csv</summary>
 
-## Relative laying date
+| model | target | group | level | n | statistic | observed | predicted | lower | upper |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Current_ML | conditional_plugin | overall | all | 9790 | mean_fraction | 0.58607 | 0.57868 | 0.57137 | 0.58614 |
+| Current_ML | conditional_plugin | overall | all | 9790 | zero_fraction | 0.23647 | 0.22524 | 0.21726 | 0.23371 |
+| Current_ML | conditional_plugin | overall | all | 9790 | complete_success | 0.28856 | 0.28622 | 0.27793 | 0.29479 |
+| Current_ML | conditional_plugin | overall | all | 9790 | variance_fraction | 0.15455 | 0.15133 | 0.14907 | 0.1537 |
+| Current_ML | new_groups_plugin | overall | all | 9790 | mean_fraction | 0.58607 | 0.58465 | 0.55988 | 0.60644 |
+| Current_ML | new_groups_plugin | overall | all | 9790 | zero_fraction | 0.23647 | 0.21568 | 0.20245 | 0.22994 |
+| Current_ML | new_groups_plugin | overall | all | 9790 | complete_success | 0.28856 | 0.29049 | 0.25381 | 0.32249 |
+| Current_ML | new_groups_plugin | overall | all | 9790 | variance_fraction | 0.15455 | 0.14873 | 0.14324 | 0.15387 |
+| ZI_year | conditional_plugin | overall | all | 9790 | mean_fraction | 0.58607 | 0.58094 | 0.57376 | 0.58866 |
+| ZI_year | conditional_plugin | overall | all | 9790 | zero_fraction | 0.23647 | 0.23176 | 0.22339 | 0.24004 |
+| ZI_year | conditional_plugin | overall | all | 9790 | complete_success | 0.28856 | 0.28586 | 0.27712 | 0.29449 |
+| ZI_year | conditional_plugin | overall | all | 9790 | variance_fraction | 0.15455 | 0.15191 | 0.14962 | 0.1543 |
+| ZI_year | new_groups_plugin | overall | all | 9790 | mean_fraction | 0.58607 | 0.58639 | 0.55829 | 0.61511 |
+| ZI_year | new_groups_plugin | overall | all | 9790 | zero_fraction | 0.23647 | 0.2212 | 0.19325 | 0.24997 |
+| ZI_year | new_groups_plugin | overall | all | 9790 | complete_success | 0.28856 | 0.28786 | 0.25811 | 0.31768 |
+| ZI_year | new_groups_plugin | overall | all | 9790 | variance_fraction | 0.15455 | 0.14907 | 0.14096 | 0.15661 |
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)
+[Download complete CSV](tables/primary_ZIyear_ML_20261021/simulation_checks.csv)
 
-[Download figure PDF](figures/Fig5_COM_M1_date.pdf)
+</details>
 
-## Female age class
+## Figure
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)
+![Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 
-[Download figure PDF](figures/Fig6_COM_M1_age.pdf)
+[PDF](figures/Fig3_COM_M1_temperature.pdf) · [Figure code — final chapter](figure_code.qmd#temperature-date-and-age)
+
+## Main conclusions
+
+- Warmer springs: lower success; temperature association with precision uncertain.
+- Later laying: lower success and lower precision. Age differences remained uncertain.
+- Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Temporal trends without temperature – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Calendar-year analyses – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./temporal_trends.html">Calendar-year trends</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./temporal_trends.html">Calendar-year analyses</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+ <span class="menu-text">Data preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Calendar-year trends</span></a>
+ <span class="menu-text">Calendar-year analyses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figures &amp; analysis code</span></a>
+ <span class="menu-text">Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -246,23 +246,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#two-different-questions" id="toc-two-different-questions" class="nav-link active" data-scroll-target="#two-different-questions"><span class="header-section-number">1</span> Two different questions</a></li>
-  <li><a href="#temporal-results" id="toc-temporal-results" class="nav-link" data-scroll-target="#temporal-results"><span class="header-section-number">2</span> Temporal results</a></li>
-  <li><a href="#models-and-uncertainty" id="toc-models-and-uncertainty" class="nav-link" data-scroll-target="#models-and-uncertainty"><span class="header-section-number">3</span> Models and uncertainty</a></li>
-  <li><a href="#model-checks-and-limitations" id="toc-model-checks-and-limitations" class="nav-link" data-scroll-target="#model-checks-and-limitations"><span class="header-section-number">4</span> Model checks and limitations</a></li>
-  <li><a href="#full-numerical-results" id="toc-full-numerical-results" class="nav-link" data-scroll-target="#full-numerical-results"><span class="header-section-number">5</span> Full numerical results</a>
-  <ul class="collapse">
-  <li><a href="#overall-conditional-simulation-checks" id="toc-overall-conditional-simulation-checks" class="nav-link" data-scroll-target="#overall-conditional-simulation-checks"><span class="header-section-number">5.1</span> Overall conditional simulation checks</a></li>
-  </ul></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
+  <li><a href="#fit-models" id="toc-fit-models" class="nav-link" data-scroll-target="#fit-models">Fit models</a></li>
+  <li><a href="#read-the-saved-output" id="toc-read-the-saved-output" class="nav-link" data-scroll-target="#read-the-saved-output">Read the saved output</a></li>
+  <li><a href="#export-predictions-and-check-the-fits" id="toc-export-predictions-and-check-the-fits" class="nav-link" data-scroll-target="#export-predictions-and-check-the-fits">Export predictions and check the fits</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
+  <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./temporal_trends.html">Calendar-year trends</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./temporal_trends.html">Calendar-year analyses</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Temporal trends without temperature</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Calendar-year analyses</h1>
 </div>
 
 
@@ -279,67 +277,206 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="two-different-questions" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="two-different-questions"><span class="header-section-number">1</span> Two different questions</h2>
-<p><strong>Temporal change:</strong> how did mean reproductive performance and reproductive consistency change over calendar time? These models were refitted without temperature in both location and scale. Age class, relative laying date, the original response distributions and all random-effect structures were retained.</p>
-<p><strong>Temperature associations:</strong> how were the reproductive traits associated with spring temperature? These use the unchanged models containing temperature and calendar year together. Their temperature-adjusted year coefficients are disclosed on the model pages but are not used as the reported temporal trends. The temperature, laying-date and age results and their figures remain unchanged.</p>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
+<p>Load the same trait-specific records and selected fits used for the temperature models.</p>
+<details class="analysis-code" open="">
+<summary>
+Show data-loading excerpt from script 83
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmmTMB)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clutch =</span> <span class="st">"glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fledging =</span> <span class="st">"zi_year_sensitivity_20261020/zi_year_selected.rds"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (trait <span class="cf">in</span> <span class="fu">names</span>(paths)) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  old <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(paths[trait])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="cf">if</span> (trait <span class="sc">==</span> <span class="st">"clutch"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"glmmTMB_comparison_20261016/clutch_counts/data.rds"</span> <span class="cf">else</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"glmmTMB_comparison_20261016/analysis_data.rds"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">nobs</span>(old) <span class="sc">==</span> <span class="fu">nrow</span>(d))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </section>
-<section id="temporal-results" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="temporal-results"><span class="header-section-number">2</span> Temporal results</h2>
-<p>At yearling age, relative laying date zero and all random effects zero:</p>
+<section id="fit-models" class="level2">
+<h2 class="anchored" data-anchor-id="fit-models">Fit models</h2>
+<p>Calendar year, laying date and age enter both components; temperature is omitted. The original script also checks optimiser agreement and saves the selected <code>.rds</code> fits.</p>
+<details class="analysis-code">
+<summary>
+Show original code: 83_fit_temporal_without_temperature.R
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/83_fit_temporal_without_temperature.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="R/83_fit_temporal_without_temperature.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="fu">path.expand</span>(<span class="st">'~/R/cf_model_comparison_20261013_R46'</span>),<span class="fu">path.expand</span>(<span class="st">'~/R/x86_64-pc-linux-gnu-library/4.5'</span>),<span class="fu">.libPaths</span>()))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">OMP_NUM_THREADS=</span><span class="dv">1</span>,<span class="at">OPENBLAS_NUM_THREADS=</span><span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({<span class="fu">library</span>(glmmTMB);<span class="fu">library</span>(MASS)})</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'/home/arct/CF_model_comparison_20261013'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="st">'year_without_temperature_20261022'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(out,<span class="at">showWarnings=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>put <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n) <span class="fu">write.csv</span>(x,<span class="fu">file.path</span>(out,n),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>msg <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {<span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()),...,<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>()}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">clutch=</span><span class="st">'glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds'</span>,<span class="at">fledging=</span><span class="st">'zi_year_sensitivity_20261020/zi_year_selected.rds'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>hashes <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">md5sum</span>(paths)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>diagrow <span class="ot">&lt;-</span> <span class="cf">function</span>(m,trait,label,<span class="at">reference=</span><span class="cn">NULL</span>) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a> V<span class="ot">&lt;-</span><span class="cf">if</span>(<span class="fu">is.null</span>(m<span class="sc">$</span>sdr))reference<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed <span class="cf">else</span> m<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a> gr<span class="ot">&lt;-</span><span class="cf">if</span>(<span class="fu">is.null</span>(m<span class="sc">$</span>sdr))m<span class="sc">$</span>obj<span class="sc">$</span><span class="fu">gr</span>(m<span class="sc">$</span>fit<span class="sc">$</span>par) <span class="cf">else</span> m<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">model=</span>label,<span class="at">n=</span><span class="fu">nobs</span>(m),<span class="at">df=</span><span class="fu">attr</span>(<span class="fu">logLik</span>(m),<span class="st">'df'</span>),<span class="at">logLik=</span><span class="fu">as.numeric</span>(<span class="fu">logLik</span>(m)),<span class="at">AIC=</span><span class="fu">AIC</span>(m),<span class="at">convergence=</span>m<span class="sc">$</span>fit<span class="sc">$</span>convergence,<span class="at">pdHess=</span><span class="cf">if</span>(<span class="fu">is.null</span>(m<span class="sc">$</span>sdr))<span class="cn">NA</span> <span class="cf">else</span> m<span class="sc">$</span>sdr<span class="sc">$</span>pdHess,<span class="at">scaled_gradient=</span><span class="fu">max</span>(<span class="fu">abs</span>(gr<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(V)))))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>good <span class="ot">&lt;-</span> <span class="cf">function</span>(m) m<span class="sc">$</span>fit<span class="sc">$</span>convergence<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;&amp;</span> <span class="fu">isTRUE</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>pdHess) <span class="sc">&amp;&amp;</span> <span class="fu">is.finite</span>(<span class="fu">as.numeric</span>(<span class="fu">logLik</span>(m))) <span class="sc">&amp;&amp;</span> <span class="fu">max</span>(<span class="fu">abs</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed))))<span class="sc">&lt;</span>.<span class="dv">005</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>whitened <span class="ot">&lt;-</span> <span class="cf">function</span>(par,fn,gr,<span class="at">control=</span><span class="fu">list</span>(),...) {</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">msg</span>(<span class="st">'Computing optimizer Hessian preconditioner'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a> H<span class="ot">&lt;-</span><span class="fu">optimHess</span>(par,fn,gr);ee<span class="ot">&lt;-</span><span class="fu">eigen</span>((H<span class="sc">+</span><span class="fu">t</span>(H))<span class="sc">/</span><span class="dv">2</span>,<span class="at">symmetric=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a> S<span class="ot">&lt;-</span>ee<span class="sc">$</span>vectors<span class="sc">%*%</span><span class="fu">diag</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">pmax</span>(ee<span class="sc">$</span>values,<span class="fu">max</span>(ee<span class="sc">$</span>values)<span class="sc">*</span><span class="fl">1e-9</span>)));initial<span class="ot">&lt;-</span>par</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a> ff<span class="ot">&lt;-</span><span class="cf">function</span>(q)<span class="fu">fn</span>(<span class="fu">drop</span>(initial<span class="sc">+</span>S<span class="sc">%*%</span>q));gg<span class="ot">&lt;-</span><span class="cf">function</span>(q)<span class="fu">drop</span>(<span class="fu">crossprod</span>(S,<span class="fu">gr</span>(<span class="fu">drop</span>(initial<span class="sc">+</span>S<span class="sc">%*%</span>q))))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a> z<span class="ot">&lt;-</span><span class="fu">optim</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(par)),ff,gg,<span class="at">method=</span><span class="st">'BFGS'</span>,<span class="at">control=</span><span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">1000</span>,<span class="at">reltol=</span><span class="fl">1e-12</span>,<span class="at">trace=</span><span class="dv">1</span>,<span class="at">REPORT=</span><span class="dv">5</span>))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a> <span class="fu">list</span>(<span class="at">par=</span><span class="fu">drop</span>(initial<span class="sc">+</span>S<span class="sc">%*%</span>z<span class="sc">$</span>par),<span class="at">objective=</span>z<span class="sc">$</span>value,<span class="at">convergence=</span>z<span class="sc">$</span>convergence,<span class="at">message=</span>z<span class="sc">$</span>message)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>all_diag <span class="ot">&lt;-</span> <span class="fu">list</span>();all_fixed <span class="ot">&lt;-</span> <span class="fu">list</span>();all_trend <span class="ot">&lt;-</span> <span class="fu">list</span>();all_annual <span class="ot">&lt;-</span> <span class="fu">list</span>();all_curves <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(trait <span class="cf">in</span> <span class="fu">names</span>(paths)) {</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a> <span class="fu">msg</span>(<span class="st">'START'</span>,trait)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a> old <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(paths[trait])</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) <span class="st">'glmmTMB_comparison_20261016/clutch_counts/data.rds'</span> <span class="cf">else</span> <span class="st">'glmmTMB_comparison_20261016/analysis_data.rds'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> <span class="fu">stopifnot</span>(<span class="fu">nobs</span>(old)<span class="sc">==</span><span class="fu">nrow</span>(d))</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a> cf <span class="ot">&lt;-</span> <span class="fu">fixef</span>(old);pl <span class="ot">&lt;-</span> old<span class="sc">$</span>obj<span class="sc">$</span>env<span class="sc">$</span><span class="fu">parList</span>(<span class="at">par=</span>old<span class="sc">$</span>fit<span class="sc">$</span>parfull)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a> st <span class="ot">&lt;-</span> pl[<span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">'beta'</span>,<span class="st">'betadisp'</span>,<span class="st">'betazi'</span>,<span class="st">'theta'</span>,<span class="st">'thetadisp'</span>,<span class="st">'thetazi'</span>,<span class="st">'b'</span>,<span class="st">'bdisp'</span>,<span class="st">'bzi'</span>),<span class="fu">names</span>(pl))]</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a> st <span class="ot">&lt;-</span> st[<span class="fu">vapply</span>(st,length,<span class="fu">integer</span>(<span class="dv">1</span>))<span class="sc">&gt;</span><span class="dv">0</span>]</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a> st<span class="sc">$</span>beta <span class="ot">&lt;-</span> <span class="fu">unname</span>(cf<span class="sc">$</span>cond[<span class="fu">names</span>(cf<span class="sc">$</span>cond)<span class="sc">!=</span><span class="st">'temp_mean_c'</span>])</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a> st<span class="sc">$</span>betadisp <span class="ot">&lt;-</span> <span class="fu">unname</span>(cf<span class="sc">$</span>disp[<span class="fu">names</span>(cf<span class="sc">$</span>disp)<span class="sc">!=</span><span class="st">'temp_mean_c'</span>])</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a> form <span class="ot">&lt;-</span> <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) clutch<span class="sc">~</span>rel_LD<span class="sc">+</span>year_c<span class="sc">+</span>age_class<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>female_id)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f) <span class="cf">else</span> <span class="fu">cbind</span>(fledged,clutch<span class="sc">-</span>fledged)<span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>year_c<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>female_id)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a> disp <span class="ot">&lt;-</span> <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) <span class="sc">~</span>rel_LD<span class="sc">+</span>year_c<span class="sc">+</span>age_class <span class="cf">else</span> <span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>year_c<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  lo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">1.6</span>,<span class="sc">-</span>.<span class="dv">03</span>,<span class="sc">-</span>.<span class="dv">008</span>,<span class="sc">-</span>.<span class="dv">15</span>,<span class="sc">-</span><span class="dv">5</span>,<span class="fu">rep</span>(<span class="sc">-</span>.<span class="dv">5</span>,<span class="dv">3</span>),<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">2</span>));hi<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">2</span>,.<span class="dv">01</span>,.<span class="dv">008</span>,.<span class="dv">15</span>,<span class="dv">0</span>,<span class="fu">rep</span>(.<span class="dv">5</span>,<span class="dv">3</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">2</span>));ps<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,.<span class="dv">01</span>,.<span class="dv">005</span>,.<span class="dv">1</span>,<span class="dv">1</span>,.<span class="dv">01</span>,.<span class="dv">005</span>,.<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a> } <span class="cf">else</span> {</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  lo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">9</span>),<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">9</span>,<span class="dv">4</span>));hi<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">10</span>,<span class="dv">9</span>),<span class="fu">rep</span>(<span class="fu">log</span>(<span class="dv">10</span>),<span class="dv">4</span>));ps<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">30</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">100</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">30</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">100</span>,<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a> ctl <span class="ot">&lt;-</span> <span class="fu">glmmTMBControl</span>(<span class="at">optimizer=</span>optim,<span class="at">optArgs=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'L-BFGS-B'</span>,<span class="at">lower=</span>lo,<span class="at">upper=</span>hi),<span class="at">optCtrl=</span><span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">10000</span>,<span class="at">factr=</span><span class="fl">1e4</span>,<span class="at">pgtol=</span><span class="fl">1e-7</span>,<span class="at">parscale=</span>ps),<span class="at">parallel=</span><span class="dv">1</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a> ctl<span class="ot">&lt;-</span><span class="fu">glmmTMBControl</span>(<span class="at">optimizer=</span>whitened,<span class="at">parallel=</span><span class="dv">1</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a> file_a<span class="ot">&lt;-</span><span class="fu">file.path</span>(out,<span class="fu">paste0</span>(trait,<span class="st">'_LBFGS.rds'</span>))</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(<span class="fu">file.exists</span>(file_a)) a<span class="ot">&lt;-</span><span class="fu">readRDS</span>(file_a) <span class="cf">else</span> {a<span class="ot">&lt;-</span><span class="fu">update</span>(old,<span class="at">formula=</span>form,<span class="at">dispformula=</span>disp,<span class="at">data=</span>d,<span class="at">start=</span>st,<span class="at">control=</span>ctl);<span class="fu">saveRDS</span>(a,file_a)}</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(<span class="fu">diagrow</span>(a,trait,<span class="st">'without_temperature_LBFGS'</span>));<span class="fu">msg</span>(<span class="st">'Bound distance'</span>,<span class="fu">min</span>(<span class="fu">pmin</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par<span class="sc">-</span>lo,hi<span class="sc">-</span>a<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">/</span>(hi<span class="sc">-</span>lo)))</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a> pl2<span class="ot">&lt;-</span>a<span class="sc">$</span>obj<span class="sc">$</span>env<span class="sc">$</span><span class="fu">parList</span>(<span class="at">par=</span>a<span class="sc">$</span>fit<span class="sc">$</span>parfull)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a> st2<span class="ot">&lt;-</span>pl2[<span class="fu">intersect</span>(<span class="fu">c</span>(<span class="st">'beta'</span>,<span class="st">'betadisp'</span>,<span class="st">'betazi'</span>,<span class="st">'theta'</span>,<span class="st">'thetadisp'</span>,<span class="st">'thetazi'</span>,<span class="st">'b'</span>,<span class="st">'bdisp'</span>,<span class="st">'bzi'</span>),<span class="fu">names</span>(pl2))];st2<span class="ot">&lt;-</span>st2[<span class="fu">vapply</span>(st2,length,<span class="fu">integer</span>(<span class="dv">1</span>))<span class="sc">&gt;</span><span class="dv">0</span>]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a> file_b<span class="ot">&lt;-</span><span class="fu">file.path</span>(out,<span class="fu">paste0</span>(trait,<span class="st">'_BFGS.rds'</span>))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a> <span class="fu">msg</span>(<span class="st">'Independent optimizer check'</span>,trait)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(<span class="fu">file.exists</span>(file_b)) b<span class="ot">&lt;-</span><span class="fu">readRDS</span>(file_b) <span class="cf">else</span> {b<span class="ot">&lt;-</span><span class="fu">update</span>(a,<span class="at">data=</span>d,<span class="at">start=</span>st2,<span class="at">se=</span><span class="cn">FALSE</span>,<span class="at">control=</span><span class="fu">glmmTMBControl</span>(<span class="at">optimizer=</span>optim,<span class="at">optArgs=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'BFGS'</span>),<span class="at">optCtrl=</span><span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">10000</span>,<span class="at">reltol=</span><span class="fl">1e-12</span>),<span class="at">parallel=</span><span class="dv">1</span>));<span class="fu">saveRDS</span>(b,file_b)}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a> dg<span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">diagrow</span>(old,trait,<span class="st">'with_temperature'</span>),<span class="fu">diagrow</span>(a,trait,<span class="st">'without_temperature_LBFGS'</span>),<span class="fu">diagrow</span>(b,trait,<span class="st">'without_temperature_BFGS'</span>,<span class="at">reference=</span>a))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(dg,<span class="at">digits=</span><span class="dv">10</span>);<span class="fu">put</span>(dg,<span class="fu">paste0</span>(trait,<span class="st">'_diagnostics.csv'</span>));all_diag[[trait]]<span class="ot">&lt;-</span>dg</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a> <span class="fu">stopifnot</span>(<span class="fu">good</span>(a),b<span class="sc">$</span>fit<span class="sc">$</span>convergence<span class="sc">==</span><span class="dv">0</span>,dg<span class="sc">$</span>scaled_gradient[<span class="dv">3</span>]<span class="sc">&lt;</span>.<span class="dv">005</span>,<span class="fu">abs</span>(<span class="fu">as.numeric</span>(<span class="fu">logLik</span>(a)<span class="sc">-</span><span class="fu">logLik</span>(b)))<span class="sc">&lt;</span>.<span class="dv">01</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a> new<span class="ot">&lt;-</span>a</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a> <span class="fu">stopifnot</span>(<span class="fu">identical</span>(<span class="fu">model.response</span>(<span class="fu">model.frame</span>(old)),<span class="fu">model.response</span>(<span class="fu">model.frame</span>(new))))</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a> <span class="fu">saveRDS</span>(new,<span class="fu">file.path</span>(out,<span class="fu">paste0</span>(trait,<span class="st">'_selected.rds'</span>)))</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(label <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'with_temperature'</span>,<span class="st">'without_temperature'</span>)) {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  m<span class="ot">&lt;-</span><span class="cf">if</span>(label<span class="sc">==</span><span class="st">'with_temperature'</span>) old <span class="cf">else</span> new</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">capture.output</span>(<span class="fu">summary</span>(m),glmmTMB<span class="sc">::</span><span class="fu">diagnose</span>(m),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="fu">paste0</span>(trait,<span class="st">'_'</span>,label,<span class="st">'_summary.txt'</span>)))</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  co<span class="ot">&lt;-</span><span class="fu">summary</span>(m)<span class="sc">$</span>coefficients</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  all_fixed[[<span class="fu">paste</span>(trait,label)]]<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(co),<span class="cf">function</span>(cmp){v<span class="ot">&lt;-</span>co[[cmp]];<span class="cf">if</span>(<span class="sc">!</span><span class="fu">length</span>(v))<span class="fu">return</span>(<span class="cn">NULL</span>);<span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">model=</span>label,<span class="at">component=</span>cmp,<span class="at">term=</span><span class="fu">rownames</span>(v),<span class="at">estimate=</span>v[,<span class="dv">1</span>],<span class="at">SE=</span>v[,<span class="dv">2</span>],<span class="at">lower=</span>v[,<span class="dv">1</span>]<span class="sc">-</span><span class="fl">1.96</span><span class="sc">*</span>v[,<span class="dv">2</span>],<span class="at">upper=</span>v[,<span class="dv">1</span>]<span class="sc">+</span><span class="fl">1.96</span><span class="sc">*</span>v[,<span class="dv">2</span>])}))</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  cf<span class="ot">&lt;-</span><span class="fu">fixef</span>(m);nc<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>cond);nd<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>disp);nz<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>zi)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  bn<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">names</span>(cf<span class="sc">$</span>cond),<span class="fu">paste0</span>(<span class="st">'disp~'</span>,<span class="fu">names</span>(cf<span class="sc">$</span>disp)),<span class="cf">if</span>(nz)<span class="fu">paste0</span>(<span class="st">'zi~'</span>,<span class="fu">names</span>(cf<span class="sc">$</span>zi)))</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  V<span class="ot">&lt;-</span><span class="fu">vcov</span>(m,<span class="at">full=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># glmmTMB full covariance uses component-prefixed names.</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">all</span>(bn <span class="sc">%in%</span> <span class="fu">colnames</span>(V))) <span class="fu">stop</span>(<span class="fu">paste</span>(<span class="st">'Unexpected covariance names:'</span>,<span class="fu">paste</span>(<span class="fu">colnames</span>(V),<span class="at">collapse=</span><span class="st">','</span>)))</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  V<span class="ot">&lt;-</span>V[bn,bn,drop<span class="ot">=</span><span class="cn">FALSE</span>];beta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">unname</span>(cf<span class="sc">$</span>cond),<span class="fu">unname</span>(cf<span class="sc">$</span>disp),<span class="fu">unname</span>(cf<span class="sc">$</span>zi));<span class="fu">set.seed</span>(<span class="dv">20261022</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  draws<span class="ot">&lt;-</span>MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="dv">6000</span>,beta,V)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  yrs<span class="ot">&lt;-</span><span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">as.integer</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>year_f))));offset<span class="ot">&lt;-</span><span class="fu">median</span>(<span class="fu">as.integer</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>year_f))<span class="sc">-</span>d<span class="sc">$</span>year_c)</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  grid<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">year=</span>yrs,<span class="at">year_c=</span>yrs<span class="sc">-</span>offset)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  X<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="fu">nrow</span>(grid),nc,<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">names</span>(cf<span class="sc">$</span>cond)));X[,<span class="st">'(Intercept)'</span>]<span class="ot">&lt;-</span><span class="dv">1</span>;X[,<span class="st">'year_c'</span>]<span class="ot">&lt;-</span>grid<span class="sc">$</span>year_c</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  Z<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="fu">nrow</span>(grid),nd,<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">names</span>(cf<span class="sc">$</span>disp)));Z[,<span class="st">'(Intercept)'</span>]<span class="ot">&lt;-</span><span class="dv">1</span>;Z[,<span class="st">'year_c'</span>]<span class="ot">&lt;-</span>grid<span class="sc">$</span>year_c</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  mu<span class="ot">&lt;-</span><span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) <span class="fu">exp</span>(<span class="fu">drop</span>(X<span class="sc">%*%</span>cf<span class="sc">$</span>cond)) <span class="cf">else</span> <span class="fu">plogis</span>(<span class="fu">drop</span>(X<span class="sc">%*%</span>cf<span class="sc">$</span>cond))</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  mud<span class="ot">&lt;-</span><span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) <span class="fu">exp</span>(X<span class="sc">%*%</span><span class="fu">t</span>(draws[,<span class="fu">seq_len</span>(nc),<span class="at">drop=</span><span class="cn">FALSE</span>])) <span class="cf">else</span> <span class="fu">plogis</span>(X<span class="sc">%*%</span><span class="fu">t</span>(draws[,<span class="fu">seq_len</span>(nc),<span class="at">drop=</span><span class="cn">FALSE</span>]))</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  phi<span class="ot">&lt;-</span><span class="fu">exp</span>(<span class="fu">drop</span>(Z<span class="sc">%*%</span>cf<span class="sc">$</span>disp));phid<span class="ot">&lt;-</span><span class="fu">exp</span>(Z<span class="sc">%*%</span><span class="fu">t</span>(draws[,nc<span class="sc">+</span><span class="fu">seq_len</span>(nd),<span class="at">drop=</span><span class="cn">FALSE</span>]))</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'fledging'</span>) {mu<span class="ot">&lt;-</span>mu<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(cf<span class="sc">$</span>zi[<span class="dv">1</span>]));mud<span class="ot">&lt;-</span><span class="fu">sweep</span>(mud,<span class="dv">2</span>,<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(draws[,nc<span class="sc">+</span>nd<span class="sc">+</span><span class="dv">1</span>]),<span class="st">'*'</span>)}</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  loq<span class="ot">&lt;-</span><span class="cf">function</span>(x)<span class="fu">apply</span>(x,<span class="dv">1</span>,quantile,.<span class="dv">025</span>);hiq<span class="ot">&lt;-</span><span class="cf">function</span>(x)<span class="fu">apply</span>(x,<span class="dv">1</span>,quantile,.<span class="dv">975</span>)</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  all_curves[[<span class="fu">paste</span>(trait,label)]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">model=</span>label,<span class="at">year=</span>yrs,<span class="at">mean=</span>mu,<span class="at">mean_lower=</span><span class="fu">loq</span>(mud),<span class="at">mean_upper=</span><span class="fu">hiq</span>(mud),<span class="at">dispersion=</span>phi,<span class="at">dispersion_lower=</span><span class="fu">loq</span>(phid),<span class="at">dispersion_upper=</span><span class="fu">hiq</span>(phid))</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  diffdraw<span class="ot">&lt;-</span>mud[<span class="fu">nrow</span>(grid),]<span class="sc">-</span>mud[<span class="dv">1</span>,];ratio<span class="ot">&lt;-</span>phid[<span class="fu">nrow</span>(grid),]<span class="sc">/</span>phid[<span class="dv">1</span>,]</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">model=</span>label,<span class="at">first_year=</span><span class="fu">min</span>(yrs),<span class="at">last_year=</span><span class="fu">max</span>(yrs),<span class="at">reference_year=</span>offset,<span class="at">mean_first=</span>mu[<span class="dv">1</span>],<span class="at">mean_last=</span><span class="fu">tail</span>(mu,<span class="dv">1</span>),<span class="at">mean_change=</span><span class="fu">tail</span>(mu,<span class="dv">1</span>)<span class="sc">-</span>mu[<span class="dv">1</span>],<span class="at">mean_change_lower=</span><span class="fu">quantile</span>(diffdraw,.<span class="dv">025</span>),<span class="at">mean_change_upper=</span><span class="fu">quantile</span>(diffdraw,.<span class="dv">975</span>),<span class="at">dispersion_ratio=</span><span class="fu">tail</span>(phi,<span class="dv">1</span>)<span class="sc">/</span>phi[<span class="dv">1</span>],<span class="at">dispersion_ratio_lower=</span><span class="fu">quantile</span>(ratio,.<span class="dv">025</span>),<span class="at">dispersion_ratio_upper=</span><span class="fu">quantile</span>(ratio,.<span class="dv">975</span>))</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) {</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>   ii<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">nrow</span>(grid));sdp<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">compois</span>()<span class="sc">$</span><span class="fu">variance</span>(mu[ii],phi[ii]));sdd<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">sqrt</span>(<span class="fu">compois</span>()<span class="sc">$</span><span class="fu">variance</span>(<span class="fu">as.vector</span>(mud[ii,]),<span class="fu">as.vector</span>(phid[ii,]))),<span class="dv">2</span>,<span class="fu">ncol</span>(mud));rr<span class="ot">&lt;-</span>sdd[<span class="dv">2</span>,]<span class="sc">/</span>sdd[<span class="dv">1</span>,]</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio<span class="ot">&lt;-</span>sdp[<span class="dv">2</span>]<span class="sc">/</span>sdp[<span class="dv">1</span>]</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio_lower<span class="ot">&lt;-</span><span class="fu">quantile</span>(rr,.<span class="dv">025</span>)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio_upper<span class="ot">&lt;-</span><span class="fu">quantile</span>(rr,.<span class="dv">975</span>)</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio_lower<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>   all_trend[[<span class="fu">paste</span>(trait,label)]]<span class="sc">$</span>response_SD_ratio_upper<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a> all_annual[[trait]]<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">split</span>(d,d<span class="sc">$</span>year_f),<span class="cf">function</span>(x){y<span class="ot">&lt;-</span><span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>)x<span class="sc">$</span>clutch <span class="cf">else</span> x<span class="sc">$</span>fledged<span class="sc">/</span>x<span class="sc">$</span>clutch;<span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">year=</span><span class="fu">as.integer</span>(<span class="fu">as.character</span>(x<span class="sc">$</span>year_f[<span class="dv">1</span>])),<span class="at">n=</span><span class="fu">nrow</span>(x),<span class="at">observed_mean=</span><span class="fu">mean</span>(y),<span class="at">observed_SD=</span><span class="fu">sd</span>(y),<span class="at">older_fraction=</span><span class="fu">mean</span>(x<span class="sc">$</span>age_class<span class="sc">==</span><span class="st">'OLD'</span>),<span class="at">mean_relative_date=</span><span class="fu">mean</span>(x<span class="sc">$</span>rel_LD),<span class="at">mean_temperature=</span><span class="fu">mean</span>(x<span class="sc">$</span>temp_mean_c),<span class="at">zero_fraction=</span><span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'fledging'</span>)<span class="fu">mean</span>(x<span class="sc">$</span>fledged<span class="sc">==</span><span class="dv">0</span>)<span class="cf">else</span> <span class="cn">NA</span>)}))</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a> <span class="fu">msg</span>(<span class="st">'FINISHED'</span>,trait)</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">do.call</span>(rbind,all_diag),<span class="st">'optimizer_comparison.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,all_fixed),<span class="st">'fixed_effects.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,all_trend),<span class="st">'temporal_changes.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,all_curves),<span class="st">'reference_curves.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,all_annual),<span class="st">'observed_annual.csv'</span>)</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(hashes,tools<span class="sc">::</span><span class="fu">md5sum</span>(paths)))</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">path=</span><span class="fu">names</span>(hashes),<span class="at">md5_before=</span><span class="fu">unname</span>(hashes),<span class="at">md5_after=</span><span class="fu">unname</span>(tools<span class="sc">::</span><span class="fu">md5sum</span>(paths))),<span class="st">'original_model_hashes.csv'</span>)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>))</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'COMPLETE: original final models unchanged. No manuscript or site changes.'</span>,<span class="st">'New models remove temperature from conditional and dispersion formulas; retain age, relative laying date, and all random effects.'</span>,<span class="st">'Reference curves: young females, relative laying date zero, all random effects zero; temperature zero in old model.'</span>,<span class="st">'Model trends are still adjusted for age and relative laying date; observed annual summaries are descriptive and unadjusted.'</span>,<span class="st">'Dispersion is COM-Poisson inverse shape or beta-binomial precision, not total response variability.'</span>,<span class="st">'Intervals are approximate 95% confidence intervals from joint asymptotic coefficient draws.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>))</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="fu">msg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+</section>
+<section id="read-the-saved-output" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-saved-output">Read the saved output</h2>
+<p>The site displays the exported CSV files; the fit is not run when a page is opened.</p>
+<details class="analysis-code" open="">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>changes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/temporal_models_20261022/temporal_changes.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/temporal_models_20261022/fixed_effects.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>changes</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fixed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Trait</th>
-<th>Period</th>
-<th>Expected first → last value</th>
-<th>Change (95% CI)</th>
+<th>trait</th>
+<th>first_year</th>
+<th>last_year</th>
+<th>mean_first</th>
+<th>mean_last</th>
+<th>mean_change</th>
+<th>mean_change_lower</th>
+<th>mean_change_upper</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Clutch size</td>
-<td>1981–2025</td>
-<td>5.84 → 6.26 eggs</td>
-<td>+0.43 eggs (+0.26 to +0.60)</td>
+<td>clutch</td>
+<td>1981</td>
+<td>2025</td>
+<td>5.8377</td>
+<td>6.2629</td>
+<td>0.42515</td>
+<td>0.26106</td>
+<td>0.59682</td>
 </tr>
 <tr class="even">
-<td>Egg-to-fledging success</td>
-<td>1981–2019</td>
-<td>67.5% → 57.2%</td>
-<td>−10.3 percentage points (−16.3 to −4.1)</td>
+<td>fledging</td>
+<td>1981</td>
+<td>2019</td>
+<td>0.67494</td>
+<td>0.57201</td>
+<td>-0.10293</td>
+<td>-0.16349</td>
+<td>-0.040747</td>
 </tr>
 </tbody>
 </table>
-<p>Evidence of temporal change in reproductive consistency was inconclusive for both traits: the first-to-last clutch-size SD ratio was 1.063 (95% CI 0.994–1.136), and the fledging precision ratio was 0.780 (0.513–1.189). Both intervals include one. Lower clutch-size SD indicates greater consistency; higher fledging precision indicates greater consistency at a fixed component mean and clutch size.</p>
-<p>These trends are <strong>not adjusted for temperature</strong>, but are standardised for age and relative laying date. They are not unadjusted population trajectories and do not identify how much change was caused by warming. The two traits also cover different periods. The observed annual means are supplied separately for descriptive comparison.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Fig4_COM_M1_time.png" class="img-fluid figure-img"></p>
-<figcaption>Temporal trends from models refitted without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected full-mixture fledging success and (D) reproductive consistency measured by precision. Yearlings, relative laying date zero, all random effects zero; bands show pointwise 95% CIs.</figcaption>
-</figure>
-</div>
-<p><a href="figures/Fig4_COM_M1_time.pdf">Download complete temporal figure</a></p>
-</section>
-<section id="models-and-uncertainty" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="models-and-uncertainty"><span class="header-section-number">3</span> Models and uncertainty</h2>
-<p>Clutch size uses the mean-parameterised COM-Poisson distribution, with female and year random intercepts in location and no year random intercept in scale. Fledging success uses the zero-inflated beta-binomial distribution, with female and year random intercepts in location and separate year random intercepts in precision and extra-zero probability. The extra-zero equation has no covariate slopes. No interactions are included.</p>
-<p>Both temporal models converged with positive-definite Hessians. Their log likelihoods were reproduced within 10⁻⁷ by BFGS refinement without the initial Hessian-based coordinate transformation. Clutch size: 10 parameters, log likelihood −13776.6071, AIC 27573.21. Fledging: 13 parameters, log likelihood −16637.7042, AIC 33301.41. AICs for the unchanged temperature-association models were 27561.10 and 33294.11. These comparisons describe fit and do not replace the distinction between the scientific questions.</p>
-<p>Pointwise 95% CIs for temporal curves use 6,000 joint asymptotic coefficient draws, retaining cross-component covariance. Clutch-size SD is computed from the exact COM-Poisson distribution. Fledging mean success is the full expectation (1−π)μ; precision describes the conditional consistency measure rather than all variability in the mixture. Intervals concern expected curves and are not individual-brood prediction intervals.</p>
-</section>
-<section id="model-checks-and-limitations" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="model-checks-and-limitations"><span class="header-section-number">4</span> Model checks and limitations</h2>
-<p>We simulated 500 conditional plug-in datasets per temporal model at estimated parameters and fitted group effects. These checks omit parameter-estimation uncertainty and do not assess held-out prediction. The exact COM-Poisson probability sampler was verified against the fitted mean and variance; a native new-group sampler returned non-finite values and its simulations were excluded. Conditional variance remained underestimated in both traits, while overall means and fledging complete-failure and complete-success frequencies fell within their simulation intervals. The distributional limitations documented on the <a href="./clutch_size.html">clutch-size</a> and <a href="./fledging_success.html">fledging-success</a> pages remain relevant. Both model sets use the same data and are not independent replication.</p>
-</section>
-<section id="full-numerical-results" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="full-numerical-results"><span class="header-section-number">5</span> Full numerical results</h2>
-<p>Fixed-effect estimates use log links for clutch mean and scale, a logit link for fledging component mean and extra-zero probability, and a log link for fledging precision.</p>
+<a href="tables/temporal_models_20261022/temporal_changes.csv">Download CSV</a>
+<details class="analysis-code">
+<summary>
+Show consistency contrasts
+</summary>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -353,6 +490,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th>trait</th>
+<th>dispersion_ratio</th>
+<th>dispersion_ratio_lower</th>
+<th>dispersion_ratio_upper</th>
+<th>response_SD_ratio</th>
+<th>response_SD_ratio_lower</th>
+<th>response_SD_ratio_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>1.0643</td>
+<td>0.93607</td>
+<td>1.209</td>
+<td>1.063</td>
+<td>0.99393</td>
+<td>1.1358</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>0.78001</td>
+<td>0.51329</td>
+<td>1.189</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="analysis-code">
+<summary>
+Show saved output: fixed_effects.csv
+</summary>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>model</th>
 <th>component</th>
 <th>term</th>
 <th>estimate</th>
@@ -364,165 +550,370 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>(Intercept)</td>
-<td>1.79888</td>
-<td>0.00445</td>
-<td>1.79015</td>
-<td>1.80760</td>
+<td>1.7989</td>
+<td>0.0044506</td>
+<td>1.7902</td>
+<td>1.8076</td>
 </tr>
 <tr class="even">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>rel_LD</td>
-<td>-0.00842</td>
-<td>0.00025</td>
-<td>-0.00890</td>
-<td>-0.00794</td>
+<td>-0.008421</td>
+<td>0.00024536</td>
+<td>-0.0089019</td>
+<td>-0.0079401</td>
 </tr>
 <tr class="odd">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>year_c</td>
-<td>0.00160</td>
-<td>0.00033</td>
-<td>0.00096</td>
-<td>0.00224</td>
+<td>0.0015977</td>
+<td>0.00032546</td>
+<td>0.00095977</td>
+<td>0.0022356</td>
 </tr>
 <tr class="even">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>age_classOLD</td>
-<td>0.03006</td>
-<td>0.00238</td>
-<td>0.02540</td>
-<td>0.03472</td>
+<td>0.030062</td>
+<td>0.0023787</td>
+<td>0.0254</td>
+<td>0.034724</td>
 </tr>
 <tr class="odd">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>(Intercept)</td>
-<td>-2.81055</td>
-<td>0.03313</td>
-<td>-2.87549</td>
-<td>-2.74561</td>
+<td>-2.8105</td>
+<td>0.033132</td>
+<td>-2.8755</td>
+<td>-2.7456</td>
 </tr>
 <tr class="even">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>rel_LD</td>
-<td>0.05261</td>
-<td>0.00291</td>
+<td>0.052608</td>
+<td>0.0029075</td>
 <td>0.04691</td>
-<td>0.05831</td>
+<td>0.058307</td>
 </tr>
 <tr class="odd">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>year_c</td>
-<td>0.00142</td>
-<td>0.00151</td>
-<td>-0.00154</td>
-<td>0.00437</td>
+<td>0.001416</td>
+<td>0.0015062</td>
+<td>-0.0015362</td>
+<td>0.0043681</td>
 </tr>
 <tr class="even">
 <td>clutch</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>age_classOLD</td>
 <td>-0.12622</td>
-<td>0.03588</td>
+<td>0.035883</td>
 <td>-0.19655</td>
-<td>-0.05588</td>
+<td>-0.055885</td>
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>(Intercept)</td>
-<td>1.08148</td>
-<td>0.07351</td>
+<td>1.0815</td>
+<td>0.073514</td>
 <td>0.93739</td>
-<td>1.22557</td>
+<td>1.2256</td>
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>rel_LD</td>
-<td>-0.07508</td>
-<td>0.00456</td>
-<td>-0.08402</td>
-<td>-0.06613</td>
+<td>-0.075076</td>
+<td>0.0045627</td>
+<td>-0.084019</td>
+<td>-0.066133</td>
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>age_classOLD</td>
-<td>0.00809</td>
-<td>0.04481</td>
-<td>-0.07974</td>
-<td>0.09592</td>
+<td>0.0080903</td>
+<td>0.044813</td>
+<td>-0.079744</td>
+<td>0.095925</td>
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>cond</td>
 <td>year_c</td>
-<td>-0.01807</td>
-<td>0.00555</td>
-<td>-0.02894</td>
-<td>-0.00720</td>
+<td>-0.018067</td>
+<td>0.0055458</td>
+<td>-0.028937</td>
+<td>-0.0071973</td>
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>zi</td>
 <td>(Intercept)</td>
-<td>-1.55368</td>
-<td>0.09270</td>
-<td>-1.73538</td>
-<td>-1.37198</td>
+<td>-1.5537</td>
+<td>0.092704</td>
+<td>-1.7354</td>
+<td>-1.372</td>
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>(Intercept)</td>
-<td>1.15477</td>
-<td>0.09226</td>
+<td>1.1548</td>
+<td>0.092256</td>
 <td>0.97395</td>
-<td>1.33559</td>
+<td>1.3356</td>
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>rel_LD</td>
-<td>-0.06959</td>
-<td>0.00690</td>
+<td>-0.069589</td>
+<td>0.0068985</td>
 <td>-0.08311</td>
-<td>-0.05607</td>
+<td>-0.056068</td>
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>age_classOLD</td>
-<td>0.02506</td>
+<td>0.025058</td>
 <td>0.08422</td>
 <td>-0.14001</td>
 <td>0.19013</td>
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>without_temperature</td>
 <td>disp</td>
 <td>year_c</td>
-<td>-0.00654</td>
-<td>0.00565</td>
-<td>-0.01762</td>
-<td>0.00455</td>
+<td>-0.006538</td>
+<td>0.0056549</td>
+<td>-0.017622</td>
+<td>0.0045457</td>
 </tr>
 </tbody>
 </table>
-<section id="overall-conditional-simulation-checks" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="overall-conditional-simulation-checks"><span class="header-section-number">5.1</span> Overall conditional simulation checks</h3>
+<p><a href="tables/temporal_models_20261022/fixed_effects.csv">Download CSV</a></p>
+</details>
+</section>
+<section id="export-predictions-and-check-the-fits" class="level2">
+<h2 class="anchored" data-anchor-id="export-predictions-and-check-the-fits">Export predictions and check the fits</h2>
+<details class="analysis-code">
+<summary>
+Show original code: 84_export_temporal_without_temperature.R
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/84_export_temporal_without_temperature.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="R/84_export_temporal_without_temperature.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="fu">path.expand</span>(<span class="st">'~/R/cf_model_comparison_20261013_R46'</span>),<span class="fu">path.expand</span>(<span class="st">'~/R/x86_64-pc-linux-gnu-library/4.5'</span>),<span class="fu">.libPaths</span>()))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({<span class="fu">library</span>(glmmTMB);<span class="fu">library</span>(MASS)})</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'/home/arct/CF_model_comparison_20261013'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>base<span class="ot">&lt;-</span><span class="st">'year_without_temperature_20261022'</span>;out<span class="ot">&lt;-</span><span class="fu">file.path</span>(base,<span class="st">'publication_export'</span>);<span class="fu">dir.create</span>(out,<span class="at">showWarnings=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>put<span class="ot">&lt;-</span><span class="cf">function</span>(x,n)<span class="fu">write.csv</span>(x,<span class="fu">file.path</span>(out,n),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>hash<span class="ot">&lt;-</span>tools<span class="sc">::</span><span class="fu">md5sum</span>(<span class="fu">file.path</span>(base,<span class="fu">c</span>(<span class="st">'clutch_selected.rds'</span>,<span class="st">'fledging_selected.rds'</span>)))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>random<span class="ot">&lt;-</span>checks<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cmp_pmf<span class="ot">&lt;-</span><span class="cf">function</span>(mu,phi) {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> nu<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">/</span>phi;k<span class="ot">&lt;-</span><span class="dv">0</span><span class="sc">:</span><span class="fu">max</span>(<span class="dv">40</span>,<span class="fu">ceiling</span>(<span class="fu">max</span>(mu)<span class="sc">+</span><span class="dv">20</span>));lf<span class="ot">&lt;-</span><span class="fu">lgamma</span>(k<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a> prob<span class="ot">&lt;-</span><span class="cf">function</span>(a){z<span class="ot">&lt;-</span><span class="fu">outer</span>(a,k)<span class="sc">-</span><span class="fu">outer</span>(nu,lf);z<span class="ot">&lt;-</span><span class="fu">exp</span>(z<span class="sc">-</span><span class="fu">do.call</span>(pmax,<span class="fu">as.data.frame</span>(z)));z<span class="sc">/</span><span class="fu">rowSums</span>(z)}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a> lo<span class="ot">&lt;-</span>nu<span class="sc">*</span><span class="fu">log</span>(<span class="fu">pmax</span>(mu<span class="dv">-3</span>,.<span class="dv">001</span>))<span class="sc">-</span><span class="dv">20</span>;hi<span class="ot">&lt;-</span>nu<span class="sc">*</span><span class="fu">log</span>(mu<span class="sc">+</span><span class="dv">3</span>)<span class="sc">+</span><span class="dv">20</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(it <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">65</span>){mid<span class="ot">&lt;-</span>(lo<span class="sc">+</span>hi)<span class="sc">/</span><span class="dv">2</span>;p<span class="ot">&lt;-</span><span class="fu">prob</span>(mid);em<span class="ot">&lt;-</span><span class="fu">drop</span>(p<span class="sc">%*%</span>k);low<span class="ot">&lt;-</span>em<span class="sc">&lt;</span>mu;lo[low]<span class="ot">&lt;-</span>mid[low];hi[<span class="sc">!</span>low]<span class="ot">&lt;-</span>mid[<span class="sc">!</span>low]}</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a> p<span class="ot">&lt;-</span><span class="fu">prob</span>((lo<span class="sc">+</span>hi)<span class="sc">/</span><span class="dv">2</span>);<span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">drop</span>(p<span class="sc">%*%</span>k)<span class="sc">-</span>mu))<span class="sc">&lt;</span><span class="fl">1e-7</span>,<span class="fu">max</span>(p[,<span class="fu">length</span>(k)])<span class="sc">&lt;</span><span class="fl">1e-10</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">drop</span>(p<span class="sc">%*%</span>k<span class="sc">^</span><span class="dv">2</span>)<span class="sc">-</span>mu<span class="sc">^</span><span class="dv">2</span><span class="sc">-</span><span class="fu">compois</span>()<span class="sc">$</span><span class="fu">variance</span>(mu,phi)))<span class="sc">&lt;</span><span class="fl">1e-5</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a> p</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(trait <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'clutch'</span>,<span class="st">'fledging'</span>)) {</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">cat</span>(trait,<span class="st">'export started</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>()</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a> m<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="fu">file.path</span>(base,<span class="fu">paste0</span>(trait,<span class="st">'_selected.rds'</span>)));d<span class="ot">&lt;-</span><span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>)m<span class="sc">$</span>frame <span class="cf">else</span> <span class="fu">readRDS</span>(<span class="st">'glmmTMB_comparison_20261016/analysis_data.rds'</span>);cf<span class="ot">&lt;-</span><span class="fu">fixef</span>(m)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a> V<span class="ot">&lt;-</span><span class="fu">vcov</span>(m,<span class="at">full=</span><span class="cn">TRUE</span>);bn<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">names</span>(cf<span class="sc">$</span>cond),<span class="fu">paste0</span>(<span class="st">'disp~'</span>,<span class="fu">names</span>(cf<span class="sc">$</span>disp)),<span class="cf">if</span>(<span class="fu">length</span>(cf<span class="sc">$</span>zi))<span class="fu">paste0</span>(<span class="st">'zi~'</span>,<span class="fu">names</span>(cf<span class="sc">$</span>zi)))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">set.seed</span>(<span class="dv">20261022</span>);draw<span class="ot">&lt;-</span>MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="dv">6000</span>,<span class="fu">c</span>(<span class="fu">unname</span>(cf<span class="sc">$</span>cond),<span class="fu">unname</span>(cf<span class="sc">$</span>disp),<span class="fu">unname</span>(cf<span class="sc">$</span>zi)),V[bn,bn])</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a> yr<span class="ot">&lt;-</span><span class="fu">as.integer</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>year_f));centre<span class="ot">&lt;-</span><span class="fu">unique</span>(<span class="fu">round</span>(yr<span class="sc">-</span>d<span class="sc">$</span>year_c,<span class="dv">8</span>));<span class="fu">stopifnot</span>(<span class="fu">length</span>(centre)<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a> grid<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="fu">min</span>(yr),<span class="fu">max</span>(yr));nc<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>cond);nd<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>disp)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a> X<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="fu">length</span>(grid),nc,<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">names</span>(cf<span class="sc">$</span>cond)));X[,<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="dv">1</span>;X[,<span class="st">'year_c'</span>]<span class="ot">&lt;-</span>grid<span class="sc">-</span>centre</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a> Z<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">0</span>,<span class="fu">length</span>(grid),nd,<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">names</span>(cf<span class="sc">$</span>disp)));Z[,<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="dv">1</span>;Z[,<span class="st">'year_c'</span>]<span class="ot">&lt;-</span>grid<span class="sc">-</span>centre</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a> eta<span class="ot">&lt;-</span><span class="fu">drop</span>(X<span class="sc">%*%</span>cf<span class="sc">$</span>cond);etad<span class="ot">&lt;-</span>X<span class="sc">%*%</span><span class="fu">t</span>(draw[,<span class="fu">seq_len</span>(nc),<span class="at">drop=</span><span class="cn">FALSE</span>]);phi<span class="ot">&lt;-</span><span class="fu">exp</span>(<span class="fu">drop</span>(Z<span class="sc">%*%</span>cf<span class="sc">$</span>disp));phid<span class="ot">&lt;-</span><span class="fu">exp</span>(Z<span class="sc">%*%</span><span class="fu">t</span>(draw[,nc<span class="sc">+</span><span class="fu">seq_len</span>(nd),<span class="at">drop=</span><span class="cn">FALSE</span>]))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) {</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  mu<span class="ot">&lt;-</span><span class="fu">exp</span>(eta);mud<span class="ot">&lt;-</span><span class="fu">exp</span>(etad);sd<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">compois</span>()<span class="sc">$</span><span class="fu">variance</span>(mu,phi));sdd<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">sqrt</span>(<span class="fu">compois</span>()<span class="sc">$</span><span class="fu">variance</span>(<span class="fu">as.vector</span>(mud),<span class="fu">as.vector</span>(phid))),<span class="fu">length</span>(grid),<span class="dv">6000</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  outputs<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">mean=</span><span class="fu">list</span>(mu,mud),<span class="at">sd=</span><span class="fu">list</span>(sd,sdd))</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a> } <span class="cf">else</span> {</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  mu<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(cf<span class="sc">$</span>zi[<span class="dv">1</span>]))<span class="sc">*</span><span class="fu">plogis</span>(eta);mud<span class="ot">&lt;-</span><span class="fu">sweep</span>(<span class="fu">plogis</span>(etad),<span class="dv">2</span>,<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(draw[,nc<span class="sc">+</span>nd<span class="sc">+</span><span class="dv">1</span>]),<span class="st">'*'</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  outputs<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">success=</span><span class="fu">list</span>(mu,mud),<span class="at">phi=</span><span class="fu">list</span>(phi,phid))</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(comp <span class="cf">in</span> <span class="fu">names</span>(outputs)){v<span class="ot">&lt;-</span>outputs[[comp]];<span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">x=</span>grid,<span class="at">age_class=</span><span class="st">'YOUNG'</span>,<span class="at">estimate=</span>v[[<span class="dv">1</span>]],<span class="at">CI_low=</span><span class="fu">apply</span>(v[[<span class="dv">2</span>]],<span class="dv">1</span>,quantile,.<span class="dv">025</span>),<span class="at">CI_high=</span><span class="fu">apply</span>(v[[<span class="dv">2</span>]],<span class="dv">1</span>,quantile,.<span class="dv">975</span>)),<span class="fu">paste0</span>(trait,<span class="st">'_year_'</span>,comp,<span class="st">'.csv'</span>))}</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a> re<span class="ot">&lt;-</span><span class="fu">VarCorr</span>(m);random[[trait]]<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re),<span class="cf">function</span>(cmp)<span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re[[cmp]]),<span class="cf">function</span>(gr)<span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">component=</span>cmp,<span class="at">group=</span>gr,<span class="at">SD=</span><span class="fu">unname</span>(<span class="fu">attr</span>(re[[cmp]][[gr]],<span class="st">'stddev'</span>)))))))</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a> <span class="fu">cat</span>(trait,<span class="st">'conditional simulation checks: 500 datasets</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>();<span class="fu">set.seed</span>(<span class="dv">20261022</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a> cmu<span class="ot">&lt;-</span><span class="fu">predict</span>(m,<span class="at">type=</span><span class="st">'conditional'</span>);cphi<span class="ot">&lt;-</span><span class="fu">predict</span>(m,<span class="at">type=</span><span class="st">'disp'</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'clutch'</span>) {</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  pp<span class="ot">&lt;-</span><span class="fu">cmp_pmf</span>(cmu,cphi);u<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="fu">nrow</span>(d)<span class="sc">*</span><span class="dv">500</span>),<span class="fu">nrow</span>(d),<span class="dv">500</span>);ymat<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">0</span>L,<span class="fu">nrow</span>(d),<span class="dv">500</span>);cp<span class="ot">&lt;-</span><span class="fu">numeric</span>(<span class="fu">nrow</span>(d))</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">ncol</span>(pp)<span class="sc">-</span><span class="dv">1</span>)){cp<span class="ot">&lt;-</span>cp<span class="sc">+</span>pp[,j];ymat<span class="ot">&lt;-</span>ymat<span class="sc">+</span>(u<span class="sc">&gt;</span>cp)}</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a> } <span class="cf">else</span> {</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  zi<span class="ot">&lt;-</span><span class="fu">predict</span>(m,<span class="at">type=</span><span class="st">'zprob'</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  ymat<span class="ot">&lt;-</span><span class="fu">replicate</span>(<span class="dv">500</span>,{pr<span class="ot">&lt;-</span><span class="fu">rbeta</span>(<span class="fu">nrow</span>(d),cmu<span class="sc">*</span>cphi,(<span class="dv">1</span><span class="sc">-</span>cmu)<span class="sc">*</span>cphi);y<span class="ot">&lt;-</span><span class="fu">rbinom</span>(<span class="fu">nrow</span>(d),d<span class="sc">$</span>clutch,pr);y[<span class="fu">runif</span>(<span class="fu">nrow</span>(d))<span class="sc">&lt;</span>zi]<span class="ot">&lt;-</span><span class="dv">0</span>;y})</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a> obs<span class="ot">&lt;-</span><span class="fu">model.response</span>(<span class="fu">model.frame</span>(m));<span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'fledging'</span>){obs<span class="ot">&lt;-</span>obs[,<span class="dv">1</span>]<span class="sc">/</span>d<span class="sc">$</span>clutch;ymat<span class="ot">&lt;-</span>ymat<span class="sc">/</span>d<span class="sc">$</span>clutch}<span class="cf">else</span> obs<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(obs)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a> groups<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">list</span>(<span class="at">overall=</span><span class="fu">seq_along</span>(obs)),<span class="fu">split</span>(<span class="fu">seq_along</span>(obs),yr))</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(g <span class="cf">in</span> <span class="fu">names</span>(groups)){</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  ii<span class="ot">&lt;-</span>groups[[g]];ss<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">mean=</span><span class="fu">colMeans</span>(ymat[ii,,<span class="at">drop=</span><span class="cn">FALSE</span>]),<span class="at">variance=</span><span class="fu">apply</span>(ymat[ii,,<span class="at">drop=</span><span class="cn">FALSE</span>],<span class="dv">2</span>,var));oo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">mean=</span><span class="fu">mean</span>(obs[ii]),<span class="at">variance=</span><span class="fu">var</span>(obs[ii]))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(trait<span class="sc">==</span><span class="st">'fledging'</span>){ss<span class="sc">$</span>zero_fraction<span class="ot">&lt;-</span><span class="fu">colMeans</span>(ymat[ii,,<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">==</span><span class="dv">0</span>);ss<span class="sc">$</span>complete_success<span class="ot">&lt;-</span><span class="fu">colMeans</span>(ymat[ii,,<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">==</span><span class="dv">1</span>);oo<span class="ot">&lt;-</span><span class="fu">c</span>(oo,<span class="at">zero_fraction=</span><span class="fu">mean</span>(obs[ii]<span class="sc">==</span><span class="dv">0</span>),<span class="at">complete_success=</span><span class="fu">mean</span>(obs[ii]<span class="sc">==</span><span class="dv">1</span>))}</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(stat <span class="cf">in</span> <span class="fu">names</span>(ss))checks[[<span class="fu">length</span>(checks)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">trait=</span>trait,<span class="at">target=</span><span class="st">'conditional_plugin'</span>,<span class="at">group=</span>g,<span class="at">n=</span><span class="fu">length</span>(ii),<span class="at">statistic=</span>stat,<span class="at">observed=</span><span class="fu">unname</span>(oo[stat]),<span class="at">predicted=</span><span class="fu">mean</span>(ss[[stat]]),<span class="at">lower=</span><span class="fu">unname</span>(<span class="fu">quantile</span>(ss[[stat]],.<span class="dv">025</span>)),<span class="at">upper=</span><span class="fu">unname</span>(<span class="fu">quantile</span>(ss[[stat]],.<span class="dv">975</span>)))</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a> <span class="fu">cat</span>(trait,<span class="st">'export finished</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>()</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">do.call</span>(rbind,random),<span class="st">'random_SD.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,checks),<span class="st">'temporal_simulation_checks.csv'</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(hash,tools<span class="sc">::</span><span class="fu">md5sum</span>(<span class="fu">file.path</span>(base,<span class="fu">c</span>(<span class="st">'clutch_selected.rds'</span>,<span class="st">'fledging_selected.rds'</span>)))))</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'Temporal trends: models refitted without temperature in either location or scale; age, relative laying date and original random structures retained.'</span>,<span class="st">'Yearling, relative laying date zero, all random effects zero; 6000 joint asymptotic coefficient draws, pointwise 95% confidence intervals.'</span>,<span class="st">'COM-Poisson SD is calculated from the exact fitted distribution; higher SD means lower reproductive consistency.'</span>,<span class="st">'Fledging mean is the full mixture expectation (1-pi)*mu; higher phi indicates greater consistency at fixed component mean and clutch size.'</span>,<span class="st">'Simulation checks: 500 conditional plug-in datasets; omit parameter uncertainty and do not assess held-out prediction.'</span>,<span class="st">'COM-Poisson conditional sampler uses numerically normalised exact probabilities; the attempted native new-group sampler returned NaNs and those simulations were excluded.'</span>,<span class="st">'The original temperature-association models and estimates are unchanged.'</span>),<span class="fu">file.path</span>(out,<span class="st">'README.txt'</span>))</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<details class="analysis-code">
+<summary>
+Show saved output: optimizer_comparison.csv
+</summary>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>trait</th>
+<th>model</th>
+<th>n</th>
+<th>df</th>
+<th>logLik</th>
+<th>AIC</th>
+<th>convergence</th>
+<th>pdHess</th>
+<th>scaled_gradient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>with_temperature</td>
+<td>12627</td>
+<td>12</td>
+<td>-13769</td>
+<td>27561</td>
+<td>0</td>
+<td>TRUE</td>
+<td>0.00019347</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>without_temperature_LBFGS</td>
+<td>12627</td>
+<td>10</td>
+<td>-13777</td>
+<td>27573</td>
+<td>0</td>
+<td>TRUE</td>
+<td>9.6224e-06</td>
+</tr>
+<tr class="odd">
+<td>clutch</td>
+<td>without_temperature_BFGS</td>
+<td>12627</td>
+<td>10</td>
+<td>-13777</td>
+<td>27573</td>
+<td>0</td>
+<td>NA</td>
+<td>9.2348e-06</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>with_temperature</td>
+<td>9790</td>
+<td>15</td>
+<td>-16632</td>
+<td>33294</td>
+<td>0</td>
+<td>TRUE</td>
+<td>0.00036322</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>without_temperature_LBFGS</td>
+<td>9790</td>
+<td>13</td>
+<td>-16638</td>
+<td>33301</td>
+<td>0</td>
+<td>TRUE</td>
+<td>2.7277e-06</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>without_temperature_BFGS</td>
+<td>9790</td>
+<td>13</td>
+<td>-16638</td>
+<td>33301</td>
+<td>0</td>
+<td>TRUE</td>
+<td>2.9166e-06</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/temporal_models_20261022/optimizer_comparison.csv">Download CSV</a></p>
+</details>
+<details class="analysis-code">
+<summary>
+Show saved output: temporal_simulation_checks.csv
+</summary>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>target</th>
+<th>group</th>
+<th>n</th>
 <th>statistic</th>
 <th>observed</th>
 <th>predicted</th>
@@ -533,14 +924,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>clutch</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>12627</td>
 <td>mean</td>
-<td>6.19189</td>
-<td>6.19574</td>
-<td>6.18448</td>
-<td>6.20722</td>
+<td>6.1919</td>
+<td>6.1957</td>
+<td>6.1845</td>
+<td>6.2072</td>
 </tr>
 <tr class="even">
 <td>clutch</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>12627</td>
 <td>variance</td>
 <td>0.65595</td>
 <td>0.56474</td>
@@ -549,6 +946,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>9790</td>
 <td>mean</td>
 <td>0.58607</td>
 <td>0.58139</td>
@@ -557,6 +957,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>9790</td>
 <td>variance</td>
 <td>0.15455</td>
 <td>0.15185</td>
@@ -565,14 +968,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>fledging</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>9790</td>
 <td>zero_fraction</td>
 <td>0.23647</td>
 <td>0.23131</td>
-<td>0.22370</td>
+<td>0.2237</td>
 <td>0.23958</td>
 </tr>
 <tr class="even">
 <td>fledging</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>9790</td>
 <td>complete_success</td>
 <td>0.28856</td>
 <td>0.28624</td>
@@ -581,12 +990,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p><a href="tables/temporal_models_20261022/fixed_effects.csv">Fixed effects</a> · <a href="tables/temporal_models_20261022/temporal_changes.csv">First-to-last changes</a> · <a href="tables/temporal_models_20261022/optimizer_comparison.csv">Numerical verification</a> · <a href="tables/temporal_models_20261022/random_SD.csv">Random-effect SDs</a> · <a href="tables/temporal_models_20261022/temporal_simulation_checks.csv">All simulation checks</a> · <a href="tables/temporal_models_20261022/observed_annual.csv">Observed annual summaries</a> · <a href="tables/temporal_models_20261022/README.txt">Prediction scope</a></p>
-
-
-<!-- -->
-
+<p><a href="tables/temporal_models_20261022/temporal_simulation_checks.csv">Download complete CSV</a></p>
+</details>
 </section>
+<section id="figure" class="level2">
+<h2 class="anchored" data-anchor-id="figure">Figure</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Fig4_COM_M1_time.png" class="img-fluid figure-img"></p>
+<figcaption>Saved temporal predictions: clutch mean and SD, full-mixture fledging success and component precision. Yearlings, relative laying date zero, random effects zero; pointwise 95% CIs.</figcaption>
+</figure>
+</div>
+<p><a href="figures/Fig4_COM_M1_time.pdf">PDF</a> · <a href="./figure_code.html#calendar-year-trends">Figure code — final chapter</a></p>
+</section>
+<section id="main-conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="main-conclusions">Main conclusions</h2>
+<ul>
+<li>Mean clutch size increased; egg-to-fledging success declined.</li>
+<li>Temporal changes in consistency were uncertain: clutch SD ratio 1.063 (0.994–1.136); fledging precision ratio 0.780 (0.513–1.189).</li>
+<li>Conditional variance remained underestimated in both traits; simulation checks condition on fitted parameters and group effects.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -660,57 +1085,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1052,85 +1426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <span class="nav-page-text">Clutch size</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Temporal trends without temperature"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Two different questions</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>**Temporal change:** how did mean reproductive performance and reproductive consistency change over calendar time? These models were refitted without temperature in both location and scale. Age class, relative laying date, the original response distributions and all random-effect structures were retained.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>**Temperature associations:** how were the reproductive traits associated with spring temperature? These use the unchanged models containing temperature and calendar year together. Their temperature-adjusted year coefficients are disclosed on the model pages but are not used as the reported temporal trends. The temperature, laying-date and age results and their figures remain unchanged.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temporal results</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>At yearling age, relative laying date zero and all random effects zero:</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Trait <span class="pp">|</span> Period <span class="pp">|</span> Expected first → last value <span class="pp">|</span> Change (95% CI) <span class="pp">|</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch size <span class="pp">|</span> 1981–2025 <span class="pp">|</span> 5.84 → 6.26 eggs <span class="pp">|</span> +0.43 eggs (+0.26 to +0.60) <span class="pp">|</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> 1981–2019 <span class="pp">|</span> 67.5% → 57.2% <span class="pp">|</span> −10.3 percentage points (−16.3 to −4.1) <span class="pp">|</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Evidence of temporal change in reproductive consistency was inconclusive for both traits: the first-to-last clutch-size SD ratio was 1.063 (95% CI 0.994–1.136), and the fledging precision ratio was 0.780 (0.513–1.189). Both intervals include one. Lower clutch-size SD indicates greater consistency; higher fledging precision indicates greater consistency at a fixed component mean and clutch size.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>These trends are **not adjusted for temperature**, but are standardised for age and relative laying date. They are not unadjusted population trajectories and do not identify how much change was caused by warming. The two traits also cover different periods. The observed annual means are supplied separately for descriptive comparison.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="al">![Temporal trends from models refitted without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected full-mixture fledging success and (D) reproductive consistency measured by precision. Yearlings, relative laying date zero, all random effects zero; bands show pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete temporal figure</span><span class="co">](figures/Fig4_COM_M1_time.pdf)</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Models and uncertainty</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Clutch size uses the mean-parameterised COM-Poisson distribution, with female and year random intercepts in location and no year random intercept in scale. Fledging success uses the zero-inflated beta-binomial distribution, with female and year random intercepts in location and separate year random intercepts in precision and extra-zero probability. The extra-zero equation has no covariate slopes. No interactions are included.</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Both temporal models converged with positive-definite Hessians. Their log likelihoods were reproduced within 10⁻⁷ by BFGS refinement without the initial Hessian-based coordinate transformation. Clutch size: 10 parameters, log likelihood −13776.6071, AIC 27573.21. Fledging: 13 parameters, log likelihood −16637.7042, AIC 33301.41. AICs for the unchanged temperature-association models were 27561.10 and 33294.11. These comparisons describe fit and do not replace the distinction between the scientific questions.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Pointwise 95% CIs for temporal curves use 6,000 joint asymptotic coefficient draws, retaining cross-component covariance. Clutch-size SD is computed from the exact COM-Poisson distribution. Fledging mean success is the full expectation (1−π)μ; precision describes the conditional consistency measure rather than all variability in the mixture. Intervals concern expected curves and are not individual-brood prediction intervals.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model checks and limitations</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>We simulated 500 conditional plug-in datasets per temporal model at estimated parameters and fitted group effects. These checks omit parameter-estimation uncertainty and do not assess held-out prediction. The exact COM-Poisson probability sampler was verified against the fitted mean and variance; a native new-group sampler returned non-finite values and its simulations were excluded. Conditional variance remained underestimated in both traits, while overall means and fledging complete-failure and complete-success frequencies fell within their simulation intervals. The distributional limitations documented on the <span class="co">[</span><span class="ot">clutch-size</span><span class="co">](clutch_size.qmd)</span> and <span class="co">[</span><span class="ot">fledging-success</span><span class="co">](fledging_success.qmd)</span> pages remain relevant. Both model sets use the same data and are not independent replication.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Full numerical results</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Fixed-effect estimates use log links for clutch mean and scale, a logit link for fledging component mean and extra-zero probability, and a log link for fledging precision.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.79888 <span class="pp">|</span> 0.00445 <span class="pp">|</span> 1.79015 <span class="pp">|</span> 1.80760 <span class="pp">|</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.00842 <span class="pp">|</span> 0.00025 <span class="pp">|</span> -0.00890 <span class="pp">|</span> -0.00794 <span class="pp">|</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> 0.00160 <span class="pp">|</span> 0.00033 <span class="pp">|</span> 0.00096 <span class="pp">|</span> 0.00224 <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.03006 <span class="pp">|</span> 0.00238 <span class="pp">|</span> 0.02540 <span class="pp">|</span> 0.03472 <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> -2.81055 <span class="pp">|</span> 0.03313 <span class="pp">|</span> -2.87549 <span class="pp">|</span> -2.74561 <span class="pp">|</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> 0.05261 <span class="pp">|</span> 0.00291 <span class="pp">|</span> 0.04691 <span class="pp">|</span> 0.05831 <span class="pp">|</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> 0.00142 <span class="pp">|</span> 0.00151 <span class="pp">|</span> -0.00154 <span class="pp">|</span> 0.00437 <span class="pp">|</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> -0.12622 <span class="pp">|</span> 0.03588 <span class="pp">|</span> -0.19655 <span class="pp">|</span> -0.05588 <span class="pp">|</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.08148 <span class="pp">|</span> 0.07351 <span class="pp">|</span> 0.93739 <span class="pp">|</span> 1.22557 <span class="pp">|</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.07508 <span class="pp">|</span> 0.00456 <span class="pp">|</span> -0.08402 <span class="pp">|</span> -0.06613 <span class="pp">|</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.00809 <span class="pp">|</span> 0.04481 <span class="pp">|</span> -0.07974 <span class="pp">|</span> 0.09592 <span class="pp">|</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.01807 <span class="pp">|</span> 0.00555 <span class="pp">|</span> -0.02894 <span class="pp">|</span> -0.00720 <span class="pp">|</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.55368 <span class="pp">|</span> 0.09270 <span class="pp">|</span> -1.73538 <span class="pp">|</span> -1.37198 <span class="pp">|</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.15477 <span class="pp">|</span> 0.09226 <span class="pp">|</span> 0.97395 <span class="pp">|</span> 1.33559 <span class="pp">|</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.06959 <span class="pp">|</span> 0.00690 <span class="pp">|</span> -0.08311 <span class="pp">|</span> -0.05607 <span class="pp">|</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.02506 <span class="pp">|</span> 0.08422 <span class="pp">|</span> -0.14001 <span class="pp">|</span> 0.19013 <span class="pp">|</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.00654 <span class="pp">|</span> 0.00565 <span class="pp">|</span> -0.01762 <span class="pp">|</span> 0.00455 <span class="pp">|</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Overall conditional simulation checks</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> statistic <span class="pp">|</span> observed <span class="pp">|</span> predicted <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> mean <span class="pp">|</span> 6.19189 <span class="pp">|</span> 6.19574 <span class="pp">|</span> 6.18448 <span class="pp">|</span> 6.20722 <span class="pp">|</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> variance <span class="pp">|</span> 0.65595 <span class="pp">|</span> 0.56474 <span class="pp">|</span> 0.55011 <span class="pp">|</span> 0.57756 <span class="pp">|</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> mean <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58139 <span class="pp">|</span> 0.57372 <span class="pp">|</span> 0.58901 <span class="pp">|</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> variance <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15185 <span class="pp">|</span> 0.14954 <span class="pp">|</span> 0.15404 <span class="pp">|</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.23131 <span class="pp">|</span> 0.22370 <span class="pp">|</span> 0.23958 <span class="pp">|</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28624 <span class="pp">|</span> 0.27799 <span class="pp">|</span> 0.29551 <span class="pp">|</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Fixed effects</span><span class="co">](tables/temporal_models_20261022/fixed_effects.csv)</span> · <span class="co">[</span><span class="ot">First-to-last changes</span><span class="co">](tables/temporal_models_20261022/temporal_changes.csv)</span> · <span class="co">[</span><span class="ot">Numerical verification</span><span class="co">](tables/temporal_models_20261022/optimizer_comparison.csv)</span> · <span class="co">[</span><span class="ot">Random-effect SDs</span><span class="co">](tables/temporal_models_20261022/random_SD.csv)</span> · <span class="co">[</span><span class="ot">All simulation checks</span><span class="co">](tables/temporal_models_20261022/temporal_simulation_checks.csv)</span> · <span class="co">[</span><span class="ot">Observed annual summaries</span><span class="co">](tables/temporal_models_20261022/observed_annual.csv)</span> · <span class="co">[</span><span class="ot">Prediction scope</span><span class="co">](tables/temporal_models_20261022/README.txt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

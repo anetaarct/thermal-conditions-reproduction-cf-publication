@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data and study population – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Study sample and predictor checks – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,35 +111,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -196,7 +167,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+ <span class="menu-text">Data preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,7 +190,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year trends</span></a>
+ <span class="menu-text">Calendar-year analyses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -260,7 +231,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figures &amp; analysis code</span></a>
+ <span class="menu-text">Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -275,10 +246,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-curation" id="toc-data-curation" class="nav-link active" data-scroll-target="#data-curation"><span class="header-section-number">1</span> Data curation</a></li>
-  <li><a href="#age-composition-of-the-analysed-sample" id="toc-age-composition-of-the-analysed-sample" class="nav-link" data-scroll-target="#age-composition-of-the-analysed-sample"><span class="header-section-number">2</span> Age composition of the analysed sample</a></li>
-  <li><a href="#repeated-observations-and-thermal-exposure" id="toc-repeated-observations-and-thermal-exposure" class="nav-link" data-scroll-target="#repeated-observations-and-thermal-exposure"><span class="header-section-number">3</span> Repeated observations and thermal exposure</a></li>
-  <li><a href="#fixed-predictor-collinearity" id="toc-fixed-predictor-collinearity" class="nav-link" data-scroll-target="#fixed-predictor-collinearity"><span class="header-section-number">4</span> Fixed-predictor collinearity</a></li>
+  <li><a href="#curated-samples" id="toc-curated-samples" class="nav-link active" data-scroll-target="#curated-samples">Curated samples</a></li>
+  <li><a href="#predictor-definitions" id="toc-predictor-definitions" class="nav-link" data-scroll-target="#predictor-definitions">Predictor definitions</a></li>
+  <li><a href="#retained-checks" id="toc-retained-checks" class="nav-link" data-scroll-target="#retained-checks">Retained checks</a></li>
   </ul>
 </nav>
     </div>
@@ -287,7 +257,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./data_preparation.html">Study sample &amp; predictors</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Data and study population</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Study sample and predictor checks</h1>
 </div>
 
 
@@ -304,28 +274,59 @@ window.Quarto = {
 </header>
 
 
-<section id="data-curation" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="data-curation"><span class="header-section-number">1</span> Data curation</h2>
-<p>Laying-date records covered 1980–2025, except 2020 when fieldwork was interrupted. Fledging records are fully validated through 2019. The 1980 season marked the beginning of the study, but female-age data were not available for that year; it was therefore excluded from analyses of reproductive investment, which begin in 1981. We retained only breeding attempts of individually ringed, unambiguously identified <em>Ficedula albicollis</em> females, excluded ambiguous duplicate attempts and experimental females, and cross-checked clutch size and fledgling counts. For the fledging analysis, the number of eggs that did not produce a fledgling was derived as clutch size minus fledgling count. This derived count combines eggs that failed to hatch and offspring lost after hatching; the data used here do not distinguish those causes. Relative laying date was the first-egg date minus the median laying date in the same season.</p>
-<p>The clutch-size analysis included 12,627 broods from 8,894 females across 44 seasons (1981–2025, excluding 2020). The fledging-success analysis included 9,790 broods from 7,132 females across 39 seasons (1981–2019), including 2,315 complete brood failures.</p>
+<section id="curated-samples" class="level2">
+<h2 class="anchored" data-anchor-id="curated-samples">Curated samples</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Analysis</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">Females</th>
+<th>Seasons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clutch size</td>
+<td style="text-align: right;">12,627</td>
+<td style="text-align: right;">8,894</td>
+<td>44</td>
+</tr>
+<tr class="even">
+<td>Egg-to-fledging success</td>
+<td style="text-align: right;">9,790</td>
+<td style="text-align: right;">7,132</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+<p><a href="./workflow.html">Input files and loading code</a></p>
 </section>
-<section id="age-composition-of-the-analysed-sample" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="age-composition-of-the-analysed-sample"><span class="header-section-number">2</span> Age composition of the analysed sample</h2>
-<p>The proportion of breeding records attributed to older females increased over the study period. This is a change in the age composition of the sampled broods; age class was included as a predictor in both the location and scale components of the reproductive models.</p>
+<section id="predictor-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="predictor-definitions">Predictor definitions</h2>
+<p>Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. <code>year_f</code> identifies the random-effect groups.</p>
+<details class="analysis-code">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the columns actually supplied to the fitted model.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> m<span class="sc">$</span>frame</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </section>
-<section id="repeated-observations-and-thermal-exposure" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="repeated-observations-and-thermal-exposure"><span class="header-section-number">3</span> Repeated observations and thermal exposure</h2>
-<p>We replaced the annual thermal-window value with mean temperature during the 42 days preceding each female’s laying date. Moreover, we added a female-specific random slope for individual thermal exposure. These were earlier maximum-likelihood clutch-size extensions. Neither extension produced an admissible model: the individual-window fit had a non-positive-definite Hessian, an absolute gradient exceeding 34,000 and undefined likelihood-based criteria, while the random-slope fit also had a non-positive-definite Hessian and undefined AIC.</p>
-<p>The data provide limited replication for estimating individual thermal reaction norms. Of 8,894 females, 2,549 contributed at least two broods and 841 contributed at least three; the median was one brood and the mean 1.42 broods per female. We therefore retain the annual-window random-intercept model for inference.</p>
-</section>
-<section id="fixed-predictor-collinearity" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="fixed-predictor-collinearity"><span class="header-section-number">4</span> Fixed-predictor collinearity</h2>
-<p>In the temperature-association models, the fixed predictors were relative laying date, age class, centred spring temperature and centred calendar year. Clutch-size VIFs were 1.21 for temperature and 1.22 for year. For the exact 9,790-record fledging sample (7,132 females and 39 seasons, 1981–2019), VIFs were 1.04551 for relative laying date, 1.05498 for age, 1.26692 for temperature and 1.26909 for year. Each VIF was calculated as <span class="math inline">\(1/(1-R_j^2)\)</span> from regression of one non-intercept design column on the others. The design had full column rank. Location and precision share the fixed predictors, so the design VIFs apply to both. The extra-zero equation has no covariate slopes. Temperature–year correlations were 0.53170 across annual values and 0.45577 across brood records. These are design-matrix diagnostics, not estimates of the effective number of independent seasons. Low VIFs do not establish independence of broods sharing a year.</p>
-<p>The temporal models use the identical trait-specific records, age classes, relative laying dates and centred calendar years, but omit temperature from both location and scale. Their trends are therefore unadjusted for temperature but remain adjusted for age and relative laying date.</p>
-<p>Both temperature (°C) and calendar year are continuous, centred fixed predictors in the temperature-association models. In the temporal models, year remains continuous and temperature is omitted. Categorical year identifiers define the separate random-intercept groups.</p>
+<section id="retained-checks" class="level2">
+<h2 class="anchored" data-anchor-id="retained-checks">Retained checks</h2>
+<ul>
+<li>Clutch predictor VIFs: temperature 1.21; year 1.22.</li>
+<li>Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.</li>
+<li>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</li>
+</ul>
+<p>The original raw-data cleaning script is not included; these pages start from the curated analysis files.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -400,57 +401,6 @@ window.Quarto = {
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -792,39 +742,7 @@ window.Quarto = {
         <span class="nav-page-text">Model structure &amp; diagnostics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Data and study population"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data curation</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Laying-date records covered 1980--2025, except 2020 when fieldwork was interrupted. Fledging records are fully validated through 2019. The 1980 season marked the beginning of the study, but female-age data were not available for that year; it was therefore excluded from analyses of reproductive investment, which begin in 1981. We retained only breeding attempts of individually ringed, unambiguously identified *Ficedula albicollis* females, excluded ambiguous duplicate attempts and experimental females, and cross-checked clutch size and fledgling counts. For the fledging analysis, the number of eggs that did not produce a fledgling was derived as clutch size minus fledgling count. This derived count combines eggs that failed to hatch and offspring lost after hatching; the data used here do not distinguish those causes. Relative laying date was the first-egg date minus the median laying date in the same season.</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>The clutch-size analysis included 12,627 broods from 8,894 females across 44 seasons (1981--2025, excluding 2020). The fledging-success analysis included 9,790 broods from 7,132 females across 39 seasons (1981--2019), including 2,315 complete brood failures.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Age composition of the analysed sample</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The proportion of breeding records attributed to older females increased over the study period. This is a change in the age composition of the sampled broods; age class was included as a predictor in both the location and scale components of the reproductive models.</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Repeated observations and thermal exposure</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>We replaced the annual thermal-window value with mean temperature during the 42 days preceding each female's laying date. Moreover, we added a female-specific random slope for individual thermal exposure. These were earlier maximum-likelihood clutch-size extensions. Neither extension produced an admissible model: the individual-window fit had a non-positive-definite Hessian, an absolute gradient exceeding 34,000 and undefined likelihood-based criteria, while the random-slope fit also had a non-positive-definite Hessian and undefined AIC.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>The data provide limited replication for estimating individual thermal reaction norms. Of 8,894 females, 2,549 contributed at least two broods and 841 contributed at least three; the median was one brood and the mean 1.42 broods per female. We therefore retain the annual-window random-intercept model for inference.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fixed-predictor collinearity</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>In the temperature-association models, the fixed predictors were relative laying date, age class, centred spring temperature and centred calendar year. Clutch-size VIFs were 1.21 for temperature and 1.22 for year. For the exact 9,790-record fledging sample (7,132 females and 39 seasons, 1981--2019), VIFs were 1.04551 for relative laying date, 1.05498 for age, 1.26692 for temperature and 1.26909 for year. Each VIF was calculated as $1/(1-R_j^2)$ from regression of one non-intercept design column on the others. The design had full column rank. Location and precision share the fixed predictors, so the design VIFs apply to both. The extra-zero equation has no covariate slopes. Temperature--year correlations were 0.53170 across annual values and 0.45577 across brood records. These are design-matrix diagnostics, not estimates of the effective number of independent seasons. Low VIFs do not establish independence of broods sharing a year.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>The temporal models use the identical trait-specific records, age classes, relative laying dates and centred calendar years, but omit temperature from both location and scale. Their trends are therefore unadjusted for temperature but remain adjusted for age and relative laying date.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Both temperature (°C) and calendar year are continuous, centred fixed predictors in the temperature-association models. In the temporal models, year remains continuous and temperature is omitted. Categorical year identifiers define the separate random-intercept groups.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

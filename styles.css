@@ -321,3 +321,10 @@ pre { max-height:620px; overflow:auto; }
 @media(prefers-reduced-motion:reduce) { .title-hero-video { display:none; } }
 
 .title-hero-text h1 { color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.45); }
+
+.analysis-code { margin:1rem 0 1.35rem; border:1px solid #dce3d6; border-radius:6px; background:#fafbf7; padding:.7rem 1rem; }
+.analysis-code > summary { cursor:pointer; font-weight:650; color:#315b4d; }
+.analysis-code[open] > summary { margin-bottom:1rem; }
+.analysis-code pre { max-height:560px; overflow:auto; }
+.analysis-code table { font-size:.9rem; }
+.overview-tile { min-height:145px; }

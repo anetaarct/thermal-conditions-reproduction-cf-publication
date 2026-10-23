@@ -1,0 +1,15 @@
+```{.r filename="R/75_verify_COM_Poisson.R"}
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+library(glmmTMB)
+out<-'glmmTMB_comparison_20261016/clutch_counts';d<-readRDS(file.path(out,'data.rds'))
+m<-readRDS(file.path(out,'COM_predictors_bounded.rds'));pl<-m$obj$env$parList(par=m$fit$parfull);st<-pl[c('beta','betadisp','theta','b')]
+lo<-c(1.6,-.03,-.08,-.008,-.15,-5,rep(-.5,4),rep(-10,2));hi<-c(2,.01,.08,.008,.15,0,rep(.5,4),rep(0,2));sc<-c(1,100,10,200,10,1,100,10,200,10,1,1)
+a<-glmmTMB(clutch~rel_LD+temp_mean_c+year_c+age_class+(1|female_id)+(1|year_f),dispformula=~rel_LD+temp_mean_c+year_c+age_class,family=compois(),data=d,start=st,control=glmmTMBControl(optimizer=optim,optArgs=list(method='L-BFGS-B',lower=lo,upper=hi),optCtrl=list(maxit=1000,factr=1e4,parscale=1/sc),parallel=1))
+saveRDS(a,file.path(out,'COM_predictors_verified.rds'))
+dd<-do.call(rbind,lapply(list(nlminb=m,LBFGS=a),function(x)data.frame(code=x$fit$convergence,pdHess=x$sdr$pdHess,logLik=as.numeric(logLik(x)),scaled_gradient=max(abs(x$sdr$gradient.fixed*sqrt(diag(x$sdr$cov.fixed)))),bound_distance=min(pmin(x$fit$par-lo,hi-x$fit$par)/(hi-lo)))))
+print(dd);write.csv(dd,file.path(out,'COM_final_diagnostics.csv'))
+stopifnot(all(dd$code==0),all(dd$pdHess),all(dd$bound_distance>.01),all(dd$scaled_gradient<.002),abs(diff(dd$logLik))<.01)
+file.copy(file.path(out,'COM_selected.rds'),file.path(out,'COM_year_selected_for_audit.rds'),overwrite=TRUE)
+saveRDS(if(logLik(a)>logLik(m))a else m,file.path(out,'COM_selected.rds'))
+writeLines('Selected COM model has covariate-dependent dispersion without a year dispersion random effect; attempted full year-dispersion fit reached SD exp(-10), with negligible likelihood improvement. This is a sensitivity model, not an exactly matched random-effect structure.',file.path(out,'COM_selection.txt'))
+```

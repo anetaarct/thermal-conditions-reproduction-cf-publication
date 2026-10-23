@@ -1,36 +1,84 @@
 ---
-title: "Figures and ML analysis code"
+title: "Figure code"
+number-sections: false
 bibliography: references.bib
 execute:
   enabled: false
 ---
 
-All reproductive estimates use maximum likelihood. Temperature, laying-date and age figures retain the existing temperature-association models and their 4,000 clutch-size or 8,000 fledging-success joint coefficient draws. Year figures use separate models refitted without temperature in either location or scale, with 6,000 draws for each trait. Bands are pointwise 95% CIs and retain cross-component covariance. Year curves hold age and relative laying date fixed; all reference curves set random effects to zero and are not observed population trajectories.
+## Files and packages
 
-[Temporal-model fitting](R/83_fit_temporal_without_temperature.R) · [Temporal export and checks](R/84_export_temporal_without_temperature.R) · [Temporal figure script](scripts/plot_temporal_models.py) · [Plotting script](scripts/plot_final_models.py) · [COM-Poisson numerical verification](R/75_verify_COM_Poisson.R) · [COM-Poisson prediction export](R/76_export_COM_predictions.R) · [Fledging ML fitting and comparison](R/81_fit_ZIyear_fledging.R) · [Fledging prediction export](R/82_export_ZIyear_primary.R) · [Environmental ML model](R/25_environment_temperature_location_scale.R)
+Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip). The scripts read CSV prediction tables in `tables/` and write figures to `figures/`; no model fitting is required. Python packages: pandas, matplotlib (and their dependencies).
 
-## Temporal trends without temperature
+## Calendar-year trends {#calendar-year-trends}
 
-The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the [Temporal trends](temporal_trends.qmd) page.
+<details class="analysis-code">
+<summary>Show original code: plot_temporal_models.py</summary>
 
-![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)
+{{< include _includes/plot_temporal_models.qmd >}}
 
-[Download figure PDF](figures/Fig4_COM_M1_time.pdf)
+</details>
 
-## Temperature
+<details class="analysis-code" open>
+<summary>Show command</summary>
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
+```bash
+python scripts/plot_temporal_models.py
+```
 
-[Download figure PDF](figures/Fig3_COM_M1_temperature.pdf)
+</details>
 
-## Relative laying date
+![Saved calendar-year figure.](figures/Fig4_COM_M1_time.png)
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)
+[PDF](figures/Fig4_COM_M1_time.pdf)
 
-[Download figure PDF](figures/Fig5_COM_M1_date.pdf)
+## Temperature, date and age {#temperature-date-and-age}
 
-## Female age class
+<details class="analysis-code">
+<summary>Show original code: plot_final_models.py</summary>
 
-![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)
+{{< include _includes/plot_final_models.qmd >}}
 
-[Download figure PDF](figures/Fig6_COM_M1_age.pdf)
+</details>
+
+<details class="analysis-code" open>
+<summary>Show command</summary>
+
+```bash
+python scripts/plot_final_models.py
+```
+
+</details>
+
+### Temperature
+
+![Saved temperature figure.](figures/Fig3_COM_M1_temperature.png)
+
+[PDF](figures/Fig3_COM_M1_temperature.pdf)
+
+### Relative laying date
+
+![Saved relative laying-date figure.](figures/Fig5_COM_M1_date.png)
+
+[PDF](figures/Fig5_COM_M1_date.pdf)
+
+### Female age
+
+![Saved age figure, separate from temporal trends.](figures/Fig6_COM_M1_age.png)
+
+[PDF](figures/Fig6_COM_M1_age.pdf)
+
+## Spring-temperature figure
+
+<details class="analysis-code">
+<summary>Show retained R plotting block</summary>
+
+This block uses `annual`, `plot_data` and `scale_data` produced by the [temperature-model code](model_structure.qmd#spring-temperature-model). It draws the mean and residual-SD panels. The saved publication image also includes a within-window daily-SD panel; the code for assembling that extra panel is not retained here.
+
+{{< include _includes/25_environment_plot.qmd >}}
+
+</details>
+
+![Saved spring-temperature figure.](figures/Fig2_temperature_location_scale_time.png)
+
+[PDF](figures/Fig2_temperature_location_scale_time.pdf)

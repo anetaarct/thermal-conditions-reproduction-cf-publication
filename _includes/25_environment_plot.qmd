@@ -1,0 +1,31 @@
+```{.r filename="R/25_environment_temperature_location_scale.R — plotting excerpt"}
+blue <- "#0072B2"
+p <- ggplot(annual, aes(year, temp_mean)) +
+  geom_ribbon(data = plot_data, aes(x = year, ymin = CI_low, ymax = CI_high),
+              inherit.aes = FALSE, fill = scales::alpha(blue, 0.20)) +
+  geom_line(data = plot_data, aes(x = year, y = estimate), inherit.aes = FALSE,
+            colour = blue, linewidth = 1) +
+  geom_point(shape = 21, fill = "white", colour = "grey25", size = 2.2,
+             stroke = 0.55) +
+  scale_x_continuous(breaks = seq(1980, 2025, by = 5)) +
+  labs(x = "Year", y = "Mean spring temperature (°C)",
+       subtitle = "Thermal window: 26 March-7 May") +
+  theme_classic(base_size = 11) +
+  theme(axis.title = element_text(face = "bold"),
+        panel.grid.major.y = element_line(colour = "grey92", linewidth = 0.3))
+
+ggsave("figures/environment_temperature_time.png", p, width = 7.2, height = 4.8, dpi = 400)
+ggsave("figures/environment_temperature_time.pdf", p, width = 7.2, height = 4.8,
+       device = cairo_pdf)
+
+p_scale <- ggplot(scale_data, aes(year, sigma)) +
+  geom_ribbon(aes(ymin = CI_low, ymax = CI_high), fill = orange <- "#D55E00", alpha = 0.2) +
+  geom_line(colour = orange, linewidth = 1) +
+  labs(x = "Year", y = "Interannual residual SD (σ)") + theme_classic(base_size = 11)
+combined <- (p + labs(subtitle = NULL)) + p_scale +
+  plot_annotation(tag_levels = "A")
+ggsave("figures/Fig2_temperature_location_scale_time.png", combined,
+       width = 8.4, height = 4.2, dpi = 400)
+ggsave("figures/environment_temperature_scale.png", p_scale,
+       width = 6.4, height = 4.8, dpi = 400)
+```

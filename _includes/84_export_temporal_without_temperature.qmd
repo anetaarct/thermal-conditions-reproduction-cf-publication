@@ -1,0 +1,59 @@
+```{.r filename="R/84_export_temporal_without_temperature.R"}
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
+setwd('/home/arct/CF_model_comparison_20261013')
+base<-'year_without_temperature_20261022';out<-file.path(base,'publication_export');dir.create(out,showWarnings=FALSE)
+put<-function(x,n)write.csv(x,file.path(out,n),row.names=FALSE)
+hash<-tools::md5sum(file.path(base,c('clutch_selected.rds','fledging_selected.rds')))
+random<-checks<-list()
+cmp_pmf<-function(mu,phi) {
+ nu<-1/phi;k<-0:max(40,ceiling(max(mu)+20));lf<-lgamma(k+1)
+ prob<-function(a){z<-outer(a,k)-outer(nu,lf);z<-exp(z-do.call(pmax,as.data.frame(z)));z/rowSums(z)}
+ lo<-nu*log(pmax(mu-3,.001))-20;hi<-nu*log(mu+3)+20
+ for(it in 1:65){mid<-(lo+hi)/2;p<-prob(mid);em<-drop(p%*%k);low<-em<mu;lo[low]<-mid[low];hi[!low]<-mid[!low]}
+ p<-prob((lo+hi)/2);stopifnot(max(abs(drop(p%*%k)-mu))<1e-7,max(p[,length(k)])<1e-10)
+ stopifnot(max(abs(drop(p%*%k^2)-mu^2-compois()$variance(mu,phi)))<1e-5)
+ p
+}
+for(trait in c('clutch','fledging')) {
+ cat(trait,'export started\n');flush.console()
+ m<-readRDS(file.path(base,paste0(trait,'_selected.rds')));d<-if(trait=='clutch')m$frame else readRDS('glmmTMB_comparison_20261016/analysis_data.rds');cf<-fixef(m)
+ V<-vcov(m,full=TRUE);bn<-c(names(cf$cond),paste0('disp~',names(cf$disp)),if(length(cf$zi))paste0('zi~',names(cf$zi)))
+ set.seed(20261022);draw<-MASS::mvrnorm(6000,c(unname(cf$cond),unname(cf$disp),unname(cf$zi)),V[bn,bn])
+ yr<-as.integer(as.character(d$year_f));centre<-unique(round(yr-d$year_c,8));stopifnot(length(centre)==1)
+ grid<-seq(min(yr),max(yr));nc<-length(cf$cond);nd<-length(cf$disp)
+ X<-matrix(0,length(grid),nc,dimnames=list(NULL,names(cf$cond)));X[,1]<-1;X[,'year_c']<-grid-centre
+ Z<-matrix(0,length(grid),nd,dimnames=list(NULL,names(cf$disp)));Z[,1]<-1;Z[,'year_c']<-grid-centre
+ eta<-drop(X%*%cf$cond);etad<-X%*%t(draw[,seq_len(nc),drop=FALSE]);phi<-exp(drop(Z%*%cf$disp));phid<-exp(Z%*%t(draw[,nc+seq_len(nd),drop=FALSE]))
+ if(trait=='clutch') {
+  mu<-exp(eta);mud<-exp(etad);sd<-sqrt(compois()$variance(mu,phi));sdd<-matrix(sqrt(compois()$variance(as.vector(mud),as.vector(phid))),length(grid),6000)
+  outputs<-list(mean=list(mu,mud),sd=list(sd,sdd))
+ } else {
+  mu<-(1-plogis(cf$zi[1]))*plogis(eta);mud<-sweep(plogis(etad),2,1-plogis(draw[,nc+nd+1]),'*')
+  outputs<-list(success=list(mu,mud),phi=list(phi,phid))
+ }
+ for(comp in names(outputs)){v<-outputs[[comp]];put(data.frame(x=grid,age_class='YOUNG',estimate=v[[1]],CI_low=apply(v[[2]],1,quantile,.025),CI_high=apply(v[[2]],1,quantile,.975)),paste0(trait,'_year_',comp,'.csv'))}
+ re<-VarCorr(m);random[[trait]]<-do.call(rbind,lapply(names(re),function(cmp)do.call(rbind,lapply(names(re[[cmp]]),function(gr)data.frame(trait=trait,component=cmp,group=gr,SD=unname(attr(re[[cmp]][[gr]],'stddev')))))))
+ cat(trait,'conditional simulation checks: 500 datasets\n');flush.console();set.seed(20261022)
+ cmu<-predict(m,type='conditional');cphi<-predict(m,type='disp')
+ if(trait=='clutch') {
+  pp<-cmp_pmf(cmu,cphi);u<-matrix(runif(nrow(d)*500),nrow(d),500);ymat<-matrix(0L,nrow(d),500);cp<-numeric(nrow(d))
+  for(j in seq_len(ncol(pp)-1)){cp<-cp+pp[,j];ymat<-ymat+(u>cp)}
+ } else {
+  zi<-predict(m,type='zprob')
+  ymat<-replicate(500,{pr<-rbeta(nrow(d),cmu*cphi,(1-cmu)*cphi);y<-rbinom(nrow(d),d$clutch,pr);y[runif(nrow(d))<zi]<-0;y})
+ }
+ obs<-model.response(model.frame(m));if(trait=='fledging'){obs<-obs[,1]/d$clutch;ymat<-ymat/d$clutch}else obs<-as.numeric(obs)
+ groups<-c(list(overall=seq_along(obs)),split(seq_along(obs),yr))
+ for(g in names(groups)){
+  ii<-groups[[g]];ss<-list(mean=colMeans(ymat[ii,,drop=FALSE]),variance=apply(ymat[ii,,drop=FALSE],2,var));oo<-c(mean=mean(obs[ii]),variance=var(obs[ii]))
+  if(trait=='fledging'){ss$zero_fraction<-colMeans(ymat[ii,,drop=FALSE]==0);ss$complete_success<-colMeans(ymat[ii,,drop=FALSE]==1);oo<-c(oo,zero_fraction=mean(obs[ii]==0),complete_success=mean(obs[ii]==1))}
+  for(stat in names(ss))checks[[length(checks)+1]]<-data.frame(trait=trait,target='conditional_plugin',group=g,n=length(ii),statistic=stat,observed=unname(oo[stat]),predicted=mean(ss[[stat]]),lower=unname(quantile(ss[[stat]],.025)),upper=unname(quantile(ss[[stat]],.975)))
+ }
+ cat(trait,'export finished\n');flush.console()
+}
+put(do.call(rbind,random),'random_SD.csv');put(do.call(rbind,checks),'temporal_simulation_checks.csv')
+stopifnot(identical(hash,tools::md5sum(file.path(base,c('clutch_selected.rds','fledging_selected.rds')))))
+writeLines(c('Temporal trends: models refitted without temperature in either location or scale; age, relative laying date and original random structures retained.','Yearling, relative laying date zero, all random effects zero; 6000 joint asymptotic coefficient draws, pointwise 95% confidence intervals.','COM-Poisson SD is calculated from the exact fitted distribution; higher SD means lower reproductive consistency.','Fledging mean is the full mixture expectation (1-pi)*mu; higher phi indicates greater consistency at fixed component mean and clutch size.','Simulation checks: 500 conditional plug-in datasets; omit parameter uncertainty and do not assess held-out prediction.','COM-Poisson conditional sampler uses numerically normalised exact probabilities; the attempted native new-group sampler returned NaNs and those simulations were excluded.','The original temperature-association models and estimates are unchanged.'),file.path(out,'README.txt'))
+cat('COMPLETE\n')
+```

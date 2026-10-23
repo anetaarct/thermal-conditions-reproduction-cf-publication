@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+ <span class="menu-text">Data preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -154,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year trends</span></a>
+ <span class="menu-text">Calendar-year analyses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figures &amp; analysis code</span></a>
+ <span class="menu-text">Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -224,54 +224,30 @@ ul.task-list li input[type="checkbox"] {
 <p class="title-authors">Aneta Arct · Santiago Ortega · Rafał Martyka · Lars Gustafsson · Szymon M. Drobniak · Shinichi Nakagawa</p>
 <p class="title-notes">Data, analysis workflow and results · Gotland, Sweden</p>
 </div></section>
-<section id="a-long-term-view-of-reproduction" class="level2">
-<h2 class="anchored" data-anchor-id="a-long-term-view-of-reproduction">A long-term view of reproduction</h2>
+<section id="project-aims" class="level2">
+<h2 class="anchored" data-anchor-id="project-aims">Project aims</h2>
 <div class="overview-background-panel">
 <figure class="overview-species-photo figure"><img src="images/overview-flycatcher.png" alt="Collared flycatcher perched on a branch." class="figure-img"></figure>
-<p>Using long-term records of collared flycatchers (<em>Ficedula albicollis</em>), we examine both average reproductive performance and <strong>reproductive consistency</strong>: how similarly breeding attempts perform under comparable conditions.</p>
-<p>Clutch size increased and egg-to-fledging success declined over calendar time, with no clear temporal change in reproductive consistency. Mean spring temperature increased by approximately <strong>0.44°C per decade</strong>, without a clear increase in variability among years. Warmer springs were associated with larger clutches but lower fledging success; temperature associations with consistency remained uncertain.</p>
-<p>Later-laying females had smaller clutches, lower success and greater estimated reproductive inconsistency. Older females laid larger and more consistent clutches; age differences in fledging performance and consistency remained uncertain.</p>
-<p>We predicted declining consistency <strong>over time</strong>. Temporal trends and temperature associations answer separate questions and do not establish a causal effect of warming.</p>
+<p>Using long-term records of collared flycatchers (<em>Ficedula albicollis</em>) on Gotland, we ask:</p>
+<ol type="1">
+<li>How did mean spring temperature and its variability change over the study period?</li>
+<li>How did mean clutch size, egg-to-fledging success and reproductive consistency change over calendar time?</li>
+<li>How were spring temperatures associated with mean reproductive performance and reproductive consistency?</li>
+<li>How were laying date and female age associated with these reproductive traits?</li>
+</ol>
 </div>
 </section>
-<section id="follow-the-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="follow-the-analysis">Follow the analysis</h2>
-<p>Field records and Swedish weather observations come first. A phenology-based sliding-window analysis informs the thermal exposure window; calendar-year trends then precede temperature associations in the reproductive results.</p>
+<section id="analysis-chapters" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-chapters">Analysis chapters</h2>
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data &amp; preparation</h3><p>Load the breeding database, obtain SMHI weather and construct analysis inputs.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Candidate periods, randomisation, temporal validation and the operational window.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Changes in reproductive performance and consistency from models without temperature.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Temperature &amp; reproduction</h3><p>Temperature, laying date and age: clutch size and egg-to-fledging success.</p></a>
+<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Required files, database loading, SMHI observations and software versions.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Inputs, analysis settings, saved results and the thermal exposure window.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Data preparation, model code, saved output and the figure.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Clutch size</h3><p>Model fitting, prediction export and saved results.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3 class="anchored">04 · Egg-to-fledging success</h3><p>Model fitting, prediction export and saved results.</p></a>
+<a class="overview-tile" href="model_structure.html"><h3 class="anchored">Model equations &amp; checks</h3><p>Model specifications and diagnostic outputs.</p></a>
+<a class="overview-tile" href="figure_code.html"><h3 class="anchored">Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
 </div>
-<p><a href="./fledging_success.html">Egg-to-fledging results</a> · <a href="./model_structure.html">Model equations and checks</a> · <a href="./figure_code.html">Figures and code</a></p>
-</section>
-<section id="study-records" class="level2">
-<h2 class="anchored" data-anchor-id="study-records">Study records</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Analysis</th>
-<th style="text-align: right;">Breeding attempts</th>
-<th style="text-align: right;">Females</th>
-<th>Seasons</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Clutch size</td>
-<td style="text-align: right;">12,627</td>
-<td style="text-align: right;">8,894</td>
-<td>1981–2025, excluding 2020</td>
-</tr>
-<tr class="even">
-<td>Egg-to-fledging success</td>
-<td style="text-align: right;">9,790</td>
-<td style="text-align: right;">7,132</td>
-<td>1981–2019</td>
-</tr>
-</tbody>
-</table>
-<p>Weather covers 1980–2025. Window selection uses 45 seasons with laying-date records. See <a href="./workflow.html#what-is-available">the input and code inventory</a> for available files and remaining reproducibility gaps.</p>
 
 
 </section>
@@ -681,8 +657,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="Data loading &amp; SMHI weather">
-        <span class="nav-page-text">Data loading &amp; SMHI weather</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./workflow.html" class="pagination-link" aria-label="Data preparation">
+        <span class="nav-page-text">Data preparation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

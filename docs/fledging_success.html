@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Fledging success – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Egg-to-fledging analysis – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,35 +111,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -196,7 +167,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+ <span class="menu-text">Data preparation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,7 +190,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year trends</span></a>
+ <span class="menu-text">Calendar-year analyses</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -260,7 +231,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figures &amp; analysis code</span></a>
+ <span class="menu-text">Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -275,18 +246,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#s1.7-fledging-success-final-ml-estimates-and-diagnostics" id="toc-s1.7-fledging-success-final-ml-estimates-and-diagnostics" class="nav-link active" data-scroll-target="#s1.7-fledging-success-final-ml-estimates-and-diagnostics"><span class="header-section-number">1</span> S1.7 Fledging success: final ML estimates and diagnostics</a></li>
-  <li><a href="#primary-structure-and-numerical-verification." id="toc-primary-structure-and-numerical-verification." class="nav-link" data-scroll-target="#primary-structure-and-numerical-verification."><span class="header-section-number">2</span> Primary structure and numerical verification.</a></li>
-  <li><a href="#reference-predictions." id="toc-reference-predictions." class="nav-link" data-scroll-target="#reference-predictions."><span class="header-section-number">3</span> Reference predictions.</a></li>
-  <li><a href="#random-effects-and-extra-zero-probability." id="toc-random-effects-and-extra-zero-probability." class="nav-link" data-scroll-target="#random-effects-and-extra-zero-probability."><span class="header-section-number">4</span> Random effects and extra-zero probability.</a></li>
-  <li><a href="#primary-simulation-checks-and-limitations." id="toc-primary-simulation-checks-and-limitations." class="nav-link" data-scroll-target="#primary-simulation-checks-and-limitations."><span class="header-section-number">5</span> Primary simulation checks and limitations.</a>
-  <ul class="collapse">
-  <li><a href="#final-ml-downloads" id="toc-final-ml-downloads" class="nav-link" data-scroll-target="#final-ml-downloads"><span class="header-section-number">5.1</span> Final ML downloads</a></li>
-  <li><a href="#temperature" id="toc-temperature" class="nav-link" data-scroll-target="#temperature"><span class="header-section-number">5.2</span> Temperature</a></li>
-  <li><a href="#temporal-trends-without-temperature" id="toc-temporal-trends-without-temperature" class="nav-link" data-scroll-target="#temporal-trends-without-temperature"><span class="header-section-number">5.3</span> Temporal trends without temperature</a></li>
-  <li><a href="#relative-laying-date" id="toc-relative-laying-date" class="nav-link" data-scroll-target="#relative-laying-date"><span class="header-section-number">5.4</span> Relative laying date</a></li>
-  <li><a href="#female-age-class" id="toc-female-age-class" class="nav-link" data-scroll-target="#female-age-class"><span class="header-section-number">5.5</span> Female age class</a></li>
-  </ul></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
+  <li><a href="#fit-and-verify-the-model" id="toc-fit-and-verify-the-model" class="nav-link" data-scroll-target="#fit-and-verify-the-model">Fit and verify the model</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
+  <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -295,7 +258,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./fledging_success.html">Egg-to-fledging success</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Fledging success</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title">Egg-to-fledging analysis</h1>
 </div>
 
 
@@ -312,215 +275,569 @@ window.Quarto = {
 </header>
 
 
-<p>The specifications, estimates and checks below describe the <strong>unchanged temperature-association model</strong>. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the <a href="./temporal_trends.html">Temporal trends</a> section.</p>
-<section id="s1.7-fledging-success-final-ml-estimates-and-diagnostics" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> S1.7 Fledging success: final ML estimates and diagnostics</h1>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
+<p>The original script loads the curated fledging dataset and an existing beta-binomial fit before adding year variation in the extra-zero component.</p>
+<details class="analysis-code" open="">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/M1_selected.rds"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/analysis_data.rds"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nobs</span>(base) <span class="sc">==</span> <span class="dv">9790</span>, base<span class="sc">$</span>fit<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </section>
-<section id="primary-structure-and-numerical-verification." class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Primary structure and numerical verification.</h1>
-<p>The primary fledging model was fitted by maximum likelihood in glmmTMB 1.1.14 to the same 9,790 brood records. Mean and log-precision predictors, links and random effects were retained from the former ML fit; the only extension was an independent year random intercept in logit extra-zero probability. An initial unrestricted nlminb attempt failed with NA/NaN gradients and was excluded. A scaled, bounded L-BFGS-B fit yielded an interior solution (minimum relative distance to bounds 0.261). Independent unbounded BFGS refinement gave convergence code zero and a positive-definite Hessian; the two log likelihoods agreed within <span class="math inline">\(10^{-7}\)</span> and maximum absolute SE-scaled gradients were below <span class="math inline">\(3.8\times10^{-4}\)</span>. Log likelihood was <span class="math inline">\(-16632.0562\)</span>, with 15 parameters and AIC 33294.11, versus 33463.58 for the constant-extra-zero ML model (14 parameters). We report AIC rather than an ordinary chi-square likelihood-ratio p-value because the null random-effect variance lies on a boundary. This comparison concerns fitted marginal likelihood, not out-of-sample validation.</p>
-</section>
-<section id="reference-predictions." class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Reference predictions.</h1>
-<p>Curves use ML point estimates and pointwise 95% CIs from 8,000 joint asymptotic coefficient draws, including covariance across location, precision and extra-zero coefficients. Every random effect is set to zero, including precision-year and extra-zero-year effects. We computed <span class="math inline">\(\mu=\operatorname{logit}^{-1}(X\widehat\beta)\)</span>, <span class="math inline">\(\phi=\exp(Z\widehat\gamma)\)</span> and <span class="math inline">\(\pi_0=\operatorname{logit}^{-1}(\widehat\alpha_0)\)</span> explicitly, and verified them against native predictions with grouping variables set to missing. In glmmTMB 1.1.14, <code>re.form=NA</code> alone did not remove precision-year and extra-zero-year contributions for an existing year. Explicit fixed designs prevent these contributions entering reference curves. Curves are conditional reference predictions, not averages over the distribution of years or individual-brood prediction intervals.</p>
+<section id="fit-and-verify-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-and-verify-the-model">Fit and verify the model</h2>
+<p>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</p>
+<details class="analysis-code">
+<summary>
+Show original code: 81_fit_ZIyear_fledging.R
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/81_fit_ZIyear_fledging.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="R/81_fit_ZIyear_fledging.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="fu">path.expand</span>(<span class="st">'~/R/cf_model_comparison_20261013_R46'</span>),<span class="fu">path.expand</span>(<span class="st">'~/R/x86_64-pc-linux-gnu-library/4.5'</span>),<span class="fu">.libPaths</span>()))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">OMP_NUM_THREADS=</span><span class="dv">1</span>,<span class="at">OPENBLAS_NUM_THREADS=</span><span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({<span class="fu">library</span>(glmmTMB);<span class="fu">library</span>(MASS)})</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'/home/arct/CF_model_comparison_20261013'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>out<span class="ot">&lt;-</span><span class="st">'zi_year_sensitivity_20261020'</span>;<span class="fu">dir.create</span>(out,<span class="at">showWarnings=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>logmsg<span class="ot">&lt;-</span><span class="cf">function</span>(...){<span class="fu">cat</span>(<span class="fu">format</span>(<span class="fu">Sys.time</span>()),...,<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>()}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>put<span class="ot">&lt;-</span><span class="cf">function</span>(x,n)<span class="fu">write.csv</span>(x,<span class="fu">file.path</span>(out,n),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="st">'glmmTMB_comparison_20261016/M1_selected.rds'</span>;original_hash<span class="ot">&lt;-</span>tools<span class="sc">::</span><span class="fu">md5sum</span>(p);base<span class="ot">&lt;-</span><span class="fu">readRDS</span>(p);d<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">'glmmTMB_comparison_20261016/analysis_data.rds'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nobs</span>(base)<span class="sc">==</span><span class="dv">9790</span>,base<span class="sc">$</span>fit<span class="sc">$</span>convergence<span class="sc">==</span><span class="dv">0</span>,<span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>diagrow<span class="ot">&lt;-</span><span class="cf">function</span>(m,label,opt)<span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">optimizer=</span>opt,<span class="at">n=</span><span class="fu">nobs</span>(m),<span class="at">parameters=</span><span class="fu">attr</span>(<span class="fu">logLik</span>(m),<span class="st">'df'</span>),<span class="at">logLik=</span><span class="fu">as.numeric</span>(<span class="fu">logLik</span>(m)),<span class="at">AIC=</span><span class="fu">AIC</span>(m),<span class="at">BIC=</span><span class="fu">BIC</span>(m),<span class="at">convergence=</span>m<span class="sc">$</span>fit<span class="sc">$</span>convergence,<span class="at">pdHess=</span>m<span class="sc">$</span>sdr<span class="sc">$</span>pdHess,<span class="at">max_gradient=</span><span class="fu">max</span>(<span class="fu">abs</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed)),<span class="at">scaled_gradient=</span><span class="fu">max</span>(<span class="fu">abs</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed)))))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>lo<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">11</span>),<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">9</span>,<span class="dv">4</span>));hi<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">10</span>,<span class="dv">11</span>),<span class="fu">rep</span>(<span class="fu">log</span>(<span class="dv">10</span>),<span class="dv">4</span>));ps<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">30</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">100</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">30</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">100</span>,<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>));ctl<span class="ot">&lt;-</span><span class="fu">glmmTMBControl</span>(<span class="at">optimizer=</span>optim,<span class="at">optArgs=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'L-BFGS-B'</span>,<span class="at">lower=</span>lo,<span class="at">upper=</span>hi),<span class="at">optCtrl=</span><span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">10000</span>,<span class="at">factr=</span><span class="fl">1e5</span>,<span class="at">pgtol=</span><span class="fl">1e-7</span>,<span class="at">parscale=</span>ps),<span class="at">parallel=</span><span class="dv">1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>f<span class="ot">&lt;-</span><span class="fu">file.path</span>(out,<span class="st">'zi_year_LBFGSB.rds'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">logmsg</span>(<span class="st">'Fit zero-component random year intercept; all other terms retained'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">file.exists</span>(f))a<span class="ot">&lt;-</span><span class="fu">readRDS</span>(f) <span class="cf">else</span> {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a> bb<span class="ot">&lt;-</span><span class="fu">fixef</span>(base);st<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">beta=</span>bb<span class="sc">$</span>cond,<span class="at">betadisp=</span>bb<span class="sc">$</span>disp,<span class="at">betazi=</span>bb<span class="sc">$</span>zi,<span class="at">theta=</span><span class="fu">unname</span>(base<span class="sc">$</span>fit<span class="sc">$</span>par[<span class="fu">names</span>(base<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">==</span><span class="st">'theta'</span>]),<span class="at">thetadisp=</span><span class="fu">unname</span>(base<span class="sc">$</span>fit<span class="sc">$</span>par[<span class="fu">names</span>(base<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">==</span><span class="st">'thetadisp'</span>]),<span class="at">thetazi=</span><span class="fu">log</span>(.<span class="dv">3</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a> pl<span class="ot">&lt;-</span>base<span class="sc">$</span>obj<span class="sc">$</span>env<span class="sc">$</span><span class="fu">parList</span>(<span class="at">par=</span>base<span class="sc">$</span>fit<span class="sc">$</span>parfull);st<span class="sc">$</span>b<span class="ot">&lt;-</span>pl<span class="sc">$</span>b;st<span class="sc">$</span>bdisp<span class="ot">&lt;-</span>pl<span class="sc">$</span>bdisp;st<span class="sc">$</span>bzi<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">nlevels</span>(d<span class="sc">$</span>year_f))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a> a<span class="ot">&lt;-</span><span class="fu">glmmTMB</span>(<span class="fu">cbind</span>(fledged,clutch<span class="sc">-</span>fledged)<span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>temp_mean_c<span class="sc">+</span>year_c<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>female_id)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f),<span class="at">dispformula=</span><span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>temp_mean_c<span class="sc">+</span>year_c<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f),<span class="at">ziformula=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>year_f),<span class="at">family=</span><span class="fu">betabinomial</span>(<span class="at">link=</span><span class="st">'logit'</span>),<span class="at">data=</span>d,<span class="at">start=</span>st,<span class="at">control=</span>ctl)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">saveRDS</span>(a,f)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">diagrow</span>(a,<span class="st">'ZI_year'</span>,<span class="st">'L-BFGS-B'</span>));<span class="fu">cat</span>(<span class="st">'Minimum relative distance to bounds:'</span>,<span class="fu">min</span>(<span class="fu">pmin</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par<span class="sc">-</span>lo,hi<span class="sc">-</span>a<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">/</span>(hi<span class="sc">-</span>lo)),<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>);<span class="fu">flush.console</span>()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>st<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">beta=</span><span class="fu">fixef</span>(a)<span class="sc">$</span>cond,<span class="at">betadisp=</span><span class="fu">fixef</span>(a)<span class="sc">$</span>disp,<span class="at">betazi=</span><span class="fu">fixef</span>(a)<span class="sc">$</span>zi,<span class="at">theta=</span><span class="fu">unname</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par[<span class="fu">names</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">==</span><span class="st">'theta'</span>]),<span class="at">thetadisp=</span><span class="fu">unname</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par[<span class="fu">names</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">==</span><span class="st">'thetadisp'</span>]),<span class="at">thetazi=</span><span class="fu">unname</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par[<span class="fu">names</span>(a<span class="sc">$</span>fit<span class="sc">$</span>par)<span class="sc">==</span><span class="st">'thetazi'</span>]))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>f2<span class="ot">&lt;-</span><span class="fu">file.path</span>(out,<span class="st">'zi_year_BFGS.rds'</span>);<span class="fu">logmsg</span>(<span class="st">'Independent BFGS verification'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">file.exists</span>(f2))b<span class="ot">&lt;-</span><span class="fu">readRDS</span>(f2) <span class="cf">else</span> {b<span class="ot">&lt;-</span><span class="fu">update</span>(a,<span class="at">start=</span>st,<span class="at">control=</span><span class="fu">glmmTMBControl</span>(<span class="at">optimizer=</span>optim,<span class="at">optArgs=</span><span class="fu">list</span>(<span class="at">method=</span><span class="st">'BFGS'</span>),<span class="at">optCtrl=</span><span class="fu">list</span>(<span class="at">maxit=</span><span class="dv">10000</span>,<span class="at">reltol=</span><span class="fl">1e-12</span>),<span class="at">parallel=</span><span class="dv">1</span>));<span class="fu">saveRDS</span>(b,f2)}</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>dg<span class="ot">&lt;-</span><span class="fu">rbind</span>(<span class="fu">diagrow</span>(base,<span class="st">'Current_ML'</span>,<span class="st">'selected'</span>),<span class="fu">diagrow</span>(a,<span class="st">'ZI_year'</span>,<span class="st">'L-BFGS-B'</span>),<span class="fu">diagrow</span>(b,<span class="st">'ZI_year'</span>,<span class="st">'BFGS'</span>));<span class="fu">put</span>(dg,<span class="st">'optimizer_comparison.csv'</span>);<span class="fu">print</span>(dg,<span class="at">digits=</span><span class="dv">12</span>);<span class="fu">flush.console</span>()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>good<span class="ot">&lt;-</span><span class="cf">function</span>(x)x<span class="sc">$</span>fit<span class="sc">$</span>convergence<span class="sc">==</span><span class="dv">0</span><span class="sc">&amp;&amp;</span><span class="fu">isTRUE</span>(x<span class="sc">$</span>sdr<span class="sc">$</span>pdHess)<span class="sc">&amp;&amp;</span><span class="fu">is.finite</span>(<span class="fu">as.numeric</span>(<span class="fu">logLik</span>(x)))<span class="sc">&amp;&amp;</span><span class="fu">max</span>(<span class="fu">abs</span>(x<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(x<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed))))<span class="sc">&lt;</span>.<span class="dv">005</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>cand<span class="ot">&lt;-</span><span class="fu">list</span>(a,b);ok<span class="ot">&lt;-</span><span class="fu">vapply</span>(cand,good,<span class="fu">logical</span>(<span class="dv">1</span>));<span class="cf">if</span>(<span class="sc">!</span><span class="fu">any</span>(ok))<span class="fu">stop</span>(<span class="st">'No admissible extended fit; do not interpret'</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span>cand[[<span class="fu">which</span>(ok)[<span class="fu">which.max</span>(<span class="fu">vapply</span>(cand[ok],<span class="cf">function</span>(x)<span class="fu">as.numeric</span>(<span class="fu">logLik</span>(x)),<span class="fu">numeric</span>(<span class="dv">1</span>)))]]];<span class="fu">saveRDS</span>(m,<span class="fu">file.path</span>(out,<span class="st">'zi_year_selected.rds'</span>))</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(<span class="fu">model.response</span>(<span class="fu">model.frame</span>(base)),<span class="fu">model.response</span>(<span class="fu">model.frame</span>(m))),<span class="fu">nobs</span>(m)<span class="sc">==</span><span class="fu">nobs</span>(base))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>mods<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">Current_ML=</span>base,<span class="at">ZI_year=</span>m);<span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">model=</span><span class="fu">names</span>(mods),<span class="at">n=</span><span class="fu">sapply</span>(mods,nobs),<span class="at">parameters=</span><span class="fu">sapply</span>(mods,<span class="cf">function</span>(x)<span class="fu">attr</span>(<span class="fu">logLik</span>(x),<span class="st">'df'</span>)),<span class="at">logLik=</span><span class="fu">sapply</span>(mods,<span class="cf">function</span>(x)<span class="fu">as.numeric</span>(<span class="fu">logLik</span>(x))),<span class="at">AIC=</span><span class="fu">sapply</span>(mods,AIC),<span class="at">BIC=</span><span class="fu">sapply</span>(mods,BIC)),<span class="st">'model_comparison.csv'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>fixed<span class="ot">&lt;-</span><span class="fu">list</span>();random<span class="ot">&lt;-</span><span class="fu">list</span>();contrasts<span class="ot">&lt;-</span><span class="fu">list</span>();annual<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(label <span class="cf">in</span> <span class="fu">names</span>(mods)){</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a> mm<span class="ot">&lt;-</span>mods[[label]];co<span class="ot">&lt;-</span><span class="fu">summary</span>(mm)<span class="sc">$</span>coefficients</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a> fixed[[label]]<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(co),<span class="cf">function</span>(cmp){v<span class="ot">&lt;-</span>co[[cmp]];<span class="cf">if</span>(<span class="sc">!</span><span class="fu">length</span>(v))<span class="fu">return</span>(<span class="cn">NULL</span>);<span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">component=</span>cmp,<span class="at">term=</span><span class="fu">rownames</span>(v),<span class="at">estimate=</span>v[,<span class="dv">1</span>],<span class="at">SE=</span>v[,<span class="dv">2</span>],<span class="at">lower=</span>v[,<span class="dv">1</span>]<span class="sc">-</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>v[,<span class="dv">2</span>],<span class="at">upper=</span>v[,<span class="dv">1</span>]<span class="sc">+</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>v[,<span class="dv">2</span>])}))</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a> re<span class="ot">&lt;-</span><span class="fu">VarCorr</span>(mm);random[[label]]<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re),<span class="cf">function</span>(cmp)<span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re[[cmp]]),<span class="cf">function</span>(gr)<span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">component=</span>cmp,<span class="at">group=</span>gr,<span class="at">SD=</span><span class="fu">attr</span>(re[[cmp]][[gr]],<span class="st">'stddev'</span>))))))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a> <span class="fu">capture.output</span>(<span class="fu">summary</span>(mm),glmmTMB<span class="sc">::</span><span class="fu">diagnose</span>(mm),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="fu">paste0</span>(label,<span class="st">'_summary.txt'</span>)))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a> <span class="co"># Same reference condition in both models; all random effects zero, including zi.</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a> cf<span class="ot">&lt;-</span><span class="fu">fixef</span>(mm);bn<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">names</span>(cf<span class="sc">$</span>cond),<span class="fu">paste0</span>(<span class="st">'zi~'</span>,<span class="fu">names</span>(cf<span class="sc">$</span>zi)));V<span class="ot">&lt;-</span><span class="fu">vcov</span>(mm,<span class="at">full=</span><span class="cn">TRUE</span>)[bn,bn,drop<span class="ot">=</span><span class="cn">FALSE</span>];<span class="fu">stopifnot</span>(<span class="fu">min</span>(<span class="fu">eigen</span>(V,<span class="at">symmetric=</span><span class="cn">TRUE</span>,<span class="at">only.values=</span><span class="cn">TRUE</span>)<span class="sc">$</span>values)<span class="sc">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a> beta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">unname</span>(cf<span class="sc">$</span>cond),<span class="fu">unname</span>(cf<span class="sc">$</span>zi));<span class="fu">set.seed</span>(<span class="dv">20261020</span>);draw<span class="ot">&lt;-</span>MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="dv">8000</span>,beta,V);nc<span class="ot">&lt;-</span><span class="fu">length</span>(cf<span class="sc">$</span>cond)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a> X0<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(<span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>temp_mean_c<span class="sc">+</span>year_c,d[<span class="dv">1</span>,,<span class="at">drop=</span><span class="cn">FALSE</span>]);X0[,]<span class="ot">&lt;-</span><span class="dv">0</span>;X0[<span class="dv">1</span>,<span class="st">'(Intercept)'</span>]<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(kind <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'temp_mean_c'</span>,<span class="st">'rel_LD'</span>)){</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  X1<span class="ot">&lt;-</span>X0;X1[<span class="dv">1</span>,kind]<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  p0<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(cf<span class="sc">$</span>zi[<span class="dv">1</span>]))<span class="sc">*</span><span class="fu">plogis</span>(<span class="fu">drop</span>(X0<span class="sc">%*%</span>cf<span class="sc">$</span>cond));p1<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(cf<span class="sc">$</span>zi[<span class="dv">1</span>]))<span class="sc">*</span><span class="fu">plogis</span>(<span class="fu">drop</span>(X1<span class="sc">%*%</span>cf<span class="sc">$</span>cond));d0<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(draw[,nc<span class="sc">+</span><span class="dv">1</span>]))<span class="sc">*</span><span class="fu">plogis</span>(<span class="fu">drop</span>(draw[,<span class="dv">1</span><span class="sc">:</span>nc,<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">%*%</span><span class="fu">t</span>(X0)));d1<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">plogis</span>(draw[,nc<span class="sc">+</span><span class="dv">1</span>]))<span class="sc">*</span><span class="fu">plogis</span>(<span class="fu">drop</span>(draw[,<span class="dv">1</span><span class="sc">:</span>nc,<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">%*%</span><span class="fu">t</span>(X1)))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  contrasts[[<span class="fu">paste</span>(label,kind)]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">predictor=</span>kind,<span class="at">contrast=</span><span class="dv">1</span>,<span class="at">target=</span><span class="st">'full-mixture probability difference; YOUNG; other covariates centred; all random effects zero'</span>,<span class="at">estimate=</span>p1<span class="sc">-</span>p0,<span class="at">lower=</span><span class="fu">quantile</span>(d1<span class="sc">-</span>d0,.<span class="dv">025</span>),<span class="at">upper=</span><span class="fu">quantile</span>(d1<span class="sc">-</span>d0,.<span class="dv">975</span>),<span class="at">reference_success=</span>p0,<span class="at">contrast_success=</span>p1)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a> mu<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'conditional'</span>);phi<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'disp'</span>);zi<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'zprob'</span>);pz<span class="ot">&lt;-</span>zi<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>zi)<span class="sc">*</span><span class="fu">exp</span>(<span class="fu">lbeta</span>(mu<span class="sc">*</span>phi,(<span class="dv">1</span><span class="sc">-</span>mu)<span class="sc">*</span>phi<span class="sc">+</span>d<span class="sc">$</span>clutch)<span class="sc">-</span><span class="fu">lbeta</span>(mu<span class="sc">*</span>phi,(<span class="dv">1</span><span class="sc">-</span>mu)<span class="sc">*</span>phi))</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(yr <span class="cf">in</span> <span class="fu">levels</span>(d<span class="sc">$</span>year_f)){ix<span class="ot">&lt;-</span>d<span class="sc">$</span>year_f<span class="sc">==</span>yr;annual[[<span class="fu">paste</span>(label,yr)]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">year=</span>yr,<span class="at">n=</span><span class="fu">sum</span>(ix),<span class="at">observed_zero=</span><span class="fu">mean</span>(d<span class="sc">$</span>fledged[ix]<span class="sc">==</span><span class="dv">0</span>),<span class="at">predicted_zero=</span><span class="fu">mean</span>(pz[ix]),<span class="at">extra_zero_probability=</span><span class="fu">mean</span>(zi[ix]),<span class="at">observed_success=</span><span class="fu">mean</span>(d<span class="sc">$</span>fledged[ix]<span class="sc">/</span>d<span class="sc">$</span>clutch[ix]),<span class="at">predicted_success=</span><span class="fu">mean</span>((<span class="dv">1</span><span class="sc">-</span>zi[ix])<span class="sc">*</span>mu[ix]))}</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">do.call</span>(rbind,fixed),<span class="st">'fixed_effects.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,random),<span class="st">'random_SD.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,contrasts),<span class="st">'full_mixture_contrasts.csv'</span>);<span class="fu">put</span>(<span class="fu">do.call</span>(rbind,annual),<span class="st">'annual_calibration.csv'</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">do.call</span>(rbind,fixed)[<span class="fu">do.call</span>(rbind,fixed)<span class="sc">$</span>term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'temp_mean_c'</span>,<span class="st">'rel_LD'</span>),],<span class="at">digits=</span><span class="dv">8</span>);<span class="fu">print</span>(<span class="fu">do.call</span>(rbind,contrasts),<span class="at">digits=</span><span class="dv">8</span>);<span class="fu">flush.console</span>()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Matched conditional and new-group plug-in checks; same simulation targets and seed.</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>bins<span class="ot">&lt;-</span><span class="cf">function</span>(x)<span class="fu">cut</span>(x,<span class="at">breaks=</span><span class="fu">unique</span>(<span class="fu">quantile</span>(x,<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">6</span>))),<span class="at">include.lowest=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>groups<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">overall=</span><span class="fu">rep</span>(<span class="st">'all'</span>,<span class="fu">nrow</span>(d)),<span class="at">year=</span>d<span class="sc">$</span>year_f,<span class="at">age=</span>d<span class="sc">$</span>age_class,<span class="at">date=</span><span class="fu">bins</span>(d<span class="sc">$</span>rel_LD),<span class="at">temperature=</span><span class="fu">bins</span>(d<span class="sc">$</span>temp_mean_c));ppc<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>checksim<span class="ot">&lt;-</span><span class="cf">function</span>(yp,label,target){res<span class="ot">&lt;-</span><span class="fu">list</span>();<span class="cf">for</span>(gn <span class="cf">in</span> <span class="fu">names</span>(groups))<span class="cf">for</span>(lv <span class="cf">in</span> <span class="fu">unique</span>(<span class="fu">as.character</span>(groups[[gn]]))){ix<span class="ot">&lt;-</span><span class="fu">which</span>(<span class="fu">as.character</span>(groups[[gn]])<span class="sc">==</span>lv);yy<span class="ot">&lt;-</span>yp[,ix,drop<span class="ot">=</span><span class="cn">FALSE</span>];nn<span class="ot">&lt;-</span>d<span class="sc">$</span>clutch[ix];y<span class="ot">&lt;-</span>d<span class="sc">$</span>fledged[ix];fr<span class="ot">&lt;-</span><span class="fu">sweep</span>(yy,<span class="dv">2</span>,nn,<span class="st">'/'</span>);ss<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">mean_fraction=</span><span class="fu">rowMeans</span>(fr),<span class="at">zero_fraction=</span><span class="fu">rowMeans</span>(yy<span class="sc">==</span><span class="dv">0</span>),<span class="at">complete_success=</span><span class="fu">rowMeans</span>(<span class="fu">sweep</span>(yy,<span class="dv">2</span>,nn,<span class="st">'=='</span>)),<span class="at">variance_fraction=</span><span class="fu">apply</span>(fr,<span class="dv">1</span>,var));obs<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">mean_fraction=</span><span class="fu">mean</span>(y<span class="sc">/</span>nn),<span class="at">zero_fraction=</span><span class="fu">mean</span>(y<span class="sc">==</span><span class="dv">0</span>),<span class="at">complete_success=</span><span class="fu">mean</span>(y<span class="sc">==</span>nn),<span class="at">variance_fraction=</span><span class="fu">var</span>(y<span class="sc">/</span>nn));<span class="cf">for</span>(s <span class="cf">in</span> <span class="fu">names</span>(ss))res[[<span class="fu">length</span>(res)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">model=</span>label,<span class="at">target=</span>target,<span class="at">group=</span>gn,<span class="at">level=</span>lv,<span class="at">n=</span><span class="fu">length</span>(ix),<span class="at">statistic=</span>s,<span class="at">observed=</span>obs[s],<span class="at">predicted=</span><span class="fu">mean</span>(ss[[s]]),<span class="at">lower=</span><span class="fu">quantile</span>(ss[[s]],.<span class="dv">025</span>),<span class="at">upper=</span><span class="fu">quantile</span>(ss[[s]],.<span class="dv">975</span>))};<span class="fu">do.call</span>(rbind,res)}</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(label <span class="cf">in</span> <span class="fu">names</span>(mods)){</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a> <span class="fu">logmsg</span>(<span class="st">'Simulation checks'</span>,label);mm<span class="ot">&lt;-</span>mods[[label]];mu<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'conditional'</span>);phi<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'disp'</span>);zi<span class="ot">&lt;-</span><span class="fu">predict</span>(mm,<span class="at">type=</span><span class="st">'zprob'</span>);<span class="fu">set.seed</span>(<span class="dv">20261020</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a> yp<span class="ot">&lt;-</span><span class="fu">t</span>(<span class="fu">replicate</span>(<span class="dv">1000</span>,{pr<span class="ot">&lt;-</span><span class="fu">rbeta</span>(<span class="fu">nrow</span>(d),mu<span class="sc">*</span>phi,(<span class="dv">1</span><span class="sc">-</span>mu)<span class="sc">*</span>phi);y<span class="ot">&lt;-</span><span class="fu">rbinom</span>(<span class="fu">nrow</span>(d),d<span class="sc">$</span>clutch,pr);y[<span class="fu">runif</span>(<span class="fu">nrow</span>(d))<span class="sc">&lt;</span>zi]<span class="ot">&lt;-</span><span class="dv">0</span>;y}));ppc[[<span class="fu">paste</span>(label,<span class="st">'conditional'</span>)]]<span class="ot">&lt;-</span><span class="fu">checksim</span>(yp,label,<span class="st">'conditional_plugin'</span>);<span class="fu">rm</span>(yp);<span class="fu">gc</span>()</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a> sim<span class="ot">&lt;-</span><span class="fu">simulate</span>(mm,<span class="at">nsim=</span><span class="dv">1000</span>,<span class="at">seed=</span><span class="dv">20261020</span>);yp<span class="ot">&lt;-</span><span class="fu">t</span>(<span class="fu">vapply</span>(sim,<span class="cf">function</span>(x)<span class="cf">if</span>(<span class="fu">is.matrix</span>(x))x[,<span class="dv">1</span>] <span class="cf">else</span> x,<span class="fu">numeric</span>(<span class="fu">nrow</span>(d))));<span class="fu">stopifnot</span>(<span class="fu">all</span>(yp<span class="sc">&gt;=</span><span class="dv">0</span>),<span class="fu">all</span>(<span class="fu">sweep</span>(yp,<span class="dv">2</span>,d<span class="sc">$</span>clutch,<span class="st">'&lt;='</span>)));ppc[[<span class="fu">paste</span>(label,<span class="st">'new_groups'</span>)]]<span class="ot">&lt;-</span><span class="fu">checksim</span>(yp,label,<span class="st">'new_groups_plugin'</span>);<span class="fu">rm</span>(sim,yp);<span class="fu">gc</span>()</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>pp<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,ppc);<span class="fu">put</span>(pp,<span class="st">'simulation_checks.csv'</span>);pp<span class="sc">$</span>outside<span class="ot">&lt;-</span><span class="fu">with</span>(pp,observed<span class="sc">&lt;</span>lower<span class="sc">|</span>observed<span class="sc">&gt;</span>upper);cov<span class="ot">&lt;-</span><span class="fu">aggregate</span>(outside<span class="sc">~</span>model<span class="sc">+</span>target<span class="sc">+</span>group<span class="sc">+</span>statistic,pp,sum);<span class="fu">put</span>(cov,<span class="st">'simulation_outside_counts.csv'</span>);<span class="fu">print</span>(pp[pp<span class="sc">$</span>group<span class="sc">==</span><span class="st">'overall'</span>,],<span class="at">digits=</span><span class="dv">8</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>ann<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,annual);scores<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">split</span>(ann,ann<span class="sc">$</span>model),<span class="cf">function</span>(x)<span class="fu">data.frame</span>(<span class="at">model=</span>x<span class="sc">$</span>model[<span class="dv">1</span>],<span class="at">unweighted_year_zero_RMSE=</span><span class="fu">sqrt</span>(<span class="fu">mean</span>((x<span class="sc">$</span>observed_zero<span class="sc">-</span>x<span class="sc">$</span>predicted_zero)<span class="sc">^</span><span class="dv">2</span>)),<span class="at">brood_weighted_year_zero_RMSE=</span><span class="fu">sqrt</span>(<span class="fu">weighted.mean</span>((x<span class="sc">$</span>observed_zero<span class="sc">-</span>x<span class="sc">$</span>predicted_zero)<span class="sc">^</span><span class="dv">2</span>,x<span class="sc">$</span>n)),<span class="at">observed_zero=</span><span class="fu">weighted.mean</span>(x<span class="sc">$</span>observed_zero,x<span class="sc">$</span>n),<span class="at">predicted_zero=</span><span class="fu">weighted.mean</span>(x<span class="sc">$</span>predicted_zero,x<span class="sc">$</span>n))));<span class="fu">put</span>(scores,<span class="st">'calibration_summary.csv'</span>);<span class="fu">print</span>(scores)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(original_hash,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'Completed isolated sensitivity comparison; primary models, manuscript and website unchanged.'</span>,<span class="st">'AIC comparison is in-sample, not held-out validation. Variance-component boundary precludes ordinary chi-square LRT interpretation.'</span>,<span class="st">'Simulation intervals are plug-in and omit parameter-estimation uncertainty. Conditional calibration uses fitted year effects and is not out-of-sample performance.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">logmsg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
 <table class="caption-top table">
-<caption>Primary year-zero ML fledging fixed effects. Estimates and Wald 95% CIs use logit links for location and extra-zero probability and a log link for precision.</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Component</th>
-<th style="text-align: left;">Predictor</th>
-<th style="text-align: right;">Estimate</th>
-<th style="text-align: right;">SE</th>
-<th style="text-align: right;">2.5%</th>
-<th style="text-align: right;">97.5%</th>
+<th>model</th>
+<th>n</th>
+<th>logLik</th>
+<th>AIC</th>
+<th>convergence</th>
+<th>pdHess</th>
+<th>scaled_gradient</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Location</td>
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">1.0829</td>
-<td style="text-align: right;">0.0665</td>
-<td style="text-align: right;">0.9525</td>
-<td style="text-align: right;">1.2132</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Location</td>
-<td style="text-align: left;">Relative date</td>
-<td style="text-align: right;">-0.0751</td>
-<td style="text-align: right;">0.0046</td>
-<td style="text-align: right;">-0.0841</td>
-<td style="text-align: right;">-0.0662</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Location</td>
-<td style="text-align: left;">Older–yearling</td>
-<td style="text-align: right;">0.0074</td>
-<td style="text-align: right;">0.0448</td>
-<td style="text-align: right;">-0.0804</td>
-<td style="text-align: right;">0.0953</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Location</td>
-<td style="text-align: left;">Temperature</td>
-<td style="text-align: right;">-0.1910</td>
-<td style="text-align: right;">0.0597</td>
-<td style="text-align: right;">-0.3080</td>
-<td style="text-align: right;">-0.0739</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Location</td>
-<td style="text-align: left;">Year</td>
-<td style="text-align: right;">-0.0086</td>
-<td style="text-align: right;">0.0057</td>
-<td style="text-align: right;">-0.0198</td>
-<td style="text-align: right;">0.0026</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Logit extra-zero</td>
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">-1.5524</td>
-<td style="text-align: right;">0.0931</td>
-<td style="text-align: right;">-1.7348</td>
-<td style="text-align: right;">-1.3700</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Log precision</td>
-<td style="text-align: left;">Intercept</td>
-<td style="text-align: right;">1.1555</td>
-<td style="text-align: right;">0.0905</td>
-<td style="text-align: right;">0.9781</td>
-<td style="text-align: right;">1.3328</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Log precision</td>
-<td style="text-align: left;">Relative date</td>
-<td style="text-align: right;">-0.0702</td>
-<td style="text-align: right;">0.0069</td>
-<td style="text-align: right;">-0.0838</td>
-<td style="text-align: right;">-0.0566</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Log precision</td>
-<td style="text-align: left;">Older–yearling</td>
-<td style="text-align: right;">0.0239</td>
-<td style="text-align: right;">0.0844</td>
-<td style="text-align: right;">-0.1415</td>
-<td style="text-align: right;">0.1894</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Log precision</td>
-<td style="text-align: left;">Temperature</td>
-<td style="text-align: right;">0.0776</td>
-<td style="text-align: right;">0.0643</td>
-<td style="text-align: right;">-0.0484</td>
-<td style="text-align: right;">0.2037</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Log precision</td>
-<td style="text-align: left;">Year</td>
-<td style="text-align: right;">-0.0107</td>
-<td style="text-align: right;">0.0063</td>
-<td style="text-align: right;">-0.0231</td>
-<td style="text-align: right;">0.0017</td>
+<td>ZI_year_primary_ML</td>
+<td>9790</td>
+<td>-16632</td>
+<td>33294</td>
+<td>0</td>
+<td>TRUE</td>
+<td>0.00036322</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="random-effects-and-extra-zero-probability." class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Random effects and extra-zero probability.</h1>
-<p>Primary location SDs were 0.3003 for females (approximate 95% CI 0.2119–0.4254) and 0.3096 for years (0.2395–0.4003). Year SD was 0.2490 in log precision (0.1611–0.3849) and 0.5261 in logit extra-zero probability (0.4025–0.6876). Intervals were obtained on the log-SD scale and back-transformed. At zero extra-zero-year effect, <span class="math inline">\(\pi_0=0.1747\)</span> (95% CI 0.1500–0.2026); this is neither mean annual extra-zero probability nor total failure probability.</p>
-</section>
-<section id="primary-simulation-checks-and-limitations." class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Primary simulation checks and limitations.</h1>
-<p>We generated 1,000 conditional plug-in datasets at estimated parameters and fitted group modes and 1,000 new-group plug-in datasets with newly drawn random effects, using the original covariates and clutch-size denominators. Matched comparisons used seed 20261020 for both ML structures. Overall observed mean success (0.5861), zero fraction (0.2365) and complete-success fraction (0.2886) lay within the primary conditional simulation intervals. Conditional variance was slightly underestimated: observed 0.15455 versus simulation mean 0.15191 and 95% interval 0.14962–0.15430. All four overall statistics were covered by new-group plug-in intervals. These intervals omit parameter-estimation uncertainty; a refit-based bootstrap was not performed. Coverage at a single 95% threshold is descriptive and subject to Monte Carlo variation.</p>
+<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a> ## Export predictions from the saved fit</p>
+<details class="analysis-code">
+<summary>
+Show original code: 82_export_ZIyear_primary.R
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/82_export_ZIyear_primary.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="R/82_export_ZIyear_primary.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="fu">path.expand</span>(<span class="st">'~/R/cf_model_comparison_20261013_R46'</span>),<span class="fu">path.expand</span>(<span class="st">'~/R/x86_64-pc-linux-gnu-library/4.5'</span>),<span class="fu">.libPaths</span>()))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({<span class="fu">library</span>(glmmTMB);<span class="fu">library</span>(MASS)})</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'/home/arct/CF_model_comparison_20261013'</span>);out<span class="ot">&lt;-</span><span class="st">'zi_year_primary_20261021'</span>;<span class="fu">dir.create</span>(out,<span class="at">showWarnings=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="st">'zi_year_sensitivity_20261020/zi_year_selected.rds'</span>;h<span class="ot">&lt;-</span>tools<span class="sc">::</span><span class="fu">md5sum</span>(p);m<span class="ot">&lt;-</span><span class="fu">readRDS</span>(p);d<span class="ot">&lt;-</span><span class="fu">readRDS</span>(<span class="st">'glmmTMB_comparison_20261016/analysis_data.rds'</span>);<span class="fu">stopifnot</span>(<span class="fu">nobs</span>(m)<span class="sc">==</span><span class="dv">9790</span>,m<span class="sc">$</span>fit<span class="sc">$</span>convergence<span class="sc">==</span><span class="dv">0</span>,<span class="fu">isTRUE</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>put<span class="ot">&lt;-</span><span class="cf">function</span>(x,n)<span class="fu">write.csv</span>(x,<span class="fu">file.path</span>(out,n),<span class="at">row.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">fixef</span>(m);bn<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">names</span>(b<span class="sc">$</span>cond),<span class="fu">paste0</span>(<span class="st">'zi~'</span>,<span class="fu">names</span>(b<span class="sc">$</span>zi)),<span class="fu">paste0</span>(<span class="st">'disp~'</span>,<span class="fu">names</span>(b<span class="sc">$</span>disp)));bb<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">unname</span>(b<span class="sc">$</span>cond),<span class="fu">unname</span>(b<span class="sc">$</span>zi),<span class="fu">unname</span>(b<span class="sc">$</span>disp));V<span class="ot">&lt;-</span><span class="fu">vcov</span>(m,<span class="at">full=</span><span class="cn">TRUE</span>)[bn,bn,drop<span class="ot">=</span><span class="cn">FALSE</span>];<span class="fu">stopifnot</span>(<span class="fu">min</span>(<span class="fu">eigen</span>(V,<span class="at">symmetric=</span><span class="cn">TRUE</span>,<span class="at">only.values=</span><span class="cn">TRUE</span>)<span class="sc">$</span>values)<span class="sc">&gt;</span><span class="dv">0</span>);<span class="fu">set.seed</span>(<span class="dv">20261021</span>);dr<span class="ot">&lt;-</span>MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="dv">8000</span>,bb,V);nc<span class="ot">&lt;-</span><span class="fu">length</span>(b<span class="sc">$</span>cond);nz<span class="ot">&lt;-</span><span class="fu">length</span>(b<span class="sc">$</span>zi)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ref<span class="ot">&lt;-</span><span class="cf">function</span>(n){nd<span class="ot">&lt;-</span>d[<span class="fu">rep</span>(<span class="dv">1</span>,n),,drop<span class="ot">=</span><span class="cn">FALSE</span>];nd<span class="sc">$</span>rel_LD<span class="ot">&lt;-</span><span class="dv">0</span>;nd<span class="sc">$</span>temp_mean_c<span class="ot">&lt;-</span><span class="dv">0</span>;nd<span class="sc">$</span>year_c<span class="ot">&lt;-</span><span class="dv">0</span>;nd<span class="sc">$</span>age_class<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="st">'YOUNG'</span>,<span class="at">levels=</span><span class="fu">levels</span>(d<span class="sc">$</span>age_class));nd}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>grids<span class="ot">&lt;-</span><span class="fu">list</span>();a<span class="ot">&lt;-</span><span class="fu">ref</span>(<span class="dv">100</span>);a<span class="sc">$</span>x<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="fu">quantile</span>(d<span class="sc">$</span>temp_mean_c,.<span class="dv">05</span>),<span class="fu">quantile</span>(d<span class="sc">$</span>temp_mean_c,.<span class="dv">95</span>),<span class="at">length.out=</span><span class="dv">100</span>);a<span class="sc">$</span>temp_mean_c<span class="ot">&lt;-</span>a<span class="sc">$</span>x;grids<span class="sc">$</span>temperature<span class="ot">&lt;-</span>a</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">ref</span>(<span class="dv">200</span>);a<span class="sc">$</span>x<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">seq</span>(<span class="fu">quantile</span>(d<span class="sc">$</span>rel_LD,.<span class="dv">05</span>),<span class="fu">quantile</span>(d<span class="sc">$</span>rel_LD,.<span class="dv">95</span>),<span class="at">length.out=</span><span class="dv">100</span>),<span class="dv">2</span>);a<span class="sc">$</span>rel_LD<span class="ot">&lt;-</span>a<span class="sc">$</span>x;a<span class="sc">$</span>age_class<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">'YOUNG'</span>,<span class="st">'OLD'</span>),<span class="at">each=</span><span class="dv">100</span>),<span class="at">levels=</span><span class="fu">levels</span>(d<span class="sc">$</span>age_class));grids<span class="sc">$</span>date<span class="ot">&lt;-</span>a</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">ref</span>(<span class="dv">39</span>);a<span class="sc">$</span>x<span class="ot">&lt;-</span><span class="dv">1981</span><span class="sc">:</span><span class="dv">2019</span>;a<span class="sc">$</span>year_c<span class="ot">&lt;-</span>a<span class="sc">$</span>x<span class="sc">-</span><span class="fu">unique</span>(<span class="fu">as.numeric</span>(<span class="fu">as.character</span>(d<span class="sc">$</span>year_f))<span class="sc">-</span>d<span class="sc">$</span>year_c);grids<span class="sc">$</span>year<span class="ot">&lt;-</span>a</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">ref</span>(<span class="dv">2</span>);a<span class="sc">$</span>x<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>;a<span class="sc">$</span>age_class<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">'YOUNG'</span>,<span class="st">'OLD'</span>),<span class="at">levels=</span><span class="fu">levels</span>(d<span class="sc">$</span>age_class));grids<span class="sc">$</span>age<span class="ot">&lt;-</span>a</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(kind <span class="cf">in</span> <span class="fu">names</span>(grids)){</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a> nd<span class="ot">&lt;-</span>grids[[kind]];X<span class="ot">&lt;-</span><span class="fu">model.matrix</span>(<span class="sc">~</span>rel_LD<span class="sc">+</span>age_class<span class="sc">+</span>temp_mean_c<span class="sc">+</span>year_c,nd);mu<span class="ot">&lt;-</span><span class="fu">plogis</span>(<span class="fu">drop</span>(X<span class="sc">%*%</span>b<span class="sc">$</span>cond));phi<span class="ot">&lt;-</span><span class="fu">exp</span>(<span class="fu">drop</span>(X<span class="sc">%*%</span>b<span class="sc">$</span>disp));zi<span class="ot">&lt;-</span><span class="fu">plogis</span>(b<span class="sc">$</span>zi[<span class="dv">1</span>]);success<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span>zi)<span class="sc">*</span>mu</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> md<span class="ot">&lt;-</span><span class="fu">plogis</span>(dr[,<span class="dv">1</span><span class="sc">:</span>nc,<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">%*%</span><span class="fu">t</span>(X));pd<span class="ot">&lt;-</span><span class="fu">exp</span>(dr[,nc<span class="sc">+</span>nz<span class="sc">+</span><span class="fu">seq_len</span>(<span class="fu">length</span>(b<span class="sc">$</span>disp)),<span class="at">drop=</span><span class="cn">FALSE</span>]<span class="sc">%*%</span><span class="fu">t</span>(X));zd<span class="ot">&lt;-</span><span class="fu">plogis</span>(dr[,nc<span class="sc">+</span><span class="dv">1</span>]);sd<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">-</span>zd)<span class="sc">*</span>md</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a> <span class="co"># Analytic fixed designs set all random effects to zero, including dispersion and zero components.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a> zero_nd<span class="ot">&lt;-</span>nd;zero_nd<span class="sc">$</span>year_f<span class="ot">&lt;-</span><span class="cn">NA</span>;zero_nd<span class="sc">$</span>female_id<span class="ot">&lt;-</span><span class="cn">NA</span>;<span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">predict</span>(m,<span class="at">newdata=</span>zero_nd,<span class="at">type=</span><span class="st">'response'</span>,<span class="at">re.form=</span><span class="cn">NA</span>)<span class="sc">-</span>success))<span class="sc">&lt;</span><span class="fl">1e-7</span>,<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">predict</span>(m,<span class="at">newdata=</span>zero_nd,<span class="at">type=</span><span class="st">'zprob'</span>,<span class="at">re.form=</span><span class="cn">NA</span>)<span class="sc">-</span>zi))<span class="sc">&lt;</span><span class="fl">1e-7</span>,<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">predict</span>(m,<span class="at">newdata=</span>zero_nd,<span class="at">type=</span><span class="st">'disp'</span>,<span class="at">re.form=</span><span class="cn">NA</span>)<span class="sc">-</span>phi))<span class="sc">&lt;</span><span class="fl">1e-7</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span>(component <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'success'</span>,<span class="st">'phi'</span>)){val<span class="ot">&lt;-</span><span class="cf">if</span>(component<span class="sc">==</span><span class="st">'success'</span>)sd <span class="cf">else</span> pd;point<span class="ot">&lt;-</span><span class="cf">if</span>(component<span class="sc">==</span><span class="st">'success'</span>)success <span class="cf">else</span> phi;qq<span class="ot">&lt;-</span><span class="fu">t</span>(<span class="fu">apply</span>(val,<span class="dv">2</span>,quantile,<span class="at">probs=</span><span class="fu">c</span>(.<span class="dv">025</span>,.<span class="dv">975</span>)));<span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">x=</span>nd<span class="sc">$</span>x,<span class="at">age_class=</span>nd<span class="sc">$</span>age_class,<span class="at">estimate=</span>point,<span class="at">CI_low=</span>qq[,<span class="dv">1</span>],<span class="at">CI_high=</span>qq[,<span class="dv">2</span>]),<span class="fu">paste0</span>(<span class="st">'ZIyear_'</span>,kind,<span class="st">'_'</span>,component,<span class="st">'.csv'</span>))}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>co<span class="ot">&lt;-</span><span class="fu">summary</span>(m)<span class="sc">$</span>coefficients;fx<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(co),<span class="cf">function</span>(cmp){a<span class="ot">&lt;-</span>co[[cmp]];<span class="fu">data.frame</span>(<span class="at">component=</span>cmp,<span class="at">term=</span><span class="fu">rownames</span>(a),<span class="at">estimate=</span>a[,<span class="dv">1</span>],<span class="at">SE=</span>a[,<span class="dv">2</span>],<span class="at">lower=</span>a[,<span class="dv">1</span>]<span class="sc">-</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>a[,<span class="dv">2</span>],<span class="at">upper=</span>a[,<span class="dv">1</span>]<span class="sc">+</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>a[,<span class="dv">2</span>])}));<span class="fu">put</span>(fx,<span class="st">'ZIyear_fixed.csv'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-SD Wald intervals, including fixed/random-SD covariance from the fitted model Hessian.</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>par<span class="ot">&lt;-</span>m<span class="sc">$</span>fit<span class="sc">$</span>par;se<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed));ix<span class="ot">&lt;-</span><span class="fu">which</span>(<span class="fu">names</span>(par)<span class="sc">%in%</span><span class="fu">c</span>(<span class="st">'theta'</span>,<span class="st">'thetazi'</span>,<span class="st">'thetadisp'</span>));<span class="fu">print</span>(<span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">names</span>(par)[ix],<span class="at">value=</span>par[ix],<span class="at">SE=</span>se[ix]));re<span class="ot">&lt;-</span><span class="fu">VarCorr</span>(m);rr<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re),<span class="cf">function</span>(cmp)<span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(re[[cmp]]),<span class="cf">function</span>(gr)<span class="fu">data.frame</span>(<span class="at">component=</span>cmp,<span class="at">group=</span>gr,<span class="at">SD=</span><span class="fu">attr</span>(re[[cmp]][[gr]],<span class="st">'stddev'</span>))))))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Match components explicitly to internal parameter vector order.</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>parts<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">cond=</span><span class="fu">which</span>(<span class="fu">names</span>(par)<span class="sc">==</span><span class="st">'theta'</span>),<span class="at">zi=</span><span class="fu">which</span>(<span class="fu">names</span>(par)<span class="sc">==</span><span class="st">'thetazi'</span>),<span class="at">disp=</span><span class="fu">which</span>(<span class="fu">names</span>(par)<span class="sc">==</span><span class="st">'thetadisp'</span>))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">&lt;-</span><span class="fu">do.call</span>(rbind,<span class="fu">lapply</span>(<span class="fu">names</span>(parts),<span class="cf">function</span>(cmp){a<span class="ot">&lt;-</span>rr[rr<span class="sc">$</span>component<span class="sc">==</span>cmp,,drop<span class="ot">=</span><span class="cn">FALSE</span>];ii<span class="ot">&lt;-</span>parts[[cmp]];<span class="fu">stopifnot</span>(<span class="fu">length</span>(ii)<span class="sc">==</span><span class="fu">nrow</span>(a),<span class="fu">max</span>(<span class="fu">abs</span>(<span class="fu">exp</span>(par[ii])<span class="sc">-</span>a<span class="sc">$</span>SD))<span class="sc">&lt;</span><span class="fl">1e-7</span>);a<span class="sc">$</span>lower<span class="ot">&lt;-</span><span class="fu">exp</span>(par[ii]<span class="sc">-</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>se[ii]);a<span class="sc">$</span>upper<span class="ot">&lt;-</span><span class="fu">exp</span>(par[ii]<span class="sc">+</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>se[ii]);a}));<span class="fu">put</span>(rs,<span class="st">'ZIyear_random_SD_intervals.csv'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>z<span class="ot">&lt;-</span>b<span class="sc">$</span>zi[<span class="dv">1</span>];zs<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">vcov</span>(m)<span class="sc">$</span>zi[<span class="dv">1</span>,<span class="dv">1</span>]);<span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">target=</span><span class="st">'extra-zero probability at zero year effect; not annual average or total failure probability'</span>,<span class="at">estimate=</span><span class="fu">plogis</span>(z),<span class="at">lower=</span><span class="fu">plogis</span>(z<span class="sc">-</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>zs),<span class="at">upper=</span><span class="fu">plogis</span>(z<span class="sc">+</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>zs)),<span class="st">'ZIyear_reference_zi.csv'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">model=</span><span class="st">'ZI_year_primary_ML'</span>,<span class="at">n=</span><span class="fu">nobs</span>(m),<span class="at">logLik=</span><span class="fu">as.numeric</span>(<span class="fu">logLik</span>(m)),<span class="at">AIC=</span><span class="fu">AIC</span>(m),<span class="at">convergence=</span>m<span class="sc">$</span>fit<span class="sc">$</span>convergence,<span class="at">pdHess=</span>m<span class="sc">$</span>sdr<span class="sc">$</span>pdHess,<span class="at">scaled_gradient=</span><span class="fu">max</span>(<span class="fu">abs</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>gradient.fixed<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">diag</span>(m<span class="sc">$</span>sdr<span class="sc">$</span>cov.fixed))))),<span class="st">'ZIyear_diagnostics.csv'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(h,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'8000 joint asymptotic coefficient draws; point estimates are ML, not draw medians.'</span>,<span class="st">'All random effects zero for curves, including zero-year and precision-year. Temperature x centred at 5.098595980711215 C.'</span>,<span class="st">'Original selected fit unchanged.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">print</span>(rs);<span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<details class="analysis-code">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fixed</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<details class="analysis-code">
+<summary>
+Show saved output: ZIyear_fixed.csv
+</summary>
 <table class="caption-top table">
-<caption>Primary year-zero ML plug-in checks. Simulation means [95% intervals] omit parameter-estimation uncertainty. Fitted-group checks condition on fitted random effects; new-group checks draw new effects.</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Statistic</th>
-<th style="text-align: right;">Observed</th>
-<th style="text-align: right;">Fitted groups</th>
-<th style="text-align: right;">New groups</th>
+<th>component</th>
+<th>term</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Mean success</td>
-<td style="text-align: right;">0.5861</td>
-<td style="text-align: right;">0.5809 [0.5738,0.5887]</td>
-<td style="text-align: right;">0.5864 [0.5583,0.6151]</td>
+<td>cond</td>
+<td>(Intercept)</td>
+<td>1.0829</td>
+<td>0.066497</td>
+<td>0.95253</td>
+<td>1.2132</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Zero fraction</td>
-<td style="text-align: right;">0.2365</td>
-<td style="text-align: right;">0.2318 [0.2234,0.2400]</td>
-<td style="text-align: right;">0.2212 [0.1933,0.2500]</td>
+<td>cond</td>
+<td>rel_LD</td>
+<td>-0.07511</td>
+<td>0.0045682</td>
+<td>-0.084063</td>
+<td>-0.066157</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Complete success</td>
-<td style="text-align: right;">0.2886</td>
-<td style="text-align: right;">0.2859 [0.2771,0.2945]</td>
-<td style="text-align: right;">0.2879 [0.2581,0.3177]</td>
+<td>cond</td>
+<td>age_classOLD</td>
+<td>0.0074456</td>
+<td>0.044841</td>
+<td>-0.080441</td>
+<td>0.095332</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Variance of proportions</td>
-<td style="text-align: right;">0.1546</td>
-<td style="text-align: right;">0.1519 [0.1496,0.1543]</td>
-<td style="text-align: right;">0.1491 [0.1410,0.1566]</td>
+<td>cond</td>
+<td>temp_mean_c</td>
+<td>-0.19096</td>
+<td>0.059702</td>
+<td>-0.30797</td>
+<td>-0.073942</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>year_c</td>
+<td>-0.0086032</td>
+<td>0.0057265</td>
+<td>-0.019827</td>
+<td>0.0026205</td>
+</tr>
+<tr class="even">
+<td>zi</td>
+<td>(Intercept)</td>
+<td>-1.5524</td>
+<td>0.093054</td>
+<td>-1.7348</td>
+<td>-1.37</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>(Intercept)</td>
+<td>1.1555</td>
+<td>0.09047</td>
+<td>0.97815</td>
+<td>1.3328</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>rel_LD</td>
+<td>-0.070223</td>
+<td>0.0069397</td>
+<td>-0.083825</td>
+<td>-0.056621</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>age_classOLD</td>
+<td>0.023935</td>
+<td>0.084412</td>
+<td>-0.14151</td>
+<td>0.18938</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>temp_mean_c</td>
+<td>0.077644</td>
+<td>0.064312</td>
+<td>-0.048404</td>
+<td>0.20369</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>year_c</td>
+<td>-0.010688</td>
+<td>0.0063211</td>
+<td>-0.023077</td>
+<td>0.0017014</td>
 </tr>
 </tbody>
 </table>
-<p>Conditional annual zero frequencies lay within simulation intervals in all 39 seasons, versus 16/39 seasons outside for the former constant-extra-zero ML fit in this matched rerun. For new-group simulations the corresponding counts outside were 3/39 and 13/39. Conditional annual means and variances were all covered, but complete-success frequency was outside in 1/39 years. Group discrepancies remained: conditional zero frequencies were outside in 1/2 age classes and 4/5 laying-date groups; means were outside in 1/2 age classes and 4/5 date groups, and variances in 1/2 age classes and 3/5 date groups. These are correlated descriptive checks, not independent adjusted tests. Calibration using fitted year effects is in-sample and cannot establish performance for unseen seasons. The extra-zero-year effect is statistical heterogeneity, not identification of a biological mechanism of complete failure.</p>
-<section id="final-ml-downloads" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="final-ml-downloads"><span class="header-section-number">5.1</span> Final ML downloads</h2>
-<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv">Fixed effects</a> · <a href="tables/primary_ZIyear_ML_20261021/ZIyear_random_SD_intervals.csv">Random-effect SDs and CIs</a> · <a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Numerical diagnostics</a> · <a href="tables/primary_ZIyear_ML_20261021/model_comparison.csv">ML structure comparison</a> · <a href="tables/primary_ZIyear_ML_20261021/simulation_checks.csv">Simulation checks</a></p>
+<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv">Download CSV</a></p>
+</details>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>x</th>
+<th>age_class</th>
+<th>estimate</th>
+<th>CI_low</th>
+<th>CI_high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-1.5707</td>
+<td>YOUNG</td>
+<td>0.65974</td>
+<td>0.62186</td>
+<td>0.69427</td>
+</tr>
+<tr class="even">
+<td>-1.5425</td>
+<td>YOUNG</td>
+<td>0.65903</td>
+<td>0.6216</td>
+<td>0.69334</td>
+</tr>
+<tr class="odd">
+<td>-1.5143</td>
+<td>YOUNG</td>
+<td>0.65831</td>
+<td>0.62102</td>
+<td>0.69256</td>
+</tr>
+<tr class="even">
+<td>-1.4861</td>
+<td>YOUNG</td>
+<td>0.6576</td>
+<td>0.62057</td>
+<td>0.69163</td>
+</tr>
+<tr class="odd">
+<td>-1.4579</td>
+<td>YOUNG</td>
+<td>0.65688</td>
+<td>0.62002</td>
+<td>0.69066</td>
+</tr>
+</tbody>
+</table>
+<a href="tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv">Download CSV</a>
+<details class="analysis-code">
+<summary>
+Show saved output: simulation_checks.csv
+</summary>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>model</th>
+<th>target</th>
+<th>group</th>
+<th>level</th>
+<th>n</th>
+<th>statistic</th>
+<th>observed</th>
+<th>predicted</th>
+<th>lower</th>
+<th>upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Current_ML</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>mean_fraction</td>
+<td>0.58607</td>
+<td>0.57868</td>
+<td>0.57137</td>
+<td>0.58614</td>
+</tr>
+<tr class="even">
+<td>Current_ML</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>zero_fraction</td>
+<td>0.23647</td>
+<td>0.22524</td>
+<td>0.21726</td>
+<td>0.23371</td>
+</tr>
+<tr class="odd">
+<td>Current_ML</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>complete_success</td>
+<td>0.28856</td>
+<td>0.28622</td>
+<td>0.27793</td>
+<td>0.29479</td>
+</tr>
+<tr class="even">
+<td>Current_ML</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>variance_fraction</td>
+<td>0.15455</td>
+<td>0.15133</td>
+<td>0.14907</td>
+<td>0.1537</td>
+</tr>
+<tr class="odd">
+<td>Current_ML</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>mean_fraction</td>
+<td>0.58607</td>
+<td>0.58465</td>
+<td>0.55988</td>
+<td>0.60644</td>
+</tr>
+<tr class="even">
+<td>Current_ML</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>zero_fraction</td>
+<td>0.23647</td>
+<td>0.21568</td>
+<td>0.20245</td>
+<td>0.22994</td>
+</tr>
+<tr class="odd">
+<td>Current_ML</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>complete_success</td>
+<td>0.28856</td>
+<td>0.29049</td>
+<td>0.25381</td>
+<td>0.32249</td>
+</tr>
+<tr class="even">
+<td>Current_ML</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>variance_fraction</td>
+<td>0.15455</td>
+<td>0.14873</td>
+<td>0.14324</td>
+<td>0.15387</td>
+</tr>
+<tr class="odd">
+<td>ZI_year</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>mean_fraction</td>
+<td>0.58607</td>
+<td>0.58094</td>
+<td>0.57376</td>
+<td>0.58866</td>
+</tr>
+<tr class="even">
+<td>ZI_year</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>zero_fraction</td>
+<td>0.23647</td>
+<td>0.23176</td>
+<td>0.22339</td>
+<td>0.24004</td>
+</tr>
+<tr class="odd">
+<td>ZI_year</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>complete_success</td>
+<td>0.28856</td>
+<td>0.28586</td>
+<td>0.27712</td>
+<td>0.29449</td>
+</tr>
+<tr class="even">
+<td>ZI_year</td>
+<td>conditional_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>variance_fraction</td>
+<td>0.15455</td>
+<td>0.15191</td>
+<td>0.14962</td>
+<td>0.1543</td>
+</tr>
+<tr class="odd">
+<td>ZI_year</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>mean_fraction</td>
+<td>0.58607</td>
+<td>0.58639</td>
+<td>0.55829</td>
+<td>0.61511</td>
+</tr>
+<tr class="even">
+<td>ZI_year</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>zero_fraction</td>
+<td>0.23647</td>
+<td>0.2212</td>
+<td>0.19325</td>
+<td>0.24997</td>
+</tr>
+<tr class="odd">
+<td>ZI_year</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>complete_success</td>
+<td>0.28856</td>
+<td>0.28786</td>
+<td>0.25811</td>
+<td>0.31768</td>
+</tr>
+<tr class="even">
+<td>ZI_year</td>
+<td>new_groups_plugin</td>
+<td>overall</td>
+<td>all</td>
+<td>9790</td>
+<td>variance_fraction</td>
+<td>0.15455</td>
+<td>0.14907</td>
+<td>0.14096</td>
+<td>0.15661</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/primary_ZIyear_ML_20261021/simulation_checks.csv">Download complete CSV</a></p>
+</details>
 </section>
-<section id="temperature" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="temperature"><span class="header-section-number">5.2</span> Temperature</h2>
+<section id="figure" class="level2">
+<h2 class="anchored" data-anchor-id="figure">Figure</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig3_COM_M1_temperature.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
+<figcaption>Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.</figcaption>
 </figure>
 </div>
-<p><a href="figures/Fig3_COM_M1_temperature.pdf">Download figure PDF</a></p>
+<p><a href="figures/Fig3_COM_M1_temperature.pdf">PDF</a> · <a href="./figure_code.html#temperature-date-and-age">Figure code — final chapter</a></p>
 </section>
-<section id="temporal-trends-without-temperature" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="temporal-trends-without-temperature"><span class="header-section-number">5.3</span> Temporal trends without temperature</h2>
-<p>The following year curves come from separate models refitted <strong>without temperature</strong> in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <a href="./temporal_trends.html">Temporal trends</a> page.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Fig4_COM_M1_time.png" class="img-fluid figure-img"></p>
-<figcaption>Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.</figcaption>
-</figure>
-</div>
-<p><a href="figures/Fig4_COM_M1_time.pdf">Download figure PDF</a></p>
-</section>
-<section id="relative-laying-date" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="relative-laying-date"><span class="header-section-number">5.4</span> Relative laying date</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Fig5_COM_M1_date.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
-</figure>
-</div>
-<p><a href="figures/Fig5_COM_M1_date.pdf">Download figure PDF</a></p>
-</section>
-<section id="female-age-class" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="female-age-class"><span class="header-section-number">5.5</span> Female age class</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Fig6_COM_M1_age.png" class="img-fluid figure-img"></p>
-<figcaption>Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.</figcaption>
-</figure>
-</div>
-<p><a href="figures/Fig6_COM_M1_age.pdf">Download figure PDF</a></p>
+<section id="main-conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="main-conclusions">Main conclusions</h2>
+<ul>
+<li>Warmer springs: lower success; temperature association with precision uncertain.</li>
+<li>Later laying: lower success and lower precision. Age differences remained uncertain.</li>
+<li>Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.</li>
+</ul>
 
 
-<!-- -->
-
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -594,57 +911,6 @@ window.Quarto = {
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -986,92 +1252,7 @@ window.Quarto = {
         <span class="nav-page-text">Study sample &amp; predictors</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Fledging success"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>The specifications, estimates and checks below describe the **unchanged temperature-association model**. Its year coefficient is adjusted for temperature and is retained for full disclosure, rather than reported as the temporal trend. Temporal change is estimated using a separate model without temperature, presented in the <span class="co">[</span><span class="ot">Temporal trends</span><span class="co">](temporal_trends.qmd)</span> section.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># S1.7 Fledging success: final ML estimates and diagnostics</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># Primary structure and numerical verification.</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>The primary fledging model was fitted by maximum likelihood in glmmTMB 1.1.14 to the same 9,790 brood records. Mean and log-precision predictors, links and random effects were retained from the former ML fit; the only extension was an independent year random intercept in logit extra-zero probability. An initial unrestricted nlminb attempt failed with NA/NaN gradients and was excluded. A scaled, bounded L-BFGS-B fit yielded an interior solution (minimum relative distance to bounds 0.261). Independent unbounded BFGS refinement gave convergence code zero and a positive-definite Hessian; the two log likelihoods agreed within $10^{-7}$ and maximum absolute SE-scaled gradients were below $3.8\times10^{-4}$. Log likelihood was $-16632.0562$, with 15 parameters and AIC 33294.11, versus 33463.58 for the constant-extra-zero ML model (14 parameters). We report AIC rather than an ordinary chi-square likelihood-ratio p-value because the null random-effect variance lies on a boundary. This comparison concerns fitted marginal likelihood, not out-of-sample validation.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># Reference predictions.</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Curves use ML point estimates and pointwise 95% CIs from 8,000 joint asymptotic coefficient draws, including covariance across location, precision and extra-zero coefficients. Every random effect is set to zero, including precision-year and extra-zero-year effects. We computed $\mu=\operatorname{logit}^{-1}(X\widehat\beta)$, $\phi=\exp(Z\widehat\gamma)$ and $\pi_0=\operatorname{logit}^{-1}(\widehat\alpha_0)$ explicitly, and verified them against native predictions with grouping variables set to missing. In glmmTMB 1.1.14, <span class="in">`re.form=NA`</span> alone did not remove precision-year and extra-zero-year contributions for an existing year. Explicit fixed designs prevent these contributions entering reference curves. Curves are conditional reference predictions, not averages over the distribution of years or individual-brood prediction intervals.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  Component          Predictor           Estimate       SE      2.5%     97.5%</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  ------------------ ----------------- ---------- -------- --------- ---------</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  Location           Intercept             1.0829   0.0665    0.9525    1.2132</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  Location           Relative date        -0.0751   0.0046   -0.0841   -0.0662</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  Location           Older--yearling       0.0074   0.0448   -0.0804    0.0953</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  Location           Temperature          -0.1910   0.0597   -0.3080   -0.0739</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  Location           Year                 -0.0086   0.0057   -0.0198    0.0026</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  Logit extra-zero   Intercept            -1.5524   0.0931   -1.7348   -1.3700</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  Log precision      Intercept             1.1555   0.0905    0.9781    1.3328</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  Log precision      Relative date        -0.0702   0.0069   -0.0838   -0.0566</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  Log precision      Older--yearling       0.0239   0.0844   -0.1415    0.1894</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  Log precision      Temperature           0.0776   0.0643   -0.0484    0.2037</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  Log precision      Year                 -0.0107   0.0063   -0.0231    0.0017</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  : Primary year-zero ML fledging fixed effects. Estimates and Wald 95% CIs use logit links for location and extra-zero probability and a log link for precision.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu"># Random effects and extra-zero probability.</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Primary location SDs were 0.3003 for females (approximate 95% CI 0.2119--0.4254) and 0.3096 for years (0.2395--0.4003). Year SD was 0.2490 in log precision (0.1611--0.3849) and 0.5261 in logit extra-zero probability (0.4025--0.6876). Intervals were obtained on the log-SD scale and back-transformed. At zero extra-zero-year effect, $\pi_0=0.1747$ (95% CI 0.1500--0.2026); this is neither mean annual extra-zero probability nor total failure probability.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Primary simulation checks and limitations.</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>We generated 1,000 conditional plug-in datasets at estimated parameters and fitted group modes and 1,000 new-group plug-in datasets with newly drawn random effects, using the original covariates and clutch-size denominators. Matched comparisons used seed 20261020 for both ML structures. Overall observed mean success (0.5861), zero fraction (0.2365) and complete-success fraction (0.2886) lay within the primary conditional simulation intervals. Conditional variance was slightly underestimated: observed 0.15455 versus simulation mean 0.15191 and 95% interval 0.14962--0.15430. All four overall statistics were covered by new-group plug-in intervals. These intervals omit parameter-estimation uncertainty; a refit-based bootstrap was not performed. Coverage at a single 95% threshold is descriptive and subject to Monte Carlo variation.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  Statistic                   Observed              Fitted groups                 New groups</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  ------------------------- ---------- -------------------------- --------------------------</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  Mean success                  0.5861   0.5809 <span class="sc">\[</span>0.5738,0.5887<span class="sc">\]</span>   0.5864 <span class="sc">\[</span>0.5583,0.6151<span class="sc">\]</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  Zero fraction                 0.2365   0.2318 <span class="sc">\[</span>0.2234,0.2400<span class="sc">\]</span>   0.2212 <span class="sc">\[</span>0.1933,0.2500<span class="sc">\]</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  Complete success              0.2886   0.2859 <span class="sc">\[</span>0.2771,0.2945<span class="sc">\]</span>   0.2879 <span class="sc">\[</span>0.2581,0.3177<span class="sc">\]</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  Variance of proportions       0.1546   0.1519 <span class="sc">\[</span>0.1496,0.1543<span class="sc">\]</span>   0.1491 <span class="sc">\[</span>0.1410,0.1566<span class="sc">\]</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  : Primary year-zero ML plug-in checks. Simulation means <span class="sc">\[</span>95% intervals<span class="sc">\]</span> omit parameter-estimation uncertainty. Fitted-group checks condition on fitted random effects; new-group checks draw new effects.</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Conditional annual zero frequencies lay within simulation intervals in all 39 seasons, versus 16/39 seasons outside for the former constant-extra-zero ML fit in this matched rerun. For new-group simulations the corresponding counts outside were 3/39 and 13/39. Conditional annual means and variances were all covered, but complete-success frequency was outside in 1/39 years. Group discrepancies remained: conditional zero frequencies were outside in 1/2 age classes and 4/5 laying-date groups; means were outside in 1/2 age classes and 4/5 date groups, and variances in 1/2 age classes and 3/5 date groups. These are correlated descriptive checks, not independent adjusted tests. Calibration using fitted year effects is in-sample and cannot establish performance for unseen seasons. The extra-zero-year effect is statistical heterogeneity, not identification of a biological mechanism of complete failure.</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final ML downloads</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Fixed effects</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv)</span> · <span class="co">[</span><span class="ot">Random-effect SDs and CIs</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_random_SD_intervals.csv)</span> · <span class="co">[</span><span class="ot">Numerical diagnostics</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)</span> · <span class="co">[</span><span class="ot">ML structure comparison</span><span class="co">](tables/primary_ZIyear_ML_20261021/model_comparison.csv)</span> · <span class="co">[</span><span class="ot">Simulation checks</span><span class="co">](tables/primary_ZIyear_ML_20261021/simulation_checks.csv)</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temporal trends without temperature</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>The following year curves come from separate models refitted **without temperature** in both location and scale. Age and relative laying date remain included. Full estimates and interpretation are on the <span class="co">[</span><span class="ot">Temporal trends</span><span class="co">](temporal_trends.qmd)</span> page.</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="al">![Temporal models without temperature: (A) mean clutch size, (B) clutch-size SD, (C) expected fledging success and (D) the model-based measure of fledging reproductive consistency. Yearlings, relative laying date zero and all random effects zero; pointwise 95% CIs.](figures/Fig4_COM_M1_time.png)</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig4_COM_M1_time.pdf)</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relative laying date</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig5_COM_M1_date.png)</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig5_COM_M1_date.pdf)</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Female age class</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="al">![Final ML predictions: clutch mean and conditional SD (A–B), expected fledging success and precision-based consistency (C–D). Random effects are zero; bands are pointwise 95% CIs.](figures/Fig6_COM_M1_age.png)</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download figure PDF</span><span class="co">](figures/Fig6_COM_M1_age.pdf)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 
