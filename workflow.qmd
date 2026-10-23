@@ -1,5 +1,6 @@
 ---
 title: "From field records to analysis inputs"
+number-sections: false
 execute:
   enabled: false
 ---

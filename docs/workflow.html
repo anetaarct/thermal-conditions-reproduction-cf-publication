@@ -246,12 +246,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-complete-workflow" id="toc-the-complete-workflow" class="nav-link active" data-scroll-target="#the-complete-workflow"><span class="header-section-number">1</span> The complete workflow</a></li>
-  <li><a href="#load-and-curate-the-breeding-database" id="toc-load-and-curate-the-breeding-database" class="nav-link" data-scroll-target="#load-and-curate-the-breeding-database"><span class="header-section-number">2</span> 1. Load and curate the breeding database</a></li>
-  <li><a href="#obtain-daily-temperatures-from-smhi" id="toc-obtain-daily-temperatures-from-smhi" class="nav-link" data-scroll-target="#obtain-daily-temperatures-from-smhi"><span class="header-section-number">3</span> 2. Obtain daily temperatures from SMHI</a></li>
-  <li><a href="#combine-stations-and-calculate-annual-exposure" id="toc-combine-stations-and-calculate-annual-exposure" class="nav-link" data-scroll-target="#combine-stations-and-calculate-annual-exposure"><span class="header-section-number">4</span> 3. Combine stations and calculate annual exposure</a></li>
-  <li><a href="#select-the-window-then-analyse-reproduction" id="toc-select-the-window-then-analyse-reproduction" class="nav-link" data-scroll-target="#select-the-window-then-analyse-reproduction"><span class="header-section-number">5</span> 4. Select the window, then analyse reproduction</a></li>
-  <li><a href="#what-is-available" id="toc-what-is-available" class="nav-link" data-scroll-target="#what-is-available"><span class="header-section-number">6</span> What is available?</a></li>
+  <li><a href="#the-complete-workflow" id="toc-the-complete-workflow" class="nav-link active" data-scroll-target="#the-complete-workflow">The complete workflow</a></li>
+  <li><a href="#load-and-curate-the-breeding-database" id="toc-load-and-curate-the-breeding-database" class="nav-link" data-scroll-target="#load-and-curate-the-breeding-database">1. Load and curate the breeding database</a></li>
+  <li><a href="#obtain-daily-temperatures-from-smhi" id="toc-obtain-daily-temperatures-from-smhi" class="nav-link" data-scroll-target="#obtain-daily-temperatures-from-smhi">2. Obtain daily temperatures from SMHI</a></li>
+  <li><a href="#combine-stations-and-calculate-annual-exposure" id="toc-combine-stations-and-calculate-annual-exposure" class="nav-link" data-scroll-target="#combine-stations-and-calculate-annual-exposure">3. Combine stations and calculate annual exposure</a></li>
+  <li><a href="#select-the-window-then-analyse-reproduction" id="toc-select-the-window-then-analyse-reproduction" class="nav-link" data-scroll-target="#select-the-window-then-analyse-reproduction">4. Select the window, then analyse reproduction</a></li>
+  <li><a href="#what-is-available" id="toc-what-is-available" class="nav-link" data-scroll-target="#what-is-available">What is available?</a></li>
   </ul>
 </nav>
     </div>
@@ -277,26 +277,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-complete-workflow" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="the-complete-workflow"><span class="header-section-number">1</span> The complete workflow</h2>
+<section id="the-complete-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-workflow">The complete workflow</h2>
 <p><strong>Field database + SMHI daily observations → curated records → sliding-window selection → annual exposure → calendar-year trends → temperature, laying-date and age associations.</strong></p>
 <p>This page makes the preparation steps visible before the results and identifies which historical inputs and scripts are still needed for a complete rerun.</p>
 </section>
-<section id="load-and-curate-the-breeding-database" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="load-and-curate-the-breeding-database"><span class="header-section-number">2</span> 1. Load and curate the breeding database</h2>
+<section id="load-and-curate-the-breeding-database" class="level2">
+<h2 class="anchored" data-anchor-id="load-and-curate-the-breeding-database">1. Load and curate the breeding database</h2>
 <p>The field database records female identity, season, first-egg date, clutch size, fledgling count, age and experimental status. We retain unambiguously identified, ringed collared flycatcher females; resolve ambiguous duplicate attempts; exclude experimental females; and cross-check egg and fledgling counts. Relative laying date is first-egg date minus the median for that season. Female age is yearling or older.</p>
 <p>Laying-date summaries cover 1980–2025, excluding 2020. Reproductive models start in 1981 because female age is unavailable in 1980. Validated fledging records end in 2019. The two response datasets therefore require different inclusion periods.</p>
 <p>The actual <a href="R/83_fit_temporal_without_temperature.R">temporal-fitting script</a> reads curated private <code>.rds</code> datasets: <code>clutch_counts/data.rds</code> for clutch size and <code>analysis_data.rds</code> for fledging, from the original analysis directory. These files are not public; historical paths need adapting on another computer. The original raw-database import and exclusion script has not been located in this publication repository.</p>
 <p><a href="./data_preparation.html">Full study-sample and predictor definitions</a></p>
 </section>
-<section id="obtain-daily-temperatures-from-smhi" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="obtain-daily-temperatures-from-smhi"><span class="header-section-number">3</span> 2. Obtain daily temperatures from SMHI</h2>
+<section id="obtain-daily-temperatures-from-smhi" class="level2">
+<h2 class="anchored" data-anchor-id="obtain-daily-temperatures-from-smhi">2. Obtain daily temperatures from SMHI</h2>
 <p>The Swedish source is <strong>SMHI daily mean air temperature (parameter 2)</strong> from <strong>Hoburg and Hoburg A</strong>. Use the <a href="https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/airtemperatureMean24h">official observation download page</a>, <a href="https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json">station catalogue for parameter 2</a> and <a href="https://opendata.smhi.se/metobs/api">API documentation</a>.</p>
 <p>Select daily mean temperature, locate both stations in the catalogue, and follow each station’s archive download link. Retain station identifiers, dates, values and quality flags; save the original downloads before combining them. A new download can incorporate SMHI corrections, so compare it with the publication snapshot before replacing inputs.</p>
 <p>The saved <a href="data_derived/smhi_hoburg_daily_temperature.csv">daily station-temperature file</a> is already available. Columns retain old/new station temperatures and quality flags, combined temperature, source, year and day of year. The historical downloader is absent from this repository; these instructions describe the source and do not reconstruct that missing script.</p>
 </section>
-<section id="combine-stations-and-calculate-annual-exposure" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="combine-stations-and-calculate-annual-exposure"><span class="header-section-number">4</span> 3. Combine stations and calculate annual exposure</h2>
+<section id="combine-stations-and-calculate-annual-exposure" class="level2">
+<h2 class="anchored" data-anchor-id="combine-stations-and-calculate-annual-exposure">3. Combine stations and calculate annual exposure</h2>
 <p>On the 1,186 overlapping dates, temperature is the arithmetic mean of the station records; otherwise the available station is used. The combined 1980–2025 snapshot has <strong>16,802 days</strong>. See <a href="./climate_window.html#station-agreement">station agreement</a>.</p>
 <p>The code below loads the saved public data and reconstructs each year’s <strong>26 March–7 May</strong> mean. This newly added check does not download weather or rerun the window search.</p>
 <div class="code-with-filename">
@@ -319,13 +319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><a href="R/00_check_public_inputs.R">Complete input-check script</a> · <a href="data_derived/annual_main_window_temperature.csv">Annual temperature file</a> · <a href="data_derived/annual_raw_median_laying_date.csv">Annual median laying dates</a></p>
 </section>
-<section id="select-the-window-then-analyse-reproduction" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="select-the-window-then-analyse-reproduction"><span class="header-section-number">5</span> 4. Select the window, then analyse reproduction</h2>
+<section id="select-the-window-then-analyse-reproduction" class="level2">
+<h2 class="anchored" data-anchor-id="select-the-window-then-analyse-reproduction">4. Select the window, then analyse reproduction</h2>
 <p>First, the <a href="./climate_window.html">sliding-window approach</a> searches candidate windows against annual median laying date and checks the selected weekly period with full-search randomisation and a temporal holdout. The operational 43-day exposure used for reproductive models differs from the complete-week search window.</p>
 <p>Next, <a href="./temporal_trends.html">calendar-year models</a> estimate temporal change, omitting temperature from both location and scale. Separate temperature-association models include both spring temperature and continuous calendar year, together with laying date and age. Categorical year identifiers define random-effect groups. See <a href="./model_structure.html">model equations and diagnostics</a>.</p>
 </section>
-<section id="what-is-available" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="what-is-available"><span class="header-section-number">6</span> What is available?</h2>
+<section id="what-is-available" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-available">What is available?</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -851,79 +851,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "From field records to analysis inputs"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## The complete workflow</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>**Field database + SMHI daily observations → curated records → sliding-window selection → annual exposure → calendar-year trends → temperature, laying-date and age associations.**</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>This page makes the preparation steps visible before the results and identifies which historical inputs and scripts are still needed for a complete rerun.</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Load and curate the breeding database</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>The field database records female identity, season, first-egg date, clutch size, fledgling count, age and experimental status. We retain unambiguously identified, ringed collared flycatcher females; resolve ambiguous duplicate attempts; exclude experimental females; and cross-check egg and fledgling counts. Relative laying date is first-egg date minus the median for that season. Female age is yearling or older.</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Laying-date summaries cover 1980–2025, excluding 2020. Reproductive models start in 1981 because female age is unavailable in 1980. Validated fledging records end in 2019. The two response datasets therefore require different inclusion periods.</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>The actual <span class="co">[</span><span class="ot">temporal-fitting script</span><span class="co">](R/83_fit_temporal_without_temperature.R)</span> reads curated private <span class="in">`.rds`</span> datasets: <span class="in">`clutch_counts/data.rds`</span> for clutch size and <span class="in">`analysis_data.rds`</span> for fledging, from the original analysis directory. These files are not public; historical paths need adapting on another computer. The original raw-database import and exclusion script has not been located in this publication repository.</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Full study-sample and predictor definitions</span><span class="co">](data_preparation.qmd)</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Obtain daily temperatures from SMHI</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>The Swedish source is **SMHI daily mean air temperature (parameter 2)** from **Hoburg and Hoburg A**. Use the <span class="co">[</span><span class="ot">official observation download page</span><span class="co">](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/airtemperatureMean24h)</span>, <span class="co">[</span><span class="ot">station catalogue for parameter 2</span><span class="co">](https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json)</span> and <span class="co">[</span><span class="ot">API documentation</span><span class="co">](https://opendata.smhi.se/metobs/api)</span>.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Select daily mean temperature, locate both stations in the catalogue, and follow each station's archive download link. Retain station identifiers, dates, values and quality flags; save the original downloads before combining them. A new download can incorporate SMHI corrections, so compare it with the publication snapshot before replacing inputs.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>The saved <span class="co">[</span><span class="ot">daily station-temperature file</span><span class="co">](data_derived/smhi_hoburg_daily_temperature.csv)</span> is already available. Columns retain old/new station temperatures and quality flags, combined temperature, source, year and day of year. The historical downloader is absent from this repository; these instructions describe the source and do not reconstruct that missing script.</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Combine stations and calculate annual exposure</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>On the 1,186 overlapping dates, temperature is the arithmetic mean of the station records; otherwise the available station is used. The combined 1980–2025 snapshot has **16,802 days**. See <span class="co">[</span><span class="ot">station agreement</span><span class="co">](climate_window.qmd#station-agreement)</span>.</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>The code below loads the saved public data and reconstructs each year's **26 March–7 May** mean. This newly added check does not download weather or rerun the window search.</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r filename="R/00_check_public_inputs.R"}</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>rebuilt <span class="ot">&lt;-</span> daily <span class="sc">|&gt;</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&gt;=</span> <span class="st">"03-26"</span>,</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>         <span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&lt;=</span> <span class="st">"05-07"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">temp_mean =</span> <span class="fu">mean</span>(temperature), <span class="at">n_days =</span> <span class="fu">n</span>(),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(rebuilt) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(rebuilt<span class="sc">$</span>n_days <span class="sc">==</span> <span class="dv">43</span>L))</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Complete input-check script</span><span class="co">](R/00_check_public_inputs.R)</span> · <span class="co">[</span><span class="ot">Annual temperature file</span><span class="co">](data_derived/annual_main_window_temperature.csv)</span> · <span class="co">[</span><span class="ot">Annual median laying dates</span><span class="co">](data_derived/annual_raw_median_laying_date.csv)</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Select the window, then analyse reproduction</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>First, the <span class="co">[</span><span class="ot">sliding-window approach</span><span class="co">](climate_window.qmd)</span> searches candidate windows against annual median laying date and checks the selected weekly period with full-search randomisation and a temporal holdout. The operational 43-day exposure used for reproductive models differs from the complete-week search window.</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>Next, <span class="co">[</span><span class="ot">calendar-year models</span><span class="co">](temporal_trends.qmd)</span> estimate temporal change, omitting temperature from both location and scale. Separate temperature-association models include both spring temperature and continuous calendar year, together with laying date and age. Categorical year identifiers define random-effect groups. See <span class="co">[</span><span class="ot">model equations and diagnostics</span><span class="co">](model_structure.qmd)</span>.</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is available? {#what-is-available}</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Available here <span class="pp">|</span> Still required for a complete rerun <span class="pp">|</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Field database <span class="pp">|</span> Inclusion rules, sample sizes, aggregate summaries <span class="pp">|</span> Private records and historical import/cleaning script <span class="pp">|</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SMHI weather <span class="pp">|</span> Daily station snapshot, quality flags and annual temperatures <span class="pp">|</span> Historical downloader and original station-download files <span class="pp">|</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sliding-window selection <span class="pp">|</span> Annual laying-date input, weather input, procedure and reported diagnostics <span class="pp">|</span> Original search script, configuration and cached randomised searches <span class="pp">|</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Input validation <span class="pp">|</span> New <span class="in">`R/00_check_public_inputs.R`</span> <span class="pp">|</span> R with readr and dplyr <span class="pp">|</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Environmental trends <span class="pp">|</span> <span class="in">`R/25_environment_temperature_location_scale.R`</span> and annual input <span class="pp">|</span> Compatible R environment <span class="pp">|</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reproductive models <span class="pp">|</span> Fitting/export scripts, full estimates and diagnostics <span class="pp">|</span> Private curated datasets, required fitted objects and adapted paths <span class="pp">|</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Figures and website <span class="pp">|</span> Prediction tables, plotting scripts and Quarto sources <span class="pp">|</span> Python dependencies and Quarto <span class="pp">|</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>The public material supports inspection of results and regeneration of figures. It does not yet support a self-contained rerun from the original breeding database. Individual breeding records remain private.</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>**Continue:** <span class="co">[</span><span class="ot">Sliding-window approach</span><span class="co">](climate_window.qmd)</span> → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> false</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## The complete workflow</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>**Field database + SMHI daily observations → curated records → sliding-window selection → annual exposure → calendar-year trends → temperature, laying-date and age associations.**</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>This page makes the preparation steps visible before the results and identifies which historical inputs and scripts are still needed for a complete rerun.</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1. Load and curate the breeding database</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>The field database records female identity, season, first-egg date, clutch size, fledgling count, age and experimental status. We retain unambiguously identified, ringed collared flycatcher females; resolve ambiguous duplicate attempts; exclude experimental females; and cross-check egg and fledgling counts. Relative laying date is first-egg date minus the median for that season. Female age is yearling or older.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>Laying-date summaries cover 1980–2025, excluding 2020. Reproductive models start in 1981 because female age is unavailable in 1980. Validated fledging records end in 2019. The two response datasets therefore require different inclusion periods.</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>The actual <span class="co">[</span><span class="ot">temporal-fitting script</span><span class="co">](R/83_fit_temporal_without_temperature.R)</span> reads curated private <span class="in">`.rds`</span> datasets: <span class="in">`clutch_counts/data.rds`</span> for clutch size and <span class="in">`analysis_data.rds`</span> for fledging, from the original analysis directory. These files are not public; historical paths need adapting on another computer. The original raw-database import and exclusion script has not been located in this publication repository.</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Full study-sample and predictor definitions</span><span class="co">](data_preparation.qmd)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2. Obtain daily temperatures from SMHI</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>The Swedish source is **SMHI daily mean air temperature (parameter 2)** from **Hoburg and Hoburg A**. Use the <span class="co">[</span><span class="ot">official observation download page</span><span class="co">](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/airtemperatureMean24h)</span>, <span class="co">[</span><span class="ot">station catalogue for parameter 2</span><span class="co">](https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json)</span> and <span class="co">[</span><span class="ot">API documentation</span><span class="co">](https://opendata.smhi.se/metobs/api)</span>.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>Select daily mean temperature, locate both stations in the catalogue, and follow each station's archive download link. Retain station identifiers, dates, values and quality flags; save the original downloads before combining them. A new download can incorporate SMHI corrections, so compare it with the publication snapshot before replacing inputs.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>The saved <span class="co">[</span><span class="ot">daily station-temperature file</span><span class="co">](data_derived/smhi_hoburg_daily_temperature.csv)</span> is already available. Columns retain old/new station temperatures and quality flags, combined temperature, source, year and day of year. The historical downloader is absent from this repository; these instructions describe the source and do not reconstruct that missing script.</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3. Combine stations and calculate annual exposure</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>On the 1,186 overlapping dates, temperature is the arithmetic mean of the station records; otherwise the available station is used. The combined 1980–2025 snapshot has **16,802 days**. See <span class="co">[</span><span class="ot">station agreement</span><span class="co">](climate_window.qmd#station-agreement)</span>.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>The code below loads the saved public data and reconstructs each year's **26 March–7 May** mean. This newly added check does not download weather or rerun the window search.</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r filename="R/00_check_public_inputs.R"}</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>rebuilt <span class="ot">&lt;-</span> daily <span class="sc">|&gt;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&gt;=</span> <span class="st">"03-26"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>         <span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&lt;=</span> <span class="st">"05-07"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">temp_mean =</span> <span class="fu">mean</span>(temperature), <span class="at">n_days =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(rebuilt) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(rebuilt<span class="sc">$</span>n_days <span class="sc">==</span> <span class="dv">43</span>L))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Complete input-check script</span><span class="co">](R/00_check_public_inputs.R)</span> · <span class="co">[</span><span class="ot">Annual temperature file</span><span class="co">](data_derived/annual_main_window_temperature.csv)</span> · <span class="co">[</span><span class="ot">Annual median laying dates</span><span class="co">](data_derived/annual_raw_median_laying_date.csv)</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Select the window, then analyse reproduction</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>First, the <span class="co">[</span><span class="ot">sliding-window approach</span><span class="co">](climate_window.qmd)</span> searches candidate windows against annual median laying date and checks the selected weekly period with full-search randomisation and a temporal holdout. The operational 43-day exposure used for reproductive models differs from the complete-week search window.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>Next, <span class="co">[</span><span class="ot">calendar-year models</span><span class="co">](temporal_trends.qmd)</span> estimate temporal change, omitting temperature from both location and scale. Separate temperature-association models include both spring temperature and continuous calendar year, together with laying date and age. Categorical year identifiers define random-effect groups. See <span class="co">[</span><span class="ot">model equations and diagnostics</span><span class="co">](model_structure.qmd)</span>.</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is available? {#what-is-available}</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Available here <span class="pp">|</span> Still required for a complete rerun <span class="pp">|</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Field database <span class="pp">|</span> Inclusion rules, sample sizes, aggregate summaries <span class="pp">|</span> Private records and historical import/cleaning script <span class="pp">|</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> SMHI weather <span class="pp">|</span> Daily station snapshot, quality flags and annual temperatures <span class="pp">|</span> Historical downloader and original station-download files <span class="pp">|</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sliding-window selection <span class="pp">|</span> Annual laying-date input, weather input, procedure and reported diagnostics <span class="pp">|</span> Original search script, configuration and cached randomised searches <span class="pp">|</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Input validation <span class="pp">|</span> New <span class="in">`R/00_check_public_inputs.R`</span> <span class="pp">|</span> R with readr and dplyr <span class="pp">|</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Environmental trends <span class="pp">|</span> <span class="in">`R/25_environment_temperature_location_scale.R`</span> and annual input <span class="pp">|</span> Compatible R environment <span class="pp">|</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reproductive models <span class="pp">|</span> Fitting/export scripts, full estimates and diagnostics <span class="pp">|</span> Private curated datasets, required fitted objects and adapted paths <span class="pp">|</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Figures and website <span class="pp">|</span> Prediction tables, plotting scripts and Quarto sources <span class="pp">|</span> Python dependencies and Quarto <span class="pp">|</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>The public material supports inspection of results and regeneration of figures. It does not yet support a self-contained rerun from the original breeding database. Individual breeding records remain private.</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>**Continue:** <span class="co">[</span><span class="ot">Sliding-window approach</span><span class="co">](climate_window.qmd)</span> → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
