@@ -1,0 +1,75 @@
+---
+title: "From field records to analysis inputs"
+execute:
+  enabled: false
+---
+
+## The complete workflow
+
+**Field database + SMHI daily observations → curated records → sliding-window selection → annual exposure → calendar-year trends → temperature, laying-date and age associations.**
+
+This page makes the preparation steps visible before the results and identifies which historical inputs and scripts are still needed for a complete rerun.
+
+## 1. Load and curate the breeding database
+
+The field database records female identity, season, first-egg date, clutch size, fledgling count, age and experimental status. We retain unambiguously identified, ringed collared flycatcher females; resolve ambiguous duplicate attempts; exclude experimental females; and cross-check egg and fledgling counts. Relative laying date is first-egg date minus the median for that season. Female age is yearling or older.
+
+Laying-date summaries cover 1980–2025, excluding 2020. Reproductive models start in 1981 because female age is unavailable in 1980. Validated fledging records end in 2019. The two response datasets therefore require different inclusion periods.
+
+The actual [temporal-fitting script](R/83_fit_temporal_without_temperature.R) reads curated private `.rds` datasets: `clutch_counts/data.rds` for clutch size and `analysis_data.rds` for fledging, from the original analysis directory. These files are not public; historical paths need adapting on another computer. The original raw-database import and exclusion script has not been located in this publication repository.
+
+[Full study-sample and predictor definitions](data_preparation.qmd)
+
+## 2. Obtain daily temperatures from SMHI
+
+The Swedish source is **SMHI daily mean air temperature (parameter 2)** from **Hoburg and Hoburg A**. Use the [official observation download page](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/airtemperatureMean24h), [station catalogue for parameter 2](https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json) and [API documentation](https://opendata.smhi.se/metobs/api).
+
+Select daily mean temperature, locate both stations in the catalogue, and follow each station's archive download link. Retain station identifiers, dates, values and quality flags; save the original downloads before combining them. A new download can incorporate SMHI corrections, so compare it with the publication snapshot before replacing inputs.
+
+The saved [daily station-temperature file](data_derived/smhi_hoburg_daily_temperature.csv) is already available. Columns retain old/new station temperatures and quality flags, combined temperature, source, year and day of year. The historical downloader is absent from this repository; these instructions describe the source and do not reconstruct that missing script.
+
+## 3. Combine stations and calculate annual exposure
+
+On the 1,186 overlapping dates, temperature is the arithmetic mean of the station records; otherwise the available station is used. The combined 1980–2025 snapshot has **16,802 days**. See [station agreement](climate_window.qmd#station-agreement).
+
+The code below loads the saved public data and reconstructs each year's **26 March–7 May** mean. This newly added check does not download weather or rerun the window search.
+
+```{.r filename="R/00_check_public_inputs.R"}
+library(readr)
+library(dplyr)
+daily <- read_csv("data_derived/smhi_hoburg_daily_temperature.csv")
+annual <- read_csv("data_derived/annual_main_window_temperature.csv")
+phenology <- read_csv("data_derived/annual_raw_median_laying_date.csv")
+
+rebuilt <- daily |>
+  filter(format(date, "%m-%d") >= "03-26",
+         format(date, "%m-%d") <= "05-07") |>
+  group_by(year) |>
+  summarise(temp_mean = mean(temperature), n_days = n(),
+            .groups = "drop")
+stopifnot(nrow(rebuilt) == 46L, all(rebuilt$n_days == 43L))
+```
+
+[Complete input-check script](R/00_check_public_inputs.R) · [Annual temperature file](data_derived/annual_main_window_temperature.csv) · [Annual median laying dates](data_derived/annual_raw_median_laying_date.csv)
+
+## 4. Select the window, then analyse reproduction
+
+First, the [sliding-window approach](climate_window.qmd) searches candidate windows against annual median laying date and checks the selected weekly period with full-search randomisation and a temporal holdout. The operational 43-day exposure used for reproductive models differs from the complete-week search window.
+
+Next, [calendar-year models](temporal_trends.qmd) estimate temporal change, omitting temperature from both location and scale. Separate temperature-association models include both spring temperature and continuous calendar year, together with laying date and age. Categorical year identifiers define random-effect groups. See [model equations and diagnostics](model_structure.qmd).
+
+## What is available? {#what-is-available}
+
+| Step | Available here | Still required for a complete rerun |
+|---|---|---|
+| Field database | Inclusion rules, sample sizes, aggregate summaries | Private records and historical import/cleaning script |
+| SMHI weather | Daily station snapshot, quality flags and annual temperatures | Historical downloader and original station-download files |
+| Sliding-window selection | Annual laying-date input, weather input, procedure and reported diagnostics | Original search script, configuration and cached randomised searches |
+| Input validation | New `R/00_check_public_inputs.R` | R with readr and dplyr |
+| Environmental trends | `R/25_environment_temperature_location_scale.R` and annual input | Compatible R environment |
+| Reproductive models | Fitting/export scripts, full estimates and diagnostics | Private curated datasets, required fitted objects and adapted paths |
+| Figures and website | Prediction tables, plotting scripts and Quarto sources | Python dependencies and Quarto |
+
+The public material supports inspection of results and regeneration of figures. It does not yet support a self-contained rerun from the original breeding database. Individual breeding records remain private.
+
+**Continue:** [Sliding-window approach](climate_window.qmd) → [Calendar-year trends](temporal_trends.qmd).

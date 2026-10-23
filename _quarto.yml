@@ -4,6 +4,7 @@ project:
   execute-dir: project
   render:
     - index.qmd
+    - workflow.qmd
     - climate_window.qmd
     - data_preparation.qmd
     - model_structure.qmd
@@ -12,6 +13,12 @@ project:
     - temporal_trends.qmd
     - figure_code.qmd
   resources:
+    - images/
+    - media/gotland-background.mp4
+    - data_derived/smhi_hoburg_daily_temperature.csv
+    - data_derived/annual_main_window_temperature.csv
+    - data_derived/annual_raw_median_laying_date.csv
+    - R/00_check_public_inputs.R
     - tables/final_models_20261019/COM_age_mean.csv
     - tables/final_models_20261019/COM_age_sd.csv
     - tables/final_models_20261019/COM_centering.csv
@@ -86,24 +93,37 @@ website:
   repo-url: "https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication"
   repo-branch: main
   title: "Warmer springs and reproductive performance in the collared flycatcher"
-  navbar:
-    left:
+  page-navigation: true
+  sidebar:
+    title: "Gotland flycatchers"
+    style: docked
+    search: true
+    collapse-level: 2
+    contents:
       - text: "Overview"
         href: index.qmd
-      - text: "Thermal window and temperature data"
-        href: climate_window.qmd
-      - text: "Data and study population"
-        href: data_preparation.qmd
-      - text: "Model structure"
-        href: model_structure.qmd
-      - text: "Clutch size"
-        href: clutch_size.qmd
-      - text: "Fledging success"
-        href: fledging_success.qmd
-      - text: "Temporal trends"
-        href: temporal_trends.qmd
-      - text: "Figure code"
-        href: figure_code.qmd
+      - section: "Start here"
+        contents:
+          - text: "Data loading & SMHI weather"
+            href: workflow.qmd
+          - text: "Sliding-window approach"
+            href: climate_window.qmd
+      - section: "Analyses & results"
+        contents:
+          - text: "Calendar-year trends"
+            href: temporal_trends.qmd
+          - text: "Clutch size"
+            href: clutch_size.qmd
+          - text: "Egg-to-fledging success"
+            href: fledging_success.qmd
+      - section: "Methods & reproducibility"
+        contents:
+          - text: "Study sample & predictors"
+            href: data_preparation.qmd
+          - text: "Model structure & diagnostics"
+            href: model_structure.qmd
+          - text: "Figures & analysis code"
+            href: figure_code.qmd
 
 format:
   html:

@@ -1,39 +1,46 @@
 ---
-title: "Thermal window and temperature data"
+title: "Sliding-window approach"
 bibliography: references.bib
 execute:
   enabled: false
 ---
 
-# S1.5 Thermal-window selection and temporal validation
+[Data loading and SMHI sources](workflow.qmd) → **Sliding-window approach** → [Calendar-year trends](temporal_trends.qmd)
 
-# Window-selection procedure.
+This study does not analyse vegetation green-up or phenological mismatch.
+
+# Choosing the pre-laying thermal window
+
+## Window-selection procedure
 
 Given documented among-population and among-species variation in climate-sensitive periods [@samplonius2018phenological], we identified the pre-laying thermal window using a sliding-window analysis [@vandepol2016identifying]. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly.
 
 Because sliding-window searches can capitalise on chance, we assessed the selected window in two ways. First, we repeated the entire search 500 times with the response randomised relative to the temperature series, and compared the observed improvement in fit against the resulting null distribution. Second, we summarised the stability of the selection by taking the median opening and closing days across the 95% confidence set of candidate windows, which indicates whether support is concentrated on a narrow optimum or distributed across a broad plateau. Window selection used the 45 seasons for which an annual median laying date was available, namely 1980 to 2019 and 2021 to 2025. No field data were collected in 2020 because of the COVID-19 pandemic.
 
-# Full-search randomisation diagnostic and window identification.
+## Randomisation and temporal validation
 
 The 38.6016-unit AICc improvement refers to the selected complete-week phenology-search window, with offsets 6--0 weeks and realised dates 26 March--13 May in non-leap years or 25 March--12 May in leap years. It does not refer to the operational 26 March--7 May reproductive-analysis interval. We verified the cached output of all 500 full randomised searches: 0/500 had a best-window $\Delta\mathrm{AICc}$ at least as negative as $-38.6016$; their range was $-16.9196$ to 1.4594. The plus-one corrected empirical tail probability is $1/501=0.001996$. The package AIC-metric function returns the fixed string `<0.001` when its empirical cumulative distribution is zero; that output is not evidence of an empirical frequency below one in a thousand. The separately calibrated C-metric diagnostic, $P_C=1.27\times10^{-5}$, is based on window model-weight concentration and sample size. It is a model-based estimate rather than a Monte Carlo exceedance fraction. These diagnostics use the cached seed and analysis settings in the reproducible sliding-window workflow.
 
 For temporal validation, the window was selected using the first 23 seasons (1980--2002) and evaluated in the 22 held-out seasons (2003--2025, excluding 2020), using the same complete weekly bins as in the training analysis. The held-out slope was $-1.566$ days per $^\circ$C (95% CI $[-2.734,\,-0.397]$; $R^2=0.281$; $p=0.011$), compared with $-3.305$ days per $^\circ$C in training. Applying the training intercept and slope unchanged gave a held-out RMSE of 3.187 days, compared with 5.226 days for the training-mean baseline; mean prediction bias was +1.521 days.
 
 Alternative temperature-window fits have not been completed for either final reproductive model. The phenology-window validation is not independent validation of the reproductive models and does not propagate uncertainty from window selection.
-# S1.6 Thermal-data construction and supplementary environmental checks
+## Daily temperature construction
 
-# Station agreement and construction.
+### Station agreement
 
 Daily SMHI records from Hoburg and Hoburg A overlapped for 1,186 days from June 2009 to August 2012. The mean difference was 0.042 °C, SD of differences 0.166 °C, root mean squared error 0.171 °C and correlation 0.9998. On overlapping days we used their arithmetic mean; on other days we used the available station. The combined record spanned 1 January 1980--31 December 2025 and comprised 16,802 days. This agreement supports combining the records, but does not by itself exclude every possible source of inhomogeneity.
 
-# Environmental location--scale diagnostics and 2020 sensitivity.
+### Environmental model checks
 
 The model converged with a positive-definite Hessian; two optimisers agreed in log likelihood to within $10^{-5}$. Standardised residuals showed no clear departure from normality (Shapiro--Wilk $p=0.495$) or serial correlation (lag-one correlation 0.117; Ljung--Box test at lag 5, $p=0.512$). These checks do not establish normality or independence. A time-dependent residual scale was not clearly supported over constant scale ($\chi^2_1=1.686$, $p=0.194$). Excluding 2020 gave $\beta_{\mathrm{time}}=0.0424$ °C per year and $\gamma_{\mathrm{time}}=-0.01099$ on the $\log\sigma_t$ scale per year (95% CI $[-0.02798,\,0.00600]$, $p=0.205$). With only 46 annual observations, gradual scale changes may be difficult to detect.
 
-# Exploratory monthly summaries and phenology checks.
 
-These complementary analyses were used as descriptive temporal diagnostics, rather than to select the primary reproductive exposure window. For each year we counted March days exceeding 4, 5 and 8 °C and regressed these counts on year. We compared March--April temperature correlations between 1980--2002 and 2003--2025 and examined temperature-by-era interactions and a continuous temperature-by-time interaction for laying date.
+## From window selection to reproductive analyses
 
-The number of March days exceeding 4 °C increased by 0.21 days per year (95% CI $[0.11,\,0.32]$, *p* $<$ 0.001) and the number exceeding 5 °C by 0.07 days per year (95% CI $[0.01,\,0.14]$, *p* = 0.021), while no March day in the series reached 8 °C. March and April temperatures remained comparably correlated in the first and second halves of the study period (0.62 in 1980--2002 and 0.53 in 2003--2025; difference between correlations, *p* = 0.60), and a joint test of both temperature-by-era interactions on laying date was not supported ($F_{2,39}$ = 2.24, *p* = 0.12). Modelling change in the temperature effect on laying date continuously in time likewise gave no supported change in slope ($\beta_{\mathrm{temp}\times\mathrm{time}}^{(\mathrm{laying\ date})}=0.023$ days per °C per year, 95% CI $[-0.051,\,0.096]$, *p* = 0.53).
+The complete-week search and the operational daily window are distinct. Reproductive models use **26 March–7 May (43 days)** every year. Annual exposure is joined to breeding records by calendar year. Calendar-year trend models omit temperature from both location and scale.
 
-Daily-temperature variability is a supplementary environmental diagnostic, not a separate main reproductive objective.
+[Annual median laying dates](data_derived/annual_raw_median_laying_date.csv) · [Operational-window temperatures](data_derived/annual_main_window_temperature.csv)
+
+The public repository contains input summaries and reported diagnostics, but not the original search script or its 500 cached randomised runs. The documented procedure cannot currently be rerun end to end from this repository. See [the code inventory](workflow.qmd#what-is-available).
+
+**Next:** [Calendar-year trends](temporal_trends.qmd).

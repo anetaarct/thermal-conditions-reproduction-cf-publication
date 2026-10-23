@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Thermal window and temperature data – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Sliding-window approach – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -90,6 +90,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./temporal_trends.html" rel="next">
+<link href="./workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -99,13 +101,13 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -161,86 +163,156 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Warmer springs and reproductive performance in the collared flycatcher</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Overview</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./climate_window.html" aria-current="page"> 
-<span class="menu-text">Thermal window and temperature data</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./data_preparation.html"> 
-<span class="menu-text">Data and study population</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./model_structure.html"> 
-<span class="menu-text">Model structure</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./clutch_size.html"> 
-<span class="menu-text">Clutch size</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./fledging_success.html"> 
-<span class="menu-text">Fledging success</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./temporal_trends.html">
-<span class="menu-text">Temporal trends</span></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./figure_code.html"> 
-<span class="menu-text">Figure code</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Start here</a></li><li class="breadcrumb-item"><a href="./climate_window.html">Sliding-window approach</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Gotland flycatchers</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Start here</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data loading &amp; SMHI weather</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./climate_window.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Sliding-window approach</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analyses &amp; results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calendar-year trends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clutch_size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clutch size</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fledging_success.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Egg-to-fledging success</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Methods &amp; reproducibility</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Study sample &amp; predictors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./model_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model structure &amp; diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures &amp; analysis code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#s1.5-thermal-window-selection-and-temporal-validation" id="toc-s1.5-thermal-window-selection-and-temporal-validation" class="nav-link active" data-scroll-target="#s1.5-thermal-window-selection-and-temporal-validation"><span class="header-section-number">1</span> S1.5 Thermal-window selection and temporal validation</a></li>
-  <li><a href="#window-selection-procedure." id="toc-window-selection-procedure." class="nav-link" data-scroll-target="#window-selection-procedure."><span class="header-section-number">2</span> Window-selection procedure.</a></li>
-  <li><a href="#full-search-randomisation-diagnostic-and-window-identification." id="toc-full-search-randomisation-diagnostic-and-window-identification." class="nav-link" data-scroll-target="#full-search-randomisation-diagnostic-and-window-identification."><span class="header-section-number">3</span> Full-search randomisation diagnostic and window identification.</a></li>
-  <li><a href="#station-agreement-and-construction." id="toc-station-agreement-and-construction." class="nav-link" data-scroll-target="#station-agreement-and-construction."><span class="header-section-number">4</span> Station agreement and construction.</a></li>
-  <li><a href="#environmental-locationscale-diagnostics-and-2020-sensitivity." id="toc-environmental-locationscale-diagnostics-and-2020-sensitivity." class="nav-link" data-scroll-target="#environmental-locationscale-diagnostics-and-2020-sensitivity."><span class="header-section-number">5</span> Environmental location–scale diagnostics and 2020 sensitivity.</a></li>
-  <li><a href="#exploratory-monthly-summaries-and-phenology-checks." id="toc-exploratory-monthly-summaries-and-phenology-checks." class="nav-link" data-scroll-target="#exploratory-monthly-summaries-and-phenology-checks."><span class="header-section-number">6</span> Exploratory monthly summaries and phenology checks.</a></li>
+  <li><a href="#choosing-the-pre-laying-thermal-window" id="toc-choosing-the-pre-laying-thermal-window" class="nav-link active" data-scroll-target="#choosing-the-pre-laying-thermal-window"><span class="header-section-number">1</span> Choosing the pre-laying thermal window</a>
+  <ul class="collapse">
+  <li><a href="#window-selection-procedure" id="toc-window-selection-procedure" class="nav-link" data-scroll-target="#window-selection-procedure"><span class="header-section-number">1.1</span> Window-selection procedure</a></li>
+  <li><a href="#randomisation-and-temporal-validation" id="toc-randomisation-and-temporal-validation" class="nav-link" data-scroll-target="#randomisation-and-temporal-validation"><span class="header-section-number">1.2</span> Randomisation and temporal validation</a>
+  <ul class="collapse">
+  <li><a href="#station-agreement" id="toc-station-agreement" class="nav-link" data-scroll-target="#station-agreement"><span class="header-section-number">1.2.1</span> Station agreement</a></li>
+  <li><a href="#environmental-model-checks" id="toc-environmental-model-checks" class="nav-link" data-scroll-target="#environmental-model-checks"><span class="header-section-number">1.2.2</span> Environmental model checks</a></li>
+  </ul></li>
+  <li><a href="#from-window-selection-to-reproductive-analyses" id="toc-from-window-selection-to-reproductive-analyses" class="nav-link" data-scroll-target="#from-window-selection-to-reproductive-analyses"><span class="header-section-number">1.3</span> From window selection to reproductive analyses</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Start here</a></li><li class="breadcrumb-item"><a href="./climate_window.html">Sliding-window approach</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Thermal window and temperature data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Sliding-window approach</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -257,38 +329,41 @@ window.Quarto = {
 </header>
 
 
-<section id="s1.5-thermal-window-selection-and-temporal-validation" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> S1.5 Thermal-window selection and temporal validation</h1>
-</section>
-<section id="window-selection-procedure." class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Window-selection procedure.</h1>
+<p><a href="./workflow.html">Data loading and SMHI sources</a> → <strong>Sliding-window approach</strong> → <a href="./temporal_trends.html">Calendar-year trends</a></p>
+<p>This study does not analyse vegetation green-up or phenological mismatch.</p>
+<section id="choosing-the-pre-laying-thermal-window" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Choosing the pre-laying thermal window</h1>
+<section id="window-selection-procedure" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="window-selection-procedure"><span class="header-section-number">1.1</span> Window-selection procedure</h2>
 <p>Given documented among-population and among-species variation in climate-sensitive periods <span class="citation" data-cites="samplonius2018phenological">(<a href="#ref-samplonius2018phenological" role="doc-biblioref">Samplonius et al. 2018</a>)</span>, we identified the pre-laying thermal window using a sliding-window analysis <span class="citation" data-cites="vandepol2016identifying">(<a href="#ref-vandepol2016identifying" role="doc-biblioref">Pol et al. 2016</a>)</span>. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly.</p>
 <p>Because sliding-window searches can capitalise on chance, we assessed the selected window in two ways. First, we repeated the entire search 500 times with the response randomised relative to the temperature series, and compared the observed improvement in fit against the resulting null distribution. Second, we summarised the stability of the selection by taking the median opening and closing days across the 95% confidence set of candidate windows, which indicates whether support is concentrated on a narrow optimum or distributed across a broad plateau. Window selection used the 45 seasons for which an annual median laying date was available, namely 1980 to 2019 and 2021 to 2025. No field data were collected in 2020 because of the COVID-19 pandemic.</p>
 </section>
-<section id="full-search-randomisation-diagnostic-and-window-identification." class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Full-search randomisation diagnostic and window identification.</h1>
+<section id="randomisation-and-temporal-validation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="randomisation-and-temporal-validation"><span class="header-section-number">1.2</span> Randomisation and temporal validation</h2>
 <p>The 38.6016-unit AICc improvement refers to the selected complete-week phenology-search window, with offsets 6–0 weeks and realised dates 26 March–13 May in non-leap years or 25 March–12 May in leap years. It does not refer to the operational 26 March–7 May reproductive-analysis interval. We verified the cached output of all 500 full randomised searches: 0/500 had a best-window <span class="math inline">\(\Delta\mathrm{AICc}\)</span> at least as negative as <span class="math inline">\(-38.6016\)</span>; their range was <span class="math inline">\(-16.9196\)</span> to 1.4594. The plus-one corrected empirical tail probability is <span class="math inline">\(1/501=0.001996\)</span>. The package AIC-metric function returns the fixed string <code>&lt;0.001</code> when its empirical cumulative distribution is zero; that output is not evidence of an empirical frequency below one in a thousand. The separately calibrated C-metric diagnostic, <span class="math inline">\(P_C=1.27\times10^{-5}\)</span>, is based on window model-weight concentration and sample size. It is a model-based estimate rather than a Monte Carlo exceedance fraction. These diagnostics use the cached seed and analysis settings in the reproducible sliding-window workflow.</p>
 <p>For temporal validation, the window was selected using the first 23 seasons (1980–2002) and evaluated in the 22 held-out seasons (2003–2025, excluding 2020), using the same complete weekly bins as in the training analysis. The held-out slope was <span class="math inline">\(-1.566\)</span> days per <span class="math inline">\(^\circ\)</span>C (95% CI <span class="math inline">\([-2.734,\,-0.397]\)</span>; <span class="math inline">\(R^2=0.281\)</span>; <span class="math inline">\(p=0.011\)</span>), compared with <span class="math inline">\(-3.305\)</span> days per <span class="math inline">\(^\circ\)</span>C in training. Applying the training intercept and slope unchanged gave a held-out RMSE of 3.187 days, compared with 5.226 days for the training-mean baseline; mean prediction bias was +1.521 days.</p>
-<p>Alternative temperature-window fits have not been completed for either final reproductive model. The phenology-window validation is not independent validation of the reproductive models and does not propagate uncertainty from window selection. # S1.6 Thermal-data construction and supplementary environmental checks</p>
-</section>
-<section id="station-agreement-and-construction." class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Station agreement and construction.</h1>
+<p>Alternative temperature-window fits have not been completed for either final reproductive model. The phenology-window validation is not independent validation of the reproductive models and does not propagate uncertainty from window selection. ## Daily temperature construction</p>
+<section id="station-agreement" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="station-agreement"><span class="header-section-number">1.2.1</span> Station agreement</h3>
 <p>Daily SMHI records from Hoburg and Hoburg A overlapped for 1,186 days from June 2009 to August 2012. The mean difference was 0.042 °C, SD of differences 0.166 °C, root mean squared error 0.171 °C and correlation 0.9998. On overlapping days we used their arithmetic mean; on other days we used the available station. The combined record spanned 1 January 1980–31 December 2025 and comprised 16,802 days. This agreement supports combining the records, but does not by itself exclude every possible source of inhomogeneity.</p>
 </section>
-<section id="environmental-locationscale-diagnostics-and-2020-sensitivity." class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Environmental location–scale diagnostics and 2020 sensitivity.</h1>
+<section id="environmental-model-checks" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="environmental-model-checks"><span class="header-section-number">1.2.2</span> Environmental model checks</h3>
 <p>The model converged with a positive-definite Hessian; two optimisers agreed in log likelihood to within <span class="math inline">\(10^{-5}\)</span>. Standardised residuals showed no clear departure from normality (Shapiro–Wilk <span class="math inline">\(p=0.495\)</span>) or serial correlation (lag-one correlation 0.117; Ljung–Box test at lag 5, <span class="math inline">\(p=0.512\)</span>). These checks do not establish normality or independence. A time-dependent residual scale was not clearly supported over constant scale (<span class="math inline">\(\chi^2_1=1.686\)</span>, <span class="math inline">\(p=0.194\)</span>). Excluding 2020 gave <span class="math inline">\(\beta_{\mathrm{time}}=0.0424\)</span> °C per year and <span class="math inline">\(\gamma_{\mathrm{time}}=-0.01099\)</span> on the <span class="math inline">\(\log\sigma_t\)</span> scale per year (95% CI <span class="math inline">\([-0.02798,\,0.00600]\)</span>, <span class="math inline">\(p=0.205\)</span>). With only 46 annual observations, gradual scale changes may be difficult to detect.</p>
 </section>
-<section id="exploratory-monthly-summaries-and-phenology-checks." class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Exploratory monthly summaries and phenology checks.</h1>
-<p>These complementary analyses were used as descriptive temporal diagnostics, rather than to select the primary reproductive exposure window. For each year we counted March days exceeding 4, 5 and 8 °C and regressed these counts on year. We compared March–April temperature correlations between 1980–2002 and 2003–2025 and examined temperature-by-era interactions and a continuous temperature-by-time interaction for laying date.</p>
-<p>The number of March days exceeding 4 °C increased by 0.21 days per year (95% CI <span class="math inline">\([0.11,\,0.32]\)</span>, <em>p</em> <span class="math inline">\(&lt;\)</span> 0.001) and the number exceeding 5 °C by 0.07 days per year (95% CI <span class="math inline">\([0.01,\,0.14]\)</span>, <em>p</em> = 0.021), while no March day in the series reached 8 °C. March and April temperatures remained comparably correlated in the first and second halves of the study period (0.62 in 1980–2002 and 0.53 in 2003–2025; difference between correlations, <em>p</em> = 0.60), and a joint test of both temperature-by-era interactions on laying date was not supported (<span class="math inline">\(F_{2,39}\)</span> = 2.24, <em>p</em> = 0.12). Modelling change in the temperature effect on laying date continuously in time likewise gave no supported change in slope (<span class="math inline">\(\beta_{\mathrm{temp}\times\mathrm{time}}^{(\mathrm{laying\ date})}=0.023\)</span> days per °C per year, 95% CI <span class="math inline">\([-0.051,\,0.096]\)</span>, <em>p</em> = 0.53).</p>
-<p>Daily-temperature variability is a supplementary environmental diagnostic, not a separate main reproductive objective.</p>
+</section>
+<section id="from-window-selection-to-reproductive-analyses" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="from-window-selection-to-reproductive-analyses"><span class="header-section-number">1.3</span> From window selection to reproductive analyses</h2>
+<p>The complete-week search and the operational daily window are distinct. Reproductive models use <strong>26 March–7 May (43 days)</strong> every year. Annual exposure is joined to breeding records by calendar year. Calendar-year trend models omit temperature from both location and scale.</p>
+<p><a href="data_derived/annual_raw_median_laying_date.csv">Annual median laying dates</a> · <a href="data_derived/annual_main_window_temperature.csv">Operational-window temperatures</a></p>
+<p>The public repository contains input summaries and reported diagnostics, but not the original search script or its 500 cached randomised runs. The documented procedure cannot currently be rerun end to end from this repository. See <a href="./workflow.html#what-is-available">the code inventory</a>.</p>
+<p><strong>Next:</strong> <a href="./temporal_trends.html">Calendar-year trends</a>.</p>
 
 
 <!-- -->
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
@@ -749,46 +824,65 @@ Samplonius, Jelmer M., Lenka Bartošová, Malcolm D. Burgess, et al. 2018. <span
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./workflow.html" class="pagination-link" aria-label="Data loading &amp; SMHI weather">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data loading &amp; SMHI weather</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./temporal_trends.html" class="pagination-link" aria-label="Calendar-year trends">
+        <span class="nav-page-text">Calendar-year trends</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Thermal window and temperature data"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Sliding-window approach"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># S1.5 Thermal-window selection and temporal validation</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Data loading and SMHI sources</span><span class="co">](workflow.qmd)</span> → **Sliding-window approach** → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># Window-selection procedure.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>This study does not analyse vegetation green-up or phenological mismatch.</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Given documented among-population and among-species variation in climate-sensitive periods <span class="co">[</span><span class="ot">@samplonius2018phenological</span><span class="co">]</span>, we identified the pre-laying thermal window using a sliding-window analysis <span class="co">[</span><span class="ot">@vandepol2016identifying</span><span class="co">]</span>. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu"># Choosing the pre-laying thermal window</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Because sliding-window searches can capitalise on chance, we assessed the selected window in two ways. First, we repeated the entire search 500 times with the response randomised relative to the temperature series, and compared the observed improvement in fit against the resulting null distribution. Second, we summarised the stability of the selection by taking the median opening and closing days across the 95% confidence set of candidate windows, which indicates whether support is concentrated on a narrow optimum or distributed across a broad plateau. Window selection used the 45 seasons for which an annual median laying date was available, namely 1980 to 2019 and 2021 to 2025. No field data were collected in 2020 because of the COVID-19 pandemic.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Window-selection procedure</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu"># Full-search randomisation diagnostic and window identification.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Given documented among-population and among-species variation in climate-sensitive periods <span class="co">[</span><span class="ot">@samplonius2018phenological</span><span class="co">]</span>, we identified the pre-laying thermal window using a sliding-window analysis <span class="co">[</span><span class="ot">@vandepol2016identifying</span><span class="co">]</span>. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The 38.6016-unit AICc improvement refers to the selected complete-week phenology-search window, with offsets 6--0 weeks and realised dates 26 March--13 May in non-leap years or 25 March--12 May in leap years. It does not refer to the operational 26 March--7 May reproductive-analysis interval. We verified the cached output of all 500 full randomised searches: 0/500 had a best-window $\Delta\mathrm{AICc}$ at least as negative as $-38.6016$; their range was $-16.9196$ to 1.4594. The plus-one corrected empirical tail probability is $1/501=0.001996$. The package AIC-metric function returns the fixed string <span class="in">`&lt;0.001`</span> when its empirical cumulative distribution is zero; that output is not evidence of an empirical frequency below one in a thousand. The separately calibrated C-metric diagnostic, $P_C=1.27\times10^{-5}$, is based on window model-weight concentration and sample size. It is a model-based estimate rather than a Monte Carlo exceedance fraction. These diagnostics use the cached seed and analysis settings in the reproducible sliding-window workflow.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Because sliding-window searches can capitalise on chance, we assessed the selected window in two ways. First, we repeated the entire search 500 times with the response randomised relative to the temperature series, and compared the observed improvement in fit against the resulting null distribution. Second, we summarised the stability of the selection by taking the median opening and closing days across the 95% confidence set of candidate windows, which indicates whether support is concentrated on a narrow optimum or distributed across a broad plateau. Window selection used the 45 seasons for which an annual median laying date was available, namely 1980 to 2019 and 2021 to 2025. No field data were collected in 2020 because of the COVID-19 pandemic.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>For temporal validation, the window was selected using the first 23 seasons (1980--2002) and evaluated in the 22 held-out seasons (2003--2025, excluding 2020), using the same complete weekly bins as in the training analysis. The held-out slope was $-1.566$ days per $^\circ$C (95% CI $<span class="co">[</span><span class="ot">-2.734,\,-0.397</span><span class="co">]</span>$; $R^2=0.281$; $p=0.011$), compared with $-3.305$ days per $^\circ$C in training. Applying the training intercept and slope unchanged gave a held-out RMSE of 3.187 days, compared with 5.226 days for the training-mean baseline; mean prediction bias was +1.521 days.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Randomisation and temporal validation</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Alternative temperature-window fits have not been completed for either final reproductive model. The phenology-window validation is not independent validation of the reproductive models and does not propagate uncertainty from window selection.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># S1.6 Thermal-data construction and supplementary environmental checks</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Station agreement and construction.</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Daily SMHI records from Hoburg and Hoburg A overlapped for 1,186 days from June 2009 to August 2012. The mean difference was 0.042 °C, SD of differences 0.166 °C, root mean squared error 0.171 °C and correlation 0.9998. On overlapping days we used their arithmetic mean; on other days we used the available station. The combined record spanned 1 January 1980--31 December 2025 and comprised 16,802 days. This agreement supports combining the records, but does not by itself exclude every possible source of inhomogeneity.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>The 38.6016-unit AICc improvement refers to the selected complete-week phenology-search window, with offsets 6--0 weeks and realised dates 26 March--13 May in non-leap years or 25 March--12 May in leap years. It does not refer to the operational 26 March--7 May reproductive-analysis interval. We verified the cached output of all 500 full randomised searches: 0/500 had a best-window $\Delta\mathrm{AICc}$ at least as negative as $-38.6016$; their range was $-16.9196$ to 1.4594. The plus-one corrected empirical tail probability is $1/501=0.001996$. The package AIC-metric function returns the fixed string <span class="in">`&lt;0.001`</span> when its empirical cumulative distribution is zero; that output is not evidence of an empirical frequency below one in a thousand. The separately calibrated C-metric diagnostic, $P_C=1.27\times10^{-5}$, is based on window model-weight concentration and sample size. It is a model-based estimate rather than a Monte Carlo exceedance fraction. These diagnostics use the cached seed and analysis settings in the reproducible sliding-window workflow.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>For temporal validation, the window was selected using the first 23 seasons (1980--2002) and evaluated in the 22 held-out seasons (2003--2025, excluding 2020), using the same complete weekly bins as in the training analysis. The held-out slope was $-1.566$ days per $^\circ$C (95% CI $<span class="co">[</span><span class="ot">-2.734,\,-0.397</span><span class="co">]</span>$; $R^2=0.281$; $p=0.011$), compared with $-3.305$ days per $^\circ$C in training. Applying the training intercept and slope unchanged gave a held-out RMSE of 3.187 days, compared with 5.226 days for the training-mean baseline; mean prediction bias was +1.521 days.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Alternative temperature-window fits have not been completed for either final reproductive model. The phenology-window validation is not independent validation of the reproductive models and does not propagate uncertainty from window selection.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Daily temperature construction</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu"># Environmental location--scale diagnostics and 2020 sensitivity.</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Station agreement</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>The model converged with a positive-definite Hessian; two optimisers agreed in log likelihood to within $10^{-5}$. Standardised residuals showed no clear departure from normality (Shapiro--Wilk $p=0.495$) or serial correlation (lag-one correlation 0.117; Ljung--Box test at lag 5, $p=0.512$). These checks do not establish normality or independence. A time-dependent residual scale was not clearly supported over constant scale ($\chi^2_1=1.686$, $p=0.194$). Excluding 2020 gave $\beta_{\mathrm{time}}=0.0424$ °C per year and $\gamma_{\mathrm{time}}=-0.01099$ on the $\log\sigma_t$ scale per year (95% CI $<span class="co">[</span><span class="ot">-0.02798,\,0.00600</span><span class="co">]</span>$, $p=0.205$). With only 46 annual observations, gradual scale changes may be difficult to detect.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Daily SMHI records from Hoburg and Hoburg A overlapped for 1,186 days from June 2009 to August 2012. The mean difference was 0.042 °C, SD of differences 0.166 °C, root mean squared error 0.171 °C and correlation 0.9998. On overlapping days we used their arithmetic mean; on other days we used the available station. The combined record spanned 1 January 1980--31 December 2025 and comprised 16,802 days. This agreement supports combining the records, but does not by itself exclude every possible source of inhomogeneity.</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exploratory monthly summaries and phenology checks.</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Environmental model checks</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>These complementary analyses were used as descriptive temporal diagnostics, rather than to select the primary reproductive exposure window. For each year we counted March days exceeding 4, 5 and 8 °C and regressed these counts on year. We compared March--April temperature correlations between 1980--2002 and 2003--2025 and examined temperature-by-era interactions and a continuous temperature-by-time interaction for laying date.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>The model converged with a positive-definite Hessian; two optimisers agreed in log likelihood to within $10^{-5}$. Standardised residuals showed no clear departure from normality (Shapiro--Wilk $p=0.495$) or serial correlation (lag-one correlation 0.117; Ljung--Box test at lag 5, $p=0.512$). These checks do not establish normality or independence. A time-dependent residual scale was not clearly supported over constant scale ($\chi^2_1=1.686$, $p=0.194$). Excluding 2020 gave $\beta_{\mathrm{time}}=0.0424$ °C per year and $\gamma_{\mathrm{time}}=-0.01099$ on the $\log\sigma_t$ scale per year (95% CI $<span class="co">[</span><span class="ot">-0.02798,\,0.00600</span><span class="co">]</span>$, $p=0.205$). With only 46 annual observations, gradual scale changes may be difficult to detect.</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>The number of March days exceeding 4 °C increased by 0.21 days per year (95% CI $<span class="co">[</span><span class="ot">0.11,\,0.32</span><span class="co">]</span>$, *p* $&lt;$ 0.001) and the number exceeding 5 °C by 0.07 days per year (95% CI $[0.01,\,0.14]$, *p* = 0.021), while no March day in the series reached 8 °C. March and April temperatures remained comparably correlated in the first and second halves of the study period (0.62 in 1980--2002 and 0.53 in 2003--2025; difference between correlations, *p* = 0.60), and a joint test of both temperature-by-era interactions on laying date was not supported ($F_{2,39}$ = 2.24, *p* = 0.12). Modelling change in the temperature effect on laying date continuously in time likewise gave no supported change in slope ($\beta_{\mathrm{temp}\times\mathrm{time}}^{(\mathrm{laying\ date})}=0.023$ days per °C per year, 95% CI $[-0.051,\,0.096]$, *p* = 0.53).</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Daily-temperature variability is a supplementary environmental diagnostic, not a separate main reproductive objective.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## From window selection to reproductive analyses</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>The complete-week search and the operational daily window are distinct. Reproductive models use **26 March–7 May (43 days)** every year. Annual exposure is joined to breeding records by calendar year. Calendar-year trend models omit temperature from both location and scale.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Annual median laying dates</span><span class="co">](data_derived/annual_raw_median_laying_date.csv)</span> · <span class="co">[</span><span class="ot">Operational-window temperatures</span><span class="co">](data_derived/annual_main_window_temperature.csv)</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The public repository contains input summaries and reported diagnostics, but not the original search script or its 500 cached randomised runs. The documented procedure cannot currently be rerun end to end from this repository. See <span class="co">[</span><span class="ot">the code inventory</span><span class="co">](workflow.qmd#what-is-available)</span>.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**Next:** <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

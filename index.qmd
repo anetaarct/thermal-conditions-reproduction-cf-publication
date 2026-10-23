@@ -1,33 +1,60 @@
 ---
-title: "Mean reproductive performance and reproductive consistency"
-bibliography: references.bib
+title: "Overview"
+title-block-style: none
+toc: false
+code-tools: false
+number-sections: false
 execute:
   enabled: false
 ---
 
-Rising spring temperatures are a well-documented signal of climate change, yet their associations with reproductive performance vary across traits and populations. Analyses focused on average outcomes may overlook another dimension of reproductive change: reproductive consistency, or how similar outcomes are among breeding attempts under comparable conditions.
+```{=html}
+<style>#title-block-header { display:none; }</style>
+<section class="title-hero">
+<video class="title-hero-video" autoplay muted loop playsinline preload="metadata" poster="images/cover-flycatcher.jpg" aria-hidden="true"><source src="media/gotland-background.mp4" type="video/mp4"></video>
+<div class="title-hero-text">
+<h1>Larger clutches, lower fledging success</h1>
+<p class="title-subtitle">Spring temperature and reproductive consistency in Gotland's collared flycatchers</p>
+<p class="title-authors">Aneta Arct · Santiago Ortega · Rafał Martyka · Lars Gustafsson · Szymon M. Drobniak · Shinichi Nakagawa</p>
+<p class="title-notes">Data, analysis workflow and results · Gotland, Sweden</p>
+</div></section>
+```
 
-Using long-term individual-based records from collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, we applied a location--scale modelling framework to clutch size and egg-to-fledging success. This framework estimates associations with both mean reproductive performance and model-based measures of reproductive consistency. Spring temperature was averaged over a pre-laying window informed by a sliding-window analysis of annual median laying date. Mean temperature increased by approximately 0.44 °C per decade, but we found no clear evidence that spring thermal conditions became more unpredictable over the study period.
+## A long-term view of reproduction
 
-The two reproductive traits showed opposite associations with spring temperature. Warmer springs were associated with larger clutches but lower egg-to-fledging success. Evidence that temperature was associated with reproductive consistency was inconclusive for both traits. Later relative laying dates were associated with smaller clutches and lower fledging success. Later broods also showed greater reproductive inconsistency, with less consistent clutch sizes and lower estimated fledging consistency among comparable broods. Older females laid larger and more consistent clutches, whereas age-related differences in fledging performance and consistency remained uncertain. Separate models without temperature showed increasing clutch size and declining fledging success over time, with no clear temporal change in reproductive consistency.
+::: {.overview-background-panel}
+```{=html}
+<figure class="overview-species-photo"><img src="images/overview-flycatcher.png" alt="Collared flycatcher perched on a branch."></figure>
+```
+Using long-term records of collared flycatchers (*Ficedula albicollis*), we examine both average reproductive performance and **reproductive consistency**: how similarly breeding attempts perform under comparable conditions.
 
-Although temperature associations with reproductive consistency were inconclusive, its clear association with relative laying date shows the value of examining consistency alongside mean reproductive performance. Relative laying date describes seasonal timing and may reflect changing breeding conditions as well as differences among females. We therefore advocate location--scale modelling as a routine complement to mean-based analyses of reproductive responses to climate change.
+Clutch size increased and egg-to-fledging success declined over calendar time, with no clear temporal change in reproductive consistency. Mean spring temperature increased by approximately **0.44°C per decade**, without a clear increase in variability among years. Warmer springs were associated with larger clutches but lower fledging success; temperature associations with consistency remained uncertain.
 
-## Final model set
+Later-laying females had smaller clutches, lower success and greater estimated reproductive inconsistency. Older females laid larger and more consistent clutches; age differences in fledging performance and consistency remained uncertain.
 
-For each trait, two model sets answer different questions. **Temperature associations** use the unchanged models containing temperature, calendar year, relative laying date and age. **Temporal trends** use separate models refitted without temperature in either location or scale, retaining age, relative laying date and the same random effects. Both sets use maximum likelihood in glmmTMB: COM-Poisson for clutch size and zero-inflated beta-binomial for fledging success. No interactions are included. See [Temporal trends](temporal_trends.qmd) and [Model structure](model_structure.qmd) for the reporting targets and interpretation of reproductive consistency.
+We predicted declining consistency **over time**. Temporal trends and temperature associations answer separate questions and do not establish a causal effect of warming.
+:::
 
-## Main findings
+## Follow the analysis
 
-Mean spring temperature increased, but we found no clear evidence that spring thermal conditions became more unpredictable. Warmer springs were associated with larger clutches but lower egg-to-fledging success. Evidence for temperature-related differences in reproductive consistency was uncertain.
-Later relative laying dates were clearly associated with lower mean reproductive performance and greater reproductive inconsistency, expressed as less consistent clutch sizes and lower estimated fledging consistency among comparable broods. Older females laid larger and more consistent clutches, while age differences in fledging performance and consistency remained uncertain. Separate models without temperature showed increasing mean clutch size and declining mean fledging success over time, while temporal changes in reproductive consistency remained uncertain. These temporal trends and the temperature associations address different questions and do not by themselves establish a causal effect of warming. Examining mean reproductive performance alongside reproductive consistency therefore helps distinguish differences in average reproductive output from differences in how similarly comparable breeding attempts perform.
+Field records and Swedish weather observations come first. A phenology-based sliding-window analysis informs the thermal exposure window; calendar-year trends then precede temperature associations in the reproductive results.
 
-## Navigation
+```{=html}
+<div class="overview-tiles">
+<a class="overview-tile" href="workflow.html"><h3>Data & preparation</h3><p>Load the breeding database, obtain SMHI weather and construct analysis inputs.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Candidate periods, randomisation, temporal validation and the operational window.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Changes in reproductive performance and consistency from models without temperature.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3>03 · Temperature & reproduction</h3><p>Temperature, laying date and age: clutch size and egg-to-fledging success.</p></a>
+</div>
+```
 
-[Thermal-window validation](climate_window.qmd) · [Study sample and predictors](data_preparation.qmd) · [Model structure](model_structure.qmd) · [Temporal trends](temporal_trends.qmd) · [Clutch size](clutch_size.qmd) · [Fledging success](fledging_success.qmd) · [Figures and code](figure_code.qmd)
+[Egg-to-fledging results](fledging_success.qmd) · [Model equations and checks](model_structure.qmd) · [Figures and code](figure_code.qmd)
 
-## Code and published results
+## Study records
 
-[Publication repository](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication) · [Results website](https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/)
+| Analysis | Breeding attempts | Females | Seasons |
+|---|---:|---:|---|
+| Clutch size | 12,627 | 8,894 | 1981–2025, excluding 2020 |
+| Egg-to-fledging success | 9,790 | 7,132 | 1981–2019 |
 
-The repository contains the final model exports, diagnostic summaries, prediction data, figures and website source. Individual-level field records and fitted model objects are not public. Curated brood-level data can be made available to reviewers on request. See the repository README for the scope of reproducibility.
+Weather covers 1980–2025. Window selection uses 45 seasons with laying-date records. See [the input and code inventory](workflow.qmd#what-is-available) for available files and remaining reproducibility gaps.
