@@ -1,0 +1,4 @@
+"analysis","open_weeks","close_weeks","delta_AICc","temperature_beta","SE","non_leap_start","non_leap_end","leap_start","leap_end","n_days"
+"main",6,0,-38.6015985839706,-3.44925100575163,0.432135855064414,"26 Mar","13 May","25 Mar","12 May",49
+"first23",9,0,-19.8914775785398,-3.30513058124273,0.558755272639126,"05 Mar","13 May","04 Mar","12 May",70
+"second22",4,1,-8.47411798877225,-2.04377163074089,0.561698630419408,"09 Apr","06 May","08 Apr","05 May",28

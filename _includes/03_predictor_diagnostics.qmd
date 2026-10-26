@@ -1,0 +1,85 @@
+```{.r filename="R/03_predictor_diagnostics.R"}
+# Fixed-design VIF and year-temperature correlation; no model fitting.
+# Private inputs: clutch_size_model_data.csv and reproductive_model_data.csv.
+# Run from the publication repository root:
+# Rscript R/03_predictor_diagnostics.R /path/to/clutch_size_model_data.csv \
+#   /path/to/reproductive_model_data.csv
+
+run_predictor_diagnostics <- function(clutch_csv, reproduction_csv) {
+  clutch <- read.csv(clutch_csv, stringsAsFactors = FALSE)
+  reproduction <- read.csv(reproduction_csv, stringsAsFactors = FALSE)
+  fledging <- subset(reproduction, year <= 2019 & !is.na(fledged) &
+                       age_class %in% c("YOUNG", "OLD") &
+                       !is.na(female_id) & female_id != "" & !is.na(rel_LD))
+  # The final fledging sample centres laying date on its own seasonal median,
+  # rather than the earlier broader-source median stored in reproduction.
+  fledging$rel_LD <- fledging$laying_date -
+    ave(fledging$laying_date, fledging$year, FUN = median)
+  clutch$year <- as.integer(as.character(clutch$year_f))
+  fledging$temp_mean_c <- fledging$temp_mean - mean(fledging$temp_mean)
+  data <- list(clutch = clutch, fledging = fledging)
+  reference <- read.csv("tables/temporal_models_20261022/observed_annual.csv")
+  weather <- read.csv("data_derived/annual_main_window_temperature.csv")
+  output <- "tables/predictor_diagnostics"
+  dir.create(output, recursive = TRUE, showWarnings = FALSE)
+  fixed_vif <- correlations <- support <- list()
+  for (trait in names(data)) {
+    d <- data[[trait]]
+    stopifnot(!anyNA(d[, c("year", "year_c", "temp_mean_c", "rel_LD", "age_class")]))
+    d$age_class <- factor(d$age_class, levels = c("YOUNG", "OLD"))
+    observed <- reference[reference$trait == trait, , drop = FALSE]
+    counts <- table(d$year)
+    stopifnot(length(counts) == nrow(observed),
+              all(as.integer(counts[as.character(observed$year)]) == observed$n))
+    # Check predictor distributions against final-model annual exports.
+    mean_date <- tapply(d$rel_LD, d$year, mean)[as.character(observed$year)]
+    fraction_old <- tapply(d$age_class == "OLD", d$year, mean)[as.character(observed$year)]
+    stopifnot(max(abs(mean_date - observed$mean_relative_date)) < 1e-10,
+              max(abs(fraction_old - observed$older_fraction)) < 1e-10)
+    X <- model.matrix(~ rel_LD + age_class + temp_mean_c + year_c, d)
+    stopifnot(qr(X)$rank == ncol(X))
+    Z <- X[, colnames(X) != "(Intercept)", drop = FALSE]
+    vif <- vapply(seq_len(ncol(Z)), function(j) {
+      1 / (1 - summary(lm(Z[, j] ~ Z[, -j, drop = FALSE]))$r.squared)
+    }, numeric(1))
+    fixed_vif[[trait]] <- data.frame(trait = trait, predictor = colnames(Z), VIF = vif)
+    annual <- unique(d[, c("year", "temp_mean_c")])
+    stopifnot(nrow(annual) == length(unique(d$year)))
+    correlations[[trait]] <- data.frame(
+      sample = trait, seasons = nrow(annual), records = nrow(d),
+      annual_r_year_temperature = cor(annual$year, annual$temp_mean_c),
+      brood_weighted_r_year_temperature = cor(d$year, d$temp_mean_c))
+    groups <- split(d$temp_mean_c, d$female_id)
+    varied <- vapply(groups, function(x) length(unique(round(x, 10))) > 1L, logical(1))
+    support[[trait]] <- data.frame(
+      trait = trait, records = nrow(d), females = length(groups),
+      females_once = sum(lengths(groups) == 1),
+      females_repeated = sum(lengths(groups) >= 2),
+      females_varied_temperature = sum(varied),
+      records_in_varied_temperature_females = sum(lengths(groups)[varied]))
+  }
+  fixed_vif <- do.call(rbind, fixed_vif)
+  correlations <- rbind(data.frame(
+    sample = "weather_1980_2025", seasons = nrow(weather), records = NA,
+    annual_r_year_temperature = cor(weather$year, weather$temp_mean),
+    brood_weighted_r_year_temperature = NA), do.call(rbind, correlations))
+  support <- do.call(rbind, support)
+  stopifnot(support$females[support$trait == "clutch"] == 8894,
+            support$females[support$trait == "fledging"] == 7132,
+            support$records[support$trait == "clutch"] == 12627,
+            support$records[support$trait == "fledging"] == 9790)
+  write.csv(fixed_vif, file.path(output, "fixed_design_vif.csv"), row.names = FALSE)
+  write.csv(correlations, file.path(output, "year_temperature_correlations.csv"), row.names = FALSE)
+  write.csv(support, file.path(output, "temperature_within_support.csv"), row.names = FALSE)
+  capture.output(sessionInfo(), file = file.path(output, "diagnostic_session_info.txt"))
+  print(fixed_vif, row.names = FALSE)
+  print(correlations, row.names = FALSE)
+  print(support, row.names = FALSE)
+}
+
+if (sys.nframe() == 0L) {
+  args <- commandArgs(trailingOnly = TRUE)
+  stopifnot(length(args) == 2L)
+  run_predictor_diagnostics(args[1], args[2])
+}
+```

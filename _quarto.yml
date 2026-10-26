@@ -13,6 +13,15 @@ project:
     - temporal_trends.qmd
     - figure_code.qmd
   resources:
+    - R/04_climwin_laying_date.R
+    - R/04a_audit_recovered_climwin.R
+    - R/04b_plot_recovered_climwin.R
+    - R/03_predictor_diagnostics.R
+    - cache/climwin/
+    - tables/climwin_recovered/
+    - tables/predictor_diagnostics/
+    - figures/Fig_climwin_recovered.png
+    - figures/Fig_climwin_recovered.pdf
     - images/
     - media/gotland-background.mp4
     - data_derived/smhi_hoburg_daily_temperature.csv

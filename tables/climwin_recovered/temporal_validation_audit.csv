@@ -1,0 +1,2 @@
+"training_seasons","held_out_seasons","training_beta","held_out_beta","held_out_CI_low","held_out_CI_high","held_out_R_squared","held_out_p","prediction_RMSE","baseline_RMSE","prediction_bias","legacy_singlewin_beta","max_legacy_exposure_difference"
+23,22,-3.30513058124273,-1.56552747500825,-2.73399647632716,-0.397058473689346,0.280857183318442,0.0111850060402831,3.18671305237117,5.22642704068631,1.52054826224312,0.370328698165368,15.3507142857143

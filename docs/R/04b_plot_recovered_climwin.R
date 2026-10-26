@@ -1,0 +1,35 @@
+# New plotting code for recovered aggregate outputs. No model fitting.
+# Run from the publication repository root; base R only.
+base <- "tables/climwin_recovered"
+windows <- read.csv(file.path(base, "candidate_windows.csv"))
+randomised <- read.csv(file.path(base, "randomised_windows.csv"))
+audit <- read.csv(file.path(base, "randomisation_audit.csv"))
+eligible <- subset(windows, WindowOpen - WindowClose >= 2)
+best <- eligible[which.min(eligible$deltaAICc), ]
+surface <- matrix(NA_real_, 18, 18)
+surface[cbind(eligible$WindowOpen + 1, eligible$WindowClose + 1)] <- eligible$deltaAICc
+
+draw <- function() {
+  par(mfrow = c(1, 2), mar = c(4.8, 4.5, 2.7, 1), mgp = c(2.8, .8, 0))
+  cols <- colorRampPalette(c("#214c3c", "#f1f6da"))(80)
+  image(0:17, 0:17, surface, col = cols,
+        xlab = "Opening offset (weeks before reference week)",
+        ylab = "Closing offset (weeks before reference week)",
+        main = "A  Recovered window search", cex.main = .95)
+  points(best$WindowOpen, best$WindowClose, pch = 8, cex = 1.5,
+         col = "#D55E00", lwd = 2)
+  legend("topleft", c(sprintf("Lowest delta AICc: %.2f", min(eligible$deltaAICc)),
+                     sprintf("Highest delta AICc: %.2f", max(eligible$deltaAICc))),
+         fill = cols[c(1, 80)], bty = "n", cex = .72)
+  hist(randomised$deltaAICc, breaks = 25, col = "#315b4d", border = "white",
+       xlim = c(-42, 3), xlab = "Best delta AICc from each complete randomised search",
+       ylab = "Number of randomised searches", main = "B  Cached 500-search null distribution",
+       cex.main = .95)
+  abline(v = audit$observed_delta_AICc, col = "#D55E00", lwd = 2)
+  legend("topleft", sprintf("Observed: %.2f", audit$observed_delta_AICc),
+         col = "#D55E00", lwd = 2, bty = "n", cex = .8)
+}
+png("figures/Fig_climwin_recovered.png", width = 2000, height = 850, res = 180)
+draw(); dev.off()
+pdf("figures/Fig_climwin_recovered.pdf", width = 11.1, height = 4.72)
+draw(); dev.off()

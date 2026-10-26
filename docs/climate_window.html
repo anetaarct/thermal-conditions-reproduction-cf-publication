@@ -247,7 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#operational-window-for-the-reproductive-models" id="toc-operational-window-for-the-reproductive-models" class="nav-link" data-scroll-target="#operational-window-for-the-reproductive-models">Operational window for the reproductive models</a></li>
+  <li><a href="#original-search-code" id="toc-original-search-code" class="nav-link" data-scroll-target="#original-search-code">Original search code</a></li>
+  <li><a href="#read-the-cached-search-results" id="toc-read-the-cached-search-results" class="nav-link" data-scroll-target="#read-the-cached-search-results">Read the cached search results</a></li>
+  <li><a href="#full-search-randomisation" id="toc-full-search-randomisation" class="nav-link" data-scroll-target="#full-search-randomisation">Full-search randomisation</a></li>
+  <li><a href="#temporal-validation-check" id="toc-temporal-validation-check" class="nav-link" data-scroll-target="#temporal-validation-check">Temporal-validation check</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
+  <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -275,222 +280,669 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>Input: annual median laying date (45 seasons) and the daily SMHI temperature snapshot.</p>
+<p>Annual median laying date (45 seasons) and daily SMHI temperature. The original script starts from the private bird file; the public annual input reproduces its response summary.</p>
 <details class="analysis-code" open="">
 <summary>
 Show R code
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(phenology) <span class="sc">==</span> <span class="dv">45</span>L, <span class="sc">!</span><span class="dv">2020</span>L <span class="sc">%in%</span> phenology<span class="sc">$</span>year)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(phenology)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cache <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"cache/climwin/recovered_search_data.rds"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">45</span>L, <span class="fu">nrow</span>(cache<span class="sc">$</span>randomised) <span class="sc">==</span> <span class="dv">500</span>L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>year</th>
-<th>n_broods</th>
-<th>median_LD</th>
-<th>bdate</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1980</td>
-<td>115</td>
-<td>31</td>
-<td>1980-06-01</td>
-</tr>
-<tr class="even">
-<td>1981</td>
-<td>217</td>
-<td>24</td>
-<td>1981-05-25</td>
-</tr>
-<tr class="odd">
-<td>1982</td>
-<td>238</td>
-<td>27</td>
-<td>1982-05-28</td>
-</tr>
-<tr class="even">
-<td>1983</td>
-<td>190</td>
-<td>23</td>
-<td>1983-05-24</td>
-</tr>
-<tr class="odd">
-<td>1984</td>
-<td>190</td>
-<td>24</td>
-<td>1984-05-25</td>
-</tr>
-</tbody>
-</table>
-<p><a href="data_derived/annual_raw_median_laying_date.csv">Download CSV</a> ## Window search</p>
-<p>The original search script and cached runs are not in this repository. The block below records its documented settings; it is <strong>not executable search code</strong>.</p>
-<details class="analysis-code" open="">
-<summary>
-Show recorded search settings
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Documented settings, transcribed from the analysis record.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># No sliding-window search is called in this block.</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>search_settings <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">response =</span> <span class="st">"annual median laying date"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">reference_date =</span> <span class="st">"7 May"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">candidate_range_weeks =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolution =</span> <span class="st">"complete calendar-week bins"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature_summary =</span> <span class="st">"arithmetic mean"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">response_model =</span> <span class="st">"linear temperature effect; intercept-only baseline"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">randomised_full_searches =</span> <span class="dv">500</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">training_years =</span> <span class="fu">c</span>(<span class="dv">1980</span>, <span class="dv">2002</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">held_out_years =</span> <span class="fu">c</span>(<span class="dv">2003</span>, <span class="dv">2025</span>),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">excluded_field_year =</span> <span class="dv">2020</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>search_settings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><strong>Reported search output</strong> (archived numerical record; not rerun here).</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Output</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Selected weekly offsets</td>
-<td>6–0 weeks</td>
-</tr>
-<tr class="even">
-<td>Complete-week dates, non-leap years</td>
-<td>26 March–13 May</td>
-</tr>
-<tr class="odd">
-<td>Complete-week dates, leap years</td>
-<td>25 March–12 May</td>
-</tr>
-<tr class="even">
-<td>Best-window ΔAICc</td>
-<td>−38.6016</td>
-</tr>
-<tr class="odd">
-<td>Randomised full searches at least as extreme</td>
-<td>0 / 500</td>
-</tr>
-<tr class="even">
-<td>Held-out slope, days per °C (95% CI)</td>
-<td>−1.566 (−2.734 to −0.397)</td>
-</tr>
-<tr class="odd">
-<td>Held-out RMSE: selected model / baseline</td>
-<td>3.187 / 5.226 days</td>
-</tr>
-</tbody>
-</table>
-<details class="analysis-code">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plus-one corrected tail probability from the reported exceedance count.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p_empirical <span class="ot">&lt;-</span> (<span class="dv">0</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="dv">500</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p_empirical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<pre class="text"><code>[1] 0.001996008</code></pre>
 </section>
-<section id="operational-window-for-the-reproductive-models" class="level2">
-<h2 class="anchored" data-anchor-id="operational-window-for-the-reproductive-models">Operational window for the reproductive models</h2>
-<p>The reproductive analyses used <strong>26 March–7 May</strong>, a fixed 43-day interval. This differs from the complete-week search window.</p>
+<section id="original-search-code" class="level2">
+<h2 class="anchored" data-anchor-id="original-search-code">Original search code</h2>
+<p>Recovered from the original <code>CF_thermal_phenology</code> project, copied unchanged. The search and 500 randomised searches are <strong>not executed during rendering</strong>.</p>
 <details class="analysis-code">
 <summary>
-Show original code: 00_check_public_inputs.R
+Show original script: slidingwin, randwin and historical validation
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>R/00_check_public_inputs.R</strong></pre>
+<pre><strong>R/04_climwin_laying_date.R</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="R/00_check_public_inputs.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New public-input check; not the historical download/cleaning script.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run from the publication repository root.</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(daily) <span class="sc">==</span> <span class="dv">16802</span>L, <span class="sc">!</span><span class="fu">anyDuplicated</span>(daily<span class="sc">$</span>date))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(annual<span class="sc">$</span>n_days <span class="sc">==</span> <span class="dv">43</span>L))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(phenology) <span class="sc">==</span> <span class="dv">45</span>L, <span class="sc">!</span><span class="dv">2020</span>L <span class="sc">%in%</span> phenology<span class="sc">$</span>year)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>rebuilt <span class="ot">&lt;-</span> daily <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&gt;=</span> <span class="st">"03-26"</span>, <span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&lt;=</span> <span class="st">"05-07"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">temp_mean =</span> <span class="fu">mean</span>(temperature), <span class="at">n_days =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>check <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(annual, rebuilt, <span class="at">by =</span> <span class="st">"year"</span>, <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_saved"</span>, <span class="st">"_rebuilt"</span>))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(check) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(check<span class="sc">$</span>n_days_rebuilt <span class="sc">==</span> <span class="dv">43</span>L))</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(check<span class="sc">$</span>temp_mean_saved <span class="sc">-</span> check<span class="sc">$</span>temp_mean_rebuilt)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(check)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="R/04_climwin_laying_date.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env Rscript</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="st">"../../repo_gotland_flycatcher_phenology/.r-lib"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"../../repo_gotland_flycatcher_phenology/Rlib"</span>, <span class="fu">.libPaths</span>()))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(readr)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tibble)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(purrr)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(climwin)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Force English month abbreviations/names in all exported calendar labels.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">"LC_TIME"</span>, <span class="st">"C"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"models/climwin"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"tables"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed, preregistered analysis settings.</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20260808</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>search_range <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">0</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>birds_all <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data_raw/birds/DB_MISMATCH_current_onset_1980-2025.csv"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.integer</span>(YEAR),</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">lay_date =</span> <span class="fu">as.numeric</span>(LD),</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">laying_calendar =</span> <span class="fu">as.Date</span>(laying_date, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1980</span>, year <span class="sc">&lt;=</span> <span class="dv">2025</span>, <span class="sc">!</span><span class="fu">is.na</span>(laying_calendar)) <span class="sc">|&gt;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lay_date_from_may =</span> <span class="fu">as.numeric</span>(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    laying_calendar <span class="sc">-</span> <span class="fu">as.Date</span>(<span class="fu">sprintf</span>(<span class="st">"%d-05-01"</span>, year))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">between</span>(birds_all<span class="sc">$</span>lay_date_from_may, <span class="sc">-</span><span class="dv">10</span>, <span class="dv">60</span>)))</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(birds_all<span class="sc">$</span>lay_date <span class="sc">==</span> birds_all<span class="sc">$</span>lay_date_from_may,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>              <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># The response uses every valid laying date. Age is retained in the raw source</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># but is not used to filter or adjust the annual population median.</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> birds_all <span class="sc">|&gt;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_broods =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_LD =</span> <span class="fu">median</span>(lay_date_from_may),</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">p05_lay_from_may =</span> <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(lay_date_from_may, <span class="fl">0.05</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">names =</span> <span class="cn">FALSE</span>, <span class="at">type =</span> <span class="dv">7</span>)),</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">season_index =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">bdate =</span> <span class="fu">as.Date</span>(<span class="fu">sprintf</span>(<span class="st">"%d-05-01"</span>, year)) <span class="sc">+</span> <span class="fu">round</span>(median_LD),</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">p05_lay_calendar =</span> <span class="fu">as.Date</span>(<span class="fu">sprintf</span>(<span class="st">"%d-05-01"</span>, year)) <span class="sc">+</span> p05_lay_from_may</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>expected_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1980</span><span class="sc">:</span><span class="dv">2019</span>, <span class="dv">2021</span><span class="sc">:</span><span class="dv">2025</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">45</span>L, <span class="fu">identical</span>(annual<span class="sc">$</span>year, expected_years))</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>n_first <span class="ot">&lt;-</span> <span class="dv">23</span>L</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date), <span class="at">temperature =</span> <span class="fu">as.numeric</span>(temperature)) <span class="sc">|&gt;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(date), <span class="sc">!</span><span class="fu">is.na</span>(temperature))</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyDuplicated</span>(temperature<span class="sc">$</span>date))</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">diff</span>(temperature<span class="sc">$</span>date) <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep the descriptive population median separate from the fixed reference day</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co"># used to anchor all absolute climate windows.</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>ref_ld <span class="ot">&lt;-</span> <span class="fu">median</span>(birds_all<span class="sc">$</span>lay_date)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>refday <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>L, <span class="dv">5</span>L)</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>ref_date_template <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2001-05-07"</span>)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>run_sliding <span class="ot">&lt;-</span> <span class="cf">function</span>(dat) {</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  baseline <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat)</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slidingwin</span>(</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">cdate =</span> temperature<span class="sc">$</span>date,</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">bdate =</span> dat<span class="sc">$</span>bdate,</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">baseline =</span> baseline,</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"absolute"</span>,</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">refday =</span> refday,</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> search_range,</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"mean"</span>,</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">func =</span> <span class="st">"lin"</span>,</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">cinterval =</span> <span class="st">"week"</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>run_random <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, <span class="at">repeats =</span> <span class="dv">500</span>L) {</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  baseline <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> dat)</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">randwin</span>(</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">repeats =</span> repeats,</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">cdate =</span> temperature<span class="sc">$</span>date,</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">bdate =</span> dat<span class="sc">$</span>bdate,</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">baseline =</span> baseline,</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"absolute"</span>,</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">refday =</span> refday,</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> search_range,</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"mean"</span>,</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">func =</span> <span class="st">"lin"</span>,</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">cinterval =</span> <span class="st">"week"</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>main_win <span class="ot">&lt;-</span> <span class="fu">run_sliding</span>(annual)</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>first_win <span class="ot">&lt;-</span> <span class="fu">run_sliding</span>(<span class="fu">filter</span>(annual, season_index <span class="sc">&lt;=</span> n_first))</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>second_win <span class="ot">&lt;-</span> <span class="fu">run_sliding</span>(<span class="fu">filter</span>(annual, season_index <span class="sc">&gt;</span> n_first))</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(main_win, <span class="st">"models/climwin/slidingwin_main_calendar_index_ref07may_range17w.rds"</span>)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(first_win, <span class="st">"models/climwin/slidingwin_first23_calendar_index_ref07may_range17w.rds"</span>)</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(second_win, <span class="st">"models/climwin/slidingwin_second22_calendar_index_ref07may_range17w.rds"</span>)</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="co"># This is intentionally expensive and is cached as an RDS object.</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>rand_path <span class="ot">&lt;-</span> <span class="st">"models/climwin/randwin_main_calendar_index_ref07may_range17w_500.rds"</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(rand_path)) {</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  main_rand <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(rand_path)</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>  main_rand <span class="ot">&lt;-</span> <span class="fu">run_random</span>(annual, <span class="at">repeats =</span> <span class="dv">500</span>L)</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(main_rand, rand_path)</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(main_rand[[<span class="dv">1</span>]]) <span class="sc">==</span> <span class="dv">500</span>L)</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>main_dataset <span class="ot">&lt;-</span> main_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>first_dataset <span class="ot">&lt;-</span> first_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>second_dataset <span class="ot">&lt;-</span> second_win[[<span class="dv">1</span>]]<span class="sc">$</span>Dataset</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>best_row <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">minimum_length_weeks =</span> <span class="dv">0</span>) {</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(WindowOpen <span class="sc">-</span> WindowClose <span class="sc">&gt;=</span> minimum_length_weeks) <span class="sc">|&gt;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_min</span>(deltaAICc, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>main_best <span class="ot">&lt;-</span> <span class="fu">best_row</span>(main_dataset, <span class="at">minimum_length_weeks =</span> <span class="dv">2</span>)</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>first_best <span class="ot">&lt;-</span> <span class="fu">best_row</span>(first_dataset, <span class="at">minimum_length_weeks =</span> <span class="dv">2</span>)</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>second_best <span class="ot">&lt;-</span> <span class="fu">best_row</span>(second_dataset, <span class="at">minimum_length_weeks =</span> <span class="dv">2</span>)</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Both false-positive diagnostics required by climwin.</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>p_delta_aicc <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_dataset, main_rand[[<span class="dv">1</span>]], <span class="at">metric =</span> <span class="st">"AIC"</span>,</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>p_c <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(main_dataset, main_rand[[<span class="dv">1</span>]], <span class="at">metric =</span> <span class="st">"C"</span>,</span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>              <span class="at">sample.size =</span> <span class="fu">nrow</span>(annual))</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>main_med <span class="ot">&lt;-</span> <span class="fu">medwin</span>(main_dataset, <span class="at">cw =</span> <span class="fl">0.95</span>)</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>calendar_label <span class="ot">&lt;-</span> <span class="cf">function</span>(days_before) {</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">format</span>(ref_date_template <span class="sc">-</span> <span class="fu">as.integer</span>(<span class="fu">round</span>(days_before)), <span class="st">"%d %b"</span>)</span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>window_row <span class="ot">&lt;-</span> <span class="cf">function</span>(label, best, years) {</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis =</span> label,</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">years =</span> years,</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_open_weeks_before_refday =</span> best<span class="sc">$</span>WindowOpen,</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_close_weeks_before_refday =</span> best<span class="sc">$</span>WindowClose,</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">boundary_difference_weeks =</span> best<span class="sc">$</span>WindowOpen <span class="sc">-</span> best<span class="sc">$</span>WindowClose,</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_open_days_before_refday =</span> best<span class="sc">$</span>WindowOpen <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_close_days_before_refday =</span> best<span class="sc">$</span>WindowClose <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_open_calendar =</span> <span class="fu">calendar_label</span>(best<span class="sc">$</span>WindowOpen <span class="sc">*</span> <span class="dv">7</span>),</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_close_calendar =</span> <span class="fu">calendar_label</span>(best<span class="sc">$</span>WindowClose <span class="sc">*</span> <span class="dv">7</span>),</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">delta_AICc =</span> best<span class="sc">$</span>deltaAICc</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>windows <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">window_row</span>(<span class="st">"Main"</span>, main_best, <span class="st">"1980-2025 (no 2020)"</span>),</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">window_row</span>(<span class="st">"First 23 seasons"</span>, first_best, <span class="st">"1980-2002"</span>),</span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">window_row</span>(<span class="st">"Remaining 22 seasons"</span>, second_best, <span class="st">"2003-2025 (no 2020)"</span>)</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a><span class="co"># Out-of-sample evaluation: singlewin applies exactly the same weekly</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="co"># aggregation as the training slidingwin, without a new window search.</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> annual <span class="sc">|&gt;</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(season_index <span class="sc">&gt;</span> n_first)</span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>oos_win <span class="ot">&lt;-</span> <span class="fu">singlewin</span>(</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>  <span class="at">xvar =</span> <span class="fu">list</span>(<span class="at">temperature =</span> temperature<span class="sc">$</span>temperature),</span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>  <span class="at">cdate =</span> temperature<span class="sc">$</span>date,</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  <span class="at">bdate =</span> test_data<span class="sc">$</span>bdate,</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline =</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> test_data),</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"absolute"</span>,</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>  <span class="at">refday =</span> refday,</span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="fu">c</span>(first_best<span class="sc">$</span>WindowOpen, first_best<span class="sc">$</span>WindowClose),</span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"mean"</span>,</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>  <span class="at">func =</span> <span class="st">"lin"</span>,</span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>  <span class="at">cinterval =</span> <span class="st">"week"</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>oos_model <span class="ot">&lt;-</span> oos_win<span class="sc">$</span>BestModel</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>oos_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(oos_model)</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>oos_coef <span class="ot">&lt;-</span> <span class="fu">coef</span>(oos_summary)[<span class="st">"climate"</span>, ]</span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>oos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>  <span class="at">training_years =</span> <span class="st">"1980-2002 (23 seasons)"</span>,</span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">test_years =</span> <span class="st">"2003-2025 (22 seasons; no 2020)"</span>,</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected_open_days_before_refday =</span> first_best<span class="sc">$</span>WindowOpen <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected_close_days_before_refday =</span> first_best<span class="sc">$</span>WindowClose <span class="sc">*</span> <span class="dv">7</span>,</span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature_beta =</span> <span class="fu">unname</span>(oos_coef[<span class="st">"Estimate"</span>]),</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature_SE =</span> <span class="fu">unname</span>(oos_coef[<span class="st">"Std. Error"</span>]),</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature_CI_low =</span> temperature_beta <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> temperature_SE,</span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature_CI_high =</span> temperature_beta <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> temperature_SE,</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>  <span class="at">test_R_squared =</span> oos_summary<span class="sc">$</span>r.squared,</span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>  <span class="at">test_p =</span> <span class="fu">coef</span>(oos_summary)[<span class="st">"climate"</span>, <span class="st">"Pr(&gt;|t|)"</span>]</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="co"># medwin returns the median opening and closing boundaries of the 95% model set.</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>med_values <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">unlist</span>(main_med)) <span class="sc">*</span> <span class="dv">7</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>med_result <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="at">confidence_set =</span> <span class="st">"95%"</span>,</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_window_open =</span> med_values[<span class="dv">1</span>],</span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_window_close =</span> med_values[<span class="dv">2</span>],</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_open_calendar =</span> <span class="fu">calendar_label</span>(med_values[<span class="dv">1</span>]),</span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_close_calendar =</span> <span class="fu">calendar_label</span>(med_values[<span class="dv">2</span>])</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>false_positive <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>  <span class="at">randwin_repeats =</span> <span class="dv">500</span>L,</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>  <span class="at">P_delta_AICc =</span> <span class="fu">as.character</span>(p_delta_aicc),</span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>  <span class="at">P_c =</span> <span class="fu">as.numeric</span>(p_c)</span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>effect_row_from_model <span class="ot">&lt;-</span> <span class="cf">function</span>(analysis, model) {</span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>  cf <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(model))[<span class="st">"climate"</span>, ]</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis =</span> analysis,</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_beta =</span> <span class="fu">unname</span>(cf[<span class="st">"Estimate"</span>]),</span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_SE =</span> <span class="fu">unname</span>(cf[<span class="st">"Std. Error"</span>]),</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_CI_low =</span> temperature_beta <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> temperature_SE,</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_CI_high =</span> temperature_beta <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> temperature_SE,</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">unname</span>(cf[<span class="st">"Pr(&gt;|t|)"</span>])</span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>effect_row_from_dataset <span class="ot">&lt;-</span> <span class="cf">function</span>(analysis, best) {</span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> best<span class="sc">$</span>ModelBeta</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>  se <span class="ot">&lt;-</span> best<span class="sc">$</span>Std.Error</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>  t_value <span class="ot">&lt;-</span> beta <span class="sc">/</span> se</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis =</span> analysis,</span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_beta =</span> beta,</span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_SE =</span> se,</span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_CI_low =</span> beta <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se,</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">temperature_CI_high =</span> beta <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se,</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_value), <span class="at">df =</span> best<span class="sc">$</span>sample.size <span class="sc">-</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>temperature_effects <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">effect_row_from_dataset</span>(<span class="st">"Main: full dataset window"</span>, main_best),</span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">effect_row_from_dataset</span>(<span class="st">"First 23 seasons: selected window"</span>, first_best),</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">effect_row_from_dataset</span>(<span class="st">"Remaining 22 seasons: selected window"</span>, second_best),</span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">effect_row_from_model</span>(<span class="st">"OOS: first-period window tested in remaining seasons"</span>, oos_model)</span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>main_close <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(main_best<span class="sc">$</span>WindowClose) <span class="sc">*</span> <span class="dv">7</span></span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>overlap_check <span class="ot">&lt;-</span> annual <span class="sc">|&gt;</span></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_close_calendar =</span> <span class="fu">as.Date</span>(<span class="fu">sprintf</span>(<span class="st">"%d-%02d-%02d"</span>, year,</span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>                                             refday[<span class="dv">2</span>], refday[<span class="dv">1</span>])) <span class="sc">-</span> main_close,</span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>    <span class="at">window_reaches_p05_lay =</span> window_close_calendar <span class="sc">&gt;=</span> p05_lay_calendar</span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, n_broods, p05_lay_from_may, p05_lay_calendar,</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>         window_close_calendar, window_reaches_p05_lay)</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>settings <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>  <span class="at">setting =</span> <span class="fu">c</span>(<span class="st">"analysis level"</span>, <span class="st">"analysis years"</span>, <span class="st">"response"</span>, <span class="st">"age filtering or adjustment"</span>,</span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>              <span class="st">"minimum window length in all window selections"</span>,</span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>              <span class="st">"type"</span>, <span class="st">"reference laying date (database LD index; LD = 0 is 1 May)"</span>,</span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>              <span class="st">"reference calendar day"</span>, <span class="st">"range"</span>,</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>              <span class="st">"stat"</span>, <span class="st">"func"</span>, <span class="st">"cinterval"</span>, <span class="st">"baseline"</span>, <span class="st">"randwin repeats"</span>),</span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"year (season)"</span>, <span class="st">"1980-2019 and 2021-2025 (45 seasons)"</span>,</span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a>            <span class="st">"annual raw median laying date from all valid broods"</span>,</span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a>            <span class="st">"none"</span>, <span class="st">"boundary difference at least 2 weeks"</span>, <span class="st">"absolute"</span>,</span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.character</span>(ref_ld), <span class="fu">format</span>(ref_date_template, <span class="st">"%d %B"</span>),</span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>            <span class="st">"17 to 0 weeks (119 to 0 days)"</span>,</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>            <span class="st">"mean"</span>, <span class="st">"lin"</span>, <span class="st">"week"</span>, <span class="st">"median_LD ~ 1"</span>, <span class="st">"500"</span>)</span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(annual, <span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(windows, <span class="st">"tables/climwin_windows.csv"</span>)</span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(false_positive, <span class="st">"tables/climwin_false_positive_tests.csv"</span>)</span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(temperature_effects, <span class="st">"tables/climwin_temperature_effects.csv"</span>)</span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(oos, <span class="st">"tables/climwin_out_of_sample.csv"</span>)</span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(med_result, <span class="st">"tables/climwin_medwin.csv"</span>)</span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(overlap_check, <span class="st">"tables/climwin_window_lay_overlap_by_year.csv"</span>)</span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(settings, <span class="st">"tables/climwin_settings.csv"</span>)</span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(oos_model, <span class="st">"models/climwin/out_of_sample_model.rds"</span>)</span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(oos_win, <span class="st">"models/climwin/out_of_sample_singlewin.rds"</span>)</span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(windows), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(false_positive), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(oos), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(med_result), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p><a href="R/04_climwin_laying_date.R">Download original R script</a> · <a href="cache/climwin/recovered_search_data.rds">Download aggregate RDS cache</a></p>
+</section>
+<section id="read-the-cached-search-results" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-cached-search-results">Read the cached search results</h2>
+<details class="analysis-code" open="">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Match the original selection rule: boundary difference at least two weeks.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> cache<span class="sc">$</span>main<span class="sc">$</span>Dataset</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>eligible <span class="ot">&lt;-</span> <span class="fu">subset</span>(x, WindowOpen <span class="sc">-</span> WindowClose <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> eligible[<span class="fu">which.min</span>(eligible<span class="sc">$</span>deltaAICc), ]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>best[, <span class="fu">c</span>(<span class="st">"WindowOpen"</span>, <span class="st">"WindowClose"</span>, <span class="st">"deltaAICc"</span>, <span class="st">"ModelBeta"</span>)]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"tables/climwin_recovered/selected_windows_audit.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>year</th>
-<th>temp_mean</th>
-<th>temp_sd</th>
+<th>analysis</th>
+<th>open_weeks</th>
+<th>close_weeks</th>
+<th>delta_AICc</th>
+<th>temperature_beta</th>
 <th>n_days</th>
-<th>window_start</th>
-<th>window_end</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1980</td>
-<td>3.3535</td>
-<td>2.3364</td>
-<td>43</td>
-<td>1980-03-26</td>
-<td>1980-05-07</td>
+<td>main</td>
+<td>6</td>
+<td>0</td>
+<td>-38.6016</td>
+<td>-3.44925</td>
+<td>49</td>
 </tr>
 <tr class="even">
-<td>1981</td>
-<td>3.3372</td>
-<td>1.8033</td>
-<td>43</td>
-<td>1981-03-26</td>
-<td>1981-05-07</td>
+<td>first23</td>
+<td>9</td>
+<td>0</td>
+<td>-19.8915</td>
+<td>-3.30513</td>
+<td>70</td>
 </tr>
 <tr class="odd">
-<td>1982</td>
-<td>3.7488</td>
-<td>1.5051</td>
-<td>43</td>
-<td>1982-03-26</td>
-<td>1982-05-07</td>
-</tr>
-<tr class="even">
-<td>1983</td>
-<td>4.386</td>
-<td>2.1908</td>
-<td>43</td>
-<td>1983-03-26</td>
-<td>1983-05-07</td>
-</tr>
-<tr class="odd">
-<td>1984</td>
-<td>4.607</td>
-<td>2.5671</td>
-<td>43</td>
-<td>1984-03-26</td>
-<td>1984-05-07</td>
+<td>second22</td>
+<td>4</td>
+<td>1</td>
+<td>-8.47412</td>
+<td>-2.04377</td>
+<td>28</td>
 </tr>
 </tbody>
 </table>
-<p><a href="data_derived/annual_main_window_temperature.csv">Download CSV</a> ## Main conclusions</p>
+<p><a href="tables/climwin_recovered/selected_windows_audit.csv">Download selected-window output</a> · <a href="tables/climwin_recovered/candidate_windows.csv">All candidate windows</a></p>
+<p>The main 6–0-week search window contains <strong>49 days</strong>: 26 March–13 May in non-leap years, 25 March–12 May in leap years. The reproductive models retain their separate operational <strong>26 March–7 May (43-day)</strong> exposure.</p>
+</section>
+<section id="full-search-randomisation" class="level2">
+<h2 class="anchored" data-anchor-id="full-search-randomisation">Full-search randomisation</h2>
+<details class="analysis-code" open="">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> cache<span class="sc">$</span>randomised<span class="sc">$</span>deltaAICc</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>exceedances <span class="ot">&lt;-</span> <span class="fu">sum</span>(null <span class="sc">&lt;=</span> best<span class="sc">$</span>deltaAICc)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p_plus_one <span class="ot">&lt;-</span> (exceedances <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="fu">length</span>(null) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">exceedances =</span> exceedances, <span class="at">p_plus_one =</span> p_plus_one)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>observed_delta_AICc</th>
+<th>repeats</th>
+<th>exceedances</th>
+<th>plus_one_p</th>
+<th>null_min</th>
+<th>null_max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-38.6016</td>
+<td>500</td>
+<td>0</td>
+<td>0.00199601</td>
+<td>-16.9196</td>
+<td>1.45937</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/randomised_windows.csv">Download 500 cached randomised-search outputs</a></p>
+<p>The old package output <code>&lt;0.001</code> is preserved in the archive; the plus-one empirical probability from <strong>0/500</strong> exceedances is <strong>1/501 = 0.001996</strong>.</p>
+</section>
+<section id="temporal-validation-check" class="level2">
+<h2 class="anchored" data-anchor-id="temporal-validation-check">Temporal-validation check</h2>
+<p>The archived <code>singlewin</code> call used a different exposure series and returned +0.370 days/°C. The separate audit below reconstructs the complete-week bins and verifies the main, training and second-period slopes against the cached search output before evaluating the held-out years. It does not repeat the search.</p>
+<details class="analysis-code">
+<summary>
+Show recovery audit code: weekly bins, cached checks and held-out validation
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/04a_audit_recovered_climwin.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="R/04a_audit_recovered_climwin.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recovery audit, added 26 October 2026. This is separate from the unchanged</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># historical script R/04_climwin_laying_date.R. It does not repeat a window</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># search or randomisation. It reads aggregate caches and fits three small LMs.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run from the publication repository root with base R (no extra packages).</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cache <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"cache/climwin/recovered_search_data.rds"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>daily<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(daily<span class="sc">$</span>date)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">45</span>L, <span class="sc">!</span><span class="fu">anyDuplicated</span>(daily<span class="sc">$</span>date),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">all</span>(<span class="fu">diff</span>(daily<span class="sc">$</span>date) <span class="sc">==</span> <span class="dv">1</span>), <span class="fu">nrow</span>(cache<span class="sc">$</span>randomised) <span class="sc">==</span> <span class="dv">500</span>L)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="st">"tables/climwin_recovered"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>put <span class="ot">&lt;-</span> <span class="cf">function</span>(x, name) <span class="fu">write.csv</span>(x, <span class="fu">file.path</span>(out, name), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>best_row <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x[x<span class="sc">$</span>WindowOpen <span class="sc">-</span> x<span class="sc">$</span>WindowClose <span class="sc">&gt;=</span> <span class="dv">2</span>, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  x[<span class="fu">which.min</span>(x<span class="sc">$</span>deltaAICc), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">lapply</span>(cache[<span class="fu">c</span>(<span class="st">"main"</span>, <span class="st">"first23"</span>, <span class="st">"second22"</span>)],</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>               <span class="cf">function</span>(x) <span class="fu">best_row</span>(x<span class="sc">$</span>Dataset))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Recover complete-week exposure without installing climwin. In these cached</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># searches the seven-day bins start on 1 January of each calendar year.</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>daily_year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(daily<span class="sc">$</span>date, <span class="st">"%Y"</span>))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>daily_week <span class="ot">&lt;-</span> (<span class="fu">as.integer</span>(<span class="fu">format</span>(daily<span class="sc">$</span>date, <span class="st">"%j"</span>)) <span class="sc">-</span> <span class="dv">1</span>L) <span class="sc">%/%</span> <span class="dv">7</span>L</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="cf">function</span>(y, open, close) {</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  ref <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">sprintf</span>(<span class="st">"%d-05-07"</span>, y))</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  ref_week <span class="ot">&lt;-</span> (<span class="fu">as.integer</span>(<span class="fu">format</span>(ref, <span class="st">"%j"</span>)) <span class="sc">-</span> <span class="dv">1</span>L) <span class="sc">%/%</span> <span class="dv">7</span>L</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  keep <span class="ot">&lt;-</span> daily_year <span class="sc">==</span> y <span class="sc">&amp;</span> daily_week <span class="sc">&gt;=</span> ref_week <span class="sc">-</span> open <span class="sc">&amp;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    daily_week <span class="sc">&lt;=</span> ref_week <span class="sc">-</span> close</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">sum</span>(keep) <span class="sc">==</span> (open <span class="sc">-</span> close <span class="sc">+</span> <span class="dv">1</span>L) <span class="sc">*</span> <span class="dv">7</span>L)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">year =</span> y, <span class="at">climate =</span> <span class="fu">mean</span>(daily<span class="sc">$</span>temperature[keep]),</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">first_date =</span> <span class="fu">min</span>(daily<span class="sc">$</span>date[keep]), <span class="at">last_date =</span> <span class="fu">max</span>(daily<span class="sc">$</span>date[keep]),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">n_days =</span> <span class="fu">sum</span>(keep))</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>window_exposure <span class="ot">&lt;-</span> <span class="cf">function</span>(b, <span class="at">years =</span> annual<span class="sc">$</span>year) {</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(years, exposure,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>                       <span class="at">open =</span> b<span class="sc">$</span>WindowOpen, <span class="at">close =</span> b<span class="sc">$</span>WindowClose))</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">names</span>(best), <span class="cf">function</span>(label) {</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  b <span class="ot">&lt;-</span> best[[label]]</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  ordinary <span class="ot">&lt;-</span> <span class="fu">window_exposure</span>(b, <span class="dv">1981</span>L)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  leap <span class="ot">&lt;-</span> <span class="fu">window_exposure</span>(b, <span class="dv">1980</span>L)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">analysis =</span> label, <span class="at">open_weeks =</span> b<span class="sc">$</span>WindowOpen,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>             <span class="at">close_weeks =</span> b<span class="sc">$</span>WindowClose, <span class="at">delta_AICc =</span> b<span class="sc">$</span>deltaAICc,</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>             <span class="at">temperature_beta =</span> b<span class="sc">$</span>ModelBeta, <span class="at">SE =</span> b<span class="sc">$</span>Std.Error,</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>             <span class="at">non_leap_start =</span> <span class="fu">format</span>(ordinary<span class="sc">$</span>first_date, <span class="st">"%d %b"</span>),</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>             <span class="at">non_leap_end =</span> <span class="fu">format</span>(ordinary<span class="sc">$</span>last_date, <span class="st">"%d %b"</span>),</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>             <span class="at">leap_start =</span> <span class="fu">format</span>(leap<span class="sc">$</span>first_date, <span class="st">"%d %b"</span>),</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>             <span class="at">leap_end =</span> <span class="fu">format</span>(leap<span class="sc">$</span>last_date, <span class="st">"%d %b"</span>),</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>             <span class="at">n_days =</span> ordinary<span class="sc">$</span>n_days)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(selection, <span class="st">"selected_windows_audit.csv"</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(cache<span class="sc">$</span>main<span class="sc">$</span>Dataset, <span class="st">"candidate_windows.csv"</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(cache<span class="sc">$</span>randomised, <span class="st">"randomised_windows.csv"</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>null <span class="ot">&lt;-</span> cache<span class="sc">$</span>randomised<span class="sc">$</span>deltaAICc</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> best<span class="sc">$</span>main<span class="sc">$</span>deltaAICc</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>exceed <span class="ot">&lt;-</span> <span class="fu">sum</span>(null <span class="sc">&lt;=</span> observed)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>randomisation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_delta_AICc =</span> observed, <span class="at">repeats =</span> <span class="fu">length</span>(null),</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">exceedances =</span> exceed, <span class="at">plus_one_p =</span> (exceed <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="fu">length</span>(null) <span class="sc">+</span> <span class="dv">1</span>),</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">null_min =</span> <span class="fu">min</span>(null), <span class="at">null_max =</span> <span class="fu">max</span>(null))</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(randomisation, <span class="st">"randomisation_audit.csv"</span>)</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(exceed <span class="sc">==</span> <span class="dv">0</span>L, <span class="fu">abs</span>(observed <span class="sc">+</span> <span class="fl">38.60159858397057</span>) <span class="sc">&lt;</span> <span class="fl">1e-8</span>)</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>main_exposure <span class="ot">&lt;-</span> <span class="fu">window_exposure</span>(best<span class="sc">$</span>main)</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>training_window <span class="ot">&lt;-</span> <span class="fu">window_exposure</span>(best<span class="sc">$</span>first23)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>second_exposure <span class="ot">&lt;-</span> <span class="fu">window_exposure</span>(best<span class="sc">$</span>second22)</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>main_climate <span class="ot">&lt;-</span> main_exposure<span class="sc">$</span>climate</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>climate <span class="ot">&lt;-</span> training_window<span class="sc">$</span>climate</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>week_start <span class="ot">&lt;-</span> training_window<span class="sc">$</span>first_date</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>week_end <span class="ot">&lt;-</span> training_window<span class="sc">$</span>last_date</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>week_n_days <span class="ot">&lt;-</span> training_window<span class="sc">$</span>n_days</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>annual<span class="sc">$</span>partition <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(annual<span class="sc">$</span>year <span class="sc">&lt;=</span> <span class="dv">2002</span>, <span class="st">"training"</span>, <span class="st">"held_out"</span>)</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(annual, <span class="st">"annual_weekly_exposure.csv"</span>)</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>main_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> main_climate, <span class="at">data =</span> annual)</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">subset</span>(annual, year <span class="sc">&lt;=</span> <span class="dv">2002</span>)</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">subset</span>(annual, year <span class="sc">&gt;=</span> <span class="dv">2003</span>)</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>training_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> climate, <span class="at">data =</span> train)</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>held_out_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> climate, <span class="at">data =</span> test)</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>second <span class="ot">&lt;-</span> <span class="fu">subset</span>(annual, year <span class="sc">&gt;=</span> <span class="dv">2003</span>)</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>second<span class="sc">$</span>climate <span class="ot">&lt;-</span> second_exposure<span class="sc">$</span>climate[annual<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2003</span>]</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>second_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(median_LD <span class="sc">~</span> climate, <span class="at">data =</span> second)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co"># These agreements verify the bin reconstruction against the original search</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co"># output, rather than assuming that a similar-looking daily window is enough.</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(<span class="fu">coef</span>(main_fit)[<span class="dv">2</span>] <span class="sc">-</span> best<span class="sc">$</span>main<span class="sc">$</span>ModelBeta) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>          <span class="fu">abs</span>(<span class="fu">coef</span>(training_fit)[<span class="dv">2</span>] <span class="sc">-</span> best<span class="sc">$</span>first23<span class="sc">$</span>ModelBeta) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>          <span class="fu">abs</span>(<span class="fu">coef</span>(second_fit)[<span class="dv">2</span>] <span class="sc">-</span> best<span class="sc">$</span>second22<span class="sc">$</span>ModelBeta) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>aicc <span class="ot">&lt;-</span> <span class="cf">function</span>(m) {</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">attr</span>(<span class="fu">logLik</span>(m), <span class="st">"df"</span>); n <span class="ot">&lt;-</span> <span class="fu">nobs</span>(m)</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AIC</span>(m) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> k <span class="sc">*</span> (k <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>reconstructed_delta <span class="ot">&lt;-</span> <span class="fu">aicc</span>(main_fit) <span class="sc">-</span> <span class="fu">aicc</span>(<span class="fu">lm</span>(median_LD <span class="sc">~</span> <span class="dv">1</span>, annual))</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(reconstructed_delta <span class="sc">-</span> observed) <span class="sc">&lt;</span> <span class="fl">1e-8</span>)</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(held_out_fit)[<span class="st">"climate"</span>, ]</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>predicted <span class="ot">&lt;-</span> <span class="fu">predict</span>(training_fit, <span class="at">newdata =</span> test)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>legacy <span class="ot">&lt;-</span> cache<span class="sc">$</span>legacy_singlewin</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(<span class="fu">as.numeric</span>(legacy<span class="sc">$</span>model_data<span class="sc">$</span>yvar),</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">as.numeric</span>(test<span class="sc">$</span>median_LD))))</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>validation <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>  <span class="at">training_seasons =</span> <span class="fu">nrow</span>(train), <span class="at">held_out_seasons =</span> <span class="fu">nrow</span>(test),</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>  <span class="at">training_beta =</span> <span class="fu">unname</span>(<span class="fu">coef</span>(training_fit)[<span class="dv">2</span>]),</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">held_out_beta =</span> <span class="fu">unname</span>(<span class="fu">coef</span>(held_out_fit)[<span class="dv">2</span>]),</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">held_out_CI_low =</span> ci[<span class="dv">1</span>], <span class="at">held_out_CI_high =</span> ci[<span class="dv">2</span>],</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">held_out_R_squared =</span> <span class="fu">summary</span>(held_out_fit)<span class="sc">$</span>r.squared,</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>  <span class="at">held_out_p =</span> <span class="fu">coef</span>(<span class="fu">summary</span>(held_out_fit))[<span class="st">"climate"</span>, <span class="st">"Pr(&gt;|t|)"</span>],</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>  <span class="at">prediction_RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((predicted <span class="sc">-</span> test<span class="sc">$</span>median_LD)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((<span class="fu">mean</span>(train<span class="sc">$</span>median_LD) <span class="sc">-</span> test<span class="sc">$</span>median_LD)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">prediction_bias =</span> <span class="fu">mean</span>(predicted <span class="sc">-</span> test<span class="sc">$</span>median_LD),</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">legacy_singlewin_beta =</span> <span class="fu">unname</span>(legacy<span class="sc">$</span>coefficients[<span class="st">"climate"</span>]),</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_legacy_exposure_difference =</span> <span class="fu">max</span>(<span class="fu">abs</span>(legacy<span class="sc">$</span>model_data<span class="sc">$</span>climate <span class="sc">-</span> test<span class="sc">$</span>climate)))</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(validation) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(validation, <span class="st">"temporal_validation_audit.csv"</span>)</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="fu">put</span>(<span class="fu">data.frame</span>(<span class="at">year =</span> test<span class="sc">$</span>year, <span class="at">median_LD =</span> test<span class="sc">$</span>median_LD,</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>               <span class="at">complete_week_climate =</span> test<span class="sc">$</span>climate,</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>               <span class="at">legacy_singlewin_climate =</span> legacy<span class="sc">$</span>model_data<span class="sc">$</span>climate),</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="st">"legacy_exposure_comparison.csv"</span>)</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">abs</span>(validation<span class="sc">$</span>held_out_beta <span class="sc">+</span> <span class="fl">1.565527</span>) <span class="sc">&lt;</span> <span class="fl">1e-6</span>,</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>          <span class="fu">abs</span>(validation<span class="sc">$</span>prediction_RMSE <span class="sc">-</span> <span class="fl">3.186713</span>) <span class="sc">&lt;</span> <span class="fl">1e-6</span>)</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="fu">list</span>(<span class="at">selection =</span> selection, <span class="at">randomisation =</span> randomisation,</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>             <span class="at">temporal_validation =</span> validation),</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cache/climwin/recovery_audit_results.rds"</span>, <span class="at">version =</span> <span class="dv">3</span>)</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(), <span class="at">file =</span> <span class="fu">file.path</span>(out, <span class="st">"recovery_session_info.txt"</span>))</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(selection, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(randomisation, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(validation, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<details class="analysis-code">
+<summary>
+Show R code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>audit <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"cache/climwin/recovery_audit_results.rds"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>audit<span class="sc">$</span>temporal_validation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>training_seasons</th>
+<th>held_out_seasons</th>
+<th>training_beta</th>
+<th>held_out_beta</th>
+<th>held_out_CI_low</th>
+<th>held_out_CI_high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>23</td>
+<td>22</td>
+<td>-3.30513</td>
+<td>-1.56553</td>
+<td>-2.734</td>
+<td>-0.397058</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>prediction_RMSE</th>
+<th>baseline_RMSE</th>
+<th>prediction_bias</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.18671</td>
+<td>5.22643</td>
+<td>1.52055</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/temporal_validation_audit.csv">Download validation output</a> · <a href="tables/climwin_recovered/legacy_exposure_comparison.csv">Compare old and reconstructed exposures</a> · <a href="tables/climwin_recovered/annual_weekly_exposure.csv">Annual weekly inputs</a></p>
+<details class="analysis-code">
+<summary>
+Original archived outputs and provenance
+</summary>
+<p>The historical files are retained unchanged; they are not substituted for the checked validation above.</p>
 <ul>
-<li>Warmer conditions in the selected weekly period were associated with earlier laying; the association remained in held-out years.</li>
-<li>Reproductive models use the fixed 43-day exposure, not the complete-week search dates.</li>
-<li>This validates a phenology association, not reproductive outcomes; window-selection uncertainty was not propagated into those models.</li>
+<li><a href="tables/climwin_recovered/archive/climwin_windows.csv">Original window-selection table</a>: calendar labels express offsets from 7 May, rather than all days in the complete-week bins.</li>
+<li><a href="tables/climwin_recovered/archive/climwin_false_positive_tests.csv">Original false-positive table</a>.</li>
+<li><a href="tables/climwin_recovered/archive/climwin_out_of_sample.csv">Original out-of-sample table</a>: historical +0.370 result.</li>
+<li><a href="tables/climwin_recovered/archive/climwin_temperature_effects.csv">Original temperature-effect table</a>.</li>
+<li><a href="tables/climwin_recovered/archive/climwin_settings.csv">Original settings</a> and <a href="tables/climwin_recovered/archive/climwin_medwin.csv">median-window boundaries</a>.</li>
+<li><a href="tables/climwin_recovered/recovery_provenance.json">Recovery provenance and source checksums</a>.</li>
+<li><a href="tables/climwin_recovered/recovery_session_info.txt">Recovery-audit session information</a>.</li>
 </ul>
-<p><strong>Next:</strong> <a href="./temporal_trends.html">Calendar-year analyses</a>.</p>
+<p>The public RDS contains aggregate search data extracted from the original caches; fitting environments and individual field records are excluded.</p>
+</details>
+</section>
+<section id="figure" class="level2">
+<h2 class="anchored" data-anchor-id="figure">Figure</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Fig_climwin_recovered.png" class="img-fluid figure-img"></p>
+<figcaption>Recovered eligible-window AICc surface and the cached null distribution from 500 complete randomised searches. The star marks the selected main window; the orange line is its observed delta AICc.</figcaption>
+</figure>
+</div>
+<p><a href="figures/Fig_climwin_recovered.pdf">PDF</a> · <a href="./figure_code.html#sliding-window-diagnostics">Figure code — final chapter</a></p>
+</section>
+<section id="main-conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="main-conclusions">Main conclusions</h2>
+<ul>
+<li>The selected complete-week window associates warmer springs with earlier annual laying dates.</li>
+<li>None of the 500 cached randomised searches was as extreme as the observed result.</li>
+<li>The negative association persists in held-out years when the training window’s complete-week exposure is used; this does not independently validate reproductive models.</li>
+</ul>
 
 
 </section>

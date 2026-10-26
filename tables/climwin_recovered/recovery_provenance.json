@@ -1,0 +1,27 @@
+{
+  "description": "Original script and aggregate results recovered from the local CF_thermal_phenology working project on 26 October 2026. Script copied byte-for-byte. The public RDS is a data-only extract of the original search caches, not a rerun. Historical singlewin out-of-sample output is retained as archive, separate from the complete-week audit.",
+  "source_sha256": {
+    "04_climwin_laying_date.R": "9d3d8ecda2de2472e16b43273d6a2e0035b74b2bc7a553b5771ef0710e7b6909",
+    "climwin_age_coverage_by_year.csv": "52c7653ddc7bcafa0b0ab30182a1e8dacc1a40241ed02aa4c25efc74a11a569e",
+    "climwin_false_positive_tests.csv": "151bcf40682a229c875527d009eb07245cb39895c923cef122eb371995765886",
+    "climwin_medwin.csv": "b272f6807dea88563810afb99c9a37233799384e92c81aab8a1b7dd04adffeb7",
+    "climwin_out_of_sample.csv": "5fdd7454e74c8a9dae484eb369b828fb9a2ce1872113d51bc1a482a5094297b8",
+    "climwin_settings.csv": "c1322e2839b3005c20e131aeefd00739bfcdb1ba74e60039ab3759f5dda8d6f4",
+    "climwin_temperature_effects.csv": "da09aec55dec1a3ad20552f763715c550907340790acfea1597e0655c6dc28bd",
+    "climwin_windows.csv": "85b4d853bae46cdf6e3c0f095b8d5e72eedcbef753ceaffca7bdcc4f61e551de",
+    "climwin_window_lay_overlap_by_year.csv": "a07799807fc6160d8550c2f13328cf7e7e6043c30322c895b7642a70eb1da63d",
+    "out_of_sample_model.rds": "8eeac34a5d902c1d66291fb9563d498cfb847ef96a6f4c43aeba8a6ab7f037ef",
+    "out_of_sample_singlewin.rds": "8878612ed670be58d91da024d79a30f4239406b44b4c8604c63536b8c6180db5",
+    "randwin_main_calendar_index_ref07may_range17w_500.rds": "62e8653b010ee0e1019d698ec3d936951927a9db1200e343d766535a71966309",
+    "slidingwin_first23_calendar_index_ref07may_range17w.rds": "f6f87137d0e032aaa135a6c91f7a43b1e5cb42b99dfa9647918765e8862f6181",
+    "slidingwin_main_calendar_index_ref07may_range17w.rds": "806668e2409e9d7f06a81265d51f4a42088b7695c7be05b853d0edccdb18c95c",
+    "slidingwin_second22_calendar_index_ref07may_range17w.rds": "ed53e8e2ca76c80134328008fdaa33ce1e5ddcd43bda2240b60f3b71fe31fda5"
+  },
+  "public_recovery_sha256": {
+    "cache/climwin/recovered_search_data.rds": "f1b31bb5496a35ce80e499d96d6cc65f391ebd7a1ecf09c71cd0d134d4a6c220",
+    "cache/climwin/recovery_audit_results.rds": "1208d2755a7e9e717ae487a19f397708c6ec61a4200b5caba60f965fbb06e3d4",
+    "R/04_climwin_laying_date.R": "9d3d8ecda2de2472e16b43273d6a2e0035b74b2bc7a553b5771ef0710e7b6909",
+    "R/04a_audit_recovered_climwin.R": "05dc4b1ebdc67aa8c98a1d25fba6b7044536b4e60be036731a5abcc9feb2bd6c",
+    "R/04b_plot_recovered_climwin.R": "2f16109e3e50275f1f3204c04a148f8fcfcf60d44cc1b9b95dd87c7e4302e083"
+  }
+}

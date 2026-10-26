@@ -11,3 +11,9 @@ data_raw/
 models/
 
 **/*.quarto_ipynb
+
+# Explicitly public, data-only aggregate window caches.
+!cache/climwin/recovered_search_data.rds
+!cache/climwin/recovery_audit_results.rds
+!docs/cache/climwin/recovered_search_data.rds
+!docs/cache/climwin/recovery_audit_results.rds

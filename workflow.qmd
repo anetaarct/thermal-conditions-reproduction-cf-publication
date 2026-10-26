@@ -12,6 +12,7 @@ Download the [complete repository ZIP](https://github.com/anetaarct/thermal-cond
 
 - **Weather and window inputs:** [daily SMHI temperatures](data_derived/smhi_hoburg_daily_temperature.csv), [annual window means](data_derived/annual_main_window_temperature.csv), [annual median laying dates](data_derived/annual_raw_median_laying_date.csv).
 - **Saved model output for tables and figures:** all CSV files in `tables/final_models_20261019/`, `tables/primary_ZIyear_ML_20261021/` and `tables/temporal_models_20261022/` (included in the ZIP).
+- **Sliding-window code and cache:** [original R script](R/04_climwin_laying_date.R), [public aggregate RDS](cache/climwin/recovered_search_data.rds), [checked result RDS](cache/climwin/recovery_audit_results.rds) and [recovery audit](R/04a_audit_recovered_climwin.R).
 - **Analysis and figure code:** `R/` and `scripts/` (included in the ZIP). Figure scripts are shown in the [final chapter](figure_code.qmd).
 
 <details class="analysis-code">
@@ -31,7 +32,7 @@ The filenames below are read by the original scripts. They are **not included in
 | `year_without_temperature_20261022/clutch_selected.rds` | Selected temporal clutch fit; produced by script 83, read by script 84 |
 | `year_without_temperature_20261022/fledging_selected.rds` | Selected temporal fledging fit; produced by script 83, read by script 84 |
 
-The raw-field import/cleaning script and original sliding-window script/cache are still needed for a rerun from the original database. The retained scripts preserve their historical paths and must be adapted to the local analysis directory.
+The [original sliding-window script](R/04_climwin_laying_date.R) and an [aggregate cache extract](cache/climwin/recovered_search_data.rds) have now been recovered. Re-running that unchanged script from raw records still requires its private input `data_raw/birds/DB_MISMATCH_current_onset_1980-2025.csv`. The lightweight [recovery audit](R/04a_audit_recovered_climwin.R) uses the public annual inputs and cache. The retained scripts preserve their historical paths and must be adapted to the local analysis directory.
 
 </details>
 
@@ -131,9 +132,41 @@ Rebuilt means agree with the saved CSV within 1e-10 °C.
 
 The same checks were independently evaluated against the CSV files when preparing this site; R chunks are displayed without execution.
 
+## Year–temperature correlation and VIF
+
+Pearson correlation is reported once per season. The brood-weighted correlations are also saved in the CSV and are not treated as independent annual observations.
+
+| sample | seasons | annual_r_year_temperature |
+| --- | --- | --- |
+| weather_1980_2025 | 46 | 0.583285 |
+| clutch | 44 | 0.54191 |
+| fledging | 39 | 0.5317 |
+
+| trait | predictor | VIF |
+| --- | --- | --- |
+| clutch | rel_LD | 1.04257 |
+| clutch | age_classOLD | 1.05186 |
+| clutch | temp_mean_c | 1.21357 |
+| clutch | year_c | 1.21891 |
+| fledging | rel_LD | 1.04551 |
+| fledging | age_classOLD | 1.05498 |
+| fledging | temp_mean_c | 1.26692 |
+| fledging | year_c | 1.26909 |
+
+VIFs use the additive fixed-design matrix: relative laying date, age, temperature and continuous year. The same design enters location and scale, so a separate scale VIF is unnecessary. Year random intercepts are not additional fixed-design columns. These are design diagnostics, not tests of causal independence.
+
+<details class="analysis-code">
+<summary>Show code: reproduce VIF and correlation from the trait-specific data</summary>
+
+{{< include _includes/03_predictor_diagnostics.qmd >}}
+
+</details>
+
+[Download VIF](tables/predictor_diagnostics/fixed_design_vif.csv) · [Download correlations](tables/predictor_diagnostics/year_temperature_correlations.csv)
+
 ## Software versions
 
-The final reproductive-model documentation records **R 4.6.1** and **glmmTMB 1.1.14**. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.
+The final reproductive-model documentation records **R 4.6.1** and **glmmTMB 1.1.14**. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. The recovery audit and predictor diagnostics were executed under R 4.6.1; their session logs are supplied with the outputs. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.
 
 <details class="analysis-code">
 <summary>Show R code</summary>

@@ -10,6 +10,25 @@ execute:
 
 Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip). The scripts read CSV prediction tables in `tables/` and write figures to `figures/`; no model fitting is required. Python packages: pandas, matplotlib (and their dependencies).
 
+## Sliding-window diagnostics {#sliding-window-diagnostics}
+
+This new plotting script reads the recovered candidate-window and randomisation CSV files. It does not refit models; base R is sufficient.
+
+<details class="analysis-code">
+<summary>Show R code: draw diagnostics from the recovered search output</summary>
+
+{{< include _includes/04b_plot_recovered_climwin.qmd >}}
+
+</details>
+
+```bash
+Rscript R/04b_plot_recovered_climwin.R
+```
+
+![Recovered window-search and randomisation diagnostics.](figures/Fig_climwin_recovered.png)
+
+[PDF](figures/Fig_climwin_recovered.pdf)
+
 ## Calendar-year trends {#calendar-year-trends}
 
 <details class="analysis-code">
