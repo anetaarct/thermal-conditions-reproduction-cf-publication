@@ -204,6 +204,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Egg-to-fledging success</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Additional: temperature within &amp; between</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -254,6 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#relative-laying-date" id="toc-relative-laying-date" class="nav-link" data-scroll-target="#relative-laying-date">Relative laying date</a></li>
   <li><a href="#female-age" id="toc-female-age" class="nav-link" data-scroll-target="#female-age">Female age</a></li>
   </ul></li>
+  <li><a href="#temperature-within-between" id="toc-temperature-within-between" class="nav-link" data-scroll-target="#temperature-within-between">Temperature within and between females</a></li>
   <li><a href="#spring-temperature-figure" id="toc-spring-temperature-figure" class="nav-link" data-scroll-target="#spring-temperature-figure">Spring-temperature figure</a></li>
   </ul>
 </nav>
@@ -502,6 +509,68 @@ Show command
 <p><a href="figures/Fig6_COM_M1_age.pdf">PDF</a></p>
 </section>
 </section>
+<section id="temperature-within-between" class="level2">
+<h2 class="anchored" data-anchor-id="temperature-within-between">Temperature within and between females</h2>
+<details class="analysis-code">
+<summary>
+Show code: additional within/between figures
+</summary>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R/92_plot_temperature_within_between.R</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="R/92_plot_temperature_within_between.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figures from saved aggregate prediction curves; no model fitting.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>curves <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste0</span>(<span class="st">"tables/within_between_20261026"</span>, <span class="fu">Sys.getenv</span>(<span class="st">"WB_OUTPUT_SUFFIX"</span>), <span class="st">"/prediction_curves.csv"</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (trait <span class="cf">in</span> <span class="fu">unique</span>(curves<span class="sc">$</span>trait)) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  draw <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.4</span>, <span class="fl">4.4</span>, <span class="fl">2.3</span>, <span class="dv">1</span>), <span class="at">mgp =</span> <span class="fu">c</span>(<span class="fl">2.7</span>, .<span class="dv">8</span>, <span class="dv">0</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    letter <span class="ot">&lt;-</span> <span class="dv">0</span>L</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (component <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"consistency"</span>)) {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (predictor <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"temp_within"</span>, <span class="st">"temp_between"</span>)) {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        letter <span class="ot">&lt;-</span> letter <span class="sc">+</span> <span class="dv">1</span>L</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        d <span class="ot">&lt;-</span> curves[curves<span class="sc">$</span>trait <span class="sc">==</span> trait <span class="sc">&amp;</span> curves<span class="sc">$</span>component <span class="sc">==</span> component <span class="sc">&amp;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                      curves<span class="sc">$</span>predictor <span class="sc">==</span> predictor, ]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        colour <span class="ot">&lt;-</span> <span class="cf">if</span> (component <span class="sc">==</span> <span class="st">"mean"</span>) <span class="st">"#0072B2"</span> <span class="cf">else</span> <span class="st">"#D55E00"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        xlabel <span class="ot">&lt;-</span> <span class="cf">if</span> (predictor <span class="sc">==</span> <span class="st">"temp_within"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Temperature minus female mean (\u00b0C)"</span> <span class="cf">else</span> <span class="st">"Female mean temperature (\u00b0C)"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        ylabel <span class="ot">&lt;-</span> <span class="cf">if</span> (component <span class="sc">==</span> <span class="st">"mean"</span>) {</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (trait <span class="sc">==</span> <span class="st">"clutch"</span>) <span class="st">"Expected clutch size (eggs)"</span> <span class="cf">else</span> <span class="st">"Expected egg-to-fledging success"</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (trait <span class="sc">==</span> <span class="st">"clutch"</span>) <span class="st">"Conditional clutch-size SD"</span> <span class="cf">else</span> <span class="st">"Beta-binomial component precision"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        pair <span class="ot">&lt;-</span> curves[curves<span class="sc">$</span>trait <span class="sc">==</span> trait <span class="sc">&amp;</span> curves<span class="sc">$</span>component <span class="sc">==</span> component, ]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">plot</span>(d<span class="sc">$</span>x, d<span class="sc">$</span>estimate, <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">ylim =</span> <span class="fu">range</span>(<span class="fu">c</span>(pair<span class="sc">$</span>lower, pair<span class="sc">$</span>upper)),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> xlabel, <span class="at">ylab =</span> ylabel, <span class="at">bty =</span> <span class="st">"l"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="fu">polygon</span>(<span class="fu">c</span>(d<span class="sc">$</span>x, <span class="fu">rev</span>(d<span class="sc">$</span>x)), <span class="fu">c</span>(d<span class="sc">$</span>lower, <span class="fu">rev</span>(d<span class="sc">$</span>upper)),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="fu">adjustcolor</span>(colour, <span class="at">alpha.f =</span> .<span class="dv">18</span>), <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">lines</span>(d<span class="sc">$</span>x, d<span class="sc">$</span>estimate, <span class="at">col =</span> colour, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">title</span>(<span class="at">main =</span> <span class="fu">paste</span>(LETTERS[letter], <span class="cf">if</span> (predictor <span class="sc">==</span> <span class="st">"temp_within"</span>) <span class="st">"Within female"</span> <span class="cf">else</span> <span class="st">"Between females"</span>),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">adj =</span> <span class="dv">0</span>, <span class="at">cex.main =</span> <span class="dv">1</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  stem <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"figures/Fig_within_between_"</span>, trait)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">png</span>(<span class="fu">paste0</span>(stem, <span class="st">".png"</span>), <span class="at">width =</span> <span class="dv">1700</span>, <span class="at">height =</span> <span class="dv">1350</span>, <span class="at">res =</span> <span class="dv">180</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw</span>(); <span class="fu">dev.off</span>()</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pdf</span>(<span class="fu">paste0</span>(stem, <span class="st">".pdf"</span>), <span class="at">width =</span> <span class="fl">9.44</span>, <span class="at">height =</span> <span class="fl">7.5</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw</span>(); <span class="fu">dev.off</span>()</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/92_plot_temperature_within_between.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Fig_within_between_clutch.png" class="img-fluid figure-img"></p>
+<figcaption>Additional clutch-size model.</figcaption>
+</figure>
+</div>
+<p><a href="figures/Fig_within_between_clutch.pdf">PDF</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Fig_within_between_fledging.png" class="img-fluid figure-img"></p>
+<figcaption>Additional fledging-success model.</figcaption>
+</figure>
+</div>
+<p><a href="figures/Fig_within_between_fledging.pdf">PDF</a> · <a href="./within_between.html">Model code and saved results</a></p>
+</section>
 <section id="spring-temperature-figure" class="level2">
 <h2 class="anchored" data-anchor-id="spring-temperature-figure">Spring-temperature figure</h2>
 <details class="analysis-code">
@@ -513,35 +582,35 @@ Show retained R plotting block
 <div class="code-with-filename-file">
 <pre><strong>R/25_environment_temperature_location_scale.R — plotting excerpt</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="R/25_environment_temperature_location_scale.R — plotting excerpt"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">&lt;-</span> <span class="st">"#0072B2"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(annual, <span class="fu">aes</span>(year, temp_mean)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(blue, <span class="fl">0.20</span>)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> estimate), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> blue, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"grey25"</span>, <span class="at">size =</span> <span class="fl">2.2</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">stroke =</span> <span class="fl">0.55</span>) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1980</span>, <span class="dv">2025</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Mean spring temperature (°C)"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Thermal window: 26 March-7 May"</span>) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"grey92"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>))</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.png"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.pdf"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> cairo_pdf)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>p_scale <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(scale_data, <span class="fu">aes</span>(year, sigma)) <span class="sc">+</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high), <span class="at">fill =</span> orange <span class="ot">&lt;-</span> <span class="st">"#D55E00"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> orange, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Interannual residual SD (σ)"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> (p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="cn">NULL</span>)) <span class="sc">+</span> p_scale <span class="sc">+</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>, combined,</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">8.4</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_scale.png"</span>, p_scale,</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">6.4</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="R/25_environment_temperature_location_scale.R — plotting excerpt"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>blue <span class="ot">&lt;-</span> <span class="st">"#0072B2"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(annual, <span class="fu">aes</span>(year, temp_mean)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(blue, <span class="fl">0.20</span>)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> plot_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> estimate), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> blue, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"grey25"</span>, <span class="at">size =</span> <span class="fl">2.2</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">stroke =</span> <span class="fl">0.55</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1980</span>, <span class="dv">2025</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Mean spring temperature (°C)"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Thermal window: 26 March-7 May"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"grey92"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.png"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_time.pdf"</span>, p, <span class="at">width =</span> <span class="fl">7.2</span>, <span class="at">height =</span> <span class="fl">4.8</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">device =</span> cairo_pdf)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>p_scale <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(scale_data, <span class="fu">aes</span>(year, sigma)) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> CI_low, <span class="at">ymax =</span> CI_high), <span class="at">fill =</span> orange <span class="ot">&lt;-</span> <span class="st">"#D55E00"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> orange, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Interannual residual SD (σ)"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">11</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> (p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="cn">NULL</span>)) <span class="sc">+</span> p_scale <span class="sc">+</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/Fig2_temperature_location_scale_time.png"</span>, combined,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">8.4</span>, <span class="at">height =</span> <span class="fl">4.2</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/environment_temperature_scale.png"</span>, p_scale,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="fl">6.4</span>, <span class="at">height =</span> <span class="fl">4.8</span>, <span class="at">dpi =</span> <span class="dv">400</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
 <div class="quarto-figure quarto-figure-center">

@@ -1,0 +1,11 @@
+"trait","predictor","VIF"
+"clutch","rel_LD",1.04257983858647
+"clutch","temp_within",1.00534781627817
+"clutch","temp_between",1.30142499996884
+"clutch","year_c",1.3120698567074
+"clutch","age_classOLD",1.05567669155374
+"fledging","rel_LD",1.04550918580384
+"fledging","age_classOLD",1.06007971691513
+"fledging","temp_within",1.0073632947427
+"fledging","temp_between",1.36022697851028
+"fledging","year_c",1.36907141670173

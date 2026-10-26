@@ -14,6 +14,7 @@ Download the [complete repository ZIP](https://github.com/anetaarct/thermal-cond
 - **Saved model output for tables and figures:** all CSV files in `tables/final_models_20261019/`, `tables/primary_ZIyear_ML_20261021/` and `tables/temporal_models_20261022/` (included in the ZIP).
 - **Sliding-window code and cache:** [original R script](R/04_climwin_laying_date.R), [public aggregate RDS](cache/climwin/recovered_search_data.rds), [checked result RDS](cache/climwin/recovery_audit_results.rds) and [recovery audit](R/04a_audit_recovered_climwin.R).
 - **Analysis and figure code:** `R/` and `scripts/` (included in the ZIP). Figure scripts are shown in the [final chapter](figure_code.qmd).
+- **Additional within/between analysis:** [aggregate results RDS](tables/within_between_20261026/aggregate_results.rds), CSV outputs in `tables/within_between_20261026/`, and scripts `R/90_fit_temperature_within_between.R` through `R/92_plot_temperature_within_between.R`. The [separate chapter](within_between.qmd) displays code and results without refitting.
 
 <details class="analysis-code">
 <summary>Private files required by the retained model scripts</summary>
@@ -165,6 +166,8 @@ VIFs use the additive fixed-design matrix: relative laying date, age, temperatur
 [Download VIF](tables/predictor_diagnostics/fixed_design_vif.csv) · [Download correlations](tables/predictor_diagnostics/year_temperature_correlations.csv)
 
 ## Software versions
+
+The additional within/between models were fitted under **R 4.6.1 / glmmTMB 1.1.15.2**, with [session information](tables/within_between_20261026/session_info.txt). Re-fitting these models requires the private `clutch_size_model_data.csv` and `reproductive_model_data.csv`; pass their paths as the two arguments to script 90. Script 91 reads the locally saved fitted objects, while script 92 draws figures from public prediction tables. The public aggregate RDS contains result tables only.
 
 The final reproductive-model documentation records **R 4.6.1** and **glmmTMB 1.1.14**. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. The recovery audit and predictor diagnostics were executed under R 4.6.1; their session logs are supplied with the outputs. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.
 

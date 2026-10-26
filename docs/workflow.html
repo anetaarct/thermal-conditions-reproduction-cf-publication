@@ -205,6 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Egg-to-fledging success</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Additional: temperature within &amp; between</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -286,6 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Saved model output for tables and figures:</strong> all CSV files in <code>tables/final_models_20261019/</code>, <code>tables/primary_ZIyear_ML_20261021/</code> and <code>tables/temporal_models_20261022/</code> (included in the ZIP).</li>
 <li><strong>Sliding-window code and cache:</strong> <a href="R/04_climwin_laying_date.R">original R script</a>, <a href="cache/climwin/recovered_search_data.rds">public aggregate RDS</a>, <a href="cache/climwin/recovery_audit_results.rds">checked result RDS</a> and <a href="R/04a_audit_recovered_climwin.R">recovery audit</a>.</li>
 <li><strong>Analysis and figure code:</strong> <code>R/</code> and <code>scripts/</code> (included in the ZIP). Figure scripts are shown in the <a href="./figure_code.html">final chapter</a>.</li>
+<li><strong>Additional within/between analysis:</strong> <a href="tables/within_between_20261026/aggregate_results.rds">aggregate results RDS</a>, CSV outputs in <code>tables/within_between_20261026/</code>, and scripts <code>R/90_fit_temperature_within_between.R</code> through <code>R/92_plot_temperature_within_between.R</code>. The <a href="./within_between.html">separate chapter</a> displays code and results without refitting.</li>
 </ul>
 <details class="analysis-code">
 <summary>
@@ -688,6 +695,7 @@ Show code: reproduce VIF and correlation from the trait-specific data
 </section>
 <section id="software-versions" class="level2">
 <h2 class="anchored" data-anchor-id="software-versions">Software versions</h2>
+<p>The additional within/between models were fitted under <strong>R 4.6.1 / glmmTMB 1.1.15.2</strong>, with <a href="tables/within_between_20261026/session_info.txt">session information</a>. Re-fitting these models requires the private <code>clutch_size_model_data.csv</code> and <code>reproductive_model_data.csv</code>; pass their paths as the two arguments to script 90. Script 91 reads the locally saved fitted objects, while script 92 draws figures from public prediction tables. The public aggregate RDS contains result tables only.</p>
 <p>The final reproductive-model documentation records <strong>R 4.6.1</strong> and <strong>glmmTMB 1.1.14</strong>. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. The recovery audit and predictor diagnostics were executed under R 4.6.1; their session logs are supplied with the outputs. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.</p>
 <details class="analysis-code">
 <summary>

@@ -87,6 +87,27 @@ python scripts/plot_final_models.py
 
 [PDF](figures/Fig6_COM_M1_age.pdf)
 
+## Temperature within and between females {#temperature-within-between}
+
+<details class="analysis-code">
+<summary>Show code: additional within/between figures</summary>
+
+{{< include _includes/92_plot_temperature_within_between.qmd >}}
+
+</details>
+
+```r
+source("R/92_plot_temperature_within_between.R")
+```
+
+![Additional clutch-size model.](figures/Fig_within_between_clutch.png)
+
+[PDF](figures/Fig_within_between_clutch.pdf)
+
+![Additional fledging-success model.](figures/Fig_within_between_fledging.png)
+
+[PDF](figures/Fig_within_between_fledging.pdf) · [Model code and saved results](within_between.qmd)
+
 ## Spring-temperature figure
 
 <details class="analysis-code">

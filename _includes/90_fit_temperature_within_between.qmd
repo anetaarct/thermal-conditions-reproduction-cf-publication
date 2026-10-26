@@ -1,0 +1,343 @@
+```{.r filename="R/90_fit_temperature_within_between.R"}
+# Separate supplementary temperature within/between models, 26 October 2026.
+# The original fits/exports are read-only. Private data and fitted objects stay
+# under models/ (excluded from the public repository).
+# Run from the repository root with two private CSV input paths as arguments.
+.libPaths(c(".Rlib", .libPaths()))
+Sys.setenv(OMP_NUM_THREADS = 1, OPENBLAS_NUM_THREADS = 1)
+suppressPackageStartupMessages(library(glmmTMB))
+
+run_within_between <- function(clutch_csv, reproduction_csv) {
+  model_dir <- "models/within_between_20261026"
+  output <- paste0("tables/within_between_20261026", Sys.getenv("WB_OUTPUT_SUFFIX"))
+  dir.create(model_dir, recursive = TRUE, showWarnings = FALSE)
+  dir.create(output, recursive = TRUE, showWarnings = FALSE)
+  put <- function(x, name) write.csv(x, file.path(output, name), row.names = FALSE)
+  message_now <- function(...) {
+    cat(format(Sys.time()), ..., "\n"); flush.console()
+  }
+  original_hashes <- tools::md5sum(c(
+    "tables/final_models_20261019/count_coefficients.csv",
+    "tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv"))
+  clutch <- read.csv(clutch_csv, stringsAsFactors = FALSE)
+  reproductive <- read.csv(reproduction_csv, stringsAsFactors = FALSE)
+  fledging <- subset(reproductive, year <= 2019 & !is.na(fledged) &
+                       age_class %in% c("YOUNG", "OLD") &
+                       !is.na(female_id) & female_id != "" & !is.na(rel_LD))
+  fledging$rel_LD <- fledging$laying_date -
+    ave(fledging$laying_date, fledging$year, FUN = median)
+  fledging$temp_mean_c <- fledging$temp_mean - mean(fledging$temp_mean)
+  fledging$year_c <- fledging$year - mean(fledging$year)
+  clutch$year <- as.integer(as.character(clutch$year_f))
+  datasets <- list(clutch = clutch, fledging = fledging)
+  requested <- strsplit(Sys.getenv("WB_TRAITS", "clutch,fledging"), ",", fixed = TRUE)[[1]]
+  stopifnot(all(requested %in% names(datasets)))
+  datasets <- datasets[requested]
+  reference <- read.csv("tables/temporal_models_20261022/observed_annual.csv")
+  old_clutch <- read.csv("tables/final_models_20261019/count_coefficients.csv")
+  old_clutch <- subset(old_clutch, model == "COM_Poisson")
+  old_fledging <- read.csv("tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv")
+  diagnostics <- fixed <- contrasts <- comparisons <- metadata <- vifs <- list()
+
+  diagrow <- function(m, trait, model, optimizer) {
+    gradient <- tryCatch(m$sdr$gradient.fixed, error = function(e) NA_real_)
+    se <- tryCatch(sqrt(diag(m$sdr$cov.fixed)), error = function(e) NA_real_)
+    data.frame(trait = trait, model = model, optimizer = optimizer,
+               n = nobs(m), parameters = attr(logLik(m), "df"),
+               logLik = as.numeric(logLik(m)), AIC = AIC(m),
+               convergence = m$fit$convergence, pdHess = isTRUE(m$sdr$pdHess),
+               scaled_gradient = max(abs(gradient * se)))
+  }
+  good <- function(m) {
+    z <- diagrow(m, "", "", "")
+    isTRUE(z$convergence == 0 && z$pdHess && is.finite(z$logLik) &&
+             is.finite(z$scaled_gradient) && z$scaled_gradient < .005)
+  }
+  start_from <- function(m) {
+    pl <- m$obj$env$parList(par = m$fit$parfull)
+    st <- pl[intersect(c("beta", "betazi", "betadisp", "theta", "thetazi",
+                        "thetadisp", "b", "bzi", "bdisp", "psi"), names(pl))]
+    st[lengths(st) > 0]
+  }
+  whitened <- function(par, fn, gr, control = list(), ...) {
+    if (trait == "clutch") {
+      inner <- environment(fn)$inner.control
+      inner$maxit <- 100L; inner$grad.tol <- 1e-7
+      environment(fn)$inner.control <- inner
+    }
+    # Reuse the already computed Hessian inverse at the first optimiser's
+    # solution for coordinate scaling, rather than computing it twice.
+    # Optimisation still uses the unbounded, exact marginal likelihood.
+    V <- a$sdr$cov.fixed
+    stopifnot(nrow(V) == length(par), all(is.finite(V)))
+    eig <- eigen((V + t(V)) / 2, symmetric = TRUE)
+    stopifnot(min(eig$values) > 0)
+    S <- eig$vectors %*% diag(sqrt(eig$values))
+    initial <- par
+    ff <- function(q) fn(drop(initial + S %*% q))
+    gg <- function(q) drop(crossprod(S, gr(drop(initial + S %*% q))))
+    if (trait == "clutch" && kind == "within_between") {
+      fit <- nlminb(rep(0, length(par)), ff, gg,
+                    control = list(iter.max = 1500, eval.max = 3000, rel.tol = 1e-11, trace = 1))
+      fit$value <- fit$objective
+    } else fit <- optim(rep(0, length(par)), ff, gg, method = "BFGS",
+                        control = list(maxit = 1500, reltol = 1e-12))
+    list(par = drop(initial + S %*% fit$par), objective = fit$value,
+         convergence = fit$convergence, message = fit$message)
+  }
+
+  expanded_bfgs <- function(par, fn, gr, control = list(), ...) {
+    # Lift baseline covariance to the expanded model and add independent
+    # numerical scales for the two new contrasts. These are step scales,
+    # not priors or restrictions on coefficients.
+    inner <- environment(fn)$inner.control
+    inner$maxit <- 100L; inner$grad.tol <- 1e-7
+    environment(fn)$inner.control <- inner
+    old_names <- rownames(fits$baseline$sdr$cov.fixed)
+    A <- matrix(0, length(par), length(old_names))
+    C <- matrix(0, length(par), 2)
+    for (g in c("beta", "betadisp", "theta")) {
+      ni <- which(names(par) == g); oi <- which(old_names == g)
+      if (g == "theta") A[cbind(ni, oi)] <- 1 else {
+        mapped <- match(sub("temp_(within|between)", "temp_mean_c", active_columns), columns)
+        A[cbind(ni, oi[mapped])] <- 1
+        C[ni[active_columns == "temp_within"], if (g == "beta") 1 else 2] <- .5
+        C[ni[active_columns == "temp_between"], if (g == "beta") 1 else 2] <- -.5
+      }
+    }
+    V <- A %*% fits$baseline$sdr$cov.fixed %*% t(A) +
+      C %*% diag(c(.01^2, .05^2)) %*% t(C)
+    e <- eigen((V + t(V))/2, symmetric = TRUE)
+    stopifnot(min(e$values) > 0)
+    S <- e$vectors %*% diag(sqrt(e$values))
+    ff <- function(q) fn(drop(par + S %*% q))
+    gg <- function(q) drop(crossprod(S, gr(drop(par + S %*% q))))
+    z <- optim(rep(0, length(par)), ff, gg, method = "BFGS",
+               control = list(maxit = 1500, reltol = 1e-11, trace = 1, REPORT = 10))
+    list(par = drop(par + S %*% z$par), objective = z$value,
+         convergence = z$convergence, message = z$message)
+  }
+
+  for (trait in names(datasets)) {
+    message_now("START", trait)
+    d <- datasets[[trait]]
+    d$female_id <- factor(d$female_id)
+    d$year_f <- factor(d$year)
+    d$age_class <- factor(d$age_class, levels = c("YOUNG", "OLD"))
+    obs <- reference[reference$trait == trait, ]
+    counts <- table(d$year)
+    stopifnot(length(counts) == nrow(obs),
+              all(as.integer(counts[as.character(obs$year)]) == obs$n),
+              max(abs(tapply(d$rel_LD, d$year, mean)[as.character(obs$year)] -
+                        obs$mean_relative_date)) < 1e-10,
+              max(abs(tapply(d$age_class == "OLD", d$year, mean)[as.character(obs$year)] -
+                        obs$older_fraction)) < 1e-10)
+    temperature_center <- unique(round(d$temp_mean - d$temp_mean_c, 10))
+    stopifnot(length(temperature_center) == 1)
+    d$temp_between <- ave(d$temp_mean, d$female_id, FUN = mean) - temperature_center
+    d$temp_within <- d$temp_mean_c - d$temp_between
+    stopifnot(max(abs(d$temp_within + d$temp_between - d$temp_mean_c)) < 1e-10,
+              max(abs(tapply(d$temp_within, d$female_id, mean))) < 1e-8)
+    groups <- split(d$temp_mean, d$female_id)
+    varied <- vapply(groups, function(x) length(unique(round(x, 10))) > 1, logical(1))
+    metadata[[trait]] <- data.frame(
+      trait = trait, records = nrow(d), females = nlevels(d$female_id),
+      seasons = nlevels(d$year_f), females_repeated = sum(lengths(groups) >= 2),
+      females_varied_temperature = sum(varied),
+      records_in_varied_temperature_females = sum(lengths(groups)[varied]),
+      temperature_center = temperature_center,
+      year_center = unique(round(d$year - d$year_c, 8)))
+    saveRDS(d, file.path(model_dir, paste0(trait, "_analysis_data.rds")))
+
+    base_form <- if (trait == "clutch")
+      clutch ~ rel_LD + temp_mean_c + year_c + age_class + (1 | female_id) + (1 | year_f) else
+      cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_mean_c + year_c +
+        (1 | female_id) + (1 | year_f)
+    wb_form <- if (trait == "clutch")
+      clutch ~ rel_LD + temp_within + temp_between + year_c + age_class +
+        (1 | female_id) + (1 | year_f) else
+      cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_within + temp_between +
+        year_c + (1 | female_id) + (1 | year_f)
+    base_disp <- if (trait == "clutch") ~ rel_LD + temp_mean_c + year_c + age_class else
+      ~ rel_LD + age_class + temp_mean_c + year_c + (1 | year_f)
+    wb_disp <- if (trait == "clutch") ~ rel_LD + temp_within + temp_between + year_c + age_class else
+      ~ rel_LD + age_class + temp_within + temp_between + year_c + (1 | year_f)
+    base_fixed <- if (trait == "clutch") ~ rel_LD + temp_mean_c + year_c + age_class else
+      ~ rel_LD + age_class + temp_mean_c + year_c
+    wb_fixed <- if (trait == "clutch") ~ rel_LD + temp_within + temp_between + year_c + age_class else
+      ~ rel_LD + age_class + temp_within + temp_between + year_c
+    columns <- colnames(model.matrix(base_fixed, d))
+    old <- if (trait == "clutch") old_clutch else old_fledging
+    get_cf <- function(component) {
+      z <- old[old$component == component, ]; setNames(z$estimate, z$term)
+    }
+    st <- list(beta = unname(get_cf("cond")[columns]),
+               betadisp = unname(get_cf("disp")[columns]))
+    if (trait == "clutch") {
+      st$theta <- log(c(.06028, .02186))
+      # Quasi-IRLS is only a starting-mode calculation. The actual likelihood,
+      # gradients and Hessian are still computed by the exact COM-Poisson model.
+      nf <- nlevels(d$female_id); ny <- nlevels(d$year_f); n <- nrow(d)
+      Z <- Matrix::sparseMatrix(i = rep(seq_len(n), 2),
+        j = c(as.integer(d$female_id), nf + as.integer(d$year_f)), x = 1,
+        dims = c(n, nf + ny))
+      Q <- Matrix::Diagonal(x = c(rep(1 / .06028^2, nf), rep(1 / .02186^2, ny)))
+      eta0 <- drop(model.matrix(base_fixed, d) %*% st$beta)
+      phi0 <- exp(drop(model.matrix(base_fixed, d) %*% st$betadisp))
+      modes <- rep(0, nf + ny)
+      for (initial_iteration in 1:20) {
+        eta <- eta0 + as.numeric(Z %*% modes); mu <- exp(eta)
+        variance <- pmax(mu * phi0 + .5 * phi0 * (1 - phi0), .1 * mu * phi0)
+        weights <- mu^2 / variance
+        working <- eta - eta0 + (d$clutch - mu) / mu
+        H <- Matrix::crossprod(Z, Matrix::Diagonal(x = weights) %*% Z) + Q
+        next_modes <- as.numeric(Matrix::solve(H, Matrix::crossprod(Z, weights * working)))
+        change <- max(abs(next_modes - modes)); modes <- next_modes
+        if (change < 1e-8) break
+      }
+      st$b <- modes
+      message_now(trait, "starting modes prepared", initial_iteration, "iterations")
+    } else {
+      st$betazi <- unname(get_cf("zi")["(Intercept)"])
+      st$theta <- log(c(.30025823943742, .309608546517611))
+      st$thetazi <- log(.526058431521361)
+      st$thetadisp <- log(.249035787139773)
+    }
+    # Scaled numerical bounds stabilise the initial searches. A second,
+    # unbounded optimiser checks every fit. The expanded clutch model uses
+    # covariance-scaled BFGS followed by nlminb instead of the bounded search.
+    active_columns <- columns
+    bounded <- function(par, fn, gr, control = list(), ...) {
+      if (trait == "clutch") {
+        inner <- environment(fn)$inner.control
+        inner$maxit <- 100L; inner$grad.tol <- 1e-7
+        environment(fn)$inner.control <- inner
+      }
+      lower <- rep(-10, length(par)); upper <- rep(10, length(par))
+      scale <- rep(1, length(par))
+      for (component in c("beta", "betadisp")) {
+        ix <- which(names(par) == component)
+        stopifnot(length(ix) == length(active_columns))
+        scale[ix[active_columns == "rel_LD"]] <- .01
+        scale[ix[active_columns == "year_c"]] <- .005
+        scale[ix[grepl("^temp_", active_columns)]] <- .1
+        scale[ix[active_columns == "age_classOLD"]] <- .1
+        if (trait == "clutch") {
+          lower[ix] <- if (component == "beta") -.2 else -.5
+          upper[ix] <- if (component == "beta") .2 else .5
+          lower[ix[active_columns == "(Intercept)"]] <- if (component == "beta") 1.6 else -5
+          upper[ix[active_columns == "(Intercept)"]] <- if (component == "beta") 2 else 0
+        }
+      }
+      re <- grepl("^theta", names(par))
+      lower[re] <- -10; upper[re] <- log(5)
+      opt <- optim(par, fn, gr, method = "L-BFGS-B", lower = lower, upper = upper,
+                   control = list(maxit = 3000, factr = 1e4, pgtol = 1e-7,
+                                  parscale = scale, trace = 1, REPORT = 10))
+      list(par = opt$par, objective = opt$value, convergence = opt$convergence,
+           message = opt$message)
+    }
+    fits <- list()
+    for (kind in c("baseline", "within_between")) {
+      special <- trait == "clutch" && kind == "within_between"
+      first_label <- if (special) "expanded_BFGS" else "LBFGSB"
+      second_label <- if (special) "whitened_NLMINB" else "BFGS"
+      first_file <- file.path(model_dir, paste0(trait, "_", kind, "_", first_label, ".rds"))
+      message_now(trait, kind, first_label)
+      if (file.exists(first_file)) a <- readRDS(first_file) else {
+        if (kind == "baseline") {
+          a <- glmmTMB(base_form, dispformula = base_disp,
+                       ziformula = if (trait == "clutch") ~ 0 else ~ 1 + (1 | year_f),
+                       family = if (trait == "clutch") compois() else betabinomial(),
+                       data = d, start = st,
+                       control = glmmTMBControl(optimizer = bounded, parallel = 4))
+        } else {
+          prior <- fits$baseline; new_start <- start_from(prior)
+          old_cf <- fixef(prior); wb_columns <- colnames(model.matrix(wb_fixed, d))
+          duplicate_temperature <- function(v) {
+            v["temp_within"] <- v["temp_mean_c"]
+            v["temp_between"] <- v["temp_mean_c"]
+            unname(v[wb_columns])
+          }
+          active_columns <- wb_columns
+          new_start$beta <- duplicate_temperature(old_cf$cond)
+          new_start$betadisp <- duplicate_temperature(old_cf$disp)
+          a <- update(prior, formula = wb_form, dispformula = wb_disp, data = d,
+                      start = new_start,
+                      control = glmmTMBControl(optimizer = if (special) expanded_bfgs else bounded, parallel = 4))
+        }
+        saveRDS(a, first_file)
+      }
+      print(diagrow(a, trait, kind, first_label))
+      second_file <- file.path(model_dir, paste0(trait, "_", kind, "_", second_label, ".rds"))
+      message_now(trait, kind, "independent refinement", second_label)
+      if (file.exists(second_file)) b <- readRDS(second_file) else {
+        b <- update(a, data = d, start = start_from(a),
+                    control = glmmTMBControl(optimizer = whitened, parallel = 4))
+        saveRDS(b, second_file)
+      }
+      print(diagrow(b, trait, kind, second_label))
+      diagnostics[[paste(trait, kind)]] <- rbind(diagrow(a, trait, kind, first_label),
+                                               diagrow(b, trait, kind, second_label))
+      put(do.call(rbind, diagnostics), "optimizer_comparison.csv")
+      ok <- vapply(list(a, b), good, logical(1))
+      if (!any(ok)) stop("No admissible model: ", trait, " ", kind)
+      candidates <- list(a, b)[ok]
+      selected <- candidates[[which.max(vapply(candidates, function(m) as.numeric(logLik(m)), numeric(1)))]]
+      fits[[kind]] <- selected
+      saveRDS(selected, file.path(model_dir, paste0(trait, "_", kind, "_selected.rds")))
+      if (kind == "baseline") {
+        expected <- if (trait == "clutch") -13768.5520704332 else -16632.056176958
+        difference <- as.numeric(logLik(selected)) - expected
+        message_now(trait, "baseline logLik minus original", difference)
+        stopifnot(abs(difference) < .001)
+      }
+      cf <- summary(selected)$coefficients
+      fixed[[paste(trait, kind)]] <- do.call(rbind, lapply(names(cf), function(component) {
+        x <- cf[[component]]
+        if (is.null(dim(x)) || nrow(x) == 0L) return(NULL)
+        data.frame(trait = trait, model = kind, component = component, term = rownames(x),
+                   estimate = x[, 1], SE = x[, 2], lower = x[, 1] - qnorm(.975) * x[, 2],
+                   upper = x[, 1] + qnorm(.975) * x[, 2])
+      }))
+      put(do.call(rbind, fixed), "fixed_effects.csv")
+    }
+    m <- fits$within_between
+    for (component in c("cond", "disp")) {
+      cf <- fixef(m)[[component]]; V <- vcov(m)[[component]]
+      L <- setNames(rep(0, length(cf)), names(cf))
+      L["temp_within"] <- 1; L["temp_between"] <- -1
+      estimate <- sum(L * cf); se <- sqrt(drop(t(L) %*% V %*% L))
+      contrasts[[paste(trait, component)]] <- data.frame(
+        trait = trait, component = component, contrast = "within_minus_between",
+        estimate = estimate, SE = se, lower = estimate - qnorm(.975) * se,
+        upper = estimate + qnorm(.975) * se, p = 2 * pnorm(-abs(estimate / se)))
+    }
+    LR <- 2 * (as.numeric(logLik(m)) - as.numeric(logLik(fits$baseline)))
+    df <- attr(logLik(m), "df") - attr(logLik(fits$baseline), "df")
+    comparisons[[trait]] <- data.frame(
+      trait = trait, baseline_AIC = AIC(fits$baseline), within_between_AIC = AIC(m),
+      delta_AIC = AIC(m) - AIC(fits$baseline), LR = LR, df = df,
+      p = pchisq(LR, df, lower.tail = FALSE))
+    X <- model.matrix(wb_fixed, d); Z <- X[, colnames(X) != "(Intercept)"]
+    stopifnot(qr(X)$rank == ncol(X))
+    vif <- vapply(seq_len(ncol(Z)), function(j)
+      1 / (1 - summary(lm(Z[, j] ~ Z[, -j, drop = FALSE]))$r.squared), numeric(1))
+    vifs[[trait]] <- data.frame(trait = trait, predictor = colnames(Z), VIF = vif)
+    put(do.call(rbind, metadata), "sample_metadata.csv")
+    put(do.call(rbind, contrasts), "within_between_contrasts.csv")
+    put(do.call(rbind, comparisons), "model_comparison.csv")
+    put(do.call(rbind, vifs), "fixed_design_vif.csv")
+    capture.output(sessionInfo(), file = file.path(output, "session_info.txt"))
+    message_now("FINISHED", trait)
+  }
+  stopifnot(identical(original_hashes, tools::md5sum(names(original_hashes))))
+  message_now("COMPLETE: original models and exports unchanged")
+}
+
+if (sys.nframe() == 0L) {
+  args <- commandArgs(trailingOnly = TRUE)
+  stopifnot(length(args) == 2L)
+  run_within_between(args[1], args[2])
+}
+```

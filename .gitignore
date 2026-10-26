@@ -2,6 +2,8 @@
 /_freeze/
 /.Rproj.user/
 /.Rlib/
+/docs/.Rlib/
+/docs/models/
 .Rhistory
 .RData
 *.rds
@@ -17,3 +19,9 @@ models/
 !cache/climwin/recovery_audit_results.rds
 !docs/cache/climwin/recovered_search_data.rds
 !docs/cache/climwin/recovery_audit_results.rds
+
+# Data-only aggregate exports; fitted models and private records stay excluded.
+!tables/within_between_20261026/aggregate_results.rds
+!docs/tables/within_between_20261026/aggregate_results.rds
+/tables/within_between_20261026_clutch/
+/tables/within_between_20261026_fledging/

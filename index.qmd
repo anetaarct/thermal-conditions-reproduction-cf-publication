@@ -43,6 +43,7 @@ Using long-term records of collared flycatchers (*Ficedula albicollis*) on Gotla
 <a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Data preparation, model code, saved output and the figure.</p></a>
 <a class="overview-tile" href="clutch_size.html"><h3>03 · Clutch size</h3><p>Model fitting, prediction export and saved results.</p></a>
 <a class="overview-tile" href="fledging_success.html"><h3>04 · Egg-to-fledging success</h3><p>Model fitting, prediction export and saved results.</p></a>
+<a class="overview-tile" href="within_between.html"><h3>05 · Temperature within & between</h3><p>Additional models: temperature changes within females and differences between females.</p></a>
 <a class="overview-tile" href="model_structure.html"><h3>Model equations & checks</h3><p>Model specifications and diagnostic outputs.</p></a>
 <a class="overview-tile" href="figure_code.html"><h3>Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
 </div>
