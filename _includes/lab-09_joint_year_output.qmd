@@ -1,0 +1,15 @@
+```{=html}
+<section class="r-lab" data-r-lab="09_joint_year_output" aria-label="Read year effects from both temperature models">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Read year effects from both temperature models</h3></div>
+<p class="r-lab-note">Both models include continuous year and thermal predictors together. These are temperature-adjusted year associations, not year-only trends.</p>
+<label for="r-code-09_joint_year_output">Editable R code</label>
+<textarea id="r-code-09_joint_year_output" class="r-lab-code" spellcheck="false" rows="7">fixed &lt;- read.csv(&quot;tables/joint_calendar_year_20261027/year_coefficients.csv&quot;)
+change &lt;- read.csv(&quot;tables/joint_calendar_year_20261027/contrasts.csv&quot;)
+print(fixed, row.names = FALSE)
+print(change, row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

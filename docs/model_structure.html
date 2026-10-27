@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Model structure and checks – Warmer springs and reproductive performance in the collared flycatcher</title>
+<title>Model formulas and diagnostics – Warmer springs and reproductive performance in the collared flycatcher</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,61 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -98,7 +44,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -130,35 +76,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -256,7 +173,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -300,9 +217,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#model-specifications" id="toc-model-specifications" class="nav-link active" data-scroll-target="#model-specifications">Model specifications</a></li>
+  <li><a href="#reproductive-models" id="toc-reproductive-models" class="nav-link active" data-scroll-target="#reproductive-models">Reproductive models</a></li>
   <li><a href="#spring-temperature-model" id="toc-spring-temperature-model" class="nav-link" data-scroll-target="#spring-temperature-model">Spring-temperature model</a></li>
-  <li><a href="#saved-diagnostic-output" id="toc-saved-diagnostic-output" class="nav-link" data-scroll-target="#saved-diagnostic-output">Saved diagnostic output</a></li>
+  <li><a href="#fit-diagnostics" id="toc-fit-diagnostics" class="nav-link" data-scroll-target="#fit-diagnostics">Fit diagnostics</a></li>
+  <li><a href="#withinbetween-model-comparison" id="toc-withinbetween-model-comparison" class="nav-link" data-scroll-target="#withinbetween-model-comparison">Within–between model comparison</a></li>
   </ul>
 </nav>
     </div>
@@ -311,7 +229,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_preparation.html">Methods &amp; reproducibility</a></li><li class="breadcrumb-item"><a href="./model_structure.html">Model structure &amp; diagnostics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Model structure and checks</h1>
+<h1 class="title">Model formulas and diagnostics</h1>
 </div>
 
 
@@ -328,338 +246,175 @@ window.Quarto = {
 </header>
 
 
-<section id="model-specifications" class="level2">
-<h2 class="anchored" data-anchor-id="model-specifications">Model specifications</h2>
-<details class="analysis-code" open="">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifications used in the original scripts (see the trait chapters).</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clutch-size temperature model:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>clutch <span class="sc">~</span> rel_LD <span class="sc">+</span> temp_mean_c <span class="sc">+</span> year_c <span class="sc">+</span> age_class <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> female_id) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year_f)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dispformula:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span> rel_LD <span class="sc">+</span> temp_mean_c <span class="sc">+</span> year_c <span class="sc">+</span> age_class</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fledging temperature model:</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(fledged, clutch <span class="sc">-</span> fledged) <span class="sc">~</span> rel_LD <span class="sc">+</span> age_class <span class="sc">+</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  temp_mean_c <span class="sc">+</span> year_c <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> female_id) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year_f)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># dispformula:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span> rel_LD <span class="sc">+</span> age_class <span class="sc">+</span> temp_mean_c <span class="sc">+</span> year_c <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year_f)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ziformula:</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> year_f)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calendar-year models omit temp_mean_c from location and dispersion.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</section>
-<section id="spring-temperature-model" class="level2">
-<h2 class="anchored" data-anchor-id="spring-temperature-model">Spring-temperature model</h2>
-<p>Annual mean temperature was modelled with calendar year in location and scale.</p>
-<details class="analysis-code">
-<summary>
-Show original R code: temperature-model fit and export
-</summary>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R/25_environment_temperature_location_scale.R — fitting and export excerpt</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="R/25_environment_temperature_location_scale.R — fitting and export excerpt"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env Rscript</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setlocale</span>(<span class="st">'LC_CTYPE'</span>, <span class="st">'English_United States.utf8'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="st">".Rlib"</span>, <span class="st">"../../repo_gotland_flycatcher_phenology/.r-lib"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"../../repo_gotland_flycatcher_phenology/Rlib"</span>, <span class="fu">.libPaths</span>()))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(glmmTMB)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(readr)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tibble)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(patchwork)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"models/glmmTMB"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"tables"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"figures"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(year, <span class="dv">1980</span>, <span class="dv">2025</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">year =</span> <span class="fu">as.integer</span>(year), <span class="at">temp_mean =</span> <span class="fu">as.numeric</span>(temp_mean)) <span class="sc">|&gt;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.x))) <span class="sc">|&gt;</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_c =</span> year <span class="sc">-</span> <span class="fu">mean</span>(year))</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">identical</span>(annual<span class="sc">$</span>year, <span class="dv">1980</span><span class="sc">:</span><span class="dv">2025</span>),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>          <span class="fu">abs</span>(<span class="fu">mean</span>(annual<span class="sc">$</span>year_c)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  temp_mean <span class="sc">~</span> year_c,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">dispformula =</span> <span class="sc">~</span> year_c,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> annual,</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">glmmTMBControl</span>(<span class="at">optCtrl =</span> <span class="fu">list</span>(<span class="at">iter.max =</span> <span class="dv">20000</span>, <span class="at">eval.max =</span> <span class="dv">20000</span>))</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(model<span class="sc">$</span>fit<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span>L, <span class="fu">isTRUE</span>(model<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(model, <span class="st">"models/glmmTMB/environment_temperature_location_scale.rds"</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>sm <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)<span class="sc">$</span>coefficients</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(sm<span class="sc">$</span>cond) <span class="sc">|&gt;</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">"term"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(<span class="at">component =</span> <span class="st">"location"</span>, term, <span class="at">beta =</span> Estimate, <span class="at">SE =</span> <span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span>,</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">z =</span> <span class="st">`</span><span class="at">z value</span><span class="st">`</span>, <span class="at">p =</span> <span class="st">`</span><span class="at">Pr(&gt;|z|)</span><span class="st">`</span>, <span class="at">interpretation =</span> <span class="fu">case_when</span>(</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                term <span class="sc">==</span> <span class="st">"year_c"</span> <span class="sc">&amp;</span> beta <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"mean spring temperature increases through time"</span>,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                term <span class="sc">==</span> <span class="st">"year_c"</span> <span class="sc">&amp;</span> beta <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"mean spring temperature decreases through time"</span>,</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"intercept"</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>              )),</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(sm<span class="sc">$</span>disp) <span class="sc">|&gt;</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">"term"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(<span class="at">component =</span> <span class="st">"scale_log_sigma"</span>, term, <span class="at">beta =</span> Estimate, <span class="at">SE =</span> <span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span>,</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>              <span class="at">z =</span> <span class="st">`</span><span class="at">z value</span><span class="st">`</span>, <span class="at">p =</span> <span class="st">`</span><span class="at">Pr(&gt;|z|)</span><span class="st">`</span>, <span class="at">interpretation =</span> <span class="fu">case_when</span>(</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>                term <span class="sc">==</span> <span class="st">"year_c"</span> <span class="sc">&amp;</span> <span class="st">`</span><span class="at">Pr(&gt;|z|)</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="fl">0.05</span> <span class="sc">~</span> <span class="st">"no clear temporal trend in residual interannual variability"</span>,</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>                term <span class="sc">==</span> <span class="st">"year_c"</span> <span class="sc">&amp;</span> beta <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"residual interannual variability around the mean trend increases"</span>,</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                term <span class="sc">==</span> <span class="st">"year_c"</span> <span class="sc">&amp;</span> beta <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"residual interannual variability around the mean trend decreases"</span>,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"baseline log residual SD"</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>              ))</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> coefficients <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">CI_low =</span> beta <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE,</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">CI_high =</span> beta <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE)</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(coefficients, <span class="st">"tables/environment_temperature_location_scale_coefficients.csv"</span>)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">seq</span>(<span class="fu">min</span>(annual<span class="sc">$</span>year), <span class="fu">max</span>(annual<span class="sc">$</span>year), <span class="at">length.out =</span> <span class="dv">240</span>),</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_c =</span> year <span class="sc">-</span> <span class="fu">mean</span>(annual<span class="sc">$</span>year)</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> grid, <span class="at">type =</span> <span class="st">"response"</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                <span class="at">re.form =</span> <span class="cn">NA</span>)</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate =</span> <span class="fu">as.numeric</span>(pred<span class="sc">$</span>fit), <span class="at">SE =</span> <span class="fu">as.numeric</span>(pred<span class="sc">$</span>se.fit),</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>         <span class="at">CI_low =</span> estimate <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> SE, <span class="at">CI_high =</span> estimate <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> SE)</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(plot_data, <span class="st">"tables/environment_temperature_time_predictions.csv"</span>)</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="co"># glmmTMB 1.1.14 models Gaussian dispersion as log residual SD directly.</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>bd <span class="ot">&lt;-</span> <span class="fu">fixef</span>(model)<span class="sc">$</span>disp</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>Vd <span class="ot">&lt;-</span> <span class="fu">vcov</span>(model)<span class="sc">$</span>disp</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>scale_values <span class="ot">&lt;-</span> <span class="fu">lapply</span>(grid<span class="sc">$</span>year_c, <span class="cf">function</span>(yc) {</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  w <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"year_c"</span> <span class="ot">=</span> yc)</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  eta <span class="ot">&lt;-</span> <span class="fu">sum</span>(w[<span class="fu">names</span>(bd)] <span class="sc">*</span> bd)</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  se_eta <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">drop</span>(<span class="fu">t</span>(w[<span class="fu">names</span>(bd)]) <span class="sc">%*%</span> Vd <span class="sc">%*%</span> w[<span class="fu">names</span>(bd)]))</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">log_sigma =</span> eta, <span class="at">SE_log_sigma =</span> se_eta,</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>         <span class="at">sigma =</span> <span class="fu">exp</span>(eta),</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>         <span class="at">CI_low =</span> <span class="fu">exp</span>(eta <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se_eta),</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>         <span class="at">CI_high =</span> <span class="fu">exp</span>(eta <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se_eta))</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">|&gt;</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>scale_data <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="fu">select</span>(grid, year, year_c), scale_values)</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(scale_data, <span class="st">"tables/environment_temperature_scale_predictions.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</details>
-<p><strong>Reported output:</strong> mean trend 0.0439°C/year (95% CI 0.0248–0.0630); no clear change in residual interannual variability. The environmental coefficient CSV written by this script is not included in the public snapshot.</p>
-</section>
-<section id="saved-diagnostic-output" class="level2">
-<h2 class="anchored" data-anchor-id="saved-diagnostic-output">Saved diagnostic output</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>row</th>
-<th>code</th>
-<th>pdHess</th>
-<th>logLik</th>
-<th>scaled_gradient</th>
-<th>bound_distance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>nlminb</td>
-<td>0</td>
-<td>TRUE</td>
-<td>-13769</td>
-<td>0.00020724</td>
-<td>0.28087</td>
-</tr>
-<tr class="even">
-<td>LBFGS</td>
-<td>0</td>
-<td>TRUE</td>
-<td>-13769</td>
-<td>0.00019347</td>
-<td>0.28087</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/final_models_20261019/COM_final_diagnostics.csv">Download CSV</a> | model | n | logLik | AIC | convergence | pdHess | scaled_gradient | | — | — | — | — | — | — | — | | ZI_year_primary_ML | 9790 | -16632 | 33294 | 0 | TRUE | 0.00036322 |</p>
-<a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a>
-<details class="analysis-code">
-<summary>
-Show saved output: optimizer_comparison.csv
-</summary>
+<section id="reproductive-models" class="level2">
+<h2 class="anchored" data-anchor-id="reproductive-models">Reproductive models</h2>
+<p>Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the <a href="./clutch_size.html">clutch</a>, <a href="./fledging_success.html">fledging</a> and <a href="./within_between.html">within–between</a> pages.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>trait</th>
-<th>model</th>
-<th>n</th>
-<th>df</th>
-<th>logLik</th>
-<th>AIC</th>
-<th>convergence</th>
-<th>pdHess</th>
-<th>scaled_gradient</th>
+<th>Response</th>
+<th>Distribution and components</th>
+<th>Random intercepts</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>clutch</td>
-<td>with_temperature</td>
-<td>12627</td>
-<td>12</td>
-<td>-13769</td>
-<td>27561</td>
-<td>0</td>
-<td>TRUE</td>
-<td>0.00019347</td>
+<td>Clutch size</td>
+<td>Mean-parameterised COM-Poisson; predictors enter log mean and log inverse shape</td>
+<td>Female and year in mean</td>
 </tr>
 <tr class="even">
-<td>clutch</td>
-<td>without_temperature_LBFGS</td>
-<td>12627</td>
-<td>10</td>
-<td>-13777</td>
-<td>27573</td>
-<td>0</td>
-<td>TRUE</td>
-<td>9.6224e-06</td>
+<td>Egg-to-fledging success</td>
+<td>Zero-inflated beta-binomial; predictors enter component logit mean and log precision</td>
+<td>Female and year in mean; year in precision and extra-zero probability</td>
 </tr>
 <tr class="odd">
-<td>clutch</td>
-<td>without_temperature_BFGS</td>
-<td>12627</td>
-<td>10</td>
-<td>-13777</td>
-<td>27573</td>
-<td>0</td>
-<td>NA</td>
-<td>9.2348e-06</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>with_temperature</td>
-<td>9790</td>
-<td>15</td>
-<td>-16632</td>
-<td>33294</td>
-<td>0</td>
-<td>TRUE</td>
-<td>0.00036322</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>without_temperature_LBFGS</td>
-<td>9790</td>
-<td>13</td>
-<td>-16638</td>
-<td>33301</td>
-<td>0</td>
-<td>TRUE</td>
-<td>2.7277e-06</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>without_temperature_BFGS</td>
-<td>9790</td>
-<td>13</td>
-<td>-16638</td>
-<td>33301</td>
-<td>0</td>
-<td>TRUE</td>
-<td>2.9166e-06</td>
+<td>Calendar-year trends</td>
+<td>Same response distributions as above, with temperature removed from location and scale</td>
+<td>Retained from corresponding reproductive model</td>
 </tr>
 </tbody>
 </table>
-<p><a href="tables/temporal_models_20261022/optimizer_comparison.csv">Download CSV</a></p>
-</details>
-<details class="analysis-code">
-<summary>
-Model equations, symbols and detailed diagnostic notes
-</summary>
-<p><strong>S1.9 Temperature-association model equations and prediction targets</strong></p>
-<p>The reproductive equations below describe the unchanged temperature-association models. Their year coefficients are adjusted for temperature. The separately refitted <strong>temporal models omit temperature from both equations</strong> while retaining age, relative laying date and the same random effects. Their year estimates and curves are reported on the <a href="./temporal_trends.html">Temporal trends</a> page. These two model sets address distinct questions. In the temperature-association models, both spring temperature (°C) and calendar year are centred continuous fixed predictors, entered linearly in location and scale. Temperature coefficients are conditional on continuous calendar year and the other predictors; year coefficients in these models are conditional on temperature and are not the reported temporal trends. The categorical year grouping factor for random intercepts is separate and represents deviations among seasons around the fixed continuous-year trend.</p>
-<p>We used location–scale models to examine temporal change in spring thermal conditions and to examine variation in clutch size and egg-to-fledging success <span class="citation" data-cites="Nakagawa2025location">(<a href="#ref-Nakagawa2025location" role="doc-biblioref">Nakagawa et al. 2026</a>)</span>. For COM-Poisson clutch counts, log mean and log inverse shape jointly determine conditional SD. For fledging success, location and precision refer to the beta-binomial component; the full-mixture mean and variance also depend on the extra-zero probability, as specified below. Because the interpretation of scale depends on the response distribution and the observational unit, it is described separately for each model below. Following <span class="citation" data-cites="Ortega2026collapse">Ortega et al. (<a href="#ref-Ortega2026collapse" role="doc-biblioref">2026</a>)</span>, we use <em>environmental predictability</em> for the year-to-year reliability of environmental conditions, operationalised here as lower residual inter-annual variability around the mean temporal trend. We use <em>consistency</em> for lower conditional dispersion of reproductive outcomes among breeding attempts and <em>inconsistency</em> for greater dispersion. These terms describe distinct levels of variability; the interpretation and direction of each scale parameter are specified for its response distribution. These reproductive scale effects describe conditional heterogeneity among breeding attempts, not repeatability or stability of the same female’s outcomes across attempts.</p>
-<p><strong>Spring thermal conditions</strong></p>
-<p>We fitted a Gaussian location–scale model to the 46 annual mean temperatures available for 1980–2025. Weather observations were available for 2020 despite the absence of field data on breeding attempts in that year. For year <span class="math inline">\(t\)</span>, <span class="math display">\[\begin{aligned}
-T_t &amp;\sim \mathcal{N}(\mu_t,\sigma_t^2),\\
-\mu_t &amp;= \beta_0 + \beta_{\mathrm{time}}\,\mathrm{Time}_t,\\
-\log(\sigma_t) &amp;= \gamma_0 + \gamma_{\mathrm{time}}\,\mathrm{Time}_t,
-\end{aligned}\]</span> where <span class="math inline">\(\mathrm{Time}_t\)</span> is the calendar year centered on the midpoint of the study period. The location component describes the directional warming. The scale component describes residual variability in annual mean temperature among years after accounting for the mean trend: larger <span class="math inline">\(\sigma_t\)</span> indicates greater environmental unpredictability, in the operational sense used here. This is distinct from the standard deviation of daily temperatures within each year’s thermal window.</p>
-<p>Both components were fitted jointly by maximum likelihood in glmmTMB, with no random effects because there is one environmental observation per year. The glmmTMB version (1.1.14) models Gaussian dispersion on the log standard-deviation scale, so dispersion coefficients and standard errors are reported directly as effects on log residual standard deviation. We report Wald 95% CIs and assessed the time-dependent scale against a constant-scale model using a likelihood-ratio test. Convergence, a positive-definite Hessian and agreement between two optimisers were required; standardised residuals were inspected for departures from normality and serial correlation. We also repeated the analysis for the 45 years excluding 2020. An ordinary least squares regression of daily-temperature SD on year was retained solely as a supplementary environmental diagnostic. Neither metric is a direct test of an organism’s ability to forecast resources.</p>
-<p><strong>Clutch size</strong></p>
-<p>Clutch size was analysed as a count using a mean-parameterised COM-Poisson mixed model fitted by maximum likelihood. This distribution accommodates conditional underdispersion relative to Poisson without treating integer outcomes as continuous. The model choice was based on the response scale, numerical stability and predictive checks, rather than the significance of individual associations. Relative laying date, spring temperature, centred calendar year and female age class entered both the log-mean and log inverse-shape equations. Independent female and year random intercepts entered the log-mean equation.</p>
-<p>For brood <span class="math inline">\(r\)</span>, <span class="math display">\[\begin{aligned}
-P(C_r=k)&amp;=\frac{\lambda_r^k}{(k!)^{\nu_r}Z(\lambda_r,\nu_r)},\quad k=0,1,\ldots,\\
-Z(\lambda,\nu)&amp;=\sum_{k=0}^{\infty}\frac{\lambda^k}{(k!)^\nu},\qquad
-E(C_r\mid u,v)=\mu_r,\qquad \psi_r=1/\nu_r,\\
-\log\mu_r&amp;=\beta_0^{(\mu)}+\beta_{\mathrm{date}}^{(\mu)}\mathrm{Date}_r
-+\beta_{\mathrm{temp}}^{(\mu)}T_r+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r
-+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+u_{y[r]}+v_{f[r]},\\
-\log\psi_r&amp;=\gamma_0+\gamma_{\mathrm{date}}\mathrm{Date}_r
-+\gamma_{\mathrm{temp}}T_r+\gamma_{\mathrm{time}}\mathrm{Time}_r
-+\gamma_{\mathrm{age}}\mathrm{Age}_r.
-\end{aligned}\]</span> Here <span class="math inline">\(\lambda_r\)</span> is determined numerically to yield mean <span class="math inline">\(\mu_r\)</span>; <span class="math inline">\(u_y\)</span> and <span class="math inline">\(v_f\)</span> are independent zero-mean Gaussian random intercepts. The response <span class="math inline">\(C_r\)</span> is the number of eggs and <span class="math inline">\(T_r\)</span> is mean temperature in the pre-laying window. The observed range of 2–9 eggs was not imposed as a distributional bound. Inverse shape <span class="math inline">\(\psi\)</span> is not residual SD and is distinct from fledging precision <span class="math inline">\(\phi\)</span>. We calculated conditional variance from the COM-Poisson probabilities, <span class="math display">\[s_r^2=\sum_{k=0}^{\infty}(k-\mu_r)^2P(C_r=k),\]</span> and report <span class="math inline">\(s_r\)</span> in eggs to describe variability among broods at given predictors and random effects. It depends jointly on mean and inverse shape; a dispersion coefficient alone does not quantify its change.</p>
-<p>Centred calendar year remains a fixed predictor in log inverse shape, allowing a systematic temporal trend in dispersion. A separate random year intercept would describe additional between-season differences in dispersion beyond that trend and the other fixed predictors. This extension reached the lower optimisation bound with negligible likelihood improvement and was omitted from the primary COM-Poisson model. The boundary result does not establish absence of biological year variation. The interior-solution and convergence checks reported in Supplementary Materials S1.8 concern the retained model without this additional dispersion random intercept.</p>
-<p>We report maximum-likelihood coefficients with Wald 95% confidence intervals (CIs). Response-scale curves use point estimates and pointwise 95% CIs from 4,000 joint asymptotic coefficient draws, preserving covariance between location and dispersion. Contrasts hold other continuous predictors at zero, age at yearling and random effects at zero; they are reference-condition associations, not population-marginal effects. Ordinary Poisson provides a comparison with equidispersion. Predictive checks assess count frequencies and mean and variance overall and within groups, with simulation targets and remaining limitations specified in S1.8.</p>
-<p><strong>Fledging success</strong></p>
-<p>Fledging success was defined as the number of fledged offspring <span class="math inline">\(K_r\)</span> relative to the number of eggs laid <span class="math inline">\(n_r\)</span> in brood <span class="math inline">\(r\)</span>. This measures egg-to-fledging success, combining hatching failure and subsequent offspring loss. All zero-success broods were retained. Clutch size enters as the binomial denominator, not as an additional predictor of the success probability. Modelling clutch size separately describes reproductive investment; the success model describes the subsequent fate of those eggs. These are complementary outcomes rather than a joint model of total fledgling production.</p>
-<p>The primary fledging model was a zero-inflated beta-binomial model fitted by maximum likelihood in glmmTMB, with an independent year random intercept in the extra-zero component. Relative laying date, age class, spring temperature and centred year entered both location and log precision. Location included year and female random intercepts, and log precision included an independent year random intercept. Neither component included interactions. The extra-zero equation included an intercept and an independent year random intercept, without covariate slopes. We adopted this distribution after exploratory ordinary beta-binomial fits underrepresented complete failures and overrepresented complete successes; model development and comparison outputs are retained in the analysis archive. This choice was motivated by outcome calibration rather than whether particular coefficients excluded zero. The zero component is a statistical representation of otherwise unmodelled heterogeneity, not evidence for a biologically distinct class of failures.</p>
-<p>For brood <span class="math inline">\(r\)</span>, the primary model was <span class="math display">\[\begin{aligned}
-K_r &amp;\sim \pi_{y[r]}\,\delta_0+(1-\pi_{y[r]})\,\mathrm{BetaBinomial}(n_r,\mu_r,\phi_r),\\
-\operatorname{logit}(\mu_r) &amp;= \beta_0^{(\mu)}+\beta_{\mathrm{date}}^{(\mu)}\mathrm{Date}_r
-+\beta_{\mathrm{age}}^{(\mu)}\mathrm{Age}_r+\beta_{\mathrm{temp}}^{(\mu)}T_r
-+\beta_{\mathrm{time}}^{(\mu)}\mathrm{Time}_r+u_{y[r]}+v_{f[r]},\\
-\log(\phi_r) &amp;= \beta_0^{(\phi)}+\beta_{\mathrm{date}}^{(\phi)}\mathrm{Date}_r
-+\beta_{\mathrm{age}}^{(\phi)}\mathrm{Age}_r+\beta_{\mathrm{temp}}^{(\phi)}T_r
-+\beta_{\mathrm{time}}^{(\phi)}\mathrm{Time}_r+w_{y[r]},\\
-\operatorname{logit}(\pi_{y[r]})&amp;=\alpha_0+z_{y[r]}.
-\end{aligned}\]</span> Here <span class="math inline">\(\delta_0\)</span> is a point mass at zero, and the beta-binomial component has beta shape parameters <span class="math inline">\(\mu_r\phi_r\)</span> and <span class="math inline">\((1-\mu_r)\phi_r\)</span>. Independent zero-mean Gaussian random intercepts <span class="math inline">\(u_y\)</span>, <span class="math inline">\(v_f\)</span>, <span class="math inline">\(w_y\)</span> and <span class="math inline">\(z_y\)</span> describe year variation in location, female variation in location, year variation in log precision and year variation in logit extra-zero probability, respectively. Cross-component random-effect correlations were not estimated.</p>
-<p>The expected success proportion for the full mixture and the probability of complete failure are <span class="math display">\[\begin{aligned}
-E(K_r/n_r)&amp;=(1-\pi_{y[r]})\mu_r,\\
-\Pr(K_r=0)&amp;=\pi_{y[r]}+(1-\pi_{y[r]})\Pr_{\mathrm{BB}}(K_r=0).
-\end{aligned}\]</span> Thus, <span class="math inline">\(\pi_{y[r]}\)</span> is not the total failure probability and does not identify a particular biological mechanism. The component mean <span class="math inline">\(\mu_r\)</span> is also not the mean conditional on a positive outcome: the beta-binomial component itself can generate zeros. Higher <span class="math inline">\(\phi_r\)</span> indicates lower dispersion of that component at a given <span class="math inline">\(\mu_r\)</span> and <span class="math inline">\(n_r\)</span>. The full-mixture variance is <span class="math display">\[\begin{equation}
-\operatorname{Var}(K_r/n_r)=(1-\pi_{y[r]})\frac{\mu_r(1-\mu_r)(n_r+\phi_r)}{n_r(1+\phi_r)}
-+\pi_{y[r]}(1-\pi_{y[r]})\mu_r^2.
-\end{equation}\]</span> Consequently, precision alone does not measure overall consistency of the mixture. Because <span class="math inline">\(\pi_y\)</span> has no covariate slopes and is fixed within a given year, the direction of a covariate association with <span class="math inline">\(\mu_r\)</span> also determines its direction for expected full-mixture success, with other predictors and random effects held fixed.</p>
-<p>The primary fledging model was fitted by maximum likelihood in glmmTMB 1.1.14 to the same 9,790 brood records. Mean and log-precision predictors, links and random effects were retained from the former ML fit; the only extension was an independent year random intercept in logit extra-zero probability. An initial unrestricted nlminb attempt failed with NA/NaN gradients and was excluded. A scaled, bounded L-BFGS-B fit yielded an interior solution (minimum relative distance to bounds 0.261). Independent unbounded BFGS refinement gave convergence code zero and a positive-definite Hessian; the two log likelihoods agreed within <span class="math inline">\(10^{-7}\)</span> and maximum absolute SE-scaled gradients were below <span class="math inline">\(3.8\times10^{-4}\)</span>. Log likelihood was <span class="math inline">\(-16632.0562\)</span>, with 15 parameters and AIC 33294.11, versus 33463.58 for the constant-extra-zero ML model (14 parameters). We report AIC rather than an ordinary chi-square likelihood-ratio p-value because the null random-effect variance lies on a boundary. This comparison concerns fitted marginal likelihood, not out-of-sample validation.</p>
-<p>Curves use ML point estimates and pointwise 95% CIs from 8,000 joint asymptotic coefficient draws, including covariance across location, precision and extra-zero coefficients. Every random effect is set to zero, including precision-year and extra-zero-year effects. We computed <span class="math inline">\(\mu=\operatorname{logit}^{-1}(X\widehat\beta)\)</span>, <span class="math inline">\(\phi=\exp(Z\widehat\gamma)\)</span> and <span class="math inline">\(\pi_0=\operatorname{logit}^{-1}(\widehat\alpha_0)\)</span> explicitly, and verified them against native predictions with grouping variables set to missing. In glmmTMB 1.1.14, <code>re.form=NA</code> alone did not remove precision-year and extra-zero-year contributions for an existing year. Explicit fixed designs prevent these contributions entering reference curves. Curves are conditional reference predictions, not averages over the distribution of years or individual-brood prediction intervals.</p>
-<p>The clutch-size analysis included 12,627 broods from 8,894 females across 44 seasons in 1981–2025 (excluding 2020). Fledging data included 9,790 broods from 7,132 females across 39 seasons in 1981–2019, including 2,315 complete failures (23.65%).</p>
-<p><strong>Reporting and limitations.</strong></p>
-<p>Both reproductive models were fitted by ML in glmmTMB 1.1.14 using R 4.6.1. We report Wald 95% confidence intervals for fixed effects. Curves use ML point estimates and joint asymptotic coefficient draws (4,000 for clutch size and 8,000 for fledging success), including cross-component covariance. Random effects are zero in reference predictions. Simulation envelopes are descriptive checks, omit parameter-estimation uncertainty and are not individual-brood prediction intervals or held-out validation. All reported terms are additive; age is a predictor in both location and scale.</p>
-</details>
-
+<p>Fitting requires curated individual records and saved starting objects. These are not included in the public repository, so model fitting is done locally in the recorded R/glmmTMB environment. The complete code is available as downloadable R scripts on the analysis pages.</p>
+</section>
+<section id="spring-temperature-model" class="level2">
+<h2 class="anchored" data-anchor-id="spring-temperature-model">Spring-temperature model</h2>
+<p>The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:</p>
+<section class="r-lab" data-r-lab="04_environment_model" aria-label="Fit spring-temperature location and scale">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Fit spring-temperature location and scale</h3></div>
+<p class="r-lab-note">Fits the Gaussian mean and log-SD likelihood to 46 annual temperatures. Coefficients for time are per decade; this is not a reproductive model.</p>
+<label for="r-code-04_environment_model">Editable R code</label>
+<textarea id="r-code-04_environment_model" class="r-lab-code" spellcheck="false" rows="17">d &lt;- read.csv("data_derived/annual_main_window_temperature.csv")
+t &lt;- (d$year - mean(d$year))/10
+y &lt;- d$temp_mean
+start &lt;- lm(y ~ t)
+# The same Gaussian location-scale likelihood, fitted using base R.
+nll &lt;- function(b) {
+  mu &lt;- b[1] + b[2] * t
+  log_sd &lt;- b[3] + b[4] * t
+  sum(log_sd + 0.5 * ((y - mu) / exp(log_sd))^2 + log(2*pi)/2)
+}
+fit &lt;- optim(c(coef(start), log(sqrt(mean(residuals(start)^2))), 0),
+             nll, method = "BFGS", hessian = TRUE,
+             control = list(reltol = 1e-12, maxit = 2000))
+stopifnot(fit$convergence == 0, min(eigen(fit$hessian, symmetric = TRUE)$values) &gt; 0)
+se &lt;- sqrt(diag(solve(fit$hessian)))
+print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_intercept", "log_SD_per_decade"),
+  estimate = fit$par, lower = fit$par - qnorm(.975)*se, upper = fit$par + qnorm(.975)*se), row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+<p>The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.</p>
+</section>
+<section id="fit-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="fit-diagnostics">Fit diagnostics</h2>
+<p>Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;">Records</th>
+<th style="text-align: right;">logLik</th>
+<th style="text-align: right;">AIC</th>
+<th>Converged</th>
+<th>Positive-definite Hessian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clutch, temperature</td>
+<td style="text-align: right;">12,627</td>
+<td style="text-align: right;">−13,768.55</td>
+<td style="text-align: right;">27,561.10</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>Fledging, temperature</td>
+<td style="text-align: right;">9,790</td>
+<td style="text-align: right;">−16,632.06</td>
+<td style="text-align: right;">33,294.11</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td>Clutch, no temperature</td>
+<td style="text-align: right;">12,627</td>
+<td style="text-align: right;">−13,776.52</td>
+<td style="text-align: right;">27,573.04</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>Fledging, no temperature</td>
+<td style="text-align: right;">9,790</td>
+<td style="text-align: right;">−16,638.42</td>
+<td style="text-align: right;">33,302.84</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/final_models_20261019/COM_final_diagnostics.csv">Clutch optimizer diagnostics</a> · <a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Fledging diagnostics</a> · <a href="tables/temporal_models_20261022/optimizer_comparison.csv">Temporal model checks</a> · <a href="tables/temporal_models_20261022/temporal_simulation_checks.csv">Simulation checks</a></p>
+</section>
+<section id="withinbetween-model-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="withinbetween-model-comparison">Within–between model comparison</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Trait</th>
+<th style="text-align: right;">Single-temperature AIC</th>
+<th style="text-align: right;">Within–between AIC</th>
+<th style="text-align: right;">ΔAIC</th>
+<th style="text-align: right;">Likelihood-ratio p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clutch size</td>
+<td style="text-align: right;">27,561.10</td>
+<td style="text-align: right;">27,556.80</td>
+<td style="text-align: right;">−4.31</td>
+<td style="text-align: right;">0.0157</td>
+</tr>
+<tr class="even">
+<td>Egg-to-fledging success</td>
+<td style="text-align: right;">33,294.11</td>
+<td style="text-align: right;">33,297.87</td>
+<td style="text-align: right;">+3.75</td>
+<td style="text-align: right;">0.885</td>
+</tr>
+</tbody>
+</table>
+<p>The comparison adds two fixed effects and tests whether within- and between-female temperature associations differ in location and scale together. Full coefficient and optimizer outputs are on the <a href="./within_between.html">within–between results page</a>.</p>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Nakagawa2025location" class="csl-entry" role="listitem">
-Nakagawa, Shinichi, Santiago Ortega, Elena Gazzea, et al. 2026. <span>“<span class="nocase">Location–scale models in ecology and evolution: Heteroscedasticity in continuous, count and proportion data</span>.”</span> <em>Methods in Ecology and Evolution</em> 17 (2): 554–66. <a href="https://doi.org/10.1111/2041-210x.70203">https://doi.org/10.1111/2041-210x.70203</a>.
-</div>
-<div id="ref-Ortega2026collapse" class="csl-entry" role="listitem">
-Ortega, Santiago, Cristina Rodriguez, Ayumi Mizuno, Laura Arroyo, Hugh Drummond, and Shinichi Nakagawa. 2026. <em><span class="nocase">The collapse of environmental predictability erodes reproductive success in a tropical seabird</span></em>. EcoEvoRxiv. <a href="https://doi.org/10.32942/X2W37C">https://doi.org/10.32942/X2W37C</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

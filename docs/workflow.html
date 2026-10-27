@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -79,7 +44,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -252,13 +217,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#files-to-download" id="toc-files-to-download" class="nav-link active" data-scroll-target="#files-to-download">Files to download</a></li>
-  <li><a href="#load-the-curated-breeding-datasets" id="toc-load-the-curated-breeding-datasets" class="nav-link" data-scroll-target="#load-the-curated-breeding-datasets">Load the curated breeding datasets</a></li>
-  <li><a href="#load-the-saved-smhi-observations" id="toc-load-the-saved-smhi-observations" class="nav-link" data-scroll-target="#load-the-saved-smhi-observations">Load the saved SMHI observations</a></li>
-  <li><a href="#check-the-saved-inputs" id="toc-check-the-saved-inputs" class="nav-link" data-scroll-target="#check-the-saved-inputs">Check the saved inputs</a></li>
-  <li><a href="#yeartemperature-correlation-and-vif" id="toc-yeartemperature-correlation-and-vif" class="nav-link" data-scroll-target="#yeartemperature-correlation-and-vif">Year–temperature correlation and VIF</a></li>
-  <li><a href="#software-versions" id="toc-software-versions" class="nav-link" data-scroll-target="#software-versions">Software versions</a></li>
-  <li><a href="#display-results-without-refitting" id="toc-display-results-without-refitting" class="nav-link" data-scroll-target="#display-results-without-refitting">Display results without refitting</a></li>
+  <li><a href="#get-the-project-files" id="toc-get-the-project-files" class="nav-link active" data-scroll-target="#get-the-project-files">Get the project files</a></li>
+  <li><a href="#reproduce-each-step" id="toc-reproduce-each-step" class="nav-link" data-scroll-target="#reproduce-each-step">Reproduce each step</a></li>
+  <li><a href="#refit-limits" id="toc-refit-limits" class="nav-link" data-scroll-target="#refit-limits">Refit limits</a></li>
+  <li><a href="#software-used-for-the-reported-fits" id="toc-software-used-for-the-reported-fits" class="nav-link" data-scroll-target="#software-used-for-the-reported-fits">Software used for the reported fits</a></li>
   </ul>
 </nav>
     </div>
@@ -284,21 +246,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="files-to-download" class="level2">
-<h2 class="anchored" data-anchor-id="files-to-download">Files to download</h2>
-<p>Download the <a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip">complete repository ZIP</a> and keep its folder structure.</p>
-<ul>
-<li><strong>Weather and window inputs:</strong> <a href="data_derived/smhi_hoburg_daily_temperature.csv">daily SMHI temperatures</a>, <a href="data_derived/annual_main_window_temperature.csv">annual window means</a>, <a href="data_derived/annual_raw_median_laying_date.csv">annual median laying dates</a>.</li>
-<li><strong>Saved model output for tables and figures:</strong> all CSV files in <code>tables/final_models_20261019/</code>, <code>tables/primary_ZIyear_ML_20261021/</code> and <code>tables/temporal_models_20261022/</code> (included in the ZIP).</li>
-<li><strong>Sliding-window code and cache:</strong> <a href="R/04_climwin_laying_date.R">original R script</a>, <a href="cache/climwin/recovered_search_data.rds">public aggregate RDS</a>, <a href="cache/climwin/recovery_audit_results.rds">checked result RDS</a> and <a href="R/04a_audit_recovered_climwin.R">recovery audit</a>.</li>
-<li><strong>Analysis and figure code:</strong> <code>R/</code> and <code>scripts/</code> (included in the ZIP). Figure scripts are shown in the <a href="./figure_code.html">final chapter</a>.</li>
-<li><strong>Additional within/between analysis:</strong> <a href="tables/within_between_20261026/aggregate_results.rds">aggregate results RDS</a>, CSV outputs in <code>tables/within_between_20261026/</code>, and scripts <code>R/90_fit_temperature_within_between.R</code> through <code>R/92_plot_temperature_within_between.R</code>. The <a href="./within_between.html">separate chapter</a> displays code and results without refitting.</li>
-</ul>
-<details class="analysis-code">
-<summary>
-Private files required by the retained model scripts
-</summary>
-<p>The filenames below are read by the original scripts. They are <strong>not included in the public ZIP</strong>. Paths are relative to the original analysis directory, unless an absolute path is shown.</p>
+<section id="get-the-project-files" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-project-files">Get the project files</h2>
+<p>Download the <a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip">repository ZIP</a> and unzip it without changing folder names. R scripts use paths relative to the project root.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -306,427 +256,115 @@ Private files required by the retained model scripts
 </colgroup>
 <thead>
 <tr class="header">
-<th>File</th>
-<th>Used by</th>
+<th>Inputs</th>
+<th>Used for</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>glmmTMB_comparison_20261016/clutch_counts/data.rds</code></td>
-<td>Clutch verification and temporal refit</td>
+<td><code>data_derived/smhi_hoburg_daily_temperature.csv</code></td>
+<td>Daily station observations used to build thermal windows</td>
 </tr>
 <tr class="even">
-<td><code>glmmTMB_comparison_20261016/clutch_counts/COM_predictors_bounded.rds</code></td>
-<td>Starting fit for clutch verification</td>
+<td><code>data_derived/annual_raw_median_laying_date.csv</code></td>
+<td>Annual laying-date response for window selection</td>
 </tr>
 <tr class="odd">
-<td><code>glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds</code></td>
-<td>Existing selected clutch fit; read by temporal/export scripts and copied by verification</td>
+<td><code>data_derived/annual_main_window_temperature.csv</code></td>
+<td>Saved annual exposure used in reproductive models</td>
 </tr>
 <tr class="even">
-<td><code>/home/arct/CF_thermal_phenology_run/data_derived/clutch_size_model_data.csv</code></td>
-<td>Original centring values for clutch prediction export</td>
+<td><code>tables/…/*.csv</code> and public aggregate <code>.rds</code> files</td>
+<td>Reproducing output tables, curves and figures without refitting</td>
 </tr>
 <tr class="odd">
-<td><code>glmmTMB_comparison_20261016/analysis_data.rds</code></td>
-<td>Curated fledging dataset</td>
-</tr>
-<tr class="even">
-<td><code>glmmTMB_comparison_20261016/M1_selected.rds</code></td>
-<td>Starting fit for the fledging extension</td>
-</tr>
-<tr class="odd">
-<td><code>zi_year_sensitivity_20261020/zi_year_selected.rds</code></td>
-<td>Selected fledging fit; produced by script 81, read by scripts 82 and 83</td>
-</tr>
-<tr class="even">
-<td><code>year_without_temperature_20261022/clutch_selected.rds</code></td>
-<td>Selected temporal clutch fit; produced by script 83, read by script 84</td>
-</tr>
-<tr class="odd">
-<td><code>year_without_temperature_20261022/fledging_selected.rds</code></td>
-<td>Selected temporal fledging fit; produced by script 83, read by script 84</td>
+<td><code>R/</code>, <code>R/browser/</code>, <code>scripts/</code></td>
+<td>Analysis and figure code</td>
 </tr>
 </tbody>
 </table>
-<p>The <a href="R/04_climwin_laying_date.R">original sliding-window script</a> and an <a href="cache/climwin/recovered_search_data.rds">aggregate cache extract</a> have now been recovered. Re-running that unchanged script from raw records still requires its private input <code>data_raw/birds/DB_MISMATCH_current_onset_1980-2025.csv</code>. The lightweight <a href="R/04a_audit_recovered_climwin.R">recovery audit</a> uses the public annual inputs and cache. The retained scripts preserve their historical paths and must be adapted to the local analysis directory.</p>
-</details>
+<p>The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.</p>
+<section class="r-lab" data-r-lab="01_weather_inputs" aria-label="Load and check the weather inputs">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Load and check the weather inputs</h3></div>
+<p class="r-lab-note">Runs from public input files.</p>
+<label for="r-code-01_weather_inputs">Editable R code</label>
+<textarea id="r-code-01_weather_inputs" class="r-lab-code" spellcheck="false" rows="16">daily &lt;- read.csv("data_derived/smhi_hoburg_daily_temperature.csv")
+annual &lt;- read.csv("data_derived/annual_main_window_temperature.csv")
+laying &lt;- read.csv("data_derived/annual_raw_median_laying_date.csv")
+daily$date &lt;- as.Date(daily$date)
+stopifnot(nrow(daily) == 16802, !anyDuplicated(daily$date),
+          nrow(annual) == 46, nrow(laying) == 45)
+keep &lt;- format(daily$date, "%m-%d") &gt;= "03-26" &amp;
+        format(daily$date, "%m-%d") &lt;= "05-07"
+x &lt;- daily[keep, ]
+rebuilt &lt;- aggregate(temperature ~ year, x, mean)
+days &lt;- table(x$year)
+stopifnot(all(days == 43),
+  max(abs(rebuilt$temperature - annual$temp_mean[match(rebuilt$year, annual$year)])) &lt; 1e-10)
+print(head(annual))
+cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
+    "\nDays per window:", unique(as.integer(days)), "\nInput checks passed.\n")
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<section id="load-the-curated-breeding-datasets" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-curated-breeding-datasets">Load the curated breeding datasets</h2>
-<p>The analyses used already curated <code>.rds</code> files. The loading paths below come from the temporal-fitting script; individual records remain private.</p>
-<details class="analysis-code" open="">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>clutch_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"glmmTMB_comparison_20261016/clutch_counts/data.rds"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fledging_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"glmmTMB_comparison_20261016/analysis_data.rds"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(clutch_data)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fledging_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><strong>Saved sample counts</strong></p>
+</section>
+<section id="reproduce-each-step" class="level2">
+<h2 class="anchored" data-anchor-id="reproduce-each-step">Reproduce each step</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Analysis</th>
-<th style="text-align: right;">Breeding attempts</th>
-<th style="text-align: right;">Females</th>
-<th>Seasons</th>
+<th>Step</th>
+<th>Public inputs</th>
+<th>What you can run or reproduce</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Clutch size</td>
-<td style="text-align: right;">12,627</td>
-<td style="text-align: right;">8,894</td>
-<td>1981–2025, excluding 2020</td>
+<td>Sliding-window selection</td>
+<td>Daily SMHI data, annual laying-date summaries and aggregate cache</td>
+<td>Candidate thermal windows, saved search diagnostics and held-out validation checks</td>
 </tr>
 <tr class="even">
-<td>Egg-to-fledging success</td>
-<td style="text-align: right;">9,790</td>
-<td style="text-align: right;">7,132</td>
-<td>1981–2019</td>
+<td>Calendar-year trends</td>
+<td>Exported model estimates and annual summaries</td>
+<td>Read coefficients and predictions, then redraw the trend figure</td>
+</tr>
+<tr class="odd">
+<td>Temperature and reproductive traits</td>
+<td>Saved coefficients, predictions and data-only RDS tables</td>
+<td>Recalculate reported contrasts and redraw figures</td>
+</tr>
+<tr class="even">
+<td>Within–between temperature models</td>
+<td>Public aggregate output tables and prediction curves</td>
+<td>Inspect estimates, direct contrasts, model comparisons and figures</td>
 </tr>
 </tbody>
 </table>
-<p>Laying-date input covers 45 seasons; weather covers all 46 years, 1980–2025.</p>
 </section>
-<section id="load-the-saved-smhi-observations" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-saved-smhi-observations">Load the saved SMHI observations</h2>
-<p>Daily mean air temperatures came from Hoburg (68550) and Hoburg A (68560), Sweden. The publication uses the saved snapshot below.</p>
-<details class="analysis-code" open="">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(daily)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(annual)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>year</th>
-<th>temp_mean</th>
-<th>temp_sd</th>
-<th>n_days</th>
-<th>window_start</th>
-<th>window_end</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1980</td>
-<td>3.3535</td>
-<td>2.3364</td>
-<td>43</td>
-<td>1980-03-26</td>
-<td>1980-05-07</td>
-</tr>
-<tr class="even">
-<td>1981</td>
-<td>3.3372</td>
-<td>1.8033</td>
-<td>43</td>
-<td>1981-03-26</td>
-<td>1981-05-07</td>
-</tr>
-<tr class="odd">
-<td>1982</td>
-<td>3.7488</td>
-<td>1.5051</td>
-<td>43</td>
-<td>1982-03-26</td>
-<td>1982-05-07</td>
-</tr>
-<tr class="even">
-<td>1983</td>
-<td>4.386</td>
-<td>2.1908</td>
-<td>43</td>
-<td>1983-03-26</td>
-<td>1983-05-07</td>
-</tr>
-<tr class="odd">
-<td>1984</td>
-<td>4.607</td>
-<td>2.5671</td>
-<td>43</td>
-<td>1984-03-26</td>
-<td>1984-05-07</td>
-</tr>
-</tbody>
-</table>
-<a href="data_derived/annual_main_window_temperature.csv">Download CSV</a>
-<details class="analysis-code">
-<summary>
-SMHI download code (new recipe; not the archived downloader)
-</summary>
-<p><a href="https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json">SMHI source and station catalogue</a>. This example saves fresh archives separately; it does not replace the publication snapshot.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Hoburg =</span> <span class="dv">68550</span>, <span class="at">Hoburg_A =</span> <span class="dv">68560</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"data_raw/smhi"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name <span class="cf">in</span> <span class="fu">names</span>(stations)) {</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="fu">paste0</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://opendata-download-metobs.smhi.se/api/version/1.0/"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"parameter/2/station/%s/period/corrected-archive/data.csv"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ), stations[[name]])</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(url, <span class="fu">file.path</span>(<span class="st">"data_raw/smhi"</span>, <span class="fu">paste0</span>(name, <span class="st">".csv"</span>)),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="refit-limits" class="level2">
+<h2 class="anchored" data-anchor-id="refit-limits">Refit limits</h2>
+<p>The fitted clutch-size and fledging models use curated individual breeding records and saved model objects. Those individual-level records and fitted objects are not in the public repository. The full fitting scripts and their required input names remain visible and downloadable on the model pages; they cannot produce the publication fits from the public aggregate files alone. The browser steps run checks and calculations on supplied public files; they do not pretend to refit models without their data.</p>
+<p>The sliding-window analysis also begins from annual laying-date summaries; individual laying dates are not public. Its public cache retains aggregate candidate-window results and 500 saved randomised searches. The page shows which operations can be repeated from the public snapshot and which require the original field records.</p>
+<p>Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).</p>
 </section>
-<section id="check-the-saved-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="check-the-saved-inputs">Check the saved inputs</h2>
-<p>The following check rebuilds all 46 annual means from the daily snapshot (43 days per year).</p>
-<details class="analysis-code">
-<summary>
-Show original code: 00_check_public_inputs.R
-</summary>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R/00_check_public_inputs.R</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="R/00_check_public_inputs.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New public-input check; not the historical download/cleaning script.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run from the publication repository root.</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>daily <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/smhi_hoburg_daily_temperature.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>phenology <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_derived/annual_raw_median_laying_date.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(daily) <span class="sc">==</span> <span class="dv">16802</span>L, <span class="sc">!</span><span class="fu">anyDuplicated</span>(daily<span class="sc">$</span>date))</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(annual<span class="sc">$</span>n_days <span class="sc">==</span> <span class="dv">43</span>L))</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(phenology) <span class="sc">==</span> <span class="dv">45</span>L, <span class="sc">!</span><span class="dv">2020</span>L <span class="sc">%in%</span> phenology<span class="sc">$</span>year)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>rebuilt <span class="ot">&lt;-</span> daily <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&gt;=</span> <span class="st">"03-26"</span>, <span class="fu">format</span>(date, <span class="st">"%m-%d"</span>) <span class="sc">&lt;=</span> <span class="st">"05-07"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">temp_mean =</span> <span class="fu">mean</span>(temperature), <span class="at">n_days =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>check <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(annual, rebuilt, <span class="at">by =</span> <span class="st">"year"</span>, <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_saved"</span>, <span class="st">"_rebuilt"</span>))</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(check) <span class="sc">==</span> <span class="dv">46</span>L, <span class="fu">all</span>(check<span class="sc">$</span>n_days_rebuilt <span class="sc">==</span> <span class="dv">43</span>L))</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(check<span class="sc">$</span>temp_mean_saved <span class="sc">-</span> check<span class="sc">$</span>temp_mean_rebuilt)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(check)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</details>
-<pre class="text"><code>Daily records: 16,802; unique dates: 16,802
-Annual means: 46; days in each window: 43
-Rebuilt means agree with the saved CSV within 1e-10 °C.</code></pre>
-<p>The same checks were independently evaluated against the CSV files when preparing this site; R chunks are displayed without execution.</p>
-</section>
-<section id="yeartemperature-correlation-and-vif" class="level2">
-<h2 class="anchored" data-anchor-id="yeartemperature-correlation-and-vif">Year–temperature correlation and VIF</h2>
-<p>Pearson correlation is reported once per season. The brood-weighted correlations are also saved in the CSV and are not treated as independent annual observations.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>sample</th>
-<th>seasons</th>
-<th>annual_r_year_temperature</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>weather_1980_2025</td>
-<td>46</td>
-<td>0.583285</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>44</td>
-<td>0.54191</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>39</td>
-<td>0.5317</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>predictor</th>
-<th>VIF</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>rel_LD</td>
-<td>1.04257</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>age_classOLD</td>
-<td>1.05186</td>
-</tr>
-<tr class="odd">
-<td>clutch</td>
-<td>temp_mean_c</td>
-<td>1.21357</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>year_c</td>
-<td>1.21891</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>rel_LD</td>
-<td>1.04551</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>age_classOLD</td>
-<td>1.05498</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>temp_mean_c</td>
-<td>1.26692</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>year_c</td>
-<td>1.26909</td>
-</tr>
-</tbody>
-</table>
-<p>VIFs use the additive fixed-design matrix: relative laying date, age, temperature and continuous year. The same design enters location and scale, so a separate scale VIF is unnecessary. Year random intercepts are not additional fixed-design columns. These are design diagnostics, not tests of causal independence.</p>
-<details class="analysis-code">
-<summary>
-Show code: reproduce VIF and correlation from the trait-specific data
-</summary>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R/03_predictor_diagnostics.R</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="R/03_predictor_diagnostics.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed-design VIF and year-temperature correlation; no model fitting.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Private inputs: clutch_size_model_data.csv and reproductive_model_data.csv.</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run from the publication repository root:</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rscript R/03_predictor_diagnostics.R /path/to/clutch_size_model_data.csv \</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   /path/to/reproductive_model_data.csv</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>run_predictor_diagnostics <span class="ot">&lt;-</span> <span class="cf">function</span>(clutch_csv, reproduction_csv) {</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  clutch <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(clutch_csv, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  reproduction <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(reproduction_csv, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  fledging <span class="ot">&lt;-</span> <span class="fu">subset</span>(reproduction, year <span class="sc">&lt;=</span> <span class="dv">2019</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(fledged) <span class="sc">&amp;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                       age_class <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>) <span class="sc">&amp;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                       <span class="sc">!</span><span class="fu">is.na</span>(female_id) <span class="sc">&amp;</span> female_id <span class="sc">!=</span> <span class="st">""</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(rel_LD))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The final fledging sample centres laying date on its own seasonal median,</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rather than the earlier broader-source median stored in reproduction.</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  fledging<span class="sc">$</span>rel_LD <span class="ot">&lt;-</span> fledging<span class="sc">$</span>laying_date <span class="sc">-</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ave</span>(fledging<span class="sc">$</span>laying_date, fledging<span class="sc">$</span>year, <span class="at">FUN =</span> median)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  clutch<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.character</span>(clutch<span class="sc">$</span>year_f))</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  fledging<span class="sc">$</span>temp_mean_c <span class="ot">&lt;-</span> fledging<span class="sc">$</span>temp_mean <span class="sc">-</span> <span class="fu">mean</span>(fledging<span class="sc">$</span>temp_mean)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">clutch =</span> clutch, <span class="at">fledging =</span> fledging)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  reference <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/temporal_models_20261022/observed_annual.csv"</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  weather <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/annual_main_window_temperature.csv"</span>)</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="st">"tables/predictor_diagnostics"</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(output, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  fixed_vif <span class="ot">&lt;-</span> correlations <span class="ot">&lt;-</span> support <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (trait <span class="cf">in</span> <span class="fu">names</span>(data)) {</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> data[[trait]]</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(d[, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"year_c"</span>, <span class="st">"temp_mean_c"</span>, <span class="st">"rel_LD"</span>, <span class="st">"age_class"</span>)]))</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    d<span class="sc">$</span>age_class <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>age_class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    observed <span class="ot">&lt;-</span> reference[reference<span class="sc">$</span>trait <span class="sc">==</span> trait, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    counts <span class="ot">&lt;-</span> <span class="fu">table</span>(d<span class="sc">$</span>year)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">length</span>(counts) <span class="sc">==</span> <span class="fu">nrow</span>(observed),</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>              <span class="fu">all</span>(<span class="fu">as.integer</span>(counts[<span class="fu">as.character</span>(observed<span class="sc">$</span>year)]) <span class="sc">==</span> observed<span class="sc">$</span>n))</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check predictor distributions against final-model annual exports.</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    mean_date <span class="ot">&lt;-</span> <span class="fu">tapply</span>(d<span class="sc">$</span>rel_LD, d<span class="sc">$</span>year, mean)[<span class="fu">as.character</span>(observed<span class="sc">$</span>year)]</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    fraction_old <span class="ot">&lt;-</span> <span class="fu">tapply</span>(d<span class="sc">$</span>age_class <span class="sc">==</span> <span class="st">"OLD"</span>, d<span class="sc">$</span>year, mean)[<span class="fu">as.character</span>(observed<span class="sc">$</span>year)]</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(mean_date <span class="sc">-</span> observed<span class="sc">$</span>mean_relative_date)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>              <span class="fu">max</span>(<span class="fu">abs</span>(fraction_old <span class="sc">-</span> observed<span class="sc">$</span>older_fraction)) <span class="sc">&lt;</span> <span class="fl">1e-10</span>)</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> rel_LD <span class="sc">+</span> age_class <span class="sc">+</span> temp_mean_c <span class="sc">+</span> year_c, d)</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">qr</span>(X)<span class="sc">$</span>rank <span class="sc">==</span> <span class="fu">ncol</span>(X))</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    Z <span class="ot">&lt;-</span> X[, <span class="fu">colnames</span>(X) <span class="sc">!=</span> <span class="st">"(Intercept)"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    vif <span class="ot">&lt;-</span> <span class="fu">vapply</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(Z)), <span class="cf">function</span>(j) {</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Z[, j] <span class="sc">~</span> Z[, <span class="sc">-</span>j, <span class="at">drop =</span> <span class="cn">FALSE</span>]))<span class="sc">$</span>r.squared)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    }, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    fixed_vif[[trait]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">trait =</span> trait, <span class="at">predictor =</span> <span class="fu">colnames</span>(Z), <span class="at">VIF =</span> vif)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    annual <span class="ot">&lt;-</span> <span class="fu">unique</span>(d[, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"temp_mean_c"</span>)])</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="fu">length</span>(<span class="fu">unique</span>(d<span class="sc">$</span>year)))</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    correlations[[trait]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">sample =</span> trait, <span class="at">seasons =</span> <span class="fu">nrow</span>(annual), <span class="at">records =</span> <span class="fu">nrow</span>(d),</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">annual_r_year_temperature =</span> <span class="fu">cor</span>(annual<span class="sc">$</span>year, annual<span class="sc">$</span>temp_mean_c),</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">brood_weighted_r_year_temperature =</span> <span class="fu">cor</span>(d<span class="sc">$</span>year, d<span class="sc">$</span>temp_mean_c))</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    groups <span class="ot">&lt;-</span> <span class="fu">split</span>(d<span class="sc">$</span>temp_mean_c, d<span class="sc">$</span>female_id)</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    varied <span class="ot">&lt;-</span> <span class="fu">vapply</span>(groups, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">round</span>(x, <span class="dv">10</span>))) <span class="sc">&gt;</span> <span class="dv">1</span>L, <span class="fu">logical</span>(<span class="dv">1</span>))</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    support[[trait]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">trait =</span> trait, <span class="at">records =</span> <span class="fu">nrow</span>(d), <span class="at">females =</span> <span class="fu">length</span>(groups),</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">females_once =</span> <span class="fu">sum</span>(<span class="fu">lengths</span>(groups) <span class="sc">==</span> <span class="dv">1</span>),</span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">females_repeated =</span> <span class="fu">sum</span>(<span class="fu">lengths</span>(groups) <span class="sc">&gt;=</span> <span class="dv">2</span>),</span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">females_varied_temperature =</span> <span class="fu">sum</span>(varied),</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">records_in_varied_temperature_females =</span> <span class="fu">sum</span>(<span class="fu">lengths</span>(groups)[varied]))</span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>  fixed_vif <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, fixed_vif)</span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  correlations <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(</span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="st">"weather_1980_2025"</span>, <span class="at">seasons =</span> <span class="fu">nrow</span>(weather), <span class="at">records =</span> <span class="cn">NA</span>,</span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual_r_year_temperature =</span> <span class="fu">cor</span>(weather<span class="sc">$</span>year, weather<span class="sc">$</span>temp_mean),</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">brood_weighted_r_year_temperature =</span> <span class="cn">NA</span>), <span class="fu">do.call</span>(rbind, correlations))</span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  support <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, support)</span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(support<span class="sc">$</span>females[support<span class="sc">$</span>trait <span class="sc">==</span> <span class="st">"clutch"</span>] <span class="sc">==</span> <span class="dv">8894</span>,</span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>            support<span class="sc">$</span>females[support<span class="sc">$</span>trait <span class="sc">==</span> <span class="st">"fledging"</span>] <span class="sc">==</span> <span class="dv">7132</span>,</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>            support<span class="sc">$</span>records[support<span class="sc">$</span>trait <span class="sc">==</span> <span class="st">"clutch"</span>] <span class="sc">==</span> <span class="dv">12627</span>,</span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>            support<span class="sc">$</span>records[support<span class="sc">$</span>trait <span class="sc">==</span> <span class="st">"fledging"</span>] <span class="sc">==</span> <span class="dv">9790</span>)</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(fixed_vif, <span class="fu">file.path</span>(output, <span class="st">"fixed_design_vif.csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(correlations, <span class="fu">file.path</span>(output, <span class="st">"year_temperature_correlations.csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(support, <span class="fu">file.path</span>(output, <span class="st">"temperature_within_support.csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(), <span class="at">file =</span> <span class="fu">file.path</span>(output, <span class="st">"diagnostic_session_info.txt"</span>))</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fixed_vif, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(correlations, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(support, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">sys.nframe</span>() <span class="sc">==</span> <span class="dv">0</span>L) {</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="at">trailingOnly =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">length</span>(args) <span class="sc">==</span> <span class="dv">2</span>L)</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_predictor_diagnostics</span>(args[<span class="dv">1</span>], args[<span class="dv">2</span>])</span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</details>
-<p><a href="tables/predictor_diagnostics/fixed_design_vif.csv">Download VIF</a> · <a href="tables/predictor_diagnostics/year_temperature_correlations.csv">Download correlations</a></p>
-</section>
-<section id="software-versions" class="level2">
-<h2 class="anchored" data-anchor-id="software-versions">Software versions</h2>
-<p>The additional within/between models were fitted under <strong>R 4.6.1 / glmmTMB 1.1.15.2</strong>, with <a href="tables/within_between_20261026/session_info.txt">session information</a>. Re-fitting these models requires the private <code>clutch_size_model_data.csv</code> and <code>reproductive_model_data.csv</code>; pass their paths as the two arguments to script 90. Script 91 reads the locally saved fitted objects, while script 92 draws figures from public prediction tables. The public aggregate RDS contains result tables only.</p>
-<p>The final reproductive-model documentation records <strong>R 4.6.1</strong> and <strong>glmmTMB 1.1.14</strong>. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. The recovery audit and predictor diagnostics were executed under R 4.6.1; their session logs are supplied with the outputs. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.</p>
-<details class="analysis-code">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"glmmTMB"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save alongside a model when rerunning locally:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(), <span class="at">file =</span> <span class="st">"session_info.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</section>
-<section id="display-results-without-refitting" class="level2">
-<h2 class="anchored" data-anchor-id="display-results-without-refitting">Display results without refitting</h2>
-<p>Model pages read saved result tables. Loading a local fitted object is also possible without calling the optimiser:</p>
-<details class="analysis-code">
-<summary>
-Show R code
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"zi_year_sensitivity_20261020/zi_year_selected.rds"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Public alternative, used for the displayed coefficient table:</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fixed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p><strong>Next:</strong> <a href="./climate_window.html">Sliding-window approach</a>.</p>
+<section id="software-used-for-the-reported-fits" class="level2">
+<h2 class="anchored" data-anchor-id="software-used-for-the-reported-fits">Software used for the reported fits</h2>
+<p>The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.</p>
+<p><strong>Next:</strong> <a href="./climate_window.html">Sliding-window approach</a> → <a href="./temporal_trends.html">Calendar-year trends</a> → <a href="./clutch_size.html">Reproductive analyses</a>.</p>
 
 
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

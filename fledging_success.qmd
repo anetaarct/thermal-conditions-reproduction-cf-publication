@@ -8,7 +8,7 @@ execute:
 
 ## Data preparation
 
-The original script loads the curated fledging dataset and an existing beta-binomial fit before adding year variation in the extra-zero component.
+The analysis uses 9,790 attempts from 7,132 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.
 
 <details class="analysis-code" open>
 <summary>Show R code</summary>
@@ -22,16 +22,20 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 
 </details>
 
-## Fit and verify the model
+## Fit and verify the single-temperature model
 
 Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
 
 <details class="analysis-code">
-<summary>Show original code: 81_fit_ZIyear_fledging.R</summary>
+<summary>Show fitting script (run locally)</summary>
 
 {{< include _includes/81_fit_ZIyear_fledging.qmd >}}
 
 </details>
+
+This refit requires the curated fledging records and starting model object listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from public aggregate files alone.
+
+[Download fitting script](R/81_fit_ZIyear_fledging.R)
 
 | model | n | logLik | AIC | convergence | pdHess | scaled_gradient |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -41,11 +45,15 @@ Zero-inflated beta-binomial, with year random intercepts in location, precision 
 ## Export predictions from the saved fit
 
 <details class="analysis-code">
-<summary>Show original code: 82_export_ZIyear_primary.R</summary>
+<summary>Show prediction-export script (run locally)</summary>
 
 {{< include _includes/82_export_ZIyear_primary.qmd >}}
 
 </details>
+
+[Download prediction-export script](R/82_export_ZIyear_primary.R)
+
+{{< include _includes/lab-07_fledging_output.qmd >}}
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -117,6 +125,8 @@ head(pred)
 </details>
 
 ## Figure
+
+Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
 
 ![Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 

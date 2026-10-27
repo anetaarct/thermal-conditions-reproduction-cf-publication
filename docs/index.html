@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-f1da0acf685a82887288f7269e800838.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -172,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -239,6 +239,7 @@ ul.task-list li input[type="checkbox"] {
 <li>How did mean spring temperature and its variability change over the study period?</li>
 <li>How did mean clutch size, egg-to-fledging success and reproductive consistency change over calendar time?</li>
 <li>How were spring temperatures associated with mean reproductive performance and reproductive consistency?</li>
+<li>Do temperature associations differ within the same female and between females with different observed thermal histories?</li>
 <li>How were laying date and female age associated with these reproductive traits?</li>
 </ol>
 </div>
@@ -246,12 +247,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="analysis-chapters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-chapters">Analysis chapters</h2>
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Required files, database loading, SMHI observations and software versions.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Inputs, analysis settings, saved results and the thermal exposure window.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Data preparation, model code, saved output and the figure.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Clutch size</h3><p>Model fitting, prediction export and saved results.</p></a>
-<a class="overview-tile" href="fledging_success.html"><h3 class="anchored">04 · Egg-to-fledging success</h3><p>Model fitting, prediction export and saved results.</p></a>
-<a class="overview-tile" href="within_between.html"><h3 class="anchored">05 · Temperature within &amp; between</h3><p>Additional models: temperature changes within females and differences between females.</p></a>
+<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Get the public inputs, load them and check that they reproduce the saved annual summaries.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Build candidate exposures, select the laying-date window and inspect the saved search output.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Prepare trait samples, fit time-only models and reproduce the trend figure.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Clutch size</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3 class="anchored">04 · Egg-to-fledging success</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
+<a class="overview-tile" href="within_between.html"><h3 class="anchored">05 · Within–between comparison</h3><p>Separate within-female temperature changes from between-female exposure differences.</p></a>
 <a class="overview-tile" href="model_structure.html"><h3 class="anchored">Model equations &amp; checks</h3><p>Model specifications and diagnostic outputs.</p></a>
 <a class="overview-tile" href="figure_code.html"><h3 class="anchored">Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
 </div>
@@ -260,6 +261,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

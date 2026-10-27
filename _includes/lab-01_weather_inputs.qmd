@@ -1,0 +1,27 @@
+```{=html}
+<section class="r-lab" data-r-lab="01_weather_inputs" aria-label="Load and check the weather inputs">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Load and check the weather inputs</h3></div>
+<p class="r-lab-note">Runs from public input files.</p>
+<label for="r-code-01_weather_inputs">Editable R code</label>
+<textarea id="r-code-01_weather_inputs" class="r-lab-code" spellcheck="false" rows="16">daily &lt;- read.csv(&quot;data_derived/smhi_hoburg_daily_temperature.csv&quot;)
+annual &lt;- read.csv(&quot;data_derived/annual_main_window_temperature.csv&quot;)
+laying &lt;- read.csv(&quot;data_derived/annual_raw_median_laying_date.csv&quot;)
+daily$date &lt;- as.Date(daily$date)
+stopifnot(nrow(daily) == 16802, !anyDuplicated(daily$date),
+          nrow(annual) == 46, nrow(laying) == 45)
+keep &lt;- format(daily$date, &quot;%m-%d&quot;) &gt;= &quot;03-26&quot; &amp;
+        format(daily$date, &quot;%m-%d&quot;) &lt;= &quot;05-07&quot;
+x &lt;- daily[keep, ]
+rebuilt &lt;- aggregate(temperature ~ year, x, mean)
+days &lt;- table(x$year)
+stopifnot(all(days == 43),
+  max(abs(rebuilt$temperature - annual$temp_mean[match(rebuilt$year, annual$year)])) &lt; 1e-10)
+print(head(annual))
+cat(&quot;Daily records:&quot;, nrow(daily), &quot;\nYears:&quot;, nrow(rebuilt),
+    &quot;\nDays per window:&quot;, unique(as.integer(days)), &quot;\nInput checks passed.\n&quot;)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

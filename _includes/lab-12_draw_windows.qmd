@@ -1,0 +1,24 @@
+```{=html}
+<section class="r-lab" data-r-lab="12_draw_windows" aria-label="Draw window-search diagnostics">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Draw window-search diagnostics</h3></div>
+<p class="r-lab-note">Draws the saved candidate surface and null distribution; the search itself runs in the sliding-window chapter.</p>
+<label for="r-code-12_draw_windows">Editable R code</label>
+<textarea id="r-code-12_draw_windows" class="r-lab-code" spellcheck="false" rows="13">windows &lt;- read.csv(&quot;tables/climwin_recovered/candidate_windows.csv&quot;)
+randomised &lt;- read.csv(&quot;tables/climwin_recovered/randomised_windows.csv&quot;)
+w &lt;- subset(windows, WindowOpen - WindowClose &gt;= 2)
+best &lt;- w[which.min(w$deltaAICc), ]
+par(mfrow = c(1,2), mar = c(4,4,2,1))
+colours &lt;- hcl.colors(100, &quot;Viridis&quot;)
+shade &lt;- cut(w$deltaAICc, breaks = 100, labels = FALSE)
+plot(w$WindowOpen, w$WindowClose, pch = 15, cex = 1.4, col = colours[shade],
+     xlab = &quot;Opening offset (weeks)&quot;, ylab = &quot;Closing offset (weeks)&quot;, main = &quot;Eligible windows&quot;)
+points(best$WindowOpen, best$WindowClose, pch = 8, cex = 1.7)
+hist(randomised$deltaAICc, xlim = range(best$deltaAICc, randomised$deltaAICc),
+     main = &quot;500 saved full-search randomisations&quot;, xlab = &quot;Delta AICc&quot;, col = &quot;#9CC5B3&quot;, border = &quot;white&quot;)
+abline(v = best$deltaAICc, col = &quot;#D55E00&quot;, lwd = 2)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

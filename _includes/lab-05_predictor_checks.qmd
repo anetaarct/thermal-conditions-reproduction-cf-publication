@@ -1,0 +1,22 @@
+```{=html}
+<section class="r-lab" data-r-lab="05_predictor_checks" aria-label="Check temperature-year correlations and inspect VIF">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Check temperature-year correlations and inspect VIF</h3></div>
+<p class="r-lab-note">Recalculates annual correlations. Displays the saved brood-level VIFs; recalculating those VIFs requires the individual analysis records.</p>
+<label for="r-code-05_predictor_checks">Editable R code</label>
+<textarea id="r-code-05_predictor_checks" class="r-lab-code" spellcheck="false" rows="11">weather &lt;- read.csv(&quot;data_derived/annual_main_window_temperature.csv&quot;)
+samples &lt;- read.csv(&quot;tables/temporal_models_20261022/observed_annual.csv&quot;)
+for (trait in c(&quot;clutch&quot;, &quot;fledging&quot;)) {
+  years &lt;- samples$year[samples$trait == trait]
+  a &lt;- weather[weather$year %in% years, ]
+  cat(trait, &quot;seasons:&quot;, nrow(a), &quot;annual Pearson r:&quot;, cor(a$year, a$temp_mean), &quot;\n&quot;)
+}
+# These VIFs were calculated on the full brood-level fixed-design matrices.
+# Annual aggregates cannot reconstruct the brood-level age/date design.
+vif &lt;- read.csv(&quot;tables/predictor_diagnostics/fixed_design_vif.csv&quot;)
+print(vif, row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

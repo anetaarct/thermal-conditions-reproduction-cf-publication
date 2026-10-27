@@ -1,0 +1,21 @@
+```{=html}
+<section class="r-lab" data-r-lab="06_clutch_output" aria-label="Read the clutch model and calculate its mean">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Read the clutch model and calculate its mean</h3></div>
+<p class="r-lab-note">Reads fitted coefficients and recalculates reference means. It does not refit the mixed model; fitting code is shown below.</p>
+<label for="r-code-06_clutch_output">Editable R code</label>
+<textarea id="r-code-06_clutch_output" class="r-lab-code" spellcheck="false" rows="10">results &lt;- readRDS(&quot;tables/within_between_20261026/aggregate_results.rds&quot;)
+f &lt;- subset(results$fixed_effects, trait == &quot;clutch&quot; &amp; model == &quot;baseline&quot;)
+print(f, row.names = FALSE)
+b &lt;- subset(f, component == &quot;cond&quot;)
+b &lt;- setNames(b$estimate, b$term)
+# Reference: yearling, seasonal median date, centred year, random effects zero.
+temperature_deviation &lt;- c(0, 1)
+eta &lt;- b[&quot;(Intercept)&quot;] + b[&quot;temp_mean_c&quot;] * temperature_deviation
+expected &lt;- exp(eta)
+print(data.frame(temperature_deviation, expected), row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

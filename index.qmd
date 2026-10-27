@@ -31,19 +31,20 @@ Using long-term records of collared flycatchers (*Ficedula albicollis*) on Gotla
 1. How did mean spring temperature and its variability change over the study period?
 2. How did mean clutch size, egg-to-fledging success and reproductive consistency change over calendar time?
 3. How were spring temperatures associated with mean reproductive performance and reproductive consistency?
-4. How were laying date and female age associated with these reproductive traits?
+4. Do temperature associations differ within the same female and between females with different observed thermal histories?
+5. How were laying date and female age associated with these reproductive traits?
 :::
 
 ## Analysis chapters
 
 ```{=html}
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3>Data preparation</h3><p>Required files, database loading, SMHI observations and software versions.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Inputs, analysis settings, saved results and the thermal exposure window.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Data preparation, model code, saved output and the figure.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3>03 · Clutch size</h3><p>Model fitting, prediction export and saved results.</p></a>
-<a class="overview-tile" href="fledging_success.html"><h3>04 · Egg-to-fledging success</h3><p>Model fitting, prediction export and saved results.</p></a>
-<a class="overview-tile" href="within_between.html"><h3>05 · Temperature within & between</h3><p>Additional models: temperature changes within females and differences between females.</p></a>
+<a class="overview-tile" href="workflow.html"><h3>Data preparation</h3><p>Get the public inputs, load them and check that they reproduce the saved annual summaries.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Build candidate exposures, select the laying-date window and inspect the saved search output.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Prepare trait samples, fit time-only models and reproduce the trend figure.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3>03 · Clutch size</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3>04 · Egg-to-fledging success</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
+<a class="overview-tile" href="within_between.html"><h3>05 · Within–between comparison</h3><p>Separate within-female temperature changes from between-female exposure differences.</p></a>
 <a class="overview-tile" href="model_structure.html"><h3>Model equations & checks</h3><p>Model specifications and diagnostic outputs.</p></a>
 <a class="overview-tile" href="figure_code.html"><h3>Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
 </div>

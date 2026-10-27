@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -255,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#curated-samples" id="toc-curated-samples" class="nav-link active" data-scroll-target="#curated-samples">Curated samples</a></li>
   <li><a href="#predictor-definitions" id="toc-predictor-definitions" class="nav-link" data-scroll-target="#predictor-definitions">Predictor definitions</a></li>
   <li><a href="#retained-checks" id="toc-retained-checks" class="nav-link" data-scroll-target="#retained-checks">Retained checks</a></li>
+  <li><a href="#recalculate-annual-yeartemperature-correlations" id="toc-recalculate-annual-yeartemperature-correlations" class="nav-link" data-scroll-target="#recalculate-annual-yeartemperature-correlations">Recalculate annual year–temperature correlations</a></li>
   </ul>
 </nav>
     </div>
@@ -332,11 +333,36 @@ Show R code
 <li>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</li>
 </ul>
 <p>The original raw-data cleaning script is not included; these pages start from the curated analysis files.</p>
+</section>
+<section id="recalculate-annual-yeartemperature-correlations" class="level2">
+<h2 class="anchored" data-anchor-id="recalculate-annual-yeartemperature-correlations">Recalculate annual year–temperature correlations</h2>
+<p>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recomputing the VIFs needs individual records, which are not public.</p>
+<section class="r-lab" data-r-lab="05_predictor_checks" aria-label="Check temperature-year correlations and inspect VIF">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Check temperature-year correlations and inspect VIF</h3></div>
+<p class="r-lab-note">Recalculates annual correlations. Displays the saved brood-level VIFs; recalculating those VIFs requires the individual analysis records.</p>
+<label for="r-code-05_predictor_checks">Editable R code</label>
+<textarea id="r-code-05_predictor_checks" class="r-lab-code" spellcheck="false" rows="11">weather &lt;- read.csv("data_derived/annual_main_window_temperature.csv")
+samples &lt;- read.csv("tables/temporal_models_20261022/observed_annual.csv")
+for (trait in c("clutch", "fledging")) {
+  years &lt;- samples$year[samples$trait == trait]
+  a &lt;- weather[weather$year %in% years, ]
+  cat(trait, "seasons:", nrow(a), "annual Pearson r:", cor(a$year, a$temp_mean), "\n")
+}
+# These VIFs were calculated on the full brood-level fixed-design matrices.
+# Annual aggregates cannot reconstruct the brood-level age/date design.
+vif &lt;- read.csv("tables/predictor_diagnostics/fixed_design_vif.csv")
+print(vif, row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
 
 
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -739,8 +765,8 @@ Show R code
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./within_between.html" class="pagination-link" aria-label="Additional: temperature within &amp; between">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Additional: temperature within &amp; between</span>
+      <a href="./within_between.html" class="pagination-link" aria-label="Temperature: within &amp; between models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Temperature: within &amp; between models</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,204 +1,45 @@
 ---
 title: "Data preparation"
 number-sections: false
-bibliography: references.bib
 execute:
   enabled: false
 ---
 
-## Files to download
+## Get the project files
 
-Download the [complete repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) and keep its folder structure.
+Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) and unzip it without changing folder names. R scripts use paths relative to the project root.
 
-- **Weather and window inputs:** [daily SMHI temperatures](data_derived/smhi_hoburg_daily_temperature.csv), [annual window means](data_derived/annual_main_window_temperature.csv), [annual median laying dates](data_derived/annual_raw_median_laying_date.csv).
-- **Saved model output for tables and figures:** all CSV files in `tables/final_models_20261019/`, `tables/primary_ZIyear_ML_20261021/` and `tables/temporal_models_20261022/` (included in the ZIP).
-- **Sliding-window code and cache:** [original R script](R/04_climwin_laying_date.R), [public aggregate RDS](cache/climwin/recovered_search_data.rds), [checked result RDS](cache/climwin/recovery_audit_results.rds) and [recovery audit](R/04a_audit_recovered_climwin.R).
-- **Analysis and figure code:** `R/` and `scripts/` (included in the ZIP). Figure scripts are shown in the [final chapter](figure_code.qmd).
-- **Additional within/between analysis:** [aggregate results RDS](tables/within_between_20261026/aggregate_results.rds), CSV outputs in `tables/within_between_20261026/`, and scripts `R/90_fit_temperature_within_between.R` through `R/92_plot_temperature_within_between.R`. The [separate chapter](within_between.qmd) displays code and results without refitting.
-
-<details class="analysis-code">
-<summary>Private files required by the retained model scripts</summary>
-
-The filenames below are read by the original scripts. They are **not included in the public ZIP**. Paths are relative to the original analysis directory, unless an absolute path is shown.
-
-| File | Used by |
+| Inputs | Used for |
 |---|---|
-| `glmmTMB_comparison_20261016/clutch_counts/data.rds` | Clutch verification and temporal refit |
-| `glmmTMB_comparison_20261016/clutch_counts/COM_predictors_bounded.rds` | Starting fit for clutch verification |
-| `glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds` | Existing selected clutch fit; read by temporal/export scripts and copied by verification |
-| `/home/arct/CF_thermal_phenology_run/data_derived/clutch_size_model_data.csv` | Original centring values for clutch prediction export |
-| `glmmTMB_comparison_20261016/analysis_data.rds` | Curated fledging dataset |
-| `glmmTMB_comparison_20261016/M1_selected.rds` | Starting fit for the fledging extension |
-| `zi_year_sensitivity_20261020/zi_year_selected.rds` | Selected fledging fit; produced by script 81, read by scripts 82 and 83 |
-| `year_without_temperature_20261022/clutch_selected.rds` | Selected temporal clutch fit; produced by script 83, read by script 84 |
-| `year_without_temperature_20261022/fledging_selected.rds` | Selected temporal fledging fit; produced by script 83, read by script 84 |
+| `data_derived/smhi_hoburg_daily_temperature.csv` | Daily station observations used to build thermal windows |
+| `data_derived/annual_raw_median_laying_date.csv` | Annual laying-date response for window selection |
+| `data_derived/annual_main_window_temperature.csv` | Saved annual exposure used in reproductive models |
+| `tables/…/*.csv` and public aggregate `.rds` files | Reproducing output tables, curves and figures without refitting |
+| `R/`, `R/browser/`, `scripts/` | Analysis and figure code |
 
-The [original sliding-window script](R/04_climwin_laying_date.R) and an [aggregate cache extract](cache/climwin/recovered_search_data.rds) have now been recovered. Re-running that unchanged script from raw records still requires its private input `data_raw/birds/DB_MISMATCH_current_onset_1980-2025.csv`. The lightweight [recovery audit](R/04a_audit_recovered_climwin.R) uses the public annual inputs and cache. The retained scripts preserve their historical paths and must be adapted to the local analysis directory.
+The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.
 
-</details>
+{{< include _includes/lab-01_weather_inputs.qmd >}}
 
-## Load the curated breeding datasets
+## Reproduce each step
 
-The analyses used already curated `.rds` files. The loading paths below come from the temporal-fitting script; individual records remain private.
+| Step | Public inputs | What you can run or reproduce |
+|---|---|---|
+| Sliding-window selection | Daily SMHI data, annual laying-date summaries and aggregate cache | Candidate thermal windows, saved search diagnostics and held-out validation checks |
+| Calendar-year trends | Exported model estimates and annual summaries | Read coefficients and predictions, then redraw the trend figure |
+| Temperature and reproductive traits | Saved coefficients, predictions and data-only RDS tables | Recalculate reported contrasts and redraw figures |
+| Within–between temperature models | Public aggregate output tables and prediction curves | Inspect estimates, direct contrasts, model comparisons and figures |
 
-<details class="analysis-code" open>
-<summary>Show R code</summary>
+## Refit limits
 
-```r
-clutch_data <- readRDS(
-  "glmmTMB_comparison_20261016/clutch_counts/data.rds"
-)
-fledging_data <- readRDS(
-  "glmmTMB_comparison_20261016/analysis_data.rds"
-)
-str(clutch_data)
-str(fledging_data)
-```
+The fitted clutch-size and fledging models use curated individual breeding records and saved model objects. Those individual-level records and fitted objects are not in the public repository. The full fitting scripts and their required input names remain visible and downloadable on the model pages; they cannot produce the publication fits from the public aggregate files alone. The browser steps run checks and calculations on supplied public files; they do not pretend to refit models without their data.
 
-</details>
+The sliding-window analysis also begins from annual laying-date summaries; individual laying dates are not public. Its public cache retains aggregate candidate-window results and 500 saved randomised searches. The page shows which operations can be repeated from the public snapshot and which require the original field records.
 
-**Saved sample counts**
+Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).
 
-| Analysis | Breeding attempts | Females | Seasons |
-|---|---:|---:|---|
-| Clutch size | 12,627 | 8,894 | 1981–2025, excluding 2020 |
-| Egg-to-fledging success | 9,790 | 7,132 | 1981–2019 |
+## Software used for the reported fits
 
-Laying-date input covers 45 seasons; weather covers all 46 years, 1980–2025.
+The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.
 
-## Load the saved SMHI observations
-
-Daily mean air temperatures came from Hoburg (68550) and Hoburg A (68560), Sweden. The publication uses the saved snapshot below.
-
-<details class="analysis-code" open>
-<summary>Show R code</summary>
-
-```r
-library(readr)
-daily <- read_csv("data_derived/smhi_hoburg_daily_temperature.csv")
-annual <- read_csv("data_derived/annual_main_window_temperature.csv")
-phenology <- read_csv("data_derived/annual_raw_median_laying_date.csv")
-head(daily)
-head(annual)
-```
-
-</details>
-
-| year | temp_mean | temp_sd | n_days | window_start | window_end |
-| --- | --- | --- | --- | --- | --- |
-| 1980 | 3.3535 | 2.3364 | 43 | 1980-03-26 | 1980-05-07 |
-| 1981 | 3.3372 | 1.8033 | 43 | 1981-03-26 | 1981-05-07 |
-| 1982 | 3.7488 | 1.5051 | 43 | 1982-03-26 | 1982-05-07 |
-| 1983 | 4.386 | 2.1908 | 43 | 1983-03-26 | 1983-05-07 |
-| 1984 | 4.607 | 2.5671 | 43 | 1984-03-26 | 1984-05-07 |
-
-[Download CSV](data_derived/annual_main_window_temperature.csv)
-<details class="analysis-code">
-<summary>SMHI download code (new recipe; not the archived downloader)</summary>
-
-[SMHI source and station catalogue](https://opendata-download-metobs.smhi.se/api/version/latest/parameter/2.json). This example saves fresh archives separately; it does not replace the publication snapshot.
-
-```r
-stations <- c(Hoburg = 68550, Hoburg_A = 68560)
-dir.create("data_raw/smhi", recursive = TRUE, showWarnings = FALSE)
-for (name in names(stations)) {
-  url <- sprintf(paste0(
-    "https://opendata-download-metobs.smhi.se/api/version/1.0/",
-    "parameter/2/station/%s/period/corrected-archive/data.csv"
-  ), stations[[name]])
-  download.file(url, file.path("data_raw/smhi", paste0(name, ".csv")),
-                mode = "wb")
-}
-```
-
-
-</details>
-
-## Check the saved inputs
-
-The following check rebuilds all 46 annual means from the daily snapshot (43 days per year).
-
-<details class="analysis-code">
-<summary>Show original code: 00_check_public_inputs.R</summary>
-
-{{< include _includes/00_check_public_inputs.qmd >}}
-
-</details>
-
-```text
-Daily records: 16,802; unique dates: 16,802
-Annual means: 46; days in each window: 43
-Rebuilt means agree with the saved CSV within 1e-10 °C.
-```
-
-The same checks were independently evaluated against the CSV files when preparing this site; R chunks are displayed without execution.
-
-## Year–temperature correlation and VIF
-
-Pearson correlation is reported once per season. The brood-weighted correlations are also saved in the CSV and are not treated as independent annual observations.
-
-| sample | seasons | annual_r_year_temperature |
-| --- | --- | --- |
-| weather_1980_2025 | 46 | 0.583285 |
-| clutch | 44 | 0.54191 |
-| fledging | 39 | 0.5317 |
-
-| trait | predictor | VIF |
-| --- | --- | --- |
-| clutch | rel_LD | 1.04257 |
-| clutch | age_classOLD | 1.05186 |
-| clutch | temp_mean_c | 1.21357 |
-| clutch | year_c | 1.21891 |
-| fledging | rel_LD | 1.04551 |
-| fledging | age_classOLD | 1.05498 |
-| fledging | temp_mean_c | 1.26692 |
-| fledging | year_c | 1.26909 |
-
-VIFs use the additive fixed-design matrix: relative laying date, age, temperature and continuous year. The same design enters location and scale, so a separate scale VIF is unnecessary. Year random intercepts are not additional fixed-design columns. These are design diagnostics, not tests of causal independence.
-
-<details class="analysis-code">
-<summary>Show code: reproduce VIF and correlation from the trait-specific data</summary>
-
-{{< include _includes/03_predictor_diagnostics.qmd >}}
-
-</details>
-
-[Download VIF](tables/predictor_diagnostics/fixed_design_vif.csv) · [Download correlations](tables/predictor_diagnostics/year_temperature_correlations.csv)
-
-## Software versions
-
-The additional within/between models were fitted under **R 4.6.1 / glmmTMB 1.1.15.2**, with [session information](tables/within_between_20261026/session_info.txt). Re-fitting these models requires the private `clutch_size_model_data.csv` and `reproductive_model_data.csv`; pass their paths as the two arguments to script 90. Script 91 reads the locally saved fitted objects, while script 92 draws figures from public prediction tables. The public aggregate RDS contains result tables only.
-
-The final reproductive-model documentation records **R 4.6.1** and **glmmTMB 1.1.14**. Session logs are not included, so these versions are reported from that documentation; the original sliding-window R version is unconfirmed. The recovery audit and predictor diagnostics were executed under R 4.6.1; their session logs are supplied with the outputs. Paths mentioning R 4.5 identify library folders, not an independently verified runtime.
-
-<details class="analysis-code">
-<summary>Show R code</summary>
-
-```r
-R.version.string
-packageVersion("glmmTMB")
-sessionInfo()
-# Save alongside a model when rerunning locally:
-capture.output(sessionInfo(), file = "session_info.txt")
-```
-
-</details>
-
-## Display results without refitting
-
-Model pages read saved result tables. Loading a local fitted object is also possible without calling the optimiser:
-
-<details class="analysis-code">
-<summary>Show R code</summary>
-
-```r
-model <- readRDS("zi_year_sensitivity_20261020/zi_year_selected.rds")
-summary(model)
-# Public alternative, used for the displayed coefficient table:
-fixed <- read.csv("tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv")
-fixed
-```
-
-</details>
-
-**Next:** [Sliding-window approach](climate_window.qmd).
+**Next:** [Sliding-window approach](climate_window.qmd) → [Calendar-year trends](temporal_trends.qmd) → [Reproductive analyses](clutch_size.qmd).

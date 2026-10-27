@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#fit-and-verify-the-model" id="toc-fit-and-verify-the-model" class="nav-link" data-scroll-target="#fit-and-verify-the-model">Fit and verify the model</a></li>
+  <li><a href="#fit-and-verify-the-single-temperature-model" id="toc-fit-and-verify-the-single-temperature-model" class="nav-link" data-scroll-target="#fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</a></li>
   <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
 </nav>
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>Curated clutch records and the starting COM-Poisson fit were loaded from the original analysis directory.</p>
+<p>The analysis uses 12,627 clutch records from 8,894 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.</p>
 <details class="analysis-code" open="">
 <summary>
 Show R code
@@ -292,12 +292,12 @@ Show R code
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(out, <span class="st">"COM_predictors_bounded.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
-<section id="fit-and-verify-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="fit-and-verify-the-model">Fit and verify the model</h2>
+<section id="fit-and-verify-the-single-temperature-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</h2>
 <p>COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.</p>
 <details class="analysis-code">
 <summary>
-Show original code: 75_verify_COM_Poisson.R
+Show fitting and verification script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -318,6 +318,8 @@ Show original code: 75_verify_COM_Poisson.R
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="st">'Selected COM model has covariate-dependent dispersion without a year dispersion random effect; attempted full year-dispersion fit reached SD exp(-10), with negligible likelihood improvement. This is a sensitivity model, not an exactly matched random-effect structure.'</span>,<span class="fu">file.path</span>(out,<span class="st">'COM_selection.txt'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p>This refit requires the curated clutch records and starting model objects listed in <a href="./workflow.html">Data preparation</a>, plus R with glmmTMB. It cannot be run from the public aggregate files alone.</p>
+<p><a href="R/75_verify_COM_Poisson.R">Download fitting script</a></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -351,7 +353,7 @@ Show original code: 75_verify_COM_Poisson.R
 <p><a href="tables/final_models_20261019/COM_final_diagnostics.csv">Download CSV</a> ## Export predictions from the saved fit</p>
 <details class="analysis-code">
 <summary>
-Show original code: 76_export_COM_predictions.R
+Show prediction-export script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -388,6 +390,26 @@ Show original code: 76_export_COM_predictions.R
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="st">'Primary COM-Poisson curves: ML point estimates, joint asymptotic 95% CIs, exact conditional SD, zero random effects.'</span>,<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p><a href="R/76_export_COM_predictions.R">Download prediction-export script</a></p>
+<section class="r-lab" data-r-lab="06_clutch_output" aria-label="Read the clutch model and calculate its mean">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read the clutch model and calculate its mean</h3></div>
+<p class="r-lab-note">Reads fitted coefficients and recalculates reference means. It does not refit the mixed model; fitting code is shown below.</p>
+<label for="r-code-06_clutch_output">Editable R code</label>
+<textarea id="r-code-06_clutch_output" class="r-lab-code" spellcheck="false" rows="10">results &lt;- readRDS("tables/within_between_20261026/aggregate_results.rds")
+f &lt;- subset(results$fixed_effects, trait == "clutch" &amp; model == "baseline")
+print(f, row.names = FALSE)
+b &lt;- subset(f, component == "cond")
+b &lt;- setNames(b$estimate, b$term)
+# Reference: yearling, seasonal median date, centred year, random effects zero.
+temperature_deviation &lt;- c(0, 1)
+eta &lt;- b["(Intercept)"] + b["temp_mean_c"] * temperature_deviation
+expected &lt;- exp(eta)
+print(data.frame(temperature_deviation, expected), row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -611,6 +633,7 @@ Show saved output: count_coefficients.csv
 </tbody>
 </table>
 <p><a href="tables/final_models_20261019/COM_temperature_mean.csv">Download CSV</a> ## Figure</p>
+<p>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <a href="./within_between.html">Temperature within and between females</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig3_COM_M1_temperature.png" class="img-fluid figure-img"></p>
@@ -631,6 +654,7 @@ Show saved output: count_coefficients.csv
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

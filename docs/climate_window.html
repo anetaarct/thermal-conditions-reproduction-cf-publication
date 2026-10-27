@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#original-search-code" id="toc-original-search-code" class="nav-link" data-scroll-target="#original-search-code">Original search code</a></li>
+  <li><a href="#candidate-window-calculation" id="toc-candidate-window-calculation" class="nav-link" data-scroll-target="#candidate-window-calculation">Candidate-window calculation</a></li>
+  <li><a href="#full-fitting-script" id="toc-full-fitting-script" class="nav-link" data-scroll-target="#full-fitting-script">Full fitting script</a></li>
+  <li><a href="#inspect-the-saved-search-output" id="toc-inspect-the-saved-search-output" class="nav-link" data-scroll-target="#inspect-the-saved-search-output">Inspect the saved search output</a></li>
   <li><a href="#read-the-cached-search-results" id="toc-read-the-cached-search-results" class="nav-link" data-scroll-target="#read-the-cached-search-results">Read the cached search results</a></li>
   <li><a href="#full-search-randomisation" id="toc-full-search-randomisation" class="nav-link" data-scroll-target="#full-search-randomisation">Full-search randomisation</a></li>
   <li><a href="#temporal-validation-check" id="toc-temporal-validation-check" class="nav-link" data-scroll-target="#temporal-validation-check">Temporal-validation check</a></li>
@@ -286,7 +288,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>Annual median laying date (45 seasons) and daily SMHI temperature. The original script starts from the private bird file; the public annual input reproduces its response summary.</p>
 <details class="analysis-code" open="">
 <summary>
 Show R code
@@ -297,12 +298,68 @@ Show R code
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">45</span>L, <span class="fu">nrow</span>(cache<span class="sc">$</span>randomised) <span class="sc">==</span> <span class="dv">500</span>L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
-<section id="original-search-code" class="level2">
-<h2 class="anchored" data-anchor-id="original-search-code">Original search code</h2>
-<p>Recovered from the original <code>CF_thermal_phenology</code> project, copied unchanged. The search and 500 randomised searches are <strong>not executed during rendering</strong>.</p>
+<section id="candidate-window-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="candidate-window-calculation">Candidate-window calculation</h2>
+<p>The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 fresh randomisations. This can take longer than the input check; nothing runs until you press <strong>Run code</strong>.</p>
+<section class="r-lab" data-r-lab="02_window_search" aria-label="Recalculate the sliding-window search">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Recalculate the sliding-window search</h3></div>
+<p class="r-lab-note">Fits the eligible linear-window search from the daily data, then runs 500 new randomised searches. Base R; no individual bird records are needed.</p>
+<label for="r-code-02_window_search">Editable R code</label>
+<textarea id="r-code-02_window_search" class="r-lab-code" spellcheck="false" rows="22">annual &lt;- read.csv("data_derived/annual_raw_median_laying_date.csv")
+daily &lt;- read.csv("data_derived/smhi_hoburg_daily_temperature.csv")
+saved &lt;- read.csv("tables/climwin_recovered/selected_windows_audit.csv")
+daily$date &lt;- as.Date(daily$date)
+daily$week &lt;- (as.integer(format(daily$date, "%j")) - 1L) %/% 7L
+windows &lt;- subset(expand.grid(open = 0:17, close = 0:17), open - close &gt;= 2)
+exposure &lt;- matrix(NA_real_, nrow(annual), nrow(windows))
+for (i in seq_len(nrow(annual))) {
+  y &lt;- annual$year[i]
+  w &lt;- subset(daily, year == y)
+  ref &lt;- (as.integer(format(as.Date(sprintf("%d-05-07", y)), "%j")) - 1L) %/% 7L
+  for (j in seq_len(nrow(windows))) {
+    keep &lt;- w$week &gt;= ref - windows$open[j] &amp; w$week &lt;= ref - windows$close[j]
+    stopifnot(sum(keep) == 7 * (windows$open[j] - windows$close[j] + 1))
+    exposure[i, j] &lt;- mean(w$temperature[keep])
+  }
+}
+# Gaussian linear-model AICc: intercept+slope+residual SD = 3 parameters;
+# the intercept-only comparison has 2 parameters.
+n &lt;- nrow(annual)
+X &lt;- scale(exposure)
+y &lt;- as.numeric(scale(annual$median_LD))
+r &lt;- drop(crossprod(X, y)) / (n - 1)
+delta &lt;- n * log1p(-pmin(r^2, 1 - 1e-15)) + 2 + 24/(n-4) - 12/(n-3)
+best &lt;- which.min(delta)
+fit &lt;- lm(annual$median_LD ~ exposure[, best])
+answer &lt;- data.frame(open_weeks = windows$open[best], close_weeks = windows$close[best],
+                     delta_AICc = delta[best], temperature_beta = coef(fit)[2])
+stopifnot(answer$open_weeks == saved$open_weeks[1],
+          answer$close_weeks == saved$close_weeks[1],
+          abs(answer$delta_AICc - saved$delta_AICc[1]) &lt; 1e-5,
+          abs(answer$temperature_beta - saved$temperature_beta[1]) &lt; 1e-7)
+print(answer, row.names = FALSE)
+# Re-run complete eligible-window searches under randomisation.
+# This is a new reproducible set of shuffles, not a replay of saved shuffles.
+set.seed(20261027)
+B &lt;- 500L
+permuted &lt;- replicate(B, sample(y))
+correlations &lt;- crossprod(X, permuted) / (n - 1)
+null &lt;- n * log1p(-apply(correlations^2, 2, max)) + 2 + 24/(n-4) - 12/(n-3)
+cat("Eligible windows:", nrow(windows), "\nRandomised full searches:", B,
+    "\nExceedances:", sum(null &lt;= delta[best]),
+    "\nPlus-one p:", (1 + sum(null &lt;= delta[best]))/(B + 1), "\n")
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+</section>
+<section id="full-fitting-script" class="level2">
+<h2 class="anchored" data-anchor-id="full-fitting-script">Full fitting script</h2>
+<p>The complete <code>climwin</code> workflow is available for running locally. It requires the private individual laying-date file and the R package environment used for that search. The browser calculation above uses public annual summaries and base R; it reproduces the candidate-window calculation, not the unavailable raw-record preprocessing.</p>
 <details class="analysis-code">
 <summary>
-Show original script: slidingwin, randwin and historical validation
+Show full <code>climwin</code> script
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -607,7 +664,29 @@ Show original script: slidingwin, randwin and historical validation
 <span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(med_result), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<p><a href="R/04_climwin_laying_date.R">Download original R script</a> · <a href="cache/climwin/recovered_search_data.rds">Download aggregate RDS cache</a></p>
+</section>
+<section id="inspect-the-saved-search-output" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-the-saved-search-output">Inspect the saved search output</h2>
+<section class="r-lab" data-r-lab="03_window_results" aria-label="Read and check the saved window results">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read and check the saved window results</h3></div>
+<p class="r-lab-note">Reads the data-only RDS and recalculates selection and the empirical probability from its 500 saved searches.</p>
+<label for="r-code-03_window_results">Editable R code</label>
+<textarea id="r-code-03_window_results" class="r-lab-code" spellcheck="false" rows="10">results &lt;- readRDS("cache/climwin/recovered_search_data.rds")
+x &lt;- results$main$Dataset
+eligible &lt;- subset(x, WindowOpen - WindowClose &gt;= 2)
+best &lt;- eligible[which.min(eligible$deltaAICc), ]
+print(best[, c("WindowOpen", "WindowClose", "deltaAICc", "ModelBeta")])
+null &lt;- results$randomised$deltaAICc
+print(c(randomisations = length(null), exceedances = sum(null &lt;= best$deltaAICc),
+        plus_one_p = (1 + sum(null &lt;= best$deltaAICc))/(length(null) + 1)))
+validation &lt;- readRDS("cache/climwin/recovery_audit_results.rds")
+print(validation$temporal_validation)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+<p><a href="R/04_climwin_laying_date.R">Download R script</a> · <a href="cache/climwin/recovered_search_data.rds">Download aggregate RDS results</a></p>
 </section>
 <section id="read-the-cached-search-results" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-cached-search-results">Read the cached search results</h2>
@@ -954,6 +1033,7 @@ Original archived outputs and provenance
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

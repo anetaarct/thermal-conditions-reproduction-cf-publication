@@ -1,4 +1,4 @@
-"""Build a code-and-output chapter after both additional models have passed checks."""
+"""Build a code-and-output chapter after the within-between models have passed checks."""
 from pathlib import Path
 import csv
 
@@ -56,7 +56,7 @@ execute:
 
 ## Data preparation
 
-This **additional model** separates temperature associations within the same female from differences between females. Temperature is split in both location and scale; continuous year, laying date, age and the existing random-effect structures are retained.
+This second temperature formulation separates temperature associations within the same female from differences between females. Temperature is split in both location and scale; continuous year, laying date, age and the existing random-effect structures are retained.
 
 '''
 text += panel("Show temperature decomposition", '''```r
@@ -69,7 +69,7 @@ stopifnot(max(abs(d$temp_within + d$temp_between - d$temp_mean_c)) < 1e-8)
 text += table(metadata, ["trait", "records", "females", "seasons", "females_varied_temperature",
                          "records_in_varied_temperature_females"])
 text += ("Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.\n\n"
-         "## Fit the additional models\n\n"
+         "## Fit the within-between models\n\n"
          "Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.\n\n")
 text += include("R/90_fit_temperature_within_between.R", "Show complete fitting and optimiser-check code")
 text += "## Read saved results\n\n"
@@ -108,7 +108,7 @@ text += ("Simulation intervals use 300 plug-in datasets at fitted parameters and
          "[Fledging PDF](figures/Fig_within_between_fledging.pdf) · "
          "[Figure code — final chapter](figure_code.qmd#temperature-within-between)\n\n"
          "## Interpretation\n\n"
-         "These are adjusted associations in a supplementary model. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.\n\n"
+         "These are adjusted associations in a within-between model. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.\n\n"
          "[Session information](tables/within_between_20261026/session_info.txt) · "
          "[Export session](tables/within_between_20261026/export_session_info.txt) · "
          "[Reference effects per degree](tables/within_between_20261026/reference_effects_per_degree.csv)\n")

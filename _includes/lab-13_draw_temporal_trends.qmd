@@ -1,0 +1,27 @@
+```{=html}
+<section class="r-lab" data-r-lab="13_draw_temporal_trends" aria-label="Draw calendar-year trends from saved predictions">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Draw calendar-year trends from saved predictions</h3></div>
+<p class="r-lab-note">Uses saved model predictions and draws a new figure in your browser. No model is refitted.</p>
+<label for="r-code-13_draw_temporal_trends">Editable R code</label>
+<textarea id="r-code-13_draw_temporal_trends" class="r-lab-code" spellcheck="false" rows="16">files &lt;- c(
+  clutch_mean = &quot;tables/temporal_models_20261022/clutch_year_mean.csv&quot;,
+  clutch_sd = &quot;tables/temporal_models_20261022/clutch_year_sd.csv&quot;,
+  fledging_success = &quot;tables/temporal_models_20261022/fledging_year_success.csv&quot;,
+  fledging_precision = &quot;tables/temporal_models_20261022/fledging_year_phi.csv&quot;
+)
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+for (name in names(files)) {
+  d &lt;- read.csv(files[[name]])
+  plot(d$x, d$estimate, type = &quot;n&quot;, xlab = &quot;Calendar year&quot;,
+       ylab = name, main = gsub(&quot;_&quot;, &quot; &quot;, name), bty = &quot;l&quot;,
+       ylim = range(d$CI_low, d$CI_high, finite = TRUE))
+  polygon(c(d$x, rev(d$x)), c(d$CI_low, rev(d$CI_high)),
+          border = NA, col = adjustcolor(&quot;#0072B2&quot;, .18))
+  lines(d$x, d$estimate, col = &quot;#0072B2&quot;, lwd = 2)
+}
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

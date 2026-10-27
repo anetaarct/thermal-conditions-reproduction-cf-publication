@@ -41,3 +41,9 @@ table(d$year_f)
 - Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.
 
 The original raw-data cleaning script is not included; these pages start from the curated analysis files.
+
+## Recalculate annual year–temperature correlations
+
+This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recomputing the VIFs needs individual records, which are not public.
+
+{{< include _includes/lab-05_predictor_checks.qmd >}}

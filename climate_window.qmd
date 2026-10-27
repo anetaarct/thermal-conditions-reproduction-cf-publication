@@ -7,8 +7,6 @@ execute:
 
 ## Data preparation
 
-Annual median laying date (45 seasons) and daily SMHI temperature. The original script starts from the private bird file; the public annual input reproduces its response summary.
-
 <details class="analysis-code" open>
 <summary>Show R code</summary>
 
@@ -21,18 +19,28 @@ stopifnot(nrow(annual) == 45L, nrow(cache$randomised) == 500L)
 
 </details>
 
-## Original search code
+## Candidate-window calculation
 
-Recovered from the original `CF_thermal_phenology` project, copied unchanged. The search and 500 randomised searches are **not executed during rendering**.
+The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 fresh randomisations. This can take longer than the input check; nothing runs until you press **Run code**.
+
+{{< include _includes/lab-02_window_search.qmd >}}
+
+## Full fitting script
+
+The complete `climwin` workflow is available for running locally. It requires the private individual laying-date file and the R package environment used for that search. The browser calculation above uses public annual summaries and base R; it reproduces the candidate-window calculation, not the unavailable raw-record preprocessing.
 
 <details class="analysis-code">
-<summary>Show original script: slidingwin, randwin and historical validation</summary>
+<summary>Show full `climwin` script</summary>
 
 {{< include _includes/04_climwin_laying_date.qmd >}}
 
 </details>
 
-[Download original R script](R/04_climwin_laying_date.R) · [Download aggregate RDS cache](cache/climwin/recovered_search_data.rds)
+## Inspect the saved search output
+
+{{< include _includes/lab-03_window_results.qmd >}}
+
+[Download R script](R/04_climwin_laying_date.R) · [Download aggregate RDS results](cache/climwin/recovered_search_data.rds)
 
 ## Read the cached search results
 

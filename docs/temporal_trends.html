@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -252,10 +252,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#fit-models" id="toc-fit-models" class="nav-link" data-scroll-target="#fit-models">Fit models</a></li>
+  <li><a href="#analysis-sample-and-preparation" id="toc-analysis-sample-and-preparation" class="nav-link active" data-scroll-target="#analysis-sample-and-preparation">Analysis sample and preparation</a></li>
+  <li><a href="#fit-the-calendar-year-models" id="toc-fit-the-calendar-year-models" class="nav-link" data-scroll-target="#fit-the-calendar-year-models">Fit the calendar-year models</a></li>
   <li><a href="#read-the-saved-output" id="toc-read-the-saved-output" class="nav-link" data-scroll-target="#read-the-saved-output">Read the saved output</a></li>
   <li><a href="#export-predictions-and-check-the-fits" id="toc-export-predictions-and-check-the-fits" class="nav-link" data-scroll-target="#export-predictions-and-check-the-fits">Export predictions and check the fits</a></li>
+  <li><a href="#rebuild-the-trend-figure" id="toc-rebuild-the-trend-figure" class="nav-link" data-scroll-target="#rebuild-the-trend-figure">Rebuild the trend figure</a></li>
   <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
   <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
@@ -283,12 +284,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data-preparation" class="level2">
-<h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>Load the same trait-specific records and selected fits used for the temperature models.</p>
+<section id="analysis-sample-and-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-sample-and-preparation">Analysis sample and preparation</h2>
+<p>The temporal fits use the same curated trait-specific records, response distributions and random effects as the temperature models. The models were refitted with temperature removed from both location and scale.</p>
 <details class="analysis-code" open="">
 <summary>
-Show data-loading excerpt from script 83
+Show data-loading steps
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmmTMB)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
@@ -304,12 +305,12 @@ Show data-loading excerpt from script 83
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
-<section id="fit-models" class="level2">
-<h2 class="anchored" data-anchor-id="fit-models">Fit models</h2>
+<section id="fit-the-calendar-year-models" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-calendar-year-models">Fit the calendar-year models</h2>
 <p>Calendar year, laying date and age enter both components; temperature is omitted. The original script also checks optimiser agreement and saves the selected <code>.rds</code> fits.</p>
 <details class="analysis-code">
 <summary>
-Show original code: 83_fit_temporal_without_temperature.R
+Show model-fitting script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -419,6 +420,7 @@ Show original code: 83_fit_temporal_without_temperature.R
 <span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="fu">msg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p>These fits require the curated individual records and saved starting objects listed in <a href="./workflow.html">Data preparation</a>. They are not run in the browser. The fitting script can be downloaded from the <a href="R/83_fit_temporal_without_temperature.R">project repository</a>.</p>
 </section>
 <section id="read-the-saved-output" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-saved-output">Read the saved output</h2>
@@ -733,7 +735,7 @@ Show saved output: fixed_effects.csv
 <h2 class="anchored" data-anchor-id="export-predictions-and-check-the-fits">Export predictions and check the fits</h2>
 <details class="analysis-code">
 <summary>
-Show original code: 84_export_temporal_without_temperature.R
+Show prediction-export script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -798,6 +800,7 @@ Show original code: 84_export_temporal_without_temperature.R
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p><a href="R/83_fit_temporal_without_temperature.R">Download trend-model fitting script</a> · <a href="R/84_export_temporal_without_temperature.R">Download prediction-export script</a></p>
 <details class="analysis-code">
 <summary>
 Show saved output: optimizer_comparison.csv
@@ -999,6 +1002,35 @@ Show saved output: temporal_simulation_checks.csv
 <p><a href="tables/temporal_models_20261022/temporal_simulation_checks.csv">Download complete CSV</a></p>
 </details>
 </section>
+<section id="rebuild-the-trend-figure" class="level2">
+<h2 class="anchored" data-anchor-id="rebuild-the-trend-figure">Rebuild the trend figure</h2>
+<p>The browser step below reads the saved prediction tables and draws the four trend panels. It does not refit the models.</p>
+<section class="r-lab" data-r-lab="13_draw_temporal_trends" aria-label="Draw calendar-year trends from saved predictions">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Draw calendar-year trends from saved predictions</h3></div>
+<p class="r-lab-note">Uses saved model predictions and draws a new figure in your browser. No model is refitted.</p>
+<label for="r-code-13_draw_temporal_trends">Editable R code</label>
+<textarea id="r-code-13_draw_temporal_trends" class="r-lab-code" spellcheck="false" rows="16">files &lt;- c(
+  clutch_mean = "tables/temporal_models_20261022/clutch_year_mean.csv",
+  clutch_sd = "tables/temporal_models_20261022/clutch_year_sd.csv",
+  fledging_success = "tables/temporal_models_20261022/fledging_year_success.csv",
+  fledging_precision = "tables/temporal_models_20261022/fledging_year_phi.csv"
+)
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+for (name in names(files)) {
+  d &lt;- read.csv(files[[name]])
+  plot(d$x, d$estimate, type = "n", xlab = "Calendar year",
+       ylab = name, main = gsub("_", " ", name), bty = "l",
+       ylim = range(d$CI_low, d$CI_high, finite = TRUE))
+  polygon(c(d$x, rev(d$x)), c(d$CI_low, rev(d$CI_high)),
+          border = NA, col = adjustcolor("#0072B2", .18))
+  lines(d$x, d$estimate, col = "#0072B2", lwd = 2)
+}
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+</section>
 <section id="figure" class="level2">
 <h2 class="anchored" data-anchor-id="figure">Figure</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -1021,6 +1053,7 @@ Show saved output: temporal_simulation_checks.csv
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

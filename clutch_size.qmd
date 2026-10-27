@@ -8,7 +8,7 @@ execute:
 
 ## Data preparation
 
-Curated clutch records and the starting COM-Poisson fit were loaded from the original analysis directory.
+The analysis uses 12,627 clutch records from 8,894 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.
 
 <details class="analysis-code" open>
 <summary>Show R code</summary>
@@ -21,16 +21,20 @@ m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
 
 </details>
 
-## Fit and verify the model
+## Fit and verify the single-temperature model
 
 COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
 
 <details class="analysis-code">
-<summary>Show original code: 75_verify_COM_Poisson.R</summary>
+<summary>Show fitting and verification script (run locally)</summary>
 
 {{< include _includes/75_verify_COM_Poisson.qmd >}}
 
 </details>
+
+This refit requires the curated clutch records and starting model objects listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from the public aggregate files alone.
+
+[Download fitting script](R/75_verify_COM_Poisson.R)
 
 | row | code | pdHess | logLik | scaled_gradient | bound_distance |
 | --- | --- | --- | --- | --- | --- |
@@ -41,11 +45,15 @@ COM-Poisson location and dispersion use laying date, temperature, year and age. 
 ## Export predictions from the saved fit
 
 <details class="analysis-code">
-<summary>Show original code: 76_export_COM_predictions.R</summary>
+<summary>Show prediction-export script (run locally)</summary>
 
 {{< include _includes/76_export_COM_predictions.qmd >}}
 
 </details>
+
+[Download prediction-export script](R/76_export_COM_predictions.R)
+
+{{< include _includes/lab-06_clutch_output.qmd >}}
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -95,6 +103,8 @@ head(temperature)
 
 [Download CSV](tables/final_models_20261019/COM_temperature_mean.csv)
 ## Figure
+
+Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
 
 ![Saved temperature predictions for both reproductive traits: clutch mean and SD (A–B), fledging success and precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 

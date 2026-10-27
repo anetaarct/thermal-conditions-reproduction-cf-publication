@@ -1,0 +1,118 @@
+{
+  "01_weather_inputs": {
+    "title": "Load and check the weather inputs",
+    "note": "Runs from public input files.",
+    "assets": [
+      "data_derived/annual_main_window_temperature.csv",
+      "data_derived/annual_raw_median_laying_date.csv",
+      "data_derived/smhi_hoburg_daily_temperature.csv"
+    ],
+    "script": "R/browser/01_weather_inputs.R"
+  },
+  "02_window_search": {
+    "title": "Recalculate the sliding-window search",
+    "note": "Fits the eligible linear-window search from the daily data, then runs 500 new randomised searches. Base R; no individual bird records are needed.",
+    "assets": [
+      "data_derived/annual_raw_median_laying_date.csv",
+      "data_derived/smhi_hoburg_daily_temperature.csv",
+      "tables/climwin_recovered/selected_windows_audit.csv"
+    ],
+    "script": "R/browser/02_window_search.R"
+  },
+  "03_window_results": {
+    "title": "Read and check the saved window results",
+    "note": "Reads the data-only RDS and recalculates selection and the empirical probability from its 500 saved searches.",
+    "assets": [
+      "cache/climwin/recovered_search_data.rds",
+      "cache/climwin/recovery_audit_results.rds"
+    ],
+    "script": "R/browser/03_window_results.R"
+  },
+  "04_environment_model": {
+    "title": "Fit spring-temperature location and scale",
+    "note": "Fits the Gaussian mean and log-SD likelihood to 46 annual temperatures. Coefficients for time are per decade; this is not a reproductive model.",
+    "assets": [
+      "data_derived/annual_main_window_temperature.csv"
+    ],
+    "script": "R/browser/04_environment_model.R"
+  },
+  "05_predictor_checks": {
+    "title": "Check temperature-year correlations and inspect VIF",
+    "note": "Recalculates annual correlations. Displays the saved brood-level VIFs; recalculating those VIFs requires the individual analysis records.",
+    "assets": [
+      "data_derived/annual_main_window_temperature.csv",
+      "tables/predictor_diagnostics/fixed_design_vif.csv",
+      "tables/temporal_models_20261022/observed_annual.csv"
+    ],
+    "script": "R/browser/05_predictor_checks.R"
+  },
+  "06_clutch_output": {
+    "title": "Read the clutch model and calculate its mean",
+    "note": "Reads fitted coefficients and recalculates reference means. It does not refit the mixed model; fitting code is shown below.",
+    "assets": [
+      "tables/within_between_20261026/aggregate_results.rds"
+    ],
+    "script": "R/browser/06_clutch_output.R"
+  },
+  "07_fledging_output": {
+    "title": "Read the fledging model and calculate expected success",
+    "note": "Reads fitted coefficients and recalculates reference means. It does not refit the mixed model; fitting code is shown below.",
+    "assets": [
+      "tables/within_between_20261026/aggregate_results.rds"
+    ],
+    "script": "R/browser/07_fledging_output.R"
+  },
+  "08_within_between_output": {
+    "title": "Recalculate within-between summaries",
+    "note": "Uses real aggregate model outputs. A lower clutch SD means greater consistency; a higher fledging component precision means greater consistency.",
+    "assets": [
+      "tables/within_between_20261026/aggregate_results.rds"
+    ],
+    "script": "R/browser/08_within_between_output.R"
+  },
+  "09_joint_year_output": {
+    "title": "Read year effects from both temperature models",
+    "note": "Both models include continuous year and thermal predictors together. These are temperature-adjusted year associations, not year-only trends.",
+    "assets": [
+      "tables/joint_calendar_year_20261027/contrasts.csv",
+      "tables/joint_calendar_year_20261027/year_coefficients.csv"
+    ],
+    "script": "R/browser/09_joint_year_output.R"
+  },
+  "10_draw_joint_year": {
+    "title": "Draw the calendar-year figure",
+    "note": "Draws both temperature formulations from saved prediction tables. Modify the code and rerun to change the figure.",
+    "assets": [
+      "tables/joint_calendar_year_20261027/curves.csv"
+    ],
+    "script": "R/browser/10_draw_joint_year.R"
+  },
+  "11_draw_within_between": {
+    "title": "Draw within-between predictions",
+    "note": "Draws real fitted curves and their saved 95% confidence intervals. No model fitting is repeated.",
+    "assets": [
+      "tables/within_between_20261026/prediction_curves.csv"
+    ],
+    "script": "R/browser/11_draw_within_between.R"
+  },
+  "12_draw_windows": {
+    "title": "Draw window-search diagnostics",
+    "note": "Draws the saved candidate surface and null distribution; the search itself runs in the sliding-window chapter.",
+    "assets": [
+      "tables/climwin_recovered/candidate_windows.csv",
+      "tables/climwin_recovered/randomised_windows.csv"
+    ],
+    "script": "R/browser/12_draw_windows.R"
+  },
+  "13_draw_temporal_trends": {
+    "title": "Draw calendar-year trends from saved predictions",
+    "note": "Uses saved model predictions and draws a new figure in your browser. No model is refitted.",
+    "assets": [
+      "tables/temporal_models_20261022/clutch_year_mean.csv",
+      "tables/temporal_models_20261022/clutch_year_sd.csv",
+      "tables/temporal_models_20261022/fledging_year_phi.csv",
+      "tables/temporal_models_20261022/fledging_year_success.csv"
+    ],
+    "script": "R/browser/13_draw_temporal_trends.R"
+  }
+}

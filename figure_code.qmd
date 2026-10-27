@@ -15,7 +15,7 @@ Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-re
 This new plotting script reads the recovered candidate-window and randomisation CSV files. It does not refit models; base R is sufficient.
 
 <details class="analysis-code">
-<summary>Show R code: draw diagnostics from the recovered search output</summary>
+<summary>Show plotting code: window-search diagnostics</summary>
 
 {{< include _includes/04b_plot_recovered_climwin.qmd >}}
 
@@ -32,7 +32,7 @@ Rscript R/04b_plot_recovered_climwin.R
 ## Calendar-year trends {#calendar-year-trends}
 
 <details class="analysis-code">
-<summary>Show original code: plot_temporal_models.py</summary>
+<summary>Show plotting script: plot_temporal_models.py</summary>
 
 {{< include _includes/plot_temporal_models.qmd >}}
 
@@ -54,7 +54,7 @@ python scripts/plot_temporal_models.py
 ## Temperature, date and age {#temperature-date-and-age}
 
 <details class="analysis-code">
-<summary>Show original code: plot_final_models.py</summary>
+<summary>Show plotting script: plot_final_models.py</summary>
 
 {{< include _includes/plot_final_models.qmd >}}
 
@@ -90,7 +90,7 @@ python scripts/plot_final_models.py
 ## Temperature within and between females {#temperature-within-between}
 
 <details class="analysis-code">
-<summary>Show code: additional within/between figures</summary>
+<summary>Show plotting code: within–between figures</summary>
 
 {{< include _includes/92_plot_temperature_within_between.qmd >}}
 

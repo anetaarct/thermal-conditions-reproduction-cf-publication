@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#fit-and-verify-the-model" id="toc-fit-and-verify-the-model" class="nav-link" data-scroll-target="#fit-and-verify-the-model">Fit and verify the model</a></li>
+  <li><a href="#fit-and-verify-the-single-temperature-model" id="toc-fit-and-verify-the-single-temperature-model" class="nav-link" data-scroll-target="#fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</a></li>
   <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
   <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>The original script loads the curated fledging dataset and an existing beta-binomial fit before adding year variation in the extra-zero component.</p>
+<p>The analysis uses 9,790 attempts from 7,132 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.</p>
 <details class="analysis-code" open="">
 <summary>
 Show R code
@@ -294,12 +294,12 @@ Show R code
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </section>
-<section id="fit-and-verify-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="fit-and-verify-the-model">Fit and verify the model</h2>
+<section id="fit-and-verify-the-single-temperature-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</h2>
 <p>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</p>
 <details class="analysis-code">
 <summary>
-Show original code: 81_fit_ZIyear_fledging.R
+Show fitting script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -368,6 +368,8 @@ Show original code: 81_fit_ZIyear_fledging.R
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(original_hash,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'Completed isolated sensitivity comparison; primary models, manuscript and website unchanged.'</span>,<span class="st">'AIC comparison is in-sample, not held-out validation. Variance-component boundary precludes ordinary chi-square LRT interpretation.'</span>,<span class="st">'Simulation intervals are plug-in and omit parameter-estimation uncertainty. Conditional calibration uses fitted year effects and is not out-of-sample performance.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">logmsg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p>This refit requires the curated fledging records and starting model object listed in <a href="./workflow.html">Data preparation</a>, plus R with glmmTMB. It cannot be run from public aggregate files alone.</p>
+<p><a href="R/81_fit_ZIyear_fledging.R">Download fitting script</a></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -395,7 +397,7 @@ Show original code: 81_fit_ZIyear_fledging.R
 <p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a> ## Export predictions from the saved fit</p>
 <details class="analysis-code">
 <summary>
-Show original code: 82_export_ZIyear_primary.R
+Show prediction-export script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -430,6 +432,27 @@ Show original code: 82_export_ZIyear_primary.R
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(h,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'8000 joint asymptotic coefficient draws; point estimates are ML, not draw medians.'</span>,<span class="st">'All random effects zero for curves, including zero-year and precision-year. Temperature x centred at 5.098595980711215 C.'</span>,<span class="st">'Original selected fit unchanged.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">print</span>(rs);<span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p><a href="R/82_export_ZIyear_primary.R">Download prediction-export script</a></p>
+<section class="r-lab" data-r-lab="07_fledging_output" aria-label="Read the fledging model and calculate expected success">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read the fledging model and calculate expected success</h3></div>
+<p class="r-lab-note">Reads fitted coefficients and recalculates reference means. It does not refit the mixed model; fitting code is shown below.</p>
+<label for="r-code-07_fledging_output">Editable R code</label>
+<textarea id="r-code-07_fledging_output" class="r-lab-code" spellcheck="false" rows="11">results &lt;- readRDS("tables/within_between_20261026/aggregate_results.rds")
+f &lt;- subset(results$fixed_effects, trait == "fledging" &amp; model == "baseline")
+print(f, row.names = FALSE)
+b &lt;- subset(f, component == "cond")
+b &lt;- setNames(b$estimate, b$term)
+zi &lt;- subset(f, component == "zi" &amp; term == "(Intercept)")$estimate
+# Reference: yearling, seasonal median date, centred year, random effects zero.
+temperature_deviation &lt;- c(0, 1)
+eta &lt;- b["(Intercept)"] + b["temp_mean_c"] * temperature_deviation
+expected &lt;- (1 - plogis(zi)) * plogis(eta)
+print(data.frame(temperature_deviation, expected), row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -827,6 +850,7 @@ Show saved output: simulation_checks.csv
 </section>
 <section id="figure" class="level2">
 <h2 class="anchored" data-anchor-id="figure">Figure</h2>
+<p>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <a href="./within_between.html">Temperature within and between females</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig3_COM_M1_temperature.png" class="img-fluid figure-img"></p>
@@ -847,6 +871,7 @@ Show saved output: simulation_checks.csv
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1254,8 +1279,8 @@ Show saved output: simulation_checks.csv
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./within_between.html" class="pagination-link" aria-label="Additional: temperature within &amp; between">
-        <span class="nav-page-text">Additional: temperature within &amp; between</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./within_between.html" class="pagination-link" aria-label="Temperature: within &amp; between models">
+        <span class="nav-page-text">Temperature: within &amp; between models</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

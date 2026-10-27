@@ -6,12 +6,12 @@ execute:
   enabled: false
 ---
 
-## Data preparation
+## Analysis sample and preparation
 
-Load the same trait-specific records and selected fits used for the temperature models.
+The temporal fits use the same curated trait-specific records, response distributions and random effects as the temperature models. The models were refitted with temperature removed from both location and scale.
 
 <details class="analysis-code" open>
-<summary>Show data-loading excerpt from script 83</summary>
+<summary>Show data-loading steps</summary>
 
 ```r
 library(glmmTMB)
@@ -30,16 +30,18 @@ for (trait in names(paths)) {
 
 </details>
 
-## Fit models
+## Fit the calendar-year models
 
 Calendar year, laying date and age enter both components; temperature is omitted. The original script also checks optimiser agreement and saves the selected `.rds` fits.
 
 <details class="analysis-code">
-<summary>Show original code: 83_fit_temporal_without_temperature.R</summary>
+<summary>Show model-fitting script (run locally)</summary>
 
 {{< include _includes/83_fit_temporal_without_temperature.qmd >}}
 
 </details>
+
+These fits require the curated individual records and saved starting objects listed in [Data preparation](workflow.qmd). They are not run in the browser. The fitting script can be downloaded from the [project repository](R/83_fit_temporal_without_temperature.R).
 
 ## Read the saved output
 
@@ -106,11 +108,13 @@ fixed
 ## Export predictions and check the fits
 
 <details class="analysis-code">
-<summary>Show original code: 84_export_temporal_without_temperature.R</summary>
+<summary>Show prediction-export script (run locally)</summary>
 
 {{< include _includes/84_export_temporal_without_temperature.qmd >}}
 
 </details>
+
+[Download trend-model fitting script](R/83_fit_temporal_without_temperature.R) · [Download prediction-export script](R/84_export_temporal_without_temperature.R)
 
 <details class="analysis-code">
 <summary>Show saved output: optimizer_comparison.csv</summary>
@@ -144,6 +148,12 @@ fixed
 [Download complete CSV](tables/temporal_models_20261022/temporal_simulation_checks.csv)
 
 </details>
+
+## Rebuild the trend figure
+
+The browser step below reads the saved prediction tables and draws the four trend panels. It does not refit the models.
+
+{{< include _includes/lab-13_draw_temporal_trends.qmd >}}
 
 ## Figure
 

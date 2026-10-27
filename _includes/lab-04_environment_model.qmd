@@ -1,0 +1,28 @@
+```{=html}
+<section class="r-lab" data-r-lab="04_environment_model" aria-label="Fit spring-temperature location and scale">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Fit spring-temperature location and scale</h3></div>
+<p class="r-lab-note">Fits the Gaussian mean and log-SD likelihood to 46 annual temperatures. Coefficients for time are per decade; this is not a reproductive model.</p>
+<label for="r-code-04_environment_model">Editable R code</label>
+<textarea id="r-code-04_environment_model" class="r-lab-code" spellcheck="false" rows="17">d &lt;- read.csv(&quot;data_derived/annual_main_window_temperature.csv&quot;)
+t &lt;- (d$year - mean(d$year))/10
+y &lt;- d$temp_mean
+start &lt;- lm(y ~ t)
+# The same Gaussian location-scale likelihood, fitted using base R.
+nll &lt;- function(b) {
+  mu &lt;- b[1] + b[2] * t
+  log_sd &lt;- b[3] + b[4] * t
+  sum(log_sd + 0.5 * ((y - mu) / exp(log_sd))^2 + log(2*pi)/2)
+}
+fit &lt;- optim(c(coef(start), log(sqrt(mean(residuals(start)^2))), 0),
+             nll, method = &quot;BFGS&quot;, hessian = TRUE,
+             control = list(reltol = 1e-12, maxit = 2000))
+stopifnot(fit$convergence == 0, min(eigen(fit$hessian, symmetric = TRUE)$values) &gt; 0)
+se &lt;- sqrt(diag(solve(fit$hessian)))
+print(data.frame(term = c(&quot;mean_intercept&quot;, &quot;warming_per_decade&quot;, &quot;log_SD_intercept&quot;, &quot;log_SD_per_decade&quot;),
+  estimate = fit$par, lower = fit$par - qnorm(.975)*se, upper = fit$par + qnorm(.975)*se), row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

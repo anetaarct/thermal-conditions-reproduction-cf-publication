@@ -1,0 +1,19 @@
+```{=html}
+<section class="r-lab" data-r-lab="08_within_between_output" aria-label="Recalculate within-between summaries">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Recalculate within-between summaries</h3></div>
+<p class="r-lab-note">Uses real aggregate model outputs. A lower clutch SD means greater consistency; a higher fledging component precision means greater consistency.</p>
+<label for="r-code-08_within_between_output">Editable R code</label>
+<textarea id="r-code-08_within_between_output" class="r-lab-code" spellcheck="false" rows="8">results &lt;- readRDS(&quot;tables/within_between_20261026/aggregate_results.rds&quot;)
+print(subset(results$fixed_effects, model == &quot;within_between&quot; &amp;
+             term %in% c(&quot;temp_within&quot;, &quot;temp_between&quot;)), row.names = FALSE)
+print(results$contrasts, row.names = FALSE)
+effects &lt;- results$reference_effects
+effects$consistency_change_percent &lt;- 100 * (effects$consistency_ratio_per_C - 1)
+print(effects[, c(&quot;trait&quot;, &quot;predictor&quot;, &quot;mean_change_per_C&quot;, &quot;consistency_measure&quot;,
+                  &quot;consistency_change_percent&quot;, &quot;ratio_lower&quot;, &quot;ratio_upper&quot;)], row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

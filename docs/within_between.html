@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./within_between.html">Additional: temperature within &amp; between</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./within_between.html">Temperature: within &amp; between models</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./within_between.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Additional: temperature within &amp; between</span></a>
+ <span class="menu-text">Temperature: within &amp; between models</span></a>
   </div>
 </li>
       </ul>
@@ -253,10 +253,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
-  <li><a href="#fit-the-additional-models" id="toc-fit-the-additional-models" class="nav-link" data-scroll-target="#fit-the-additional-models">Fit the additional models</a></li>
+  <li><a href="#fit-the-withinbetween-models" id="toc-fit-the-withinbetween-models" class="nav-link" data-scroll-target="#fit-the-withinbetween-models">Fit the within–between models</a></li>
   <li><a href="#read-saved-results" id="toc-read-saved-results" class="nav-link" data-scroll-target="#read-saved-results">Read saved results</a></li>
   <li><a href="#within-versus-between-direct-tests" id="toc-within-versus-between-direct-tests" class="nav-link" data-scroll-target="#within-versus-between-direct-tests">Within versus between: direct tests</a></li>
   <li><a href="#comparison-with-the-single-temperature-model" id="toc-comparison-with-the-single-temperature-model" class="nav-link" data-scroll-target="#comparison-with-the-single-temperature-model">Comparison with the single-temperature model</a></li>
+  <li><a href="#year-coefficients-in-the-temperature-models" id="toc-year-coefficients-in-the-temperature-models" class="nav-link" data-scroll-target="#year-coefficients-in-the-temperature-models">Year coefficients in the temperature models</a></li>
   <li><a href="#prediction-export-and-checks" id="toc-prediction-export-and-checks" class="nav-link" data-scroll-target="#prediction-export-and-checks">Prediction export and checks</a></li>
   <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures">Figures</a></li>
   <li><a href="#main-results" id="toc-main-results" class="nav-link" data-scroll-target="#main-results">Main results</a></li>
@@ -267,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./within_between.html">Additional: temperature within &amp; between</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./temporal_trends.html">Analyses &amp; results</a></li><li class="breadcrumb-item"><a href="./within_between.html">Temperature: within &amp; between models</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Temperature within and between females</h1>
 </div>
@@ -288,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>This <strong>additional model</strong> separates temperature associations within the same female from differences between females. Temperature is split in both location and scale; continuous year, laying date, age and the existing random-effect structures are retained.</p>
+<p>This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female’s warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.</p>
 <details class="analysis-code" open="">
 <summary>
 Show temperature decomposition
@@ -341,12 +342,12 @@ Show temperature decomposition
 </div>
 <p>Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.</p>
 </section>
-<section id="fit-the-additional-models" class="level2">
-<h2 class="anchored" data-anchor-id="fit-the-additional-models">Fit the additional models</h2>
+<section id="fit-the-withinbetween-models" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-withinbetween-models">Fit the within–between models</h2>
 <p>Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.</p>
 <details class="analysis-code">
 <summary>
-Show complete fitting and optimiser-check code
+Show fitting script (run locally)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -695,9 +696,29 @@ Show complete fitting and optimiser-check code
 <span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<p>The fits use the same private curated records as the single-temperature models and require R with glmmTMB. The public output includes aggregate estimates, not the fitted objects or individual records, so this full refit cannot run in the browser.</p>
+<p><a href="R/90_fit_temperature_within_between.R">Download fitting script</a></p>
 </section>
 <section id="read-saved-results" class="level2">
 <h2 class="anchored" data-anchor-id="read-saved-results">Read saved results</h2>
+<p>The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.</p>
+<section class="r-lab" data-r-lab="08_within_between_output" aria-label="Recalculate within-between summaries">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Recalculate within-between summaries</h3></div>
+<p class="r-lab-note">Uses real aggregate model outputs. A lower clutch SD means greater consistency; a higher fledging component precision means greater consistency.</p>
+<label for="r-code-08_within_between_output">Editable R code</label>
+<textarea id="r-code-08_within_between_output" class="r-lab-code" spellcheck="false" rows="8">results &lt;- readRDS("tables/within_between_20261026/aggregate_results.rds")
+print(subset(results$fixed_effects, model == "within_between" &amp;
+             term %in% c("temp_within", "temp_between")), row.names = FALSE)
+print(results$contrasts, row.names = FALSE)
+effects &lt;- results$reference_effects
+effects$consistency_change_percent &lt;- 100 * (effects$consistency_ratio_per_C - 1)
+print(effects[, c("trait", "predictor", "mean_change_per_C", "consistency_measure",
+                  "consistency_change_percent", "ratio_lower", "ratio_upper")], row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
 <details class="analysis-code" open="">
 <summary>
 Show cached-output loading
@@ -880,8 +901,57 @@ Show cached-output loading
 </div>
 <p>Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. The baseline likelihoods were checked against the original final fits. Splitting temperature adds two fixed coefficients in total; the nested comparison tests equality of within and between effects in both components.</p>
 </section>
+<section id="year-coefficients-in-the-temperature-models" class="level2">
+<h2 class="anchored" data-anchor-id="year-coefficients-in-the-temperature-models">Year coefficients in the temperature models</h2>
+<p>These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.</p>
+<p>The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under <code>models/</code>, which are not public.</p>
+<p><a href="R/93_export_joint_calendar_year.R">Download year-effect export script</a></p>
+<section class="r-lab" data-r-lab="09_joint_year_output" aria-label="Read year effects from both temperature models">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read year effects from both temperature models</h3></div>
+<p class="r-lab-note">Both models include continuous year and thermal predictors together. These are temperature-adjusted year associations, not year-only trends.</p>
+<label for="r-code-09_joint_year_output">Editable R code</label>
+<textarea id="r-code-09_joint_year_output" class="r-lab-code" spellcheck="false" rows="7">fixed &lt;- read.csv("tables/joint_calendar_year_20261027/year_coefficients.csv")
+change &lt;- read.csv("tables/joint_calendar_year_20261027/contrasts.csv")
+print(fixed, row.names = FALSE)
+print(change, row.names = FALSE)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+<section class="r-lab" data-r-lab="10_draw_joint_year" aria-label="Draw the calendar-year figure">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Draw the calendar-year figure</h3></div>
+<p class="r-lab-note">Draws both temperature formulations from saved prediction tables. Modify the code and rerun to change the figure.</p>
+<label for="r-code-10_draw_joint_year">Editable R code</label>
+<textarea id="r-code-10_draw_joint_year" class="r-lab-code" spellcheck="false" rows="20">curves &lt;- read.csv("tables/joint_calendar_year_20261027/curves.csv")
+par(mfrow = c(2,2), mar = c(4,4,2,1))
+colours &lt;- c(baseline = "#0072B2", within_between = "#009E73")
+for (trait in c("clutch", "fledging")) for (component in c("mean", "consistency")) {
+  d &lt;- subset(curves, curves$trait == trait &amp; curves$component == component)
+  ylabel &lt;- if (component == "mean") {
+    if (trait == "clutch") "Expected clutch size" else "Expected fledging success"
+  } else if (trait == "clutch") "Conditional clutch-size SD" else "Component precision"
+  plot(range(d$year), range(d$lower, d$upper), type = "n", xlab = "Calendar year", ylab = ylabel,
+       main = paste(trait, component), bty = "l")
+  for (model in names(colours)) {
+    z &lt;- subset(d, d$model == model)
+    polygon(c(z$year, rev(z$year)), c(z$lower, rev(z$upper)), border = NA,
+            col = adjustcolor(colours[model], alpha.f = .13))
+    lines(z$year, z$estimate, col = colours[model], lwd = 2,
+          lty = if (model == "baseline") 1 else 2)
+  }
+  legend("topleft", c("Single temperature", "Within-between"), col = colours,
+         lty = c(1,2), lwd = 2, bty = "n", cex = .7)
+}
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+</section>
 <section id="prediction-export-and-checks" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-export-and-checks">Prediction export and checks</h2>
+<p><a href="R/91_export_temperature_within_between.R">Download prediction and diagnostic export</a> · <a href="R/92_plot_temperature_within_between.R">Download figure script</a></p>
 <details class="analysis-code">
 <summary>
 Show prediction export and conditional-simulation code
@@ -890,7 +960,7 @@ Show prediction export and conditional-simulation code
 <div class="code-with-filename-file">
 <pre><strong>R/91_export_temperature_within_between.R</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="R/91_export_temperature_within_between.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export supplementary model results and prediction intervals from saved fits.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="R/91_export_temperature_within_between.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Export within-between model results and prediction intervals from saved fits.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits and individual records remain private; only aggregate outputs are saved.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>(<span class="fu">c</span>(<span class="st">".Rlib"</span>, <span class="fu">.libPaths</span>()))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({ <span class="fu">library</span>(glmmTMB); <span class="fu">library</span>(MASS) })</span>
@@ -1382,13 +1452,14 @@ Fixed-design VIF
 </section>
 <section id="interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
-<p>These are adjusted associations in a supplementary model. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</p>
+<p>These are adjusted associations from the within–between formulation. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</p>
 <p><a href="tables/within_between_20261026/session_info.txt">Session information</a> · <a href="tables/within_between_20261026/export_session_info.txt">Export session</a> · <a href="tables/within_between_20261026/reference_effects_per_degree.csv">Reference effects per degree</a></p>
 
 
 </section>
 
 </main> <!-- /main -->
+<script type="module" src="assets/r-lab.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

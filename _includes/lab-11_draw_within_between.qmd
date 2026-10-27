@@ -1,0 +1,22 @@
+```{=html}
+<section class="r-lab" data-r-lab="11_draw_within_between" aria-label="Draw within-between predictions">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Draw within-between predictions</h3></div>
+<p class="r-lab-note">Draws real fitted curves and their saved 95% confidence intervals. No model fitting is repeated.</p>
+<label for="r-code-11_draw_within_between">Editable R code</label>
+<textarea id="r-code-11_draw_within_between" class="r-lab-code" spellcheck="false" rows="11">curves &lt;- read.csv(&quot;tables/within_between_20261026/prediction_curves.csv&quot;)
+trait &lt;- &quot;clutch&quot; # Change to &quot;fledging&quot; and run again.
+par(mfrow = c(2,2), mar = c(4,4,2,1))
+for (component in c(&quot;mean&quot;, &quot;consistency&quot;)) for (predictor in c(&quot;temp_within&quot;, &quot;temp_between&quot;)) {
+  d &lt;- subset(curves, curves$trait == trait &amp; curves$component == component &amp; curves$predictor == predictor)
+  col &lt;- if (component == &quot;mean&quot;) &quot;#0072B2&quot; else &quot;#D55E00&quot;
+  plot(d$x, d$estimate, type = &quot;n&quot;, ylim = range(d$lower, d$upper),
+       xlab = predictor, ylab = component, main = paste(trait, predictor), bty = &quot;l&quot;)
+  polygon(c(d$x, rev(d$x)), c(d$lower, rev(d$upper)), border = NA, col = adjustcolor(col, .2))
+  lines(d$x, d$estimate, col = col, lwd = 2)
+}
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

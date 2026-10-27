@@ -1,4 +1,4 @@
-# Export supplementary model results and prediction intervals from saved fits.
+# Export within-between model results and prediction intervals from saved fits.
 # Fits and individual records remain private; only aggregate outputs are saved.
 .libPaths(c(".Rlib", .libPaths()))
 suppressPackageStartupMessages({ library(glmmTMB); library(MASS) })

@@ -1,0 +1,54 @@
+```{=html}
+<section class="r-lab" data-r-lab="02_window_search" aria-label="Recalculate the sliding-window search">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Recalculate the sliding-window search</h3></div>
+<p class="r-lab-note">Fits the eligible linear-window search from the daily data, then runs 500 new randomised searches. Base R; no individual bird records are needed.</p>
+<label for="r-code-02_window_search">Editable R code</label>
+<textarea id="r-code-02_window_search" class="r-lab-code" spellcheck="false" rows="22">annual &lt;- read.csv(&quot;data_derived/annual_raw_median_laying_date.csv&quot;)
+daily &lt;- read.csv(&quot;data_derived/smhi_hoburg_daily_temperature.csv&quot;)
+saved &lt;- read.csv(&quot;tables/climwin_recovered/selected_windows_audit.csv&quot;)
+daily$date &lt;- as.Date(daily$date)
+daily$week &lt;- (as.integer(format(daily$date, &quot;%j&quot;)) - 1L) %/% 7L
+windows &lt;- subset(expand.grid(open = 0:17, close = 0:17), open - close &gt;= 2)
+exposure &lt;- matrix(NA_real_, nrow(annual), nrow(windows))
+for (i in seq_len(nrow(annual))) {
+  y &lt;- annual$year[i]
+  w &lt;- subset(daily, year == y)
+  ref &lt;- (as.integer(format(as.Date(sprintf(&quot;%d-05-07&quot;, y)), &quot;%j&quot;)) - 1L) %/% 7L
+  for (j in seq_len(nrow(windows))) {
+    keep &lt;- w$week &gt;= ref - windows$open[j] &amp; w$week &lt;= ref - windows$close[j]
+    stopifnot(sum(keep) == 7 * (windows$open[j] - windows$close[j] + 1))
+    exposure[i, j] &lt;- mean(w$temperature[keep])
+  }
+}
+# Gaussian linear-model AICc: intercept+slope+residual SD = 3 parameters;
+# the intercept-only comparison has 2 parameters.
+n &lt;- nrow(annual)
+X &lt;- scale(exposure)
+y &lt;- as.numeric(scale(annual$median_LD))
+r &lt;- drop(crossprod(X, y)) / (n - 1)
+delta &lt;- n * log1p(-pmin(r^2, 1 - 1e-15)) + 2 + 24/(n-4) - 12/(n-3)
+best &lt;- which.min(delta)
+fit &lt;- lm(annual$median_LD ~ exposure[, best])
+answer &lt;- data.frame(open_weeks = windows$open[best], close_weeks = windows$close[best],
+                     delta_AICc = delta[best], temperature_beta = coef(fit)[2])
+stopifnot(answer$open_weeks == saved$open_weeks[1],
+          answer$close_weeks == saved$close_weeks[1],
+          abs(answer$delta_AICc - saved$delta_AICc[1]) &lt; 1e-5,
+          abs(answer$temperature_beta - saved$temperature_beta[1]) &lt; 1e-7)
+print(answer, row.names = FALSE)
+# Re-run complete eligible-window searches under randomisation.
+# This is a new reproducible set of shuffles, not a replay of saved shuffles.
+set.seed(20261027)
+B &lt;- 500L
+permuted &lt;- replicate(B, sample(y))
+correlations &lt;- crossprod(X, permuted) / (n - 1)
+null &lt;- n * log1p(-apply(correlations^2, 2, max)) + 2 + 24/(n-4) - 12/(n-3)
+cat(&quot;Eligible windows:&quot;, nrow(windows), &quot;\nRandomised full searches:&quot;, B,
+    &quot;\nExceedances:&quot;, sum(null &lt;= delta[best]),
+    &quot;\nPlus-one p:&quot;, (1 + sum(null &lt;= delta[best]))/(B + 1), &quot;\n&quot;)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

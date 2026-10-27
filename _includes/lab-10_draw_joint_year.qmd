@@ -1,0 +1,31 @@
+```{=html}
+<section class="r-lab" data-r-lab="10_draw_joint_year" aria-label="Draw the calendar-year figure">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Draw the calendar-year figure</h3></div>
+<p class="r-lab-note">Draws both temperature formulations from saved prediction tables. Modify the code and rerun to change the figure.</p>
+<label for="r-code-10_draw_joint_year">Editable R code</label>
+<textarea id="r-code-10_draw_joint_year" class="r-lab-code" spellcheck="false" rows="20">curves &lt;- read.csv(&quot;tables/joint_calendar_year_20261027/curves.csv&quot;)
+par(mfrow = c(2,2), mar = c(4,4,2,1))
+colours &lt;- c(baseline = &quot;#0072B2&quot;, within_between = &quot;#009E73&quot;)
+for (trait in c(&quot;clutch&quot;, &quot;fledging&quot;)) for (component in c(&quot;mean&quot;, &quot;consistency&quot;)) {
+  d &lt;- subset(curves, curves$trait == trait &amp; curves$component == component)
+  ylabel &lt;- if (component == &quot;mean&quot;) {
+    if (trait == &quot;clutch&quot;) &quot;Expected clutch size&quot; else &quot;Expected fledging success&quot;
+  } else if (trait == &quot;clutch&quot;) &quot;Conditional clutch-size SD&quot; else &quot;Component precision&quot;
+  plot(range(d$year), range(d$lower, d$upper), type = &quot;n&quot;, xlab = &quot;Calendar year&quot;, ylab = ylabel,
+       main = paste(trait, component), bty = &quot;l&quot;)
+  for (model in names(colours)) {
+    z &lt;- subset(d, d$model == model)
+    polygon(c(z$year, rev(z$year)), c(z$lower, rev(z$upper)), border = NA,
+            col = adjustcolor(colours[model], alpha.f = .13))
+    lines(z$year, z$estimate, col = colours[model], lwd = 2,
+          lty = if (model == &quot;baseline&quot;) 1 else 2)
+  }
+  legend(&quot;topleft&quot;, c(&quot;Single temperature&quot;, &quot;Within-between&quot;), col = colours,
+         lty = c(1,2), lwd = 2, bty = &quot;n&quot;, cex = .7)
+}
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```

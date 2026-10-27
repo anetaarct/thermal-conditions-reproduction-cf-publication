@@ -1,0 +1,21 @@
+```{=html}
+<section class="r-lab" data-r-lab="03_window_results" aria-label="Read and check the saved window results">
+<div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3>Read and check the saved window results</h3></div>
+<p class="r-lab-note">Reads the data-only RDS and recalculates selection and the empirical probability from its 500 saved searches.</p>
+<label for="r-code-03_window_results">Editable R code</label>
+<textarea id="r-code-03_window_results" class="r-lab-code" spellcheck="false" rows="10">results &lt;- readRDS(&quot;cache/climwin/recovered_search_data.rds&quot;)
+x &lt;- results$main$Dataset
+eligible &lt;- subset(x, WindowOpen - WindowClose &gt;= 2)
+best &lt;- eligible[which.min(eligible$deltaAICc), ]
+print(best[, c(&quot;WindowOpen&quot;, &quot;WindowClose&quot;, &quot;deltaAICc&quot;, &quot;ModelBeta&quot;)])
+null &lt;- results$randomised$deltaAICc
+print(c(randomisations = length(null), exceedances = sum(null &lt;= best$deltaAICc),
+        plus_one_p = (1 + sum(null &lt;= best$deltaAICc))/(length(null) + 1)))
+validation &lt;- readRDS(&quot;cache/climwin/recovery_audit_results.rds&quot;)
+print(validation$temporal_validation)
+</textarea>
+<div class="r-lab-actions"><button class="r-run" type="button">Run code</button><button class="r-reset" type="button">Reset code</button><button class="r-download" type="button">Download R code</button><span class="r-status" role="status" aria-live="polite">Ready to run</span></div>
+<div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
+<noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
+</section>
+```
