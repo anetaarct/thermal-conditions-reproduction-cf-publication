@@ -13,6 +13,8 @@ execute:
 | Clutch size | 12,627 | 8,894 | 44 |
 | Egg-to-fledging success | 9,790 | 7,132 | 39 |
 
+Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.
+
 [Input files and loading code](workflow.qmd)
 
 ## Predictor definitions
