@@ -12,7 +12,7 @@ Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-re
 
 ## Sliding-window diagnostics {#sliding-window-diagnostics}
 
-This new plotting script reads the recovered candidate-window and randomisation CSV files. It does not refit models; base R is sufficient.
+The plotting script reads the candidate-window and randomisation CSV files. Figures were generated from the numerical search results using base R.
 
 <details class="analysis-code">
 <summary>Show plotting code: window-search diagnostics</summary>

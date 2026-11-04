@@ -23,7 +23,7 @@ stopifnot(nrow(annual) == 45L, nrow(cache$randomised) == 500L)
 
 ## Saved results for this step
 
-**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; this summary is not a new execution log.
+**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.
 :::
 
 
@@ -34,7 +34,7 @@ stopifnot(nrow(annual) == 45L, nrow(cache$randomised) == 500L)
 
 ## Candidate-window calculation
 
-The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 fresh randomisations. This can take longer than the input check; nothing runs until you press **Run code**.
+The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 independent randomisations. This can take longer than the input check; nothing runs until you press **Run code**.
 
 {{< include _includes/lab-02_window_search.qmd >}}
 
@@ -42,7 +42,7 @@ The browser step below rebuilds the eligible-window search from the public daily
 
 ## Saved results for this step
 
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.
+**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ The browser step below rebuilds the eligible-window search from the public daily
 
 ## Full fitting script
 
-The historical `climwin` script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 fresh randomisations. Original cached searches remain available separately.
+The historical `climwin` script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 independent randomisations. Original cached searches remain available separately.
 
 <details class="analysis-code">
 <summary>Show full `climwin` script</summary>
@@ -74,7 +74,7 @@ The historical `climwin` script below includes preprocessing of the original fie
 
 ## Saved results for this step
 
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.
+**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -99,7 +99,7 @@ The historical `climwin` script below includes preprocessing of the original fie
 
 ## Saved results for this step
 
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.
+**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -138,7 +138,7 @@ read.csv("tables/climwin_recovered/selected_windows_audit.csv")
 
 ## Saved results for this step
 
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.
+**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

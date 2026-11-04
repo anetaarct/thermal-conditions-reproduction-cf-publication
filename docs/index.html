@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-f1da0acf685a82887288f7269e800838.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -230,31 +230,31 @@ ul.task-list li input[type="checkbox"] {
 <p class="title-authors">Aneta Arct · Santiago Ortega · Rafał Martyka · Lars Gustafsson · Szymon M. Drobniak · Shinichi Nakagawa</p>
 <p class="title-notes">Data, analysis workflow and results · Gotland, Sweden</p>
 </div></section>
-<section id="project-aims" class="level2">
-<h2 class="anchored" data-anchor-id="project-aims">Project aims</h2>
+<section id="study-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="study-objectives">Study objectives</h2>
 <div class="overview-background-panel">
 <figure class="overview-species-photo figure"><img src="images/overview-flycatcher.png" alt="Collared flycatcher perched on a branch." class="figure-img"></figure>
-<p>Using long-term records of collared flycatchers (<em>Ficedula albicollis</em>) on Gotland, we ask:</p>
+<p>Using long-term individual-based records of collared flycatchers (<em>Ficedula albicollis</em>) breeding in nest boxes on Gotland, Sweden, we examined:</p>
 <ol type="1">
-<li>How did mean spring temperature and its variability change over the study period?</li>
-<li>How did mean clutch size, egg-to-fledging success and reproductive consistency change over calendar time?</li>
-<li>How were spring temperatures associated with mean reproductive performance and reproductive consistency?</li>
-<li>Do temperature associations differ within the same female and between females with different observed thermal histories?</li>
-<li>How were laying date and female age associated with these reproductive traits?</li>
+<li>Temporal changes in mean spring temperature and its interannual variability.</li>
+<li>Calendar-year changes in mean reproductive performance and reproductive consistency, assessed using clutch size and egg-to-fledging success.</li>
+<li>Associations of spring temperature with mean reproductive performance and reproductive consistency.</li>
+<li>Differences between within-female and among-female temperature associations with both mean reproductive performance and reproductive consistency.</li>
+<li>Associations of relative laying date and female age class (yearling versus older) with these reproductive traits.</li>
 </ol>
 </div>
 </section>
 <section id="analysis-chapters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-chapters">Analysis chapters</h2>
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Get the public inputs, load them and check that they reproduce the saved annual summaries.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Build candidate exposures, select the laying-date window and inspect the saved search output.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Prepare trait samples, fit time-only models and reproduce the trend figure.</p></a>
+<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Curated analysis samples, variable definitions and numerical checks.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Selection and validation of the pre-laying thermal window using annual median laying dates.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Calendar-year associations with mean reproductive performance and reproductive consistency.</p></a>
 <a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Clutch size</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
 <a class="overview-tile" href="fledging_success.html"><h3 class="anchored">04 · Egg-to-fledging success</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
-<a class="overview-tile" href="within_between.html"><h3 class="anchored">05 · Within–between comparison</h3><p>Separate within-female temperature changes from between-female exposure differences.</p></a>
+<a class="overview-tile" href="within_between.html"><h3 class="anchored">05 · Within–between comparison</h3><p>Within-female and among-female temperature associations with reproductive performance and consistency.</p></a>
 <a class="overview-tile" href="model_structure.html"><h3 class="anchored">Model equations &amp; checks</h3><p>Model specifications and diagnostic outputs.</p></a>
-<a class="overview-tile" href="figure_code.html"><h3 class="anchored">Figure code</h3><p>Final chapter: scripts for drawing figures from saved prediction tables.</p></a>
+<a class="overview-tile" href="figure_code.html"><h3 class="anchored">Figure code</h3><p>Figure-generation scripts and model-based prediction tables.</p></a>
 </div>
 
 
@@ -262,6 +262,7 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

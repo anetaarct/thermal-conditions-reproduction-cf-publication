@@ -51,7 +51,7 @@ Rscript R/95_validate_public_model_data.R
 Rscript R/94_reproduce_from_public_data.R
 ```
 
-The runner starts from CSV records and public numerical starting values, refits the main reproductive models, and writes new objects and exports separately from the published results. Historical fitted objects are not needed. R with glmmTMB >= 1.1.14, Matrix and MASS is required. See the website's Data preparation page for stages, output paths and numerical-validation limits. Original software versions remain recorded in the historical session-info files. Raw field-data cleaning is outside this model-ready release; annual phenology-window inputs are separately public.
+The runner starts from CSV records and public numerical starting values, refits the main reproductive models, and writes regenerated objects and numerical exports separately from the published results. Historical fitted objects are not needed. R with glmmTMB >= 1.1.14, Matrix and MASS is required. See the website's Data preparation page for stages, output paths and numerical-validation limits. Original software versions remain recorded in the historical session-info files. Raw field-data cleaning is outside this model-ready release; annual phenology-window inputs are separately public.
 
 ## Publication integrity
 

@@ -27,7 +27,7 @@ The short input check below runs in this page using WebR (R in your browser); no
 
 ## Saved results for this step
 
-**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; this summary is not a new execution log.
+**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.
 :::
 
 
@@ -47,7 +47,7 @@ The short input check below runs in this page using WebR (R in your browser); no
 
 ## Refit from the public model data
 
-The two curated model-ready datasets are now public. They preserve the grouping of repeated observations with shared model-only female identifiers. Original ring labels and source-row identifiers are omitted.
+The reproductive analyses used two curated datasets. Female identifiers were recoded consistently across both datasets, preserving the grouping of repeated observations. The model-ready files contain the responses and predictors used in the final analyses.
 
 - [Download clutch-size data (CSV)](data_derived/analysis/clutch_model_data.csv)
 - [Download egg-to-fledging data (CSV)](data_derived/analysis/fledging_model_data.csv)
@@ -68,13 +68,13 @@ Rscript R/95_validate_public_model_data.R
 Rscript R/94_reproduce_from_public_data.R
 ```
 
-The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 fresh randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under `figures/reproduced/`. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.
+The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 independent randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under `figures/reproduced/`. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.
 
-New model checkpoints are written under `models/`; new numerical results go under `tables/reproduced/` and `tables/within_between_20261026_reproduced/`. Original publication exports are retained. Stages can also be run separately, for example `Rscript R/94_reproduce_from_public_data.R inputs environment windows`. The available stages are `inputs`, `environment`, `windows`, `models`, `temporal`, `exports`, `figures` and `verify`. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.
+Model checkpoints are written under `models/`; regenerated numerical results are stored under `tables/reproduced/` and `tables/within_between_20261026_reproduced/`. Original publication exports are retained. Stages can also be run separately, for example `Rscript R/94_reproduce_from_public_data.R inputs environment windows`. The available stages are `inputs`, `environment`, `windows`, `models`, `temporal`, `exports`, `figures` and `verify`. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.
 
 The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.
 
-The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; fresh randomisations reproduce the procedure, not the exact historical permutations.
+The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; independent randomisations reproduce the procedure, not the exact historical permutations.
 
 Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).
 

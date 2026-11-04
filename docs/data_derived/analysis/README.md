@@ -29,6 +29,6 @@ Rscript R/95_validate_public_model_data.R
 Rscript R/94_reproduce_from_public_data.R
 ```
 
-The complete run requires R, glmmTMB >= 1.1.14, Matrix and MASS. The publication's original software versions are recorded in the relevant session-info files. Optimisation and Monte Carlo intervals can differ slightly across versions and platforms. The runner uses published coefficients as numerical initial values, not fitted-model objects. Models are refitted by likelihood optimisation with numerical checks. Outputs and newly generated model checkpoints are kept separately from the publication exports.
+The complete run requires R, glmmTMB >= 1.1.14, Matrix and MASS. The publication's original software versions are recorded in the relevant session-info files. Optimisation and Monte Carlo intervals can differ slightly across versions and platforms. The runner uses published coefficients as numerical initial values, not fitted-model objects. Models are refitted by likelihood optimisation with numerical checks. Outputs and generated model checkpoints are kept separately from the publication exports.
 
 The raw field-data cleaning history is not reproduced from these files. They start at the final curated samples. Sliding-window selection uses the public annual laying-date summaries, including the seasons outside these trait-specific samples.

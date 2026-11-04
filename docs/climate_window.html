@@ -307,13 +307,13 @@ Show R code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Input check.</strong> Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; this summary is not a new execution log.</p>
+<p><strong>Input check.</strong> Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.</p>
 </div>
 </div>
 </section>
 <section id="candidate-window-calculation" class="level2">
 <h2 class="anchored" data-anchor-id="candidate-window-calculation">Candidate-window calculation</h2>
-<p>The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 fresh randomisations. This can take longer than the input check; nothing runs until you press <strong>Run code</strong>.</p>
+<p>The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 independent randomisations. This can take longer than the input check; nothing runs until you press <strong>Run code</strong>.</p>
 <section class="r-lab" data-r-lab="02_window_search" aria-label="Recalculate the sliding-window search">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Recalculate the sliding-window search</h3></div>
 <p class="r-lab-note">Fits the eligible linear-window search from the daily data, then runs 500 new randomised searches. Base R; no individual bird records are needed.</p>
@@ -376,7 +376,7 @@ cat("Eligible windows:", nrow(windows), "\nRandomised full searches:", B,
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
@@ -454,7 +454,7 @@ cat("Eligible windows:", nrow(windows), "\nRandomised full searches:", B,
 </section>
 <section id="full-fitting-script" class="level2">
 <h2 class="anchored" data-anchor-id="full-fitting-script">Full fitting script</h2>
-<p>The historical <code>climwin</code> script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 fresh randomisations. Original cached searches remain available separately.</p>
+<p>The historical <code>climwin</code> script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 independent randomisations. Original cached searches remain available separately.</p>
 <details class="analysis-code">
 <summary>
 Show full <code>climwin</code> script
@@ -772,7 +772,7 @@ Show full <code>climwin</code> script
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
@@ -879,7 +879,7 @@ print(validation$temporal_validation)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
@@ -979,7 +979,7 @@ Show R code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">

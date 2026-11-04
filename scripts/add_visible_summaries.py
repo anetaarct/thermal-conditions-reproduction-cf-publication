@@ -34,10 +34,10 @@ def summary(kind):
     if kind == 'weather':
         return ('**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. '
                 'The operational exposure is 26 March–7 May, 43 days each year. '
-                'Run the code to check your downloaded files; this summary is not a new execution log.')
+                'Run the code to check your downloaded files; execution results are displayed when the code is run.')
     if kind == 'window':
         return ('**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), '
-                'distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.\n\n'
+                'distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.\n\n'
                 + table(CW+'selected_windows_audit.csv'))
     if kind == 'validation':
         return ('**Saved validation.** The held-out association remains negative; prediction uses the training coefficients. '
