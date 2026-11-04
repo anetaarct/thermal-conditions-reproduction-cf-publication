@@ -6,6 +6,18 @@ execute:
   enabled: false
 ---
 
+## Data origin and source database {#data-origin}
+
+The breeding records originated from the long-term nest-box monitoring of collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, established in 1980. Individually ringed females were linked to records of laying date, clutch size, fledgling number and female age class.
+
+The reproductive-data preparation script read the project source file `DB_MISMATCH_current_onset_1980-2025.csv`. The public model-ready files were derived from the curated, trait-specific samples; original ring labels were replaced with consistent model-only female identifiers. The full source file is held in the project archive and is not included in this public repository. The project documentation does not identify a verified public DOI for that exact 1980–2025 source file.
+
+An earlier public dataset from the same Gotland monitoring programme was deposited by Arct, Martyka, Miler and colleagues in Dryad: [*The impact of weather conditions on avian breeding performance: Insights from a long-term study* (DOI: 10.5061/dryad.w9ghx3g06)](https://doi.org/10.5061/dryad.w9ghx3g06). The deposit contains `raw_data_30.10.24.xlsx` and documents records from 1980–2020. It provides a citable reference to the underlying field monitoring, but is a separate dataset with its own sample selection and weather variables; it does not replace the exact model inputs used here.
+
+Daily mean air temperatures originated from the [Swedish Meteorological and Hydrological Institute (SMHI) open meteorological observations](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn), using Hoburg (station 68550) and Hoburg A (station 68560). The preparation workflow combined their observations into the 1980–2025 daily series; overlapping observations were averaged. Annual pre-laying temperatures were calculated for 26 March–7 May.
+
+The [clutch-size records](data_derived/analysis/clutch_model_data.csv), [egg-to-fledging records](data_derived/analysis/fledging_model_data.csv) and [variable dictionary](data_derived/analysis/README.md) contain the inputs required to reproduce the reported reproductive models.
+
 ## Get the project files
 
 Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) and unzip it without changing folder names. R scripts use paths relative to the project root.

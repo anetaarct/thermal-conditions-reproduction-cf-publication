@@ -35,6 +35,8 @@ Using long-term individual-based records of collared flycatchers (*Ficedula albi
 5. Associations of relative laying date and female age class (yearling versus older) with these reproductive traits.
 :::
 
+[Data origin and source database](workflow.qmd#data-origin): long-term Gotland breeding monitoring, the related public Dryad archive and SMHI weather observations.
+
 ## Website structure
 
 The analyses are organised as a scientific supplement. Each analysis chapter presents its inputs, methods, code and saved results. Complete model output is collected in S7; data documentation and reproduction instructions are provided in the appendices.
