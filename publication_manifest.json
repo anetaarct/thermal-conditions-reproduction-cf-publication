@@ -94,7 +94,7 @@
     "tables/model_data_audit.json": "716ade0a5f5d141ba9f7e026cf3d5a6a514c7ed1f08397252d41e8c84f83e436",
     "tables/reproduction_validation.json": "224682d860ee1e45e64b825ea0cf6f3366f80d20da4b01b6402db4258dcc6ecd",
     "data_raw/birds/CF_adult_birds_1980-2019.csv": "e1d7e3a6827b8c3d51afa26f6a8a4e3c06086c9ab7f3ba321fb53f583a5f6612",
-    "data_raw/birds/README.md": "94b616b5452f7e6897c0f62c558401dcd8fc8bcbee8ab21b46a03043cd425bf1"
+    "data_raw/birds/README.md": "c911fc42dfcb47222b1272f4d5c1bfce178c784421c17d8df91866365facfd87"
   },
   "model_data_release": "4 November 2026: final curated model-ready records and standalone refitting code, with numerical reproduction checks. Original numerical exports retained."
 }
