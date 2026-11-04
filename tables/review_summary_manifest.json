@@ -1,0 +1,11 @@
+{
+  "workflow": 1,
+  "climate_window": 8,
+  "data_preparation": 2,
+  "model_structure": 1,
+  "clutch_size": 5,
+  "fledging_success": 5,
+  "temporal_trends": 5,
+  "within_between": 7,
+  "figure_code": 9
+}

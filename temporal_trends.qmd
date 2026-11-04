@@ -30,6 +30,26 @@ for (trait in names(paths)) {
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+
+| trait | records | females | seasons | females_varied_temperature |
+| --- | --- | --- | --- | --- |
+| clutch | 12627 | 8894 | 44 | 2547 |
+| fledging | 9790 | 7132 | 39 | 1908 |
+
+[Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+:::
+
+
+
+
+
+
+
 ## Fit the calendar-year models
 
 Calendar year, laying date and age enter both components; temperature is omitted. The original script also checks optimiser agreement and saves the selected `.rds` fits.
@@ -40,6 +60,26 @@ Calendar year, laying date and age enter both components; temperature is omitted
 {{< include _includes/83_fit_temporal_without_temperature.qmd >}}
 
 </details>
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved calendar-year results, temperature omitted.** These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.
+
+| trait | first_year | last_year | mean_change | mean_change_lower | mean_change_upper |
+| --- | --- | --- | --- | --- | --- |
+| clutch | 1981 | 2025 | 0.425149 | 0.261059 | 0.596819 |
+| fledging | 1981 | 2019 | -0.102926 | -0.163492 | -0.0407468 |
+
+[Download complete results (CSV)](tables/temporal_models_20261022/temporal_changes.csv)
+:::
+
+
+
+
+
+
 
 These fits require the curated individual records and saved starting objects listed in [Data preparation](workflow.qmd). They are not run in the browser. The fitting script can be downloaded from the [project repository](R/83_fit_temporal_without_temperature.R).
 
@@ -59,13 +99,33 @@ fixed
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved calendar-year results, temperature omitted.** These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.
+
+| trait | first_year | last_year | mean_change | mean_change_lower | mean_change_upper |
+| --- | --- | --- | --- | --- | --- |
+| clutch | 1981 | 2025 | 0.425149 | 0.261059 | 0.596819 |
+| fledging | 1981 | 2019 | -0.102926 | -0.163492 | -0.0407468 |
+
+[Download complete results (CSV)](tables/temporal_models_20261022/temporal_changes.csv)
+:::
+
+
+
+
+
+
+
 | trait | first_year | last_year | mean_first | mean_last | mean_change | mean_change_lower | mean_change_upper |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | clutch | 1981 | 2025 | 5.8377 | 6.2629 | 0.42515 | 0.26106 | 0.59682 |
 | fledging | 1981 | 2019 | 0.67494 | 0.57201 | -0.10293 | -0.16349 | -0.040747 |
 
 [Download CSV](tables/temporal_models_20261022/temporal_changes.csv)
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Show consistency contrasts</summary>
 
 | trait | dispersion_ratio | dispersion_ratio_lower | dispersion_ratio_upper | response_SD_ratio | response_SD_ratio_lower | response_SD_ratio_upper |
@@ -77,7 +137,7 @@ fixed
 
 </details>
 
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Show saved output: fixed_effects.csv</summary>
 
 | trait | model | component | term | estimate | SE | lower | upper |
@@ -114,9 +174,29 @@ fixed
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved calendar-year results, temperature omitted.** These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.
+
+| trait | first_year | last_year | mean_change | mean_change_lower | mean_change_upper |
+| --- | --- | --- | --- | --- | --- |
+| clutch | 1981 | 2025 | 0.425149 | 0.261059 | 0.596819 |
+| fledging | 1981 | 2019 | -0.102926 | -0.163492 | -0.0407468 |
+
+[Download complete results (CSV)](tables/temporal_models_20261022/temporal_changes.csv)
+:::
+
+
+
+
+
+
+
 [Download trend-model fitting script](R/83_fit_temporal_without_temperature.R) · [Download prediction-export script](R/84_export_temporal_without_temperature.R)
 
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Show saved output: optimizer_comparison.csv</summary>
 
 | trait | model | n | df | logLik | AIC | convergence | pdHess | scaled_gradient |
@@ -133,7 +213,7 @@ fixed
 
 </details>
 
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Show saved output: temporal_simulation_checks.csv</summary>
 
 | trait | target | group | n | statistic | observed | predicted | lower | upper |
@@ -154,6 +234,26 @@ fixed
 The browser step below reads the saved prediction tables and draws the four trend panels. It does not refit the models.
 
 {{< include _includes/lab-13_draw_temporal_trends.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved calendar-year results, temperature omitted.** These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.
+
+| trait | first_year | last_year | mean_change | mean_change_lower | mean_change_upper |
+| --- | --- | --- | --- | --- | --- |
+| clutch | 1981 | 2025 | 0.425149 | 0.261059 | 0.596819 |
+| fledging | 1981 | 2019 | -0.102926 | -0.163492 | -0.0407468 |
+
+[Download complete results (CSV)](tables/temporal_models_20261022/temporal_changes.csv)
+:::
+
+
+
+
+
+
 
 ## Figure
 

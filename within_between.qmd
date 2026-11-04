@@ -22,6 +22,35 @@ stopifnot(max(abs(d$temp_within + d$temp_between - d$temp_mean_c)) < 1e-8)
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.
+
+| trait | baseline_AIC | within_between_AIC | delta_AIC | LR | df | p |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | 27561.1 | 27556.8 | -4.30555 | 8.30555 | 2 | 0.0157207 |
+| fledging | 33294.1 | 33297.9 | 3.75495 | 0.245052 | 2 | 0.884683 |
+
+[Download complete results (CSV)](tables/within_between_20261026/model_comparison.csv)
+
+| trait | component | contrast | estimate | SE | lower | upper | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | within_minus_between | 0.00105414 | 0.00226567 | -0.0033865 | 0.00549478 | 0.641741 |
+| clutch | disp | within_minus_between | -0.110737 | 0.0395268 | -0.188208 | -0.0332663 | 0.00508534 |
+| fledging | cond | within_minus_between | -0.0223986 | 0.0454329 | -0.111445 | 0.0666482 | 0.62201 |
+| fledging | disp | within_minus_between | -0.0207843 | 0.0823427 | -0.182173 | 0.140605 | 0.800723 |
+
+[Download complete results (CSV)](tables/within_between_20261026/within_between_contrasts.csv)
+:::
+
+
+
+
+
+
+
 ::: {.table-responsive}
 
 | trait | records | females | seasons | Females with temperature variation | Their records |
@@ -44,6 +73,35 @@ Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial.
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.
+
+| trait | baseline_AIC | within_between_AIC | delta_AIC | LR | df | p |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | 27561.1 | 27556.8 | -4.30555 | 8.30555 | 2 | 0.0157207 |
+| fledging | 33294.1 | 33297.9 | 3.75495 | 0.245052 | 2 | 0.884683 |
+
+[Download complete results (CSV)](tables/within_between_20261026/model_comparison.csv)
+
+| trait | component | contrast | estimate | SE | lower | upper | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | within_minus_between | 0.00105414 | 0.00226567 | -0.0033865 | 0.00549478 | 0.641741 |
+| clutch | disp | within_minus_between | -0.110737 | 0.0395268 | -0.188208 | -0.0332663 | 0.00508534 |
+| fledging | cond | within_minus_between | -0.0223986 | 0.0454329 | -0.111445 | 0.0666482 | 0.62201 |
+| fledging | disp | within_minus_between | -0.0207843 | 0.0823427 | -0.182173 | 0.140605 | 0.800723 |
+
+[Download complete results (CSV)](tables/within_between_20261026/within_between_contrasts.csv)
+:::
+
+
+
+
+
+
+
 The fits use the same private curated records as the single-temperature models and require R with glmmTMB. The public output includes aggregate estimates, not the fitted objects or individual records, so this full refit cannot run in the browser.
 
 [Download fitting script](R/90_fit_temperature_within_between.R)
@@ -53,6 +111,35 @@ The fits use the same private curated records as the single-temperature models a
 The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.
 
 {{< include _includes/lab-08_within_between_output.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.
+
+| trait | baseline_AIC | within_between_AIC | delta_AIC | LR | df | p |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | 27561.1 | 27556.8 | -4.30555 | 8.30555 | 2 | 0.0157207 |
+| fledging | 33294.1 | 33297.9 | 3.75495 | 0.245052 | 2 | 0.884683 |
+
+[Download complete results (CSV)](tables/within_between_20261026/model_comparison.csv)
+
+| trait | component | contrast | estimate | SE | lower | upper | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | within_minus_between | 0.00105414 | 0.00226567 | -0.0033865 | 0.00549478 | 0.641741 |
+| clutch | disp | within_minus_between | -0.110737 | 0.0395268 | -0.188208 | -0.0332663 | 0.00508534 |
+| fledging | cond | within_minus_between | -0.0223986 | 0.0454329 | -0.111445 | 0.0666482 | 0.62201 |
+| fledging | disp | within_minus_between | -0.0207843 | 0.0823427 | -0.182173 | 0.140605 | 0.800723 |
+
+[Download complete results (CSV)](tables/within_between_20261026/within_between_contrasts.csv)
+:::
+
+
+
+
+
+
 
 <details class="analysis-code" open>
 <summary>Show cached-output loading</summary>
@@ -64,6 +151,35 @@ results$contrasts
 ```
 
 </details>
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.
+
+| trait | baseline_AIC | within_between_AIC | delta_AIC | LR | df | p |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | 27561.1 | 27556.8 | -4.30555 | 8.30555 | 2 | 0.0157207 |
+| fledging | 33294.1 | 33297.9 | 3.75495 | 0.245052 | 2 | 0.884683 |
+
+[Download complete results (CSV)](tables/within_between_20261026/model_comparison.csv)
+
+| trait | component | contrast | estimate | SE | lower | upper | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | within_minus_between | 0.00105414 | 0.00226567 | -0.0033865 | 0.00549478 | 0.641741 |
+| clutch | disp | within_minus_between | -0.110737 | 0.0395268 | -0.188208 | -0.0332663 | 0.00508534 |
+| fledging | cond | within_minus_between | -0.0223986 | 0.0454329 | -0.111445 | 0.0666482 | 0.62201 |
+| fledging | disp | within_minus_between | -0.0207843 | 0.0823427 | -0.182173 | 0.140605 | 0.800723 |
+
+[Download complete results (CSV)](tables/within_between_20261026/within_between_contrasts.csv)
+:::
+
+
+
+
+
+
 
 ::: {.table-responsive}
 
@@ -122,7 +238,51 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 {{< include _includes/lab-09_joint_year_output.qmd >}}
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Temperature-adjusted calendar-year results.** Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.
+
+| trait | model | mean_change | mean_lower | mean_upper | consistency_ratio | ratio_lower | ratio_upper |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | baseline | 0.240769 | 0.067762 | 0.411234 | 1.07938 | 0.997301 | 1.16789 |
+| clutch | within_between | 0.247153 | 0.0681042 | 0.421956 | 1.04321 | 0.960493 | 1.12916 |
+| fledging | baseline | -0.0500468 | -0.11212 | 0.0162065 | 0.6662 | 0.410643 | 1.07155 |
+| fledging | within_between | -0.0524622 | -0.114463 | 0.011854 | 0.652904 | 0.407307 | 1.06583 |
+
+[Download complete results (CSV)](tables/joint_calendar_year_20261027/contrasts.csv)
+:::
+
+
+
+
+
+
+
 {{< include _includes/lab-10_draw_joint_year.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Temperature-adjusted calendar-year results.** Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.
+
+| trait | model | mean_change | mean_lower | mean_upper | consistency_ratio | ratio_lower | ratio_upper |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | baseline | 0.240769 | 0.067762 | 0.411234 | 1.07938 | 0.997301 | 1.16789 |
+| clutch | within_between | 0.247153 | 0.0681042 | 0.421956 | 1.04321 | 0.960493 | 1.12916 |
+| fledging | baseline | -0.0500468 | -0.11212 | 0.0162065 | 0.6662 | 0.410643 | 1.07155 |
+| fledging | within_between | -0.0524622 | -0.114463 | 0.011854 | 0.652904 | 0.407307 | 1.06583 |
+
+[Download complete results (CSV)](tables/joint_calendar_year_20261027/contrasts.csv)
+:::
+
+
+
+
+
+
 
 ## Prediction export and checks
 
@@ -135,7 +295,36 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 </details>
 
-<details class="analysis-code">
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.
+
+| trait | baseline_AIC | within_between_AIC | delta_AIC | LR | df | p |
+| --- | --- | --- | --- | --- | --- | --- |
+| clutch | 27561.1 | 27556.8 | -4.30555 | 8.30555 | 2 | 0.0157207 |
+| fledging | 33294.1 | 33297.9 | 3.75495 | 0.245052 | 2 | 0.884683 |
+
+[Download complete results (CSV)](tables/within_between_20261026/model_comparison.csv)
+
+| trait | component | contrast | estimate | SE | lower | upper | p |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| clutch | cond | within_minus_between | 0.00105414 | 0.00226567 | -0.0033865 | 0.00549478 | 0.641741 |
+| clutch | disp | within_minus_between | -0.110737 | 0.0395268 | -0.188208 | -0.0332663 | 0.00508534 |
+| fledging | cond | within_minus_between | -0.0223986 | 0.0454329 | -0.111445 | 0.0666482 | 0.62201 |
+| fledging | disp | within_minus_between | -0.0207843 | 0.0823427 | -0.182173 | 0.140605 | 0.800723 |
+
+[Download complete results (CSV)](tables/within_between_20261026/within_between_contrasts.csv)
+:::
+
+
+
+
+
+
+
+<details class="analysis-code" open>
 <summary>Numerical convergence and optimiser checks</summary>
 
 ::: {.table-responsive}
@@ -155,7 +344,7 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 </details>
 
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Conditional simulation checks</summary>
 
 ::: {.table-responsive}
@@ -177,7 +366,7 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 Observed statistics outside the conditional 95% simulation intervals: clutch: `variance`; fledging: `variance_fraction`. These discrepancies remain visible in the diagnostics.
 
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Fixed-design VIF</summary>
 
 ::: {.table-responsive}

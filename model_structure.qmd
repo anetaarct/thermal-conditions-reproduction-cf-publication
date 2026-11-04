@@ -23,6 +23,19 @@ The environmental model is a Gaussian location–scale fit to the 46 annual mean
 
 {{< include _includes/lab-04_environment_model.qmd >}}
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Environmental result.** Mean spring temperature increased by 0.0439°C/year (95% CI 0.0248–0.0630). There was no clear change in residual interannual variability. The browser code reports time effects per decade; multiply annual slopes by ten when comparing. This is an environmental model, not a reproductive model.
+:::
+
+
+
+
+
+
+
 The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.
 
 ## Fit diagnostics

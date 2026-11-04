@@ -22,6 +22,26 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+
+| trait | records | females | seasons | females_varied_temperature |
+| --- | --- | --- | --- | --- |
+| clutch | 12627 | 8894 | 44 | 2547 |
+| fledging | 9790 | 7132 | 39 | 1908 |
+
+[Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+:::
+
+
+
+
+
+
+
 ## Fit and verify the single-temperature model
 
 Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
@@ -33,6 +53,35 @@ Zero-inflated beta-binomial, with year random intercepts in location, precision 
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.08286 | 0.0664973 | 0.952525 | 1.21319 |
+| cond | rel_LD | -0.0751094 | 0.00456819 | -0.0840629 | -0.0661559 |
+| cond | age_classOLD | 0.00745227 | 0.044841 | -0.0804346 | 0.0953391 |
+| cond | temp_mean_c | -0.190955 | 0.059702 | -0.307969 | -0.0739412 |
+| cond | year_c | -0.00860357 | 0.00572649 | -0.0198273 | 0.00262014 |
+| zi | (Intercept) | -1.55237 | 0.0930571 | -1.73476 | -1.36998 |
+| disp | (Intercept) | 1.15545 | 0.0904679 | 0.978135 | 1.33276 |
+| disp | rel_LD | -0.0702219 | 0.0069397 | -0.0838234 | -0.0566203 |
+| disp | age_classOLD | 0.0239467 | 0.0844113 | -0.141496 | 0.18939 |
+| disp | temp_mean_c | 0.0776495 | 0.0643088 | -0.0483935 | 0.203692 |
+| disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
+
 This refit requires the curated fledging records and starting model object listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from public aggregate files alone.
 
 [Download fitting script](R/81_fit_ZIyear_fledging.R)
@@ -42,6 +91,7 @@ This refit requires the curated fledging records and starting model object liste
 | ZI_year_primary_ML | 9790 | -16632 | 33294 | 0 | TRUE | 0.00036322 |
 
 [Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)
+
 ## Export predictions from the saved fit
 
 <details class="analysis-code">
@@ -51,9 +101,61 @@ This refit requires the curated fledging records and starting model object liste
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+
+| x | age_class | estimate | CI_low | CI_high |
+| --- | --- | --- | --- | --- |
+| -1.57069 | YOUNG | 0.659743 | 0.621865 | 0.694275 |
+| -1.5425 | YOUNG | 0.65903 | 0.621595 | 0.693344 |
+| -1.51431 | YOUNG | 0.658314 | 0.62102 | 0.69256 |
+| -1.48612 | YOUNG | 0.657596 | 0.620572 | 0.691627 |
+| -1.45793 | YOUNG | 0.656876 | 0.620023 | 0.690662 |
+
+[Download complete results (CSV)](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)
+:::
+
+
+
+
+
+
+
 [Download prediction-export script](R/82_export_ZIyear_primary.R)
 
 {{< include _includes/lab-07_fledging_output.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.08286 | 0.0664973 | 0.952525 | 1.21319 |
+| cond | rel_LD | -0.0751094 | 0.00456819 | -0.0840629 | -0.0661559 |
+| cond | age_classOLD | 0.00745227 | 0.044841 | -0.0804346 | 0.0953391 |
+| cond | temp_mean_c | -0.190955 | 0.059702 | -0.307969 | -0.0739412 |
+| cond | year_c | -0.00860357 | 0.00572649 | -0.0198273 | 0.00262014 |
+| zi | (Intercept) | -1.55237 | 0.0930571 | -1.73476 | -1.36998 |
+| disp | (Intercept) | 1.15545 | 0.0904679 | 0.978135 | 1.33276 |
+| disp | rel_LD | -0.0702219 | 0.0069397 | -0.0838234 | -0.0566203 |
+| disp | age_classOLD | 0.0239467 | 0.0844113 | -0.141496 | 0.18939 |
+| disp | temp_mean_c | 0.0776495 | 0.0643088 | -0.0483935 | 0.203692 |
+| disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -67,7 +169,36 @@ head(pred)
 
 </details>
 
-<details class="analysis-code">
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.08286 | 0.0664973 | 0.952525 | 1.21319 |
+| cond | rel_LD | -0.0751094 | 0.00456819 | -0.0840629 | -0.0661559 |
+| cond | age_classOLD | 0.00745227 | 0.044841 | -0.0804346 | 0.0953391 |
+| cond | temp_mean_c | -0.190955 | 0.059702 | -0.307969 | -0.0739412 |
+| cond | year_c | -0.00860357 | 0.00572649 | -0.0198273 | 0.00262014 |
+| zi | (Intercept) | -1.55237 | 0.0930571 | -1.73476 | -1.36998 |
+| disp | (Intercept) | 1.15545 | 0.0904679 | 0.978135 | 1.33276 |
+| disp | rel_LD | -0.0702219 | 0.0069397 | -0.0838234 | -0.0566203 |
+| disp | age_classOLD | 0.0239467 | 0.0844113 | -0.141496 | 0.18939 |
+| disp | temp_mean_c | 0.0776495 | 0.0643088 | -0.0483935 | 0.203692 |
+| disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
+
+<details class="analysis-code" open>
 <summary>Show saved output: ZIyear_fixed.csv</summary>
 
 | component | term | estimate | SE | lower | upper |
@@ -98,7 +229,7 @@ head(pred)
 | -1.4579 | YOUNG | 0.65688 | 0.62002 | 0.69066 |
 
 [Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)
-<details class="analysis-code">
+<details class="analysis-code" open>
 <summary>Show saved output: simulation_checks.csv</summary>
 
 | model | target | group | level | n | statistic | observed | predicted | lower | upper |

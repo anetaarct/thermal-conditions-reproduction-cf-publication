@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -304,6 +304,47 @@ Show data-loading steps
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">nobs</span>(old) <span class="sc">==</span> <span class="fu">nrow</span>(d))</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>records</th>
+<th>females</th>
+<th>seasons</th>
+<th>females_varied_temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>12627</td>
+<td>8894</td>
+<td>44</td>
+<td>2547</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>9790</td>
+<td>7132</td>
+<td>39</td>
+<td>1908</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/sample_metadata.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="fit-the-calendar-year-models" class="level2">
 <h2 class="anchored" data-anchor-id="fit-the-calendar-year-models">Fit the calendar-year models</h2>
@@ -420,6 +461,58 @@ Show model-fitting script (run locally)
 <span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="fu">msg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved calendar-year results, temperature omitted.</strong> These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>first_year</th>
+<th>last_year</th>
+<th>mean_change</th>
+<th>mean_change_lower</th>
+<th>mean_change_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>1981</td>
+<td>2025</td>
+<td>0.425149</td>
+<td>0.261059</td>
+<td>0.596819</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>1981</td>
+<td>2019</td>
+<td>-0.102926</td>
+<td>-0.163492</td>
+<td>-0.0407468</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/temporal_models_20261022/temporal_changes.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p>These fits require the curated individual records and saved starting objects listed in <a href="./workflow.html">Data preparation</a>. They are not run in the browser. The fitting script can be downloaded from the <a href="R/83_fit_temporal_without_temperature.R">project repository</a>.</p>
 </section>
 <section id="read-the-saved-output" class="level2">
@@ -434,6 +527,58 @@ Show R code
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>changes</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fixed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved calendar-year results, temperature omitted.</strong> These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>first_year</th>
+<th>last_year</th>
+<th>mean_change</th>
+<th>mean_change_lower</th>
+<th>mean_change_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>1981</td>
+<td>2025</td>
+<td>0.425149</td>
+<td>0.261059</td>
+<td>0.596819</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>1981</td>
+<td>2019</td>
+<td>-0.102926</td>
+<td>-0.163492</td>
+<td>-0.0407468</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/temporal_models_20261022/temporal_changes.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 12%">
@@ -481,7 +626,7 @@ Show R code
 </tbody>
 </table>
 <a href="tables/temporal_models_20261022/temporal_changes.csv">Download CSV</a>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Show consistency contrasts
 </summary>
@@ -528,7 +673,7 @@ Show consistency contrasts
 </tbody>
 </table>
 </details>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Show saved output: fixed_effects.csv
 </summary>
@@ -800,8 +945,60 @@ Show prediction-export script (run locally)
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved calendar-year results, temperature omitted.</strong> These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>first_year</th>
+<th>last_year</th>
+<th>mean_change</th>
+<th>mean_change_lower</th>
+<th>mean_change_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>1981</td>
+<td>2025</td>
+<td>0.425149</td>
+<td>0.261059</td>
+<td>0.596819</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>1981</td>
+<td>2019</td>
+<td>-0.102926</td>
+<td>-0.163492</td>
+<td>-0.0407468</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/temporal_models_20261022/temporal_changes.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p><a href="R/83_fit_temporal_without_temperature.R">Download trend-model fitting script</a> · <a href="R/84_export_temporal_without_temperature.R">Download prediction-export script</a></p>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Show saved output: optimizer_comparison.csv
 </summary>
@@ -901,7 +1098,7 @@ Show saved output: optimizer_comparison.csv
 </table>
 <p><a href="tables/temporal_models_20261022/optimizer_comparison.csv">Download CSV</a></p>
 </details>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Show saved output: temporal_simulation_checks.csv
 </summary>
@@ -1030,6 +1227,58 @@ for (name in names(files)) {
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved calendar-year results, temperature omitted.</strong> These are reference-condition changes from separate models without temperature, not the temperature-adjusted year coefficients. Mean changes are eggs for clutch size and proportions for fledging success.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>first_year</th>
+<th>last_year</th>
+<th>mean_change</th>
+<th>mean_change_lower</th>
+<th>mean_change_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>1981</td>
+<td>2025</td>
+<td>0.425149</td>
+<td>0.261059</td>
+<td>0.596819</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>1981</td>
+<td>2019</td>
+<td>-0.102926</td>
+<td>-0.163492</td>
+<td>-0.0407468</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/temporal_models_20261022/temporal_changes.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="figure" class="level2">
 <h2 class="anchored" data-anchor-id="figure">Figure</h2>
@@ -1054,6 +1303,7 @@ for (name in names(files)) {
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

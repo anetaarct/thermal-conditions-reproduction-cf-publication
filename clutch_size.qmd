@@ -21,6 +21,26 @@ m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+
+| trait | records | females | seasons | females_varied_temperature |
+| --- | --- | --- | --- | --- |
+| clutch | 12627 | 8894 | 44 | 2547 |
+| fledging | 9790 | 7132 | 39 | 1908 |
+
+[Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+:::
+
+
+
+
+
+
+
 ## Fit and verify the single-temperature model
 
 COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
@@ -32,6 +52,34 @@ COM-Poisson location and dispersion use laying date, temperature, year and age. 
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.8015 | 0.00397308 | 1.79371 | 1.80929 |
+| cond | rel_LD | -0.00841514 | 0.000245586 | -0.00889648 | -0.0079338 |
+| cond | temp_mean_c | 0.0159318 | 0.00395571 | 0.00817875 | 0.0236848 |
+| cond | year_c | 0.00090279 | 0.000330135 | 0.000255736 | 0.00154984 |
+| cond | age_classOLD | 0.0299908 | 0.00237729 | 0.0253313 | 0.0346502 |
+| disp | (Intercept) | -2.81497 | 0.0338217 | -2.88126 | -2.74868 |
+| disp | rel_LD | 0.0527507 | 0.00292108 | 0.0470254 | 0.0584759 |
+| disp | temp_mean_c | -0.0262978 | 0.0178672 | -0.0613168 | 0.00872117 |
+| disp | year_c | 0.00249383 | 0.0016643 | -0.000768125 | 0.00575579 |
+| disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
+
 This refit requires the curated clutch records and starting model objects listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from the public aggregate files alone.
 
 [Download fitting script](R/75_verify_COM_Poisson.R)
@@ -42,6 +90,7 @@ This refit requires the curated clutch records and starting model objects listed
 | LBFGS | 0 | TRUE | -13769 | 0.00019347 | 0.28087 |
 
 [Download CSV](tables/final_models_20261019/COM_final_diagnostics.csv)
+
 ## Export predictions from the saved fit
 
 <details class="analysis-code">
@@ -51,9 +100,60 @@ This refit requires the curated clutch records and starting model objects listed
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+
+| x | age_class | estimate | CI_low | CI_high |
+| --- | --- | --- | --- | --- |
+| 3.52791 | YOUNG | 5.90581 | 5.82622 | 5.98768 |
+| 3.55136 | YOUNG | 5.90801 | 5.82962 | 5.98896 |
+| 3.57481 | YOUNG | 5.91022 | 5.83314 | 5.99004 |
+| 3.59826 | YOUNG | 5.91243 | 5.83583 | 5.99158 |
+| 3.62171 | YOUNG | 5.91464 | 5.83885 | 5.993 |
+
+[Download complete results (CSV)](tables/final_models_20261019/COM_temperature_mean.csv)
+:::
+
+
+
+
+
+
+
 [Download prediction-export script](R/76_export_COM_predictions.R)
 
 {{< include _includes/lab-06_clutch_output.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.8015 | 0.00397308 | 1.79371 | 1.80929 |
+| cond | rel_LD | -0.00841514 | 0.000245586 | -0.00889648 | -0.0079338 |
+| cond | temp_mean_c | 0.0159318 | 0.00395571 | 0.00817875 | 0.0236848 |
+| cond | year_c | 0.00090279 | 0.000330135 | 0.000255736 | 0.00154984 |
+| cond | age_classOLD | 0.0299908 | 0.00237729 | 0.0253313 | 0.0346502 |
+| disp | (Intercept) | -2.81497 | 0.0338217 | -2.88126 | -2.74868 |
+| disp | rel_LD | 0.0527507 | 0.00292108 | 0.0470254 | 0.0584759 |
+| disp | temp_mean_c | -0.0262978 | 0.0178672 | -0.0613168 | 0.00872117 |
+| disp | year_c | 0.00249383 | 0.0016643 | -0.000768125 | 0.00575579 |
+| disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -67,7 +167,35 @@ head(temperature)
 
 </details>
 
-<details class="analysis-code">
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+| component | term | estimate | SE | lower | upper |
+| --- | --- | --- | --- | --- | --- |
+| cond | (Intercept) | 1.8015 | 0.00397308 | 1.79371 | 1.80929 |
+| cond | rel_LD | -0.00841514 | 0.000245586 | -0.00889648 | -0.0079338 |
+| cond | temp_mean_c | 0.0159318 | 0.00395571 | 0.00817875 | 0.0236848 |
+| cond | year_c | 0.00090279 | 0.000330135 | 0.000255736 | 0.00154984 |
+| cond | age_classOLD | 0.0299908 | 0.00237729 | 0.0253313 | 0.0346502 |
+| disp | (Intercept) | -2.81497 | 0.0338217 | -2.88126 | -2.74868 |
+| disp | rel_LD | 0.0527507 | 0.00292108 | 0.0470254 | 0.0584759 |
+| disp | temp_mean_c | -0.0262978 | 0.0178672 | -0.0613168 | 0.00872117 |
+| disp | year_c | 0.00249383 | 0.0016643 | -0.000768125 | 0.00575579 |
+| disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
+
+[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+:::
+
+
+
+
+
+
+
+<details class="analysis-code" open>
 <summary>Show saved output: count_coefficients.csv</summary>
 
 | model | component | term | estimate | SE | lower | upper |
@@ -102,6 +230,7 @@ head(temperature)
 | 3.6217 | YOUNG | 5.9146 | 5.8388 | 5.993 |
 
 [Download CSV](tables/final_models_20261019/COM_temperature_mean.csv)
+
 ## Figure
 
 Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).

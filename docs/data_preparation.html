@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -325,6 +325,47 @@ Show R code
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>records</th>
+<th>females</th>
+<th>seasons</th>
+<th>females_varied_temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>12627</td>
+<td>8894</td>
+<td>44</td>
+<td>2547</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>9790</td>
+<td>7132</td>
+<td>39</td>
+<td>1908</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/sample_metadata.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="retained-checks" class="level2">
 <h2 class="anchored" data-anchor-id="retained-checks">Retained checks</h2>
@@ -358,12 +399,78 @@ print(vif, row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Predictor checks.</strong> Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>predictor</th>
+<th>VIF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>rel_LD</td>
+<td>1.04257</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>age_classOLD</td>
+<td>1.05186</td>
+</tr>
+<tr class="odd">
+<td>clutch</td>
+<td>temp_mean_c</td>
+<td>1.21357</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>year_c</td>
+<td>1.21891</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>rel_LD</td>
+<td>1.04551</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>age_classOLD</td>
+<td>1.05498</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>temp_mean_c</td>
+<td>1.26692</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>year_c</td>
+<td>1.26909</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/predictor_diagnostics/fixed_design_vif.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 
 
 </section>
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

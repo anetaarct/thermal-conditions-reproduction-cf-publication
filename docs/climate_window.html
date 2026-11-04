@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -297,6 +297,19 @@ Show R code
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cache <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"cache/climwin/recovered_search_data.rds"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(annual) <span class="sc">==</span> <span class="dv">45</span>L, <span class="fu">nrow</span>(cache<span class="sc">$</span>randomised) <span class="sc">==</span> <span class="dv">500</span>L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Input check.</strong> Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; this summary is not a new execution log.</p>
+</div>
+</div>
 </section>
 <section id="candidate-window-calculation" class="level2">
 <h2 class="anchored" data-anchor-id="candidate-window-calculation">Candidate-window calculation</h2>
@@ -353,6 +366,91 @@ cat("Eligible windows:", nrow(windows), "\nRandomised full searches:", B,
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>open_weeks</th>
+<th>close_weeks</th>
+<th>delta_AICc</th>
+<th>temperature_beta</th>
+<th>SE</th>
+<th>non_leap_start</th>
+<th>non_leap_end</th>
+<th>leap_start</th>
+<th>leap_end</th>
+<th>n_days</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main</td>
+<td>6</td>
+<td>0</td>
+<td>-38.6016</td>
+<td>-3.44925</td>
+<td>0.432136</td>
+<td>26 Mar</td>
+<td>13 May</td>
+<td>25 Mar</td>
+<td>12 May</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>first23</td>
+<td>9</td>
+<td>0</td>
+<td>-19.8915</td>
+<td>-3.30513</td>
+<td>0.558755</td>
+<td>05 Mar</td>
+<td>13 May</td>
+<td>04 Mar</td>
+<td>12 May</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>second22</td>
+<td>4</td>
+<td>1</td>
+<td>-8.47412</td>
+<td>-2.04377</td>
+<td>0.561699</td>
+<td>09 Apr</td>
+<td>06 May</td>
+<td>08 Apr</td>
+<td>05 May</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/selected_windows_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="full-fitting-script" class="level2">
 <h2 class="anchored" data-anchor-id="full-fitting-script">Full fitting script</h2>
@@ -664,6 +762,91 @@ Show full <code>climwin</code> script
 <span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">as.data.frame</span>(med_result), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>open_weeks</th>
+<th>close_weeks</th>
+<th>delta_AICc</th>
+<th>temperature_beta</th>
+<th>SE</th>
+<th>non_leap_start</th>
+<th>non_leap_end</th>
+<th>leap_start</th>
+<th>leap_end</th>
+<th>n_days</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main</td>
+<td>6</td>
+<td>0</td>
+<td>-38.6016</td>
+<td>-3.44925</td>
+<td>0.432136</td>
+<td>26 Mar</td>
+<td>13 May</td>
+<td>25 Mar</td>
+<td>12 May</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>first23</td>
+<td>9</td>
+<td>0</td>
+<td>-19.8915</td>
+<td>-3.30513</td>
+<td>0.558755</td>
+<td>05 Mar</td>
+<td>13 May</td>
+<td>04 Mar</td>
+<td>12 May</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>second22</td>
+<td>4</td>
+<td>1</td>
+<td>-8.47412</td>
+<td>-2.04377</td>
+<td>0.561699</td>
+<td>09 Apr</td>
+<td>06 May</td>
+<td>08 Apr</td>
+<td>05 May</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/selected_windows_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="inspect-the-saved-search-output" class="level2">
 <h2 class="anchored" data-anchor-id="inspect-the-saved-search-output">Inspect the saved search output</h2>
@@ -686,6 +869,91 @@ print(validation$temporal_validation)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>open_weeks</th>
+<th>close_weeks</th>
+<th>delta_AICc</th>
+<th>temperature_beta</th>
+<th>SE</th>
+<th>non_leap_start</th>
+<th>non_leap_end</th>
+<th>leap_start</th>
+<th>leap_end</th>
+<th>n_days</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main</td>
+<td>6</td>
+<td>0</td>
+<td>-38.6016</td>
+<td>-3.44925</td>
+<td>0.432136</td>
+<td>26 Mar</td>
+<td>13 May</td>
+<td>25 Mar</td>
+<td>12 May</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>first23</td>
+<td>9</td>
+<td>0</td>
+<td>-19.8915</td>
+<td>-3.30513</td>
+<td>0.558755</td>
+<td>05 Mar</td>
+<td>13 May</td>
+<td>04 Mar</td>
+<td>12 May</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>second22</td>
+<td>4</td>
+<td>1</td>
+<td>-8.47412</td>
+<td>-2.04377</td>
+<td>0.561699</td>
+<td>09 Apr</td>
+<td>06 May</td>
+<td>08 Apr</td>
+<td>05 May</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/selected_windows_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p><a href="R/04_climwin_laying_date.R">Download R script</a> · <a href="cache/climwin/recovered_search_data.rds">Download aggregate RDS results</a></p>
 </section>
 <section id="read-the-cached-search-results" class="level2">
@@ -701,6 +969,91 @@ Show R code
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>best[, <span class="fu">c</span>(<span class="st">"WindowOpen"</span>, <span class="st">"WindowClose"</span>, <span class="st">"deltaAICc"</span>, <span class="st">"ModelBeta"</span>)]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"tables/climwin_recovered/selected_windows_audit.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved window-search results.</strong> The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; new randomisations may differ.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>open_weeks</th>
+<th>close_weeks</th>
+<th>delta_AICc</th>
+<th>temperature_beta</th>
+<th>SE</th>
+<th>non_leap_start</th>
+<th>non_leap_end</th>
+<th>leap_start</th>
+<th>leap_end</th>
+<th>n_days</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main</td>
+<td>6</td>
+<td>0</td>
+<td>-38.6016</td>
+<td>-3.44925</td>
+<td>0.432136</td>
+<td>26 Mar</td>
+<td>13 May</td>
+<td>25 Mar</td>
+<td>12 May</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>first23</td>
+<td>9</td>
+<td>0</td>
+<td>-19.8915</td>
+<td>-3.30513</td>
+<td>0.558755</td>
+<td>05 Mar</td>
+<td>13 May</td>
+<td>04 Mar</td>
+<td>12 May</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>second22</td>
+<td>4</td>
+<td>1</td>
+<td>-8.47412</td>
+<td>-2.04377</td>
+<td>0.561699</td>
+<td>09 Apr</td>
+<td>06 May</td>
+<td>08 Apr</td>
+<td>05 May</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/selected_windows_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -761,6 +1114,20 @@ Show R code
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p_plus_one <span class="ot">&lt;-</span> (exceedances <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> (<span class="fu">length</span>(null) <span class="sc">+</span> <span class="dv">1</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">exceedances =</span> exceedances, <span class="at">p_plus_one =</span> p_plus_one)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved randomisation check.</strong> None of 500 cached searches exceeded the observed improvement; the plus-one empirical probability is 1/501 = 0.001996.</p>
+<p><a href="tables/climwin_recovered/randomised_windows.csv">Download all 500 saved searches</a>.</p>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -940,6 +1307,71 @@ Show recovery audit code: weekly bins, cached checks and held-out validation
 <span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(validation, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved validation.</strong> The held-out association remains negative; prediction uses the training coefficients. This validates the phenology window, not the reproductive models.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>training_seasons</th>
+<th>held_out_seasons</th>
+<th>training_beta</th>
+<th>held_out_beta</th>
+<th>held_out_CI_low</th>
+<th>held_out_CI_high</th>
+<th>held_out_R_squared</th>
+<th>held_out_p</th>
+<th>prediction_RMSE</th>
+<th>baseline_RMSE</th>
+<th>prediction_bias</th>
+<th>legacy_singlewin_beta</th>
+<th>max_legacy_exposure_difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>23</td>
+<td>22</td>
+<td>-3.30513</td>
+<td>-1.56553</td>
+<td>-2.734</td>
+<td>-0.397058</td>
+<td>0.280857</td>
+<td>0.011185</td>
+<td>3.18671</td>
+<td>5.22643</td>
+<td>1.52055</td>
+<td>0.370329</td>
+<td>15.3507</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/temporal_validation_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -947,6 +1379,71 @@ Show R code
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>audit <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"cache/climwin/recovery_audit_results.rds"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>audit<span class="sc">$</span>temporal_validation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved validation.</strong> The held-out association remains negative; prediction uses the training coefficients. This validates the phenology window, not the reproductive models.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>training_seasons</th>
+<th>held_out_seasons</th>
+<th>training_beta</th>
+<th>held_out_beta</th>
+<th>held_out_CI_low</th>
+<th>held_out_CI_high</th>
+<th>held_out_R_squared</th>
+<th>held_out_p</th>
+<th>prediction_RMSE</th>
+<th>baseline_RMSE</th>
+<th>prediction_bias</th>
+<th>legacy_singlewin_beta</th>
+<th>max_legacy_exposure_difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>23</td>
+<td>22</td>
+<td>-3.30513</td>
+<td>-1.56553</td>
+<td>-2.734</td>
+<td>-0.397058</td>
+<td>0.280857</td>
+<td>0.011185</td>
+<td>3.18671</td>
+<td>5.22643</td>
+<td>1.52055</td>
+<td>0.370329</td>
+<td>15.3507</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/climwin_recovered/temporal_validation_audit.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 16%">
@@ -994,7 +1491,7 @@ Show R code
 </tbody>
 </table>
 <p><a href="tables/climwin_recovered/temporal_validation_audit.csv">Download validation output</a> · <a href="tables/climwin_recovered/legacy_exposure_comparison.csv">Compare old and reconstructed exposures</a> · <a href="tables/climwin_recovered/annual_weekly_exposure.csv">Annual weekly inputs</a></p>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Original archived outputs and provenance
 </summary>
@@ -1034,6 +1531,7 @@ Original archived outputs and provenance
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

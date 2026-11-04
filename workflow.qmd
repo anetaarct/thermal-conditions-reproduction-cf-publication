@@ -21,6 +21,19 @@ The short input check below runs in this page using WebR (R in your browser); no
 
 {{< include _includes/lab-01_weather_inputs.qmd >}}
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; this summary is not a new execution log.
+:::
+
+
+
+
+
+
+
 ## Reproduce each step
 
 | Step | Public inputs | What you can run or reproduce |

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -254,6 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link active" data-scroll-target="#data-preparation">Data preparation</a></li>
   <li><a href="#fit-and-verify-the-single-temperature-model" id="toc-fit-and-verify-the-single-temperature-model" class="nav-link" data-scroll-target="#fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</a></li>
+  <li><a href="#export-predictions-from-the-saved-fit" id="toc-export-predictions-from-the-saved-fit" class="nav-link" data-scroll-target="#export-predictions-from-the-saved-fit">Export predictions from the saved fit</a></li>
   <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a></li>
   <li><a href="#main-conclusions" id="toc-main-conclusions" class="nav-link" data-scroll-target="#main-conclusions">Main conclusions</a></li>
   </ul>
@@ -293,6 +294,47 @@ Show R code
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nobs</span>(base) <span class="sc">==</span> <span class="dv">9790</span>, base<span class="sc">$</span>fit<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>records</th>
+<th>females</th>
+<th>seasons</th>
+<th>females_varied_temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>12627</td>
+<td>8894</td>
+<td>44</td>
+<td>2547</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>9790</td>
+<td>7132</td>
+<td>39</td>
+<td>1908</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/sample_metadata.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="fit-and-verify-the-single-temperature-model" class="level2">
 <h2 class="anchored" data-anchor-id="fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</h2>
@@ -368,6 +410,122 @@ Show fitting script (run locally)
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(original_hash,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'Completed isolated sensitivity comparison; primary models, manuscript and website unchanged.'</span>,<span class="st">'AIC comparison is in-sample, not held-out validation. Variance-component boundary precludes ordinary chi-square LRT interpretation.'</span>,<span class="st">'Simulation intervals are plug-in and omit parameter-estimation uncertainty. Conditional calibration uses fitted year effects and is not out-of-sample performance.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">logmsg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>component</th>
+<th>term</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cond</td>
+<td>(Intercept)</td>
+<td>1.08286</td>
+<td>0.0664973</td>
+<td>0.952525</td>
+<td>1.21319</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>rel_LD</td>
+<td>-0.0751094</td>
+<td>0.00456819</td>
+<td>-0.0840629</td>
+<td>-0.0661559</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>age_classOLD</td>
+<td>0.00745227</td>
+<td>0.044841</td>
+<td>-0.0804346</td>
+<td>0.0953391</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>temp_mean_c</td>
+<td>-0.190955</td>
+<td>0.059702</td>
+<td>-0.307969</td>
+<td>-0.0739412</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>year_c</td>
+<td>-0.00860357</td>
+<td>0.00572649</td>
+<td>-0.0198273</td>
+<td>0.00262014</td>
+</tr>
+<tr class="even">
+<td>zi</td>
+<td>(Intercept)</td>
+<td>-1.55237</td>
+<td>0.0930571</td>
+<td>-1.73476</td>
+<td>-1.36998</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>(Intercept)</td>
+<td>1.15545</td>
+<td>0.0904679</td>
+<td>0.978135</td>
+<td>1.33276</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>rel_LD</td>
+<td>-0.0702219</td>
+<td>0.0069397</td>
+<td>-0.0838234</td>
+<td>-0.0566203</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>age_classOLD</td>
+<td>0.0239467</td>
+<td>0.0844113</td>
+<td>-0.141496</td>
+<td>0.18939</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>temp_mean_c</td>
+<td>0.0776495</td>
+<td>0.0643088</td>
+<td>-0.0483935</td>
+<td>0.203692</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>year_c</td>
+<td>-0.0106886</td>
+<td>0.0063209</td>
+<td>-0.0230773</td>
+<td>0.00170017</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p>This refit requires the curated fledging records and starting model object listed in <a href="./workflow.html">Data preparation</a>, plus R with glmmTMB. It cannot be run from public aggregate files alone.</p>
 <p><a href="R/81_fit_ZIyear_fledging.R">Download fitting script</a></p>
 <table class="caption-top table">
@@ -394,7 +552,10 @@ Show fitting script (run locally)
 </tr>
 </tbody>
 </table>
-<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a> ## Export predictions from the saved fit</p>
+<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a></p>
+</section>
+<section id="export-predictions-from-the-saved-fit" class="level2">
+<h2 class="anchored" data-anchor-id="export-predictions-from-the-saved-fit">Export predictions from the saved fit</h2>
 <details class="analysis-code">
 <summary>
 Show prediction-export script (run locally)
@@ -432,6 +593,68 @@ Show prediction-export script (run locally)
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(h,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'8000 joint asymptotic coefficient draws; point estimates are ML, not draw medians.'</span>,<span class="st">'All random effects zero for curves, including zero-year and precision-year. Temperature x centred at 5.098595980711215 C.'</span>,<span class="st">'Original selected fit unchanged.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">print</span>(rs);<span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved prediction output (first five rows).</strong> <code>estimate</code> is the reference-condition expected outcome; <code>CI_low</code> and <code>CI_high</code> are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>x</th>
+<th>age_class</th>
+<th>estimate</th>
+<th>CI_low</th>
+<th>CI_high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-1.57069</td>
+<td>YOUNG</td>
+<td>0.659743</td>
+<td>0.621865</td>
+<td>0.694275</td>
+</tr>
+<tr class="even">
+<td>-1.5425</td>
+<td>YOUNG</td>
+<td>0.65903</td>
+<td>0.621595</td>
+<td>0.693344</td>
+</tr>
+<tr class="odd">
+<td>-1.51431</td>
+<td>YOUNG</td>
+<td>0.658314</td>
+<td>0.62102</td>
+<td>0.69256</td>
+</tr>
+<tr class="even">
+<td>-1.48612</td>
+<td>YOUNG</td>
+<td>0.657596</td>
+<td>0.620572</td>
+<td>0.691627</td>
+</tr>
+<tr class="odd">
+<td>-1.45793</td>
+<td>YOUNG</td>
+<td>0.656876</td>
+<td>0.620023</td>
+<td>0.690662</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p><a href="R/82_export_ZIyear_primary.R">Download prediction-export script</a></p>
 <section class="r-lab" data-r-lab="07_fledging_output" aria-label="Read the fledging model and calculate expected success">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read the fledging model and calculate expected success</h3></div>
@@ -453,6 +676,122 @@ print(data.frame(temperature_deviation, expected), row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>component</th>
+<th>term</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cond</td>
+<td>(Intercept)</td>
+<td>1.08286</td>
+<td>0.0664973</td>
+<td>0.952525</td>
+<td>1.21319</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>rel_LD</td>
+<td>-0.0751094</td>
+<td>0.00456819</td>
+<td>-0.0840629</td>
+<td>-0.0661559</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>age_classOLD</td>
+<td>0.00745227</td>
+<td>0.044841</td>
+<td>-0.0804346</td>
+<td>0.0953391</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>temp_mean_c</td>
+<td>-0.190955</td>
+<td>0.059702</td>
+<td>-0.307969</td>
+<td>-0.0739412</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>year_c</td>
+<td>-0.00860357</td>
+<td>0.00572649</td>
+<td>-0.0198273</td>
+<td>0.00262014</td>
+</tr>
+<tr class="even">
+<td>zi</td>
+<td>(Intercept)</td>
+<td>-1.55237</td>
+<td>0.0930571</td>
+<td>-1.73476</td>
+<td>-1.36998</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>(Intercept)</td>
+<td>1.15545</td>
+<td>0.0904679</td>
+<td>0.978135</td>
+<td>1.33276</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>rel_LD</td>
+<td>-0.0702219</td>
+<td>0.0069397</td>
+<td>-0.0838234</td>
+<td>-0.0566203</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>age_classOLD</td>
+<td>0.0239467</td>
+<td>0.0844113</td>
+<td>-0.141496</td>
+<td>0.18939</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>temp_mean_c</td>
+<td>0.0776495</td>
+<td>0.0643088</td>
+<td>-0.0483935</td>
+<td>0.203692</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>year_c</td>
+<td>-0.0106886</td>
+<td>0.0063209</td>
+<td>-0.0230773</td>
+<td>0.00170017</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -462,7 +801,123 @@ Show R code
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fixed</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<details class="analysis-code">
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>component</th>
+<th>term</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cond</td>
+<td>(Intercept)</td>
+<td>1.08286</td>
+<td>0.0664973</td>
+<td>0.952525</td>
+<td>1.21319</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>rel_LD</td>
+<td>-0.0751094</td>
+<td>0.00456819</td>
+<td>-0.0840629</td>
+<td>-0.0661559</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>age_classOLD</td>
+<td>0.00745227</td>
+<td>0.044841</td>
+<td>-0.0804346</td>
+<td>0.0953391</td>
+</tr>
+<tr class="even">
+<td>cond</td>
+<td>temp_mean_c</td>
+<td>-0.190955</td>
+<td>0.059702</td>
+<td>-0.307969</td>
+<td>-0.0739412</td>
+</tr>
+<tr class="odd">
+<td>cond</td>
+<td>year_c</td>
+<td>-0.00860357</td>
+<td>0.00572649</td>
+<td>-0.0198273</td>
+<td>0.00262014</td>
+</tr>
+<tr class="even">
+<td>zi</td>
+<td>(Intercept)</td>
+<td>-1.55237</td>
+<td>0.0930571</td>
+<td>-1.73476</td>
+<td>-1.36998</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>(Intercept)</td>
+<td>1.15545</td>
+<td>0.0904679</td>
+<td>0.978135</td>
+<td>1.33276</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>rel_LD</td>
+<td>-0.0702219</td>
+<td>0.0069397</td>
+<td>-0.0838234</td>
+<td>-0.0566203</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>age_classOLD</td>
+<td>0.0239467</td>
+<td>0.0844113</td>
+<td>-0.141496</td>
+<td>0.18939</td>
+</tr>
+<tr class="even">
+<td>disp</td>
+<td>temp_mean_c</td>
+<td>0.0776495</td>
+<td>0.0643088</td>
+<td>-0.0483935</td>
+<td>0.203692</td>
+</tr>
+<tr class="odd">
+<td>disp</td>
+<td>year_c</td>
+<td>-0.0106886</td>
+<td>0.0063209</td>
+<td>-0.0230773</td>
+<td>0.00170017</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
+<details class="analysis-code" open="">
 <summary>
 Show saved output: ZIyear_fixed.csv
 </summary>
@@ -619,7 +1074,7 @@ Show saved output: ZIyear_fixed.csv
 </tbody>
 </table>
 <a href="tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv">Download CSV</a>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Show saved output: simulation_checks.csv
 </summary>
@@ -872,6 +1327,7 @@ Show saved output: simulation_checks.csv
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

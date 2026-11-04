@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -300,6 +300,120 @@ Show temperature decomposition
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>temp_within <span class="ot">&lt;-</span> d<span class="sc">$</span>temp_mean_c <span class="sc">-</span> d<span class="sc">$</span>temp_between</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(d<span class="sc">$</span>temp_within <span class="sc">+</span> d<span class="sc">$</span>temp_between <span class="sc">-</span> d<span class="sc">$</span>temp_mean_c)) <span class="sc">&lt;</span> <span class="fl">1e-8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>baseline_AIC</th>
+<th>within_between_AIC</th>
+<th>delta_AIC</th>
+<th>LR</th>
+<th>df</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>27561.1</td>
+<td>27556.8</td>
+<td>-4.30555</td>
+<td>8.30555</td>
+<td>2</td>
+<td>0.0157207</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>33294.1</td>
+<td>33297.9</td>
+<td>3.75495</td>
+<td>0.245052</td>
+<td>2</td>
+<td>0.884683</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>component</th>
+<th>contrast</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>0.00105414</td>
+<td>0.00226567</td>
+<td>-0.0033865</td>
+<td>0.00549478</td>
+<td>0.641741</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.110737</td>
+<td>0.0395268</td>
+<td>-0.188208</td>
+<td>-0.0332663</td>
+<td>0.00508534</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>-0.0223986</td>
+<td>0.0454329</td>
+<td>-0.111445</td>
+<td>0.0666482</td>
+<td>0.62201</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.0207843</td>
+<td>0.0823427</td>
+<td>-0.182173</td>
+<td>0.140605</td>
+<td>0.800723</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -696,6 +810,120 @@ Show fitting script (run locally)
 <span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>baseline_AIC</th>
+<th>within_between_AIC</th>
+<th>delta_AIC</th>
+<th>LR</th>
+<th>df</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>27561.1</td>
+<td>27556.8</td>
+<td>-4.30555</td>
+<td>8.30555</td>
+<td>2</td>
+<td>0.0157207</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>33294.1</td>
+<td>33297.9</td>
+<td>3.75495</td>
+<td>0.245052</td>
+<td>2</td>
+<td>0.884683</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>component</th>
+<th>contrast</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>0.00105414</td>
+<td>0.00226567</td>
+<td>-0.0033865</td>
+<td>0.00549478</td>
+<td>0.641741</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.110737</td>
+<td>0.0395268</td>
+<td>-0.188208</td>
+<td>-0.0332663</td>
+<td>0.00508534</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>-0.0223986</td>
+<td>0.0454329</td>
+<td>-0.111445</td>
+<td>0.0666482</td>
+<td>0.62201</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.0207843</td>
+<td>0.0823427</td>
+<td>-0.182173</td>
+<td>0.140605</td>
+<td>0.800723</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <p>The fits use the same private curated records as the single-temperature models and require R with glmmTMB. The public output includes aggregate estimates, not the fitted objects or individual records, so this full refit cannot run in the browser.</p>
 <p><a href="R/90_fit_temperature_within_between.R">Download fitting script</a></p>
 </section>
@@ -719,6 +947,120 @@ print(effects[, c("trait", "predictor", "mean_change_per_C", "consistency_measur
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>baseline_AIC</th>
+<th>within_between_AIC</th>
+<th>delta_AIC</th>
+<th>LR</th>
+<th>df</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>27561.1</td>
+<td>27556.8</td>
+<td>-4.30555</td>
+<td>8.30555</td>
+<td>2</td>
+<td>0.0157207</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>33294.1</td>
+<td>33297.9</td>
+<td>3.75495</td>
+<td>0.245052</td>
+<td>2</td>
+<td>0.884683</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>component</th>
+<th>contrast</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>0.00105414</td>
+<td>0.00226567</td>
+<td>-0.0033865</td>
+<td>0.00549478</td>
+<td>0.641741</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.110737</td>
+<td>0.0395268</td>
+<td>-0.188208</td>
+<td>-0.0332663</td>
+<td>0.00508534</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>-0.0223986</td>
+<td>0.0454329</td>
+<td>-0.111445</td>
+<td>0.0666482</td>
+<td>0.62201</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.0207843</td>
+<td>0.0823427</td>
+<td>-0.182173</td>
+<td>0.140605</td>
+<td>0.800723</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <details class="analysis-code" open="">
 <summary>
 Show cached-output loading
@@ -727,6 +1069,120 @@ Show cached-output loading
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>fixed_effects</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>contrasts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>baseline_AIC</th>
+<th>within_between_AIC</th>
+<th>delta_AIC</th>
+<th>LR</th>
+<th>df</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>27561.1</td>
+<td>27556.8</td>
+<td>-4.30555</td>
+<td>8.30555</td>
+<td>2</td>
+<td>0.0157207</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>33294.1</td>
+<td>33297.9</td>
+<td>3.75495</td>
+<td>0.245052</td>
+<td>2</td>
+<td>0.884683</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>component</th>
+<th>contrast</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>0.00105414</td>
+<td>0.00226567</td>
+<td>-0.0033865</td>
+<td>0.00549478</td>
+<td>0.641741</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.110737</td>
+<td>0.0395268</td>
+<td>-0.188208</td>
+<td>-0.0332663</td>
+<td>0.00508534</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>-0.0223986</td>
+<td>0.0454329</td>
+<td>-0.111445</td>
+<td>0.0666482</td>
+<td>0.62201</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.0207843</td>
+<td>0.0823427</td>
+<td>-0.182173</td>
+<td>0.140605</td>
+<td>0.800723</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <div class="table-responsive">
 <table class="caption-top table">
 <thead>
@@ -919,6 +1375,86 @@ print(change, row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Temperature-adjusted calendar-year results.</strong> Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>model</th>
+<th>mean_change</th>
+<th>mean_lower</th>
+<th>mean_upper</th>
+<th>consistency_ratio</th>
+<th>ratio_lower</th>
+<th>ratio_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>baseline</td>
+<td>0.240769</td>
+<td>0.067762</td>
+<td>0.411234</td>
+<td>1.07938</td>
+<td>0.997301</td>
+<td>1.16789</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>within_between</td>
+<td>0.247153</td>
+<td>0.0681042</td>
+<td>0.421956</td>
+<td>1.04321</td>
+<td>0.960493</td>
+<td>1.12916</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>baseline</td>
+<td>-0.0500468</td>
+<td>-0.11212</td>
+<td>0.0162065</td>
+<td>0.6662</td>
+<td>0.410643</td>
+<td>1.07155</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>within_between</td>
+<td>-0.0524622</td>
+<td>-0.114463</td>
+<td>0.011854</td>
+<td>0.652904</td>
+<td>0.407307</td>
+<td>1.06583</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/joint_calendar_year_20261027/contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 <section class="r-lab" data-r-lab="10_draw_joint_year" aria-label="Draw the calendar-year figure">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Draw the calendar-year figure</h3></div>
 <p class="r-lab-note">Draws both temperature formulations from saved prediction tables. Modify the code and rerun to change the figure.</p>
@@ -948,6 +1484,86 @@ for (trait in c("clutch", "fledging")) for (component in c("mean", "consistency"
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Temperature-adjusted calendar-year results.</strong> Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>model</th>
+<th>mean_change</th>
+<th>mean_lower</th>
+<th>mean_upper</th>
+<th>consistency_ratio</th>
+<th>ratio_lower</th>
+<th>ratio_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>baseline</td>
+<td>0.240769</td>
+<td>0.067762</td>
+<td>0.411234</td>
+<td>1.07938</td>
+<td>0.997301</td>
+<td>1.16789</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>within_between</td>
+<td>0.247153</td>
+<td>0.0681042</td>
+<td>0.421956</td>
+<td>1.04321</td>
+<td>0.960493</td>
+<td>1.12916</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>baseline</td>
+<td>-0.0500468</td>
+<td>-0.11212</td>
+<td>0.0162065</td>
+<td>0.6662</td>
+<td>0.410643</td>
+<td>1.07155</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>within_between</td>
+<td>-0.0524622</td>
+<td>-0.114463</td>
+<td>0.011854</td>
+<td>0.652904</td>
+<td>0.407307</td>
+<td>1.06583</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/joint_calendar_year_20261027/contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
 </section>
 <section id="prediction-export-and-checks" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-export-and-checks">Prediction export and checks</h2>
@@ -1113,7 +1729,121 @@ Show prediction export and conditional-simulation code
 <span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>        <span class="fu">file.path</span>(out, <span class="st">"aggregate_results.rds"</span>), <span class="at">version =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<details class="analysis-code">
+<div class="review-summary callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Saved results for this step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>baseline_AIC</th>
+<th>within_between_AIC</th>
+<th>delta_AIC</th>
+<th>LR</th>
+<th>df</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>27561.1</td>
+<td>27556.8</td>
+<td>-4.30555</td>
+<td>8.30555</td>
+<td>2</td>
+<td>0.0157207</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>33294.1</td>
+<td>33297.9</td>
+<td>3.75495</td>
+<td>0.245052</td>
+<td>2</td>
+<td>0.884683</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>trait</th>
+<th>component</th>
+<th>contrast</th>
+<th>estimate</th>
+<th>SE</th>
+<th>lower</th>
+<th>upper</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clutch</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>0.00105414</td>
+<td>0.00226567</td>
+<td>-0.0033865</td>
+<td>0.00549478</td>
+<td>0.641741</td>
+</tr>
+<tr class="even">
+<td>clutch</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.110737</td>
+<td>0.0395268</td>
+<td>-0.188208</td>
+<td>-0.0332663</td>
+<td>0.00508534</td>
+</tr>
+<tr class="odd">
+<td>fledging</td>
+<td>cond</td>
+<td>within_minus_between</td>
+<td>-0.0223986</td>
+<td>0.0454329</td>
+<td>-0.111445</td>
+<td>0.0666482</td>
+<td>0.62201</td>
+</tr>
+<tr class="even">
+<td>fledging</td>
+<td>disp</td>
+<td>within_minus_between</td>
+<td>-0.0207843</td>
+<td>0.0823427</td>
+<td>-0.182173</td>
+<td>0.140605</td>
+<td>0.800723</td>
+</tr>
+</tbody>
+</table>
+<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
+</div>
+</div>
+<details class="analysis-code" open="">
 <summary>
 Numerical convergence and optimiser checks
 </summary>
@@ -1216,7 +1946,7 @@ Numerical convergence and optimiser checks
 </table>
 </div>
 </details>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Conditional simulation checks
 </summary>
@@ -1302,7 +2032,7 @@ Conditional simulation checks
 </div>
 </details>
 <p>Observed statistics outside the conditional 95% simulation intervals: clutch: <code>variance</code>; fledging: <code>variance_fraction</code>. These discrepancies remain visible in the diagnostics.</p>
-<details class="analysis-code">
+<details class="analysis-code" open="">
 <summary>
 Fixed-design VIF
 </summary>
@@ -1460,6 +2190,7 @@ Fixed-design VIF
 
 </main> <!-- /main -->
 <script type="module" src="assets/r-lab.js"></script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

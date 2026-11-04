@@ -21,9 +21,33 @@ This new plotting script reads the recovered candidate-window and randomisation 
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
+
 ```bash
 Rscript R/04b_plot_recovered_climwin.R
 ```
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
 
 ![Recovered window-search and randomisation diagnostics.](figures/Fig_climwin_recovered.png)
 
@@ -38,6 +62,19 @@ Rscript R/04b_plot_recovered_climwin.R
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
+
 <details class="analysis-code" open>
 <summary>Show command</summary>
 
@@ -46,6 +83,19 @@ python scripts/plot_temporal_models.py
 ```
 
 </details>
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
 
 ![Saved calendar-year figure.](figures/Fig4_COM_M1_time.png)
 
@@ -60,6 +110,19 @@ python scripts/plot_temporal_models.py
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
+
 <details class="analysis-code" open>
 <summary>Show command</summary>
 
@@ -68,6 +131,19 @@ python scripts/plot_final_models.py
 ```
 
 </details>
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
 
 ### Temperature
 
@@ -96,9 +172,33 @@ python scripts/plot_final_models.py
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
+
 ```r
 source("R/92_plot_temperature_within_between.R")
 ```
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
 
 ![Additional clutch-size model.](figures/Fig_within_between_clutch.png)
 
@@ -118,6 +218,19 @@ This block uses `annual`, `plot_data` and `scale_data` produced by the [temperat
 {{< include _includes/25_environment_plot.qmd >}}
 
 </details>
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
+:::
+
+
+
+
+
+
 
 ![Saved spring-temperature figure.](figures/Fig2_temperature_location_scale_time.png)
 

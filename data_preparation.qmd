@@ -36,6 +36,26 @@ table(d$year_f)
 
 </details>
 
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+
+| trait | records | females | seasons | females_varied_temperature |
+| --- | --- | --- | --- | --- |
+| clutch | 12627 | 8894 | 44 | 2547 |
+| fledging | 9790 | 7132 | 39 | 1908 |
+
+[Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+:::
+
+
+
+
+
+
+
 ## Retained checks
 
 - Clutch predictor VIFs: temperature 1.21; year 1.22.
@@ -49,3 +69,29 @@ The original raw-data cleaning script is not included; these pages start from th
 This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recomputing the VIFs needs individual records, which are not public.
 
 {{< include _includes/lab-05_predictor_checks.qmd >}}
+
+::: {.callout-note .review-summary appearance="simple"}
+
+## Saved results for this step
+
+**Predictor checks.** Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.
+
+| trait | predictor | VIF |
+| --- | --- | --- |
+| clutch | rel_LD | 1.04257 |
+| clutch | age_classOLD | 1.05186 |
+| clutch | temp_mean_c | 1.21357 |
+| clutch | year_c | 1.21891 |
+| fledging | rel_LD | 1.04551 |
+| fledging | age_classOLD | 1.05498 |
+| fledging | temp_mean_c | 1.26692 |
+| fledging | year_c | 1.26909 |
+
+[Download complete results (CSV)](tables/predictor_diagnostics/fixed_design_vif.csv)
+:::
+
+
+
+
+
+
