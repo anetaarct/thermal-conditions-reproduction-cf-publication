@@ -65,6 +65,6 @@ Run `Rscript R/04a_audit_recovered_climwin.R` and `Rscript R/04b_plot_recovered_
 
 `R/03_predictor_diagnostics.R` computes fixed-design VIF and year-temperature correlations from the public curated model-ready CSVs, verifying their annual sample summaries against the final exports. Both model-ready records and aggregate diagnostics are public.
 
-## CF source dataset and earlier archive
+## CF source dataset
 
-The source breeding dataset is [data_raw/birds/CF21980-2025.csv](data_raw/birds/CF21980-2025.csv), preserved from its original January 2026 GitHub upload. See the [source documentation](data_raw/birds/README.md) for provenance, checksum and its relationship to the later DB_MISMATCH files. The earlier `CF_adult_birds_1980-2019.csv` is retained as an archive. Final model-ready inputs are in `data_derived/analysis/`.
+The source breeding dataset is [data_raw/birds/CF21980-2025.csv](data_raw/birds/CF21980-2025.csv), preserved from its original January 2026 GitHub upload. See the [source documentation](data_raw/birds/README.md) for provenance, checksum and its relationship to the later DB_MISMATCH files. Final model-ready inputs are in `data_derived/analysis/`.

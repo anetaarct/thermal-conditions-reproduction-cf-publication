@@ -93,8 +93,7 @@
     "data_derived/analysis/README.md": "39c421c1a0c8462585921f118a9e9063e630da1bf4d0cabf51377d3582467649",
     "tables/model_data_audit.json": "716ade0a5f5d141ba9f7e026cf3d5a6a514c7ed1f08397252d41e8c84f83e436",
     "tables/reproduction_validation.json": "224682d860ee1e45e64b825ea0cf6f3366f80d20da4b01b6402db4258dcc6ecd",
-    "data_raw/birds/CF_adult_birds_1980-2019.csv": "e1d7e3a6827b8c3d51afa26f6a8a4e3c06086c9ab7f3ba321fb53f583a5f6612",
-    "data_raw/birds/README.md": "67cca35d1b0bae51f67f9168371d129dc73fa220bec0623c11f021c038ec0057",
+    "data_raw/birds/README.md": "4d47a3f377c2797e3b09ce933c3b71448b40dff628453252a9649cd4c3a00d62",
     "data_raw/birds/CF21980-2025.csv": "c7f9a9981cbcba9b065fa67e77e00ee40d5612a9fd990aa1fbcf1b2b157c62e6"
   },
   "model_data_release": "4 November 2026: final curated model-ready records and standalone refitting code, with numerical reproduction checks. Original numerical exports retained."

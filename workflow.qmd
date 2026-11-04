@@ -22,12 +22,6 @@ The data lineage was `CF21980-2025.csv` → `DB_MISMATCH.csv` → the local deri
 
 The original source upload contains incomplete records, which were retained in the archive. For 2025, 198 records have LD observed and 179 records enter the final clutch-size sample. FLEDGE is missing for 2025; the reported fledging sample covers 1981–2019.
 
-### Earlier field-data archive: 1980–2019
-
-[`CF_adult_birds_1980-2019.csv`](data_raw/birds/CF_adult_birds_1980-2019.csv) is an earlier archive of 23,911 field records, consistent in the checked breeding fields with `RM_CF_adults_1980-2019_14.07.23.xlsx`. It is retained for provenance, rather than identified as the source version used to prepare the present models.
-
-Compared with that earlier archive, 14,692 unambiguously matched records contain 312 FLEDGE differences: 247 missing-to-observed, 57 observed-to-different-observed and eight observed-to-missing. The 247 populated values and 57 revised counts were already present in the updated workbook dated 23 January 2026. Of the eight later missing values, one was already missing in that workbook and seven resulted from the documented January selection/correction stage. The corrected sheet documents 14 FLEDGE values cleared because the fledgling count was below the recruit count. The underlying field-log basis of the January 2026 updates is not documented in the available files.
-
 ### Final inputs used to fit the reported models
 
 The final models were fitted to the curated, trait-specific samples derived during preparation of the later breeding dataset. Original ring labels were replaced with consistent model-only female identifiers in the public model-ready files.
@@ -50,7 +44,6 @@ Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-re
 | Inputs | Used for |
 |---|---|
 | `data_raw/birds/CF21980-2025.csv` | Source breeding dataset preceding preparation of the final model inputs |
-| `data_raw/birds/CF_adult_birds_1980-2019.csv` | Earlier field-record archive, retained for provenance |
 | `data_derived/smhi_hoburg_daily_temperature.csv` | Daily station observations used to build thermal windows |
 | `data_derived/annual_raw_median_laying_date.csv` | Annual laying-date response for window selection |
 | `data_derived/annual_main_window_temperature.csv` | Saved annual exposure used in reproductive models |
