@@ -15,7 +15,7 @@ Both temperature formulations appear in the main analysis. The single-temperatur
 | Egg-to-fledging success | Zero-inflated beta-binomial; predictors enter component logit mean and log precision | Female and year in mean; year in precision and extra-zero probability |
 | Calendar-year trends | Same response distributions as above, with temperature removed from location and scale | Retained from corresponding reproductive model |
 
-Fitting requires curated individual records and saved starting objects. These are not included in the public repository, so model fitting is done locally in the recorded R/glmmTMB environment. The complete code is available as downloadable R scripts on the analysis pages.
+Fitting uses the public curated individual records in `data_derived/analysis/`. The [standalone runner](R/94_reproduce_from_public_data.R) rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.
 
 ## Spring-temperature model
 
@@ -46,8 +46,8 @@ Saved optimizer and conditional-simulation outputs are shown below. Simulation c
 |---|---:|---:|---:|---|---|
 | Clutch, temperature | 12,627 | −13,768.55 | 27,561.10 | yes | yes |
 | Fledging, temperature | 9,790 | −16,632.06 | 33,294.11 | yes | yes |
-| Clutch, no temperature | 12,627 | −13,776.52 | 27,573.04 | yes | yes |
-| Fledging, no temperature | 9,790 | −16,638.42 | 33,302.84 | yes | yes |
+| Clutch, no temperature | 12,627 | −13,776.61 | 27,573.21 | yes | yes |
+| Fledging, no temperature | 9,790 | −16,637.70 | 33,301.41 | yes | yes |
 
 [Clutch optimizer diagnostics](tables/final_models_20261019/COM_final_diagnostics.csv) · [Fledging diagnostics](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv) · [Temporal model checks](tables/temporal_models_20261022/optimizer_comparison.csv) · [Simulation checks](tables/temporal_models_20261022/temporal_simulation_checks.csv)
 

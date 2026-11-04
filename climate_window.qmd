@@ -61,7 +61,7 @@ The browser step below rebuilds the eligible-window search from the public daily
 
 ## Full fitting script
 
-The complete `climwin` workflow is available for running locally. It requires the private individual laying-date file and the R package environment used for that search. The browser calculation above uses public annual summaries and base R; it reproduces the candidate-window calculation, not the unavailable raw-record preprocessing.
+The historical `climwin` script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 fresh randomisations. Original cached searches remain available separately.
 
 <details class="analysis-code">
 <summary>Show full `climwin` script</summary>

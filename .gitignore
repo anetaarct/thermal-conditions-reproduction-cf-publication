@@ -25,3 +25,6 @@ models/
 !docs/tables/within_between_20261026/aggregate_results.rds
 /tables/within_between_20261026_clutch/
 /tables/within_between_20261026_fledging/
+/tables/reproduced/
+/tables/within_between_20261026_reproduced*/
+/figures/reproduced/

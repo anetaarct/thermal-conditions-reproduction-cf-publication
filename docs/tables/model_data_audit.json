@@ -1,0 +1,2727 @@
+{
+  "status": "passed",
+  "checks": 543,
+  "results": [
+    {
+      "check": "Clutch rows match archived final model matrix",
+      "passed": true,
+      "detail": "12627 rows"
+    },
+    {
+      "check": "Fledging CSV matches reconstructed final sample",
+      "passed": true,
+      "detail": "9790 rows"
+    },
+    {
+      "check": "clutch 1981 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1981 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1981 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1981 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1981 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1981 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1982 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1983 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1984 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1985 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1986 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1987 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1988 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1989 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1990 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1991 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1992 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1993 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1994 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1995 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1996 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1997 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1998 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 1999 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2000 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2001 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2002 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2003 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2004 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2005 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2006 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2007 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2008 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2009 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2010 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2011 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2012 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2013 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2014 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2015 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2016 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2017 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2018 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2019 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2021 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2022 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2023 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2024 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch 2025 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch final counts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "clutch centering",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1981 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1982 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1983 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1984 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1985 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1986 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1987 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1988 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1989 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1990 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1991 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1992 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1993 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1994 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1995 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1996 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1997 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1998 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 1999 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2000 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2001 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2002 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2003 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2004 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2005 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2006 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2007 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2008 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2009 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2010 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2011 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2012 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2013 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2014 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2015 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2016 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2017 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2018 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 n",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 observed_mean",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 observed_SD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 older_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 mean_relative_date",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 mean_temperature",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging 2019 zero_fraction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging final counts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "fledging centering",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "sha256": {
+    "data_derived/analysis/clutch_model_data.csv": "587cd0f74a3bdb9d414c4f6fd892129b63759aa7a7d56474f351781165b8e79f",
+    "data_derived/analysis/fledging_model_data.csv": "e218f7c11d22bc0855dd820da47eb95467180953dbb01854d4cfc2c1689b42cc"
+  },
+  "source_note": "Final-model rows and predictors verified against archived clutch matrix, reconstructed fledging sample, final annual exports and sample metadata. Fitted objects unavailable locally; this is not a bytewise comparison with their model frames.",
+  "broader_reproductive_csv": "Preparation input, not a final analysis sample. Fledging requires sample-specific date and covariate recentering."
+}

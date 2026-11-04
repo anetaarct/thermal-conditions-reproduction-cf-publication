@@ -1,1 +1,4 @@
 *.pdf binary
+# Preserve released CSV bytes so the published SHA-256 checksums are portable.
+data_derived/analysis/*.csv -text
+docs/data_derived/analysis/*.csv -text

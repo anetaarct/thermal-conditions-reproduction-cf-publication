@@ -6,6 +6,7 @@ for (trait in c("clutch", "fledging")) {
   cat(trait, "seasons:", nrow(a), "annual Pearson r:", cor(a$year, a$temp_mean), "\n")
 }
 # These VIFs were calculated on the full brood-level fixed-design matrices.
-# Annual aggregates cannot reconstruct the brood-level age/date design.
+# This browser step reads saved VIFs. R/03_predictor_diagnostics.R recomputes
+# them from the public individual-level model-ready files.
 vif <- read.csv("tables/predictor_diagnostics/fixed_design_vif.csv")
 print(vif, row.names = FALSE)

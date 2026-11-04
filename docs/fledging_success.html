@@ -284,13 +284,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>The analysis uses 9,790 attempts from 7,132 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.</p>
+<p>The analysis uses 9,790 attempts from 7,132 females. <a href="data_derived/analysis/fledging_model_data.csv">Model-ready records</a> are public. <a href="./workflow.html#refit-from-the-public-model-data">Run the standalone reproduction pipeline</a> to generate fitted objects locally.</p>
 <details class="analysis-code" open="">
 <summary>
 Show R code
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/M1_selected.rds"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/analysis_data.rds"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"models/within_between_20261026/fledging_baseline_selected.rds"</span>) <span class="co"># after the public runner</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/analysis/fledging_model_data.csv"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nobs</span>(base) <span class="sc">==</span> <span class="dv">9790</span>, base<span class="sc">$</span>fit<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -304,7 +304,7 @@ Show R code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.</p>
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -341,7 +341,7 @@ Show R code
 <p>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</p>
 <details class="analysis-code">
 <summary>
-Show fitting script (run locally)
+Historical extension code (provenance)
 </summary>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -526,7 +526,7 @@ Show fitting script (run locally)
 <p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
 </div>
 </div>
-<p>This refit requires the curated fledging records and starting model object listed in <a href="./workflow.html">Data preparation</a>, plus R with glmmTMB. It cannot be run from public aggregate files alone.</p>
+<p>The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use <a href="R/94_reproduce_from_public_data.R">R/94_reproduce_from_public_data.R</a>.</p>
 <p><a href="R/81_fit_ZIyear_fledging.R">Download fitting script</a></p>
 <table class="caption-top table">
 <thead>
@@ -553,6 +553,7 @@ Show fitting script (run locally)
 </tbody>
 </table>
 <p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv">Download CSV</a></p>
+<p><a href="tables/reproduction_checks/model_summaries/fledging_baseline.txt">Full validated R summary</a> · <a href="./workflow.html#refit-from-the-public-model-data">Public-data refit instructions</a></p>
 </section>
 <section id="export-predictions-from-the-saved-fit" class="level2">
 <h2 class="anchored" data-anchor-id="export-predictions-from-the-saved-fit">Export predictions from the saved fit</h2>

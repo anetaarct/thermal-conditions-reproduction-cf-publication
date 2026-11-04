@@ -8,14 +8,14 @@ execute:
 
 ## Data preparation
 
-The analysis uses 9,790 attempts from 7,132 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.
+The analysis uses 9,790 attempts from 7,132 females. [Model-ready records](data_derived/analysis/fledging_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
 
 <details class="analysis-code" open>
 <summary>Show R code</summary>
 
 ```r
-base <- readRDS("glmmTMB_comparison_20261016/M1_selected.rds")
-d <- readRDS("glmmTMB_comparison_20261016/analysis_data.rds")
+base <- readRDS("models/within_between_20261026/fledging_baseline_selected.rds") # after the public runner
+d <- read.csv("data_derived/analysis/fledging_model_data.csv")
 stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
           isTRUE(base$sdr$pdHess))
 ```
@@ -26,7 +26,7 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 
 ## Saved results for this step
 
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -47,7 +47,7 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
 
 <details class="analysis-code">
-<summary>Show fitting script (run locally)</summary>
+<summary>Historical extension code (provenance)</summary>
 
 {{< include _includes/81_fit_ZIyear_fledging.qmd >}}
 
@@ -82,7 +82,7 @@ Zero-inflated beta-binomial, with year random intercepts in location, precision 
 
 
 
-This refit requires the curated fledging records and starting model object listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from public aggregate files alone.
+The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
 
 [Download fitting script](R/81_fit_ZIyear_fledging.R)
 
@@ -91,6 +91,8 @@ This refit requires the curated fledging records and starting model object liste
 | ZI_year_primary_ML | 9790 | -16632 | 33294 | 0 | TRUE | 0.00036322 |
 
 [Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)
+
+[Full validated R summary](tables/reproduction_checks/model_summaries/fledging_baseline.txt) · [Public-data refit instructions](workflow.qmd#refit-from-the-public-model-data)
 
 ## Export predictions from the saved fit
 

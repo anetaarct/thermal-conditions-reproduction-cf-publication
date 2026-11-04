@@ -8,15 +8,15 @@ execute:
 
 ## Data preparation
 
-The analysis uses 12,627 clutch records from 8,894 females. Individual records and the fitted object are private; the published estimates and predictions are supplied as project files.
+The analysis uses 12,627 clutch records from 8,894 females. [Model-ready records](data_derived/analysis/clutch_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
 
 <details class="analysis-code" open>
 <summary>Show R code</summary>
 
 ```r
-out <- "glmmTMB_comparison_20261016/clutch_counts"
-d <- readRDS(file.path(out, "data.rds"))
-m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
+out <- "models/within_between_20261026"
+d <- read.csv("data_derived/analysis/clutch_model_data.csv")
+m <- readRDS(file.path(out, "clutch_baseline_selected.rds")) # after the public runner
 ```
 
 </details>
@@ -25,7 +25,7 @@ m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
 
 ## Saved results for this step
 
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ m <- readRDS(file.path(out, "COM_predictors_bounded.rds"))
 COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
 
 <details class="analysis-code">
-<summary>Show fitting and verification script (run locally)</summary>
+<summary>Historical verification code (provenance)</summary>
 
 {{< include _includes/75_verify_COM_Poisson.qmd >}}
 
@@ -80,7 +80,7 @@ COM-Poisson location and dispersion use laying date, temperature, year and age. 
 
 
 
-This refit requires the curated clutch records and starting model objects listed in [Data preparation](workflow.qmd), plus R with glmmTMB. It cannot be run from the public aggregate files alone.
+The script above is the historical verification workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
 
 [Download fitting script](R/75_verify_COM_Poisson.R)
 
@@ -90,6 +90,8 @@ This refit requires the curated clutch records and starting model objects listed
 | LBFGS | 0 | TRUE | -13769 | 0.00019347 | 0.28087 |
 
 [Download CSV](tables/final_models_20261019/COM_final_diagnostics.csv)
+
+[Full validated R summary](tables/reproduction_checks/model_summaries/clutch_baseline.txt) · [Public-data refit instructions](workflow.qmd#refit-from-the-public-model-data)
 
 ## Export predictions from the saved fit
 

@@ -72,10 +72,27 @@
     "R/76_export_COM_predictions.R": "8ab38e13e8054d3cb0e76a05e7d418aad908354da5dd8c6dbbe469e65a34c218",
     "R/81_fit_ZIyear_fledging.R": "63bf6bff56df7e35ae8680f19d229647369b3980b1e9a31e33545a56216907a5",
     "R/82_export_ZIyear_primary.R": "83a59d56e876cb7815b358b90869cf2fe1eaccaa6bdfe7c847f73e4efe2d184e",
-    "R/83_fit_temporal_without_temperature.R": "308777f08f215dc3459e0f52cbe388c031bf0b4b7b04a22b02fb686da40cfbcd",
-    "R/84_export_temporal_without_temperature.R": "3338748463e09c84859111114ed2500533d8fbe698a3c5e4a7e5fc540edcb4ba",
+    "R/83_fit_temporal_without_temperature.R": "db452969a14d4f026e074c1ae6794a489cc564233c11aaa5a3265853d560a92b",
+    "R/84_export_temporal_without_temperature.R": "465ecded3efe311614994ce547d0cd89de2ca0c3d3f916bc240ee282639688d4",
     "scripts/check_fledging_vif.R": "a1a236044cf085924d7d4b58cd1036406369721a42ab6327890b39a5f84492ca",
     "scripts/plot_final_models.py": "acaf297cd75a0e168c11ef8bf404f20933e64f31ced444e0d0927240b3c657ec",
-    "scripts/plot_temporal_models.py": "e00e8b60aa24ec3855b2ef6c7dca143600dd71f2186bdbdc46c958a47b8331e6"
-  }
+    "scripts/plot_temporal_models.py": "e00e8b60aa24ec3855b2ef6c7dca143600dd71f2186bdbdc46c958a47b8331e6",
+    "R/03_predictor_diagnostics.R": "f4740d8fa505d952b3479856053f4d8a46891555d5cd4b2ef9a1b1eece718f4f",
+    "R/90_fit_temperature_within_between.R": "43cd41811a5101fa3155f356fdbf4549ff1b5d6932e0304edf7014aa5fba789f",
+    "R/91_export_temperature_within_between.R": "a034b58c18ed5aa2bd897f916590c7888b79112bd6a1f1c75a1869b19e0aee80",
+    "R/93_export_joint_calendar_year.R": "6b0a1b6dae0a719caff2e781349db4ec9405f49edfeb31d2798a8b8a63924f2b",
+    "R/94_reproduce_from_public_data.R": "61d4fc72904e1018a79102dd6a14eee619f28385dbaa835d141b1a47c5315f35",
+    "R/95_validate_public_model_data.R": "4d89fa29238922cc7caee33ddc8a6e437a95bfdc6614e41d79788ee75919a716",
+    "R/96_export_baseline_predictions.R": "9948493b25bdf0c894b8cc087e3f99e9ebf196aa75ff9805b6efdfdbda19dc87",
+    "R/97_fit_poisson_comparator.R": "d4db276341ed6095c926c42db30b01ce549bd28164e69eb68d5477637eb04523",
+    "R/98_baseline_simulation_checks.R": "8cdac9f59c68a0d75b00cd0604f2d233d9881422849ae76c551c4eee1f4989d3",
+    "R/99_plot_reproduced_results.R": "c72fe8c82a72988be93b3e8228054f51674801b922cfb05be88bb7d571a0ece4",
+    "data_derived/analysis/checksums.csv": "7d89ce83a351be9ec4a2046b66e75257d004fc45cf0b924c0a18083ba6ad510a",
+    "data_derived/analysis/clutch_model_data.csv": "587cd0f74a3bdb9d414c4f6fd892129b63759aa7a7d56474f351781165b8e79f",
+    "data_derived/analysis/fledging_model_data.csv": "e218f7c11d22bc0855dd820da47eb95467180953dbb01854d4cfc2c1689b42cc",
+    "data_derived/analysis/README.md": "630ea17d7bde8a0fd9a0dc8d6fdc3803ed7a72fe6ccce50c244bdb47bf9aca74",
+    "tables/model_data_audit.json": "716ade0a5f5d141ba9f7e026cf3d5a6a514c7ed1f08397252d41e8c84f83e436",
+    "tables/reproduction_validation.json": "224682d860ee1e45e64b825ea0cf6f3366f80d20da4b01b6402db4258dcc6ecd"
+  },
+  "model_data_release": "4 November 2026: final curated model-ready records and standalone refitting code, with numerical reproduction checks. Original numerical exports retained."
 }

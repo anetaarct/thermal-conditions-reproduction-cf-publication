@@ -1,7 +1,6 @@
 .libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
 suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
-setwd('/home/arct/CF_model_comparison_20261013')
-base<-'year_without_temperature_20261022';out<-file.path(base,'publication_export');dir.create(out,showWarnings=FALSE)
+base<-Sys.getenv('TEMPORAL_MODEL_DIR','models/reproduced_temporal');out<-Sys.getenv('TEMPORAL_EXPORT_DIR','tables/reproduced_temporal');dir.create(out,recursive=TRUE,showWarnings=FALSE)
 put<-function(x,n)write.csv(x,file.path(out,n),row.names=FALSE)
 hash<-tools::md5sum(file.path(base,c('clutch_selected.rds','fledging_selected.rds')))
 random<-checks<-list()
@@ -16,7 +15,7 @@ cmp_pmf<-function(mu,phi) {
 }
 for(trait in c('clutch','fledging')) {
  cat(trait,'export started\n');flush.console()
- m<-readRDS(file.path(base,paste0(trait,'_selected.rds')));d<-if(trait=='clutch')m$frame else readRDS('glmmTMB_comparison_20261016/analysis_data.rds');cf<-fixef(m)
+ m<-readRDS(file.path(base,paste0(trait,'_selected.rds')));d<-readRDS(file.path(Sys.getenv('WB_MODEL_DIR','models/within_between_20261026'),paste0(trait,'_analysis_data.rds')));cf<-fixef(m)
  V<-vcov(m,full=TRUE);bn<-c(names(cf$cond),paste0('disp~',names(cf$disp)),if(length(cf$zi))paste0('zi~',names(cf$zi)))
  set.seed(20261022);draw<-MASS::mvrnorm(6000,c(unname(cf$cond),unname(cf$disp),unname(cf$zi)),V[bn,bn])
  yr<-as.integer(as.character(d$year_f));centre<-unique(round(yr-d$year_c,8));stopifnot(length(centre)==1)

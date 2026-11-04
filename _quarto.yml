@@ -14,6 +14,16 @@ project:
     - within_between.qmd
     - figure_code.qmd
   resources:
+    - data_derived/analysis/
+    - tables/model_data_audit.json
+    - tables/reproduction_validation.json
+    - tables/reproduction_checks/
+    - R/94_reproduce_from_public_data.R
+    - R/95_validate_public_model_data.R
+    - R/96_export_baseline_predictions.R
+    - R/97_fit_poisson_comparator.R
+    - R/98_baseline_simulation_checks.R
+    - R/99_plot_reproduced_results.R
     - "!.Rlib/**"
     - "!models/**"
     - R/90_fit_temperature_within_between.R

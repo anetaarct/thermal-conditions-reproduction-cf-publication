@@ -2,12 +2,12 @@
 .libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
 Sys.setenv(OMP_NUM_THREADS=1,OPENBLAS_NUM_THREADS=1)
 suppressPackageStartupMessages({library(glmmTMB);library(MASS)})
-setwd('/home/arct/CF_model_comparison_20261013')
-out <- 'year_without_temperature_20261022'
-dir.create(out,showWarnings=FALSE)
+out <- Sys.getenv('TEMPORAL_MODEL_DIR', 'models/reproduced_temporal')
+dir.create(out,recursive=TRUE,showWarnings=FALSE)
 put <- function(x,n) write.csv(x,file.path(out,n),row.names=FALSE)
 msg <- function(...) {cat(format(Sys.time()),...,'\n');flush.console()}
-paths <- c(clutch='glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds',fledging='zi_year_sensitivity_20261020/zi_year_selected.rds')
+fit_base <- Sys.getenv('WB_MODEL_DIR', 'models/within_between_20261026')
+paths <- setNames(file.path(fit_base,paste0(c('clutch','fledging'),'_baseline_selected.rds')),c('clutch','fledging'))
 hashes <- tools::md5sum(paths)
 diagrow <- function(m,trait,label,reference=NULL) {
  V<-if(is.null(m$sdr))reference$sdr$cov.fixed else m$sdr$cov.fixed
@@ -16,9 +16,17 @@ diagrow <- function(m,trait,label,reference=NULL) {
 }
 good <- function(m) m$fit$convergence==0 && isTRUE(m$sdr$pdHess) && is.finite(as.numeric(logLik(m))) && max(abs(m$sdr$gradient.fixed*sqrt(diag(m$sdr$cov.fixed))))<.005
 whitened <- function(par,fn,gr,control=list(),...) {
- msg('Computing optimizer Hessian preconditioner')
- H<-optimHess(par,fn,gr);ee<-eigen((H+t(H))/2,symmetric=TRUE)
- S<-ee$vectors%*%diag(1/sqrt(pmax(ee$values,max(ee$values)*1e-9)));initial<-par
+ msg('Using baseline covariance for optimizer coordinate scaling')
+ # Dropping the two temperature coefficients gives a positive-definite
+ # numerical scaling matrix. This changes step coordinates, not likelihood,
+ # priors or coefficient constraints, and avoids a costly numerical Hessian.
+ V<-initial_covariance;stopifnot(nrow(V)==length(par),all(is.finite(V)))
+ ee<-eigen((V+t(V))/2,symmetric=TRUE);stopifnot(min(ee$values)>0)
+ S<-ee$vectors%*%diag(sqrt(ee$values));initial<-par
+ if(trait=='clutch') {
+  inner<-environment(fn)$inner.control;inner$maxit<-100L;inner$grad.tol<-1e-7
+  environment(fn)$inner.control<-inner
+ }
  ff<-function(q)fn(drop(initial+S%*%q));gg<-function(q)drop(crossprod(S,gr(drop(initial+S%*%q))))
  z<-optim(rep(0,length(par)),ff,gg,method='BFGS',control=list(maxit=1000,reltol=1e-12,trace=1,REPORT=5))
  list(par=drop(initial+S%*%z$par),objective=z$value,convergence=z$convergence,message=z$message)
@@ -27,9 +35,14 @@ all_diag <- list();all_fixed <- list();all_trend <- list();all_annual <- list();
 for(trait in names(paths)) {
  msg('START',trait)
  old <- readRDS(paths[trait])
- d <- readRDS(if(trait=='clutch') 'glmmTMB_comparison_20261016/clutch_counts/data.rds' else 'glmmTMB_comparison_20261016/analysis_data.rds')
+ d <- readRDS(file.path(fit_base,paste0(trait,'_analysis_data.rds')))
  stopifnot(nobs(old)==nrow(d))
  cf <- fixef(old);pl <- old$obj$env$parList(par=old$fit$parfull)
+ # glmmTMB stores fixed parameters in beta, betazi, betadisp order.
+ # Custom optimisers may omit names on fit$par, so use component lengths.
+ remove <- c(match('temp_mean_c',names(cf$cond)),
+             length(cf$cond)+length(cf$zi)+match('temp_mean_c',names(cf$disp)))
+ initial_covariance <- old$sdr$cov.fixed[-remove,-remove,drop=FALSE]
  st <- pl[intersect(c('beta','betadisp','betazi','theta','thetadisp','thetazi','b','bdisp','bzi'),names(pl))]
  st <- st[vapply(st,length,integer(1))>0]
  st$beta <- unname(cf$cond[names(cf$cond)!='temp_mean_c'])
@@ -101,4 +114,5 @@ put(data.frame(path=names(hashes),md5_before=unname(hashes),md5_after=unname(too
 capture.output(sessionInfo(),file=file.path(out,'session_info.txt'))
 writeLines(c('COMPLETE: original final models unchanged. No manuscript or site changes.','New models remove temperature from conditional and dispersion formulas; retain age, relative laying date, and all random effects.','Reference curves: young females, relative laying date zero, all random effects zero; temperature zero in old model.','Model trends are still adjusted for age and relative laying date; observed annual summaries are descriptive and unadjusted.','Dispersion is COM-Poisson inverse shape or beta-binomial precision, not total response variability.','Intervals are approximate 95% confidence intervals from joint asymptotic coefficient draws.'),file.path(out,'COMPLETE.txt'))
 msg('COMPLETE')
+
 ```

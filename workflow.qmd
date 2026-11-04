@@ -15,6 +15,8 @@ Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-re
 | `data_derived/annual_raw_median_laying_date.csv` | Annual laying-date response for window selection |
 | `data_derived/annual_main_window_temperature.csv` | Saved annual exposure used in reproductive models |
 | `tables/…/*.csv` and public aggregate `.rds` files | Reproducing output tables, curves and figures without refitting |
+| `data_derived/analysis/clutch_model_data.csv` | Final curated clutch-size records |
+| `data_derived/analysis/fledging_model_data.csv` | Final curated egg-to-fledging records |
 | `R/`, `R/browser/`, `scripts/` | Analysis and figure code |
 
 The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.
@@ -39,17 +41,50 @@ The short input check below runs in this page using WebR (R in your browser); no
 | Step | Public inputs | What you can run or reproduce |
 |---|---|---|
 | Sliding-window selection | Daily SMHI data, annual laying-date summaries and aggregate cache | Candidate thermal windows, saved search diagnostics and held-out validation checks |
-| Calendar-year trends | Exported model estimates and annual summaries | Read coefficients and predictions, then redraw the trend figure |
-| Temperature and reproductive traits | Saved coefficients, predictions and data-only RDS tables | Recalculate reported contrasts and redraw figures |
-| Within–between temperature models | Public aggregate output tables and prediction curves | Inspect estimates, direct contrasts, model comparisons and figures |
+| Calendar-year trends | Curated model-ready records | Refit models without temperature, export coefficients, predictions and diagnostics |
+| Temperature and reproductive traits | Curated model-ready records and public numerical starting values | Refit baseline models and export contrasts and predictions |
+| Within–between temperature models | Curated model-ready records | Refit decomposed models, compare coefficients and inspect diagnostics |
 
-## Refit limits
+## Refit from the public model data
 
-The fitted clutch-size and fledging models use curated individual breeding records and saved model objects. Those individual-level records and fitted objects are not in the public repository. The full fitting scripts and their required input names remain visible and downloadable on the model pages; they cannot produce the publication fits from the public aggregate files alone. The browser steps run checks and calculations on supplied public files; they do not pretend to refit models without their data.
+The two curated model-ready datasets are now public. They preserve the grouping of repeated observations with shared model-only female identifiers. Original ring labels and source-row identifiers are omitted.
 
-The sliding-window analysis also begins from annual laying-date summaries; individual laying dates are not public. Its public cache retains aggregate candidate-window results and 500 saved randomised searches. The page shows which operations can be repeated from the public snapshot and which require the original field records.
+- [Download clutch-size data (CSV)](data_derived/analysis/clutch_model_data.csv)
+- [Download egg-to-fledging data (CSV)](data_derived/analysis/fledging_model_data.csv)
+- [Variable dictionary and centring rules](data_derived/analysis/README.md)
+- [Author-side audit: 543 checks and SHA-256 checksums](tables/model_data_audit.json)
+- [Numerical reproduction report: all six main models](tables/reproduction_validation.json)
+- [Download the standalone reproduction runner](R/94_reproduce_from_public_data.R)
+- [Download the public-data validator](R/95_validate_public_model_data.R)
+
+Download the repository ZIP above and run these commands from its root:
+
+```r
+install.packages(c("glmmTMB", "MASS"))
+```
+
+```bash
+Rscript R/95_validate_public_model_data.R
+Rscript R/94_reproduce_from_public_data.R
+```
+
+The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 fresh randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under `figures/reproduced/`. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.
+
+New model checkpoints are written under `models/`; new numerical results go under `tables/reproduced/` and `tables/within_between_20261026_reproduced/`. Original publication exports are retained. Stages can also be run separately, for example `Rscript R/94_reproduce_from_public_data.R inputs environment windows`. The available stages are `inputs`, `environment`, `windows`, `models`, `temporal`, `exports`, `figures` and `verify`. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.
+
+The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.
+
+The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; fresh randomisations reproduce the procedure, not the exact historical permutations.
 
 Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).
+
+## Verified model summaries
+
+The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:
+
+- [Clutch: baseline](tables/reproduction_checks/model_summaries/clutch_baseline.txt) · [within–between](tables/reproduction_checks/model_summaries/clutch_within_between.txt) · [without temperature](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)
+- [Fledging: baseline](tables/reproduction_checks/model_summaries/fledging_baseline.txt) · [within–between](tables/reproduction_checks/model_summaries/fledging_within_between.txt) · [without temperature](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)
+- [Reproduction-session software versions](tables/reproduction_checks/session_info.txt)
 
 ## Software used for the reported fits
 

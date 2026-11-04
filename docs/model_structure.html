@@ -280,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Fitting requires curated individual records and saved starting objects. These are not included in the public repository, so model fitting is done locally in the recorded R/glmmTMB environment. The complete code is available as downloadable R scripts on the analysis pages.</p>
+<p>Fitting uses the public curated individual records in <code>data_derived/analysis/</code>. The <a href="R/94_reproduce_from_public_data.R">standalone runner</a> rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.</p>
 </section>
 <section id="spring-temperature-model" class="level2">
 <h2 class="anchored" data-anchor-id="spring-temperature-model">Spring-temperature model</h2>
@@ -368,16 +368,16 @@ print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_interc
 <tr class="odd">
 <td>Clutch, no temperature</td>
 <td style="text-align: right;">12,627</td>
-<td style="text-align: right;">−13,776.52</td>
-<td style="text-align: right;">27,573.04</td>
+<td style="text-align: right;">−13,776.61</td>
+<td style="text-align: right;">27,573.21</td>
 <td>yes</td>
 <td>yes</td>
 </tr>
 <tr class="even">
 <td>Fledging, no temperature</td>
 <td style="text-align: right;">9,790</td>
-<td style="text-align: right;">−16,638.42</td>
-<td style="text-align: right;">33,302.84</td>
+<td style="text-align: right;">−16,637.70</td>
+<td style="text-align: right;">33,301.41</td>
 <td>yes</td>
 <td>yes</td>
 </tr>

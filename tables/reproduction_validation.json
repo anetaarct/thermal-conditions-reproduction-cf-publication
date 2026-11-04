@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "input_checks": 543,
+  "data_sha256": {
+    "data_derived/analysis/clutch_model_data.csv": "587cd0f74a3bdb9d414c4f6fd892129b63759aa7a7d56474f351781165b8e79f",
+    "data_derived/analysis/fledging_model_data.csv": "e218f7c11d22bc0855dd820da47eb95467180953dbb01854d4cfc2c1689b42cc"
+  },
+  "baseline_and_within_between": {
+    "coefficients": 46,
+    "max_absolute_difference": 9.321599048206508e-11,
+    "tolerance": 0.001,
+    "passed": true
+  },
+  "temporal_without_temperature": {
+    "coefficients": 17,
+    "max_absolute_difference": 2.5570927997264903e-07,
+    "tolerance": 0.001,
+    "passed": true
+  },
+  "window_search": [
+    {
+      "open_weeks": "6",
+      "close_weeks": "0",
+      "delta_AICc": "-38.6015985839706",
+      "temperature_beta": "-3.44925100575163"
+    }
+  ],
+  "environment_model": [
+    {
+      "term": "mean_intercept",
+      "estimate": "4.96285854609164",
+      "lower": "4.71044514842165",
+      "upper": "5.21527194376163"
+    },
+    {
+      "term": "warming_per_decade",
+      "estimate": "0.439033545005813",
+      "lower": "0.247639621668947",
+      "upper": "0.630427468342679"
+    },
+    {
+      "term": "log_SD_intercept",
+      "estimate": "-0.15818392853016",
+      "lower": "-0.362524230923622",
+      "upper": "0.0461563738633023"
+    },
+    {
+      "term": "log_SD_per_decade",
+      "estimate": "-0.110935226604112",
+      "lower": "-0.276673635116902",
+      "upper": "0.0548031819086774"
+    }
+  ],
+  "poisson_comparator": [
+    {
+      "logLik": "-23806.7446271444",
+      "AIC": "47627.4892542887",
+      "convergence": "0",
+      "pdHess": "TRUE"
+    }
+  ],
+  "simulation_scope": "Conditional plug-in checks; regenerated Monte Carlo intervals may vary across numerical environments. Not held-out validation.",
+  "scope": "Analyses start at final curated samples. Raw field cleaning is outside this release. No historical fitted-model object is required.",
+  "fresh_randomised_searches": 500
+}

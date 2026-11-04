@@ -318,12 +318,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Show R code
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the columns actually supplied to the fitted model.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> m<span class="sc">$</span>frame</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/analysis/clutch_model_data.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>age_class <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>age_class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>year_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>year_f)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="review-summary callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -335,7 +336,7 @@ Show R code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.</p>
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -374,11 +375,11 @@ Show R code
 <li>Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.</li>
 <li>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</li>
 </ul>
-<p>The original raw-data cleaning script is not included; these pages start from the curated analysis files.</p>
+<p>The original raw-data cleaning history is not included; these pages start from the <a href="data_derived/analysis/README.md">public curated model-ready files</a>.</p>
 </section>
 <section id="recalculate-annual-yeartemperature-correlations" class="level2">
 <h2 class="anchored" data-anchor-id="recalculate-annual-yeartemperature-correlations">Recalculate annual year–temperature correlations</h2>
-<p>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recomputing the VIFs needs individual records, which are not public.</p>
+<p>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using <code>R/03_predictor_diagnostics.R</code>.</p>
 <section class="r-lab" data-r-lab="05_predictor_checks" aria-label="Check temperature-year correlations and inspect VIF">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Check temperature-year correlations and inspect VIF</h3></div>
 <p class="r-lab-note">Recalculates annual correlations. Displays the saved brood-level VIFs; recalculating those VIFs requires the individual analysis records.</p>

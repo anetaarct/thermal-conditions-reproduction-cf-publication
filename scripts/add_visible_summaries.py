@@ -29,7 +29,7 @@ def summary(kind):
     if kind == 'sample':
         return ('**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. '
                 'Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. '
-                'The loading code requires private curated records; these counts are the saved analysis-sample metadata.\n\n'
+                'Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.\n\n'
                 + table(WB+'sample_metadata.csv', ['trait','records','females','seasons','females_varied_temperature']))
     if kind == 'weather':
         return ('**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. '
@@ -138,6 +138,8 @@ for page in ('workflow','climate_window','data_preparation','model_structure','c
     pattern = r'<details\b[^>]*>.*?</details>|\{\{< include _includes/lab-[^\n]+? >\}\}|```(?:r|bash)\n.*?\n```'
     def replace(m):
         text = m.group(0)
+        if text.startswith('```') and ('install.packages' in text or 'R/94_reproduce_from_public_data.R' in text or 'R/95_validate_public_model_data.R' in text):
+            return text  # Setup/entry-point commands, not an additional analysis.
         if text.startswith('<details') and ('```' not in text and '{{< include' not in text):
             # Keep saved output visible instead of hiding it beneath another click.
             return text.replace('class="analysis-code"','class="analysis-code" open',1) if 'open' not in text.split('>')[0] else text

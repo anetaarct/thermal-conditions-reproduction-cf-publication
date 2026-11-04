@@ -1,0 +1,53 @@
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + year_c +  
+    (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + year_c + (1 | year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33301.4   33394.9  -16637.7   33275.4      9777 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.08756  0.2959  
+ year_f    (Intercept) 0.12946  0.3598  
+Number of obs: 9790, groups:  female_id, 7132; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2739   0.5234  
+Number of obs: 9790, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.07389  0.2718  
+Number of obs: 9790, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.081482   0.073514  14.711  < 2e-16 ***
+rel_LD       -0.075076   0.004563 -16.454  < 2e-16 ***
+age_classOLD  0.008090   0.044813   0.181  0.85673    
+year_c       -0.018067   0.005546  -3.258  0.00112 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -1.5537     0.0927  -16.76   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.154767   0.092256  12.517   <2e-16 ***
+rel_LD       -0.069589   0.006898 -10.088   <2e-16 ***
+age_classOLD  0.025058   0.084220   0.298    0.766    
+year_c       -0.006538   0.005655  -1.156    0.248    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

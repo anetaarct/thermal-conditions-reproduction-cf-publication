@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -219,7 +254,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#get-the-project-files" id="toc-get-the-project-files" class="nav-link active" data-scroll-target="#get-the-project-files">Get the project files</a></li>
   <li><a href="#reproduce-each-step" id="toc-reproduce-each-step" class="nav-link" data-scroll-target="#reproduce-each-step">Reproduce each step</a></li>
-  <li><a href="#refit-limits" id="toc-refit-limits" class="nav-link" data-scroll-target="#refit-limits">Refit limits</a></li>
+  <li><a href="#refit-from-the-public-model-data" id="toc-refit-from-the-public-model-data" class="nav-link" data-scroll-target="#refit-from-the-public-model-data">Refit from the public model data</a></li>
+  <li><a href="#verified-model-summaries" id="toc-verified-model-summaries" class="nav-link" data-scroll-target="#verified-model-summaries">Verified model summaries</a></li>
   <li><a href="#software-used-for-the-reported-fits" id="toc-software-used-for-the-reported-fits" class="nav-link" data-scroll-target="#software-used-for-the-reported-fits">Software used for the reported fits</a></li>
   </ul>
 </nav>
@@ -276,6 +312,14 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td><code>tables/…/*.csv</code> and public aggregate <code>.rds</code> files</td>
 <td>Reproducing output tables, curves and figures without refitting</td>
+</tr>
+<tr class="odd">
+<td><code>data_derived/analysis/clutch_model_data.csv</code></td>
+<td>Final curated clutch-size records</td>
+</tr>
+<tr class="even">
+<td><code>data_derived/analysis/fledging_model_data.csv</code></td>
+<td>Final curated egg-to-fledging records</td>
 </tr>
 <tr class="odd">
 <td><code>R/</code>, <code>R/browser/</code>, <code>scripts/</code></td>
@@ -346,27 +390,52 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
 </tr>
 <tr class="even">
 <td>Calendar-year trends</td>
-<td>Exported model estimates and annual summaries</td>
-<td>Read coefficients and predictions, then redraw the trend figure</td>
+<td>Curated model-ready records</td>
+<td>Refit models without temperature, export coefficients, predictions and diagnostics</td>
 </tr>
 <tr class="odd">
 <td>Temperature and reproductive traits</td>
-<td>Saved coefficients, predictions and data-only RDS tables</td>
-<td>Recalculate reported contrasts and redraw figures</td>
+<td>Curated model-ready records and public numerical starting values</td>
+<td>Refit baseline models and export contrasts and predictions</td>
 </tr>
 <tr class="even">
 <td>Within–between temperature models</td>
-<td>Public aggregate output tables and prediction curves</td>
-<td>Inspect estimates, direct contrasts, model comparisons and figures</td>
+<td>Curated model-ready records</td>
+<td>Refit decomposed models, compare coefficients and inspect diagnostics</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="refit-limits" class="level2">
-<h2 class="anchored" data-anchor-id="refit-limits">Refit limits</h2>
-<p>The fitted clutch-size and fledging models use curated individual breeding records and saved model objects. Those individual-level records and fitted objects are not in the public repository. The full fitting scripts and their required input names remain visible and downloadable on the model pages; they cannot produce the publication fits from the public aggregate files alone. The browser steps run checks and calculations on supplied public files; they do not pretend to refit models without their data.</p>
-<p>The sliding-window analysis also begins from annual laying-date summaries; individual laying dates are not public. Its public cache retains aggregate candidate-window results and 500 saved randomised searches. The page shows which operations can be repeated from the public snapshot and which require the original field records.</p>
+<section id="refit-from-the-public-model-data" class="level2">
+<h2 class="anchored" data-anchor-id="refit-from-the-public-model-data">Refit from the public model data</h2>
+<p>The two curated model-ready datasets are now public. They preserve the grouping of repeated observations with shared model-only female identifiers. Original ring labels and source-row identifiers are omitted.</p>
+<ul>
+<li><a href="data_derived/analysis/clutch_model_data.csv">Download clutch-size data (CSV)</a></li>
+<li><a href="data_derived/analysis/fledging_model_data.csv">Download egg-to-fledging data (CSV)</a></li>
+<li><a href="data_derived/analysis/README.md">Variable dictionary and centring rules</a></li>
+<li><a href="tables/model_data_audit.json">Author-side audit: 543 checks and SHA-256 checksums</a></li>
+<li><a href="tables/reproduction_validation.json">Numerical reproduction report: all six main models</a></li>
+<li><a href="R/94_reproduce_from_public_data.R">Download the standalone reproduction runner</a></li>
+<li><a href="R/95_validate_public_model_data.R">Download the public-data validator</a></li>
+</ul>
+<p>Download the repository ZIP above and run these commands from its root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"glmmTMB"</span>, <span class="st">"MASS"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/95_validate_public_model_data.R</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/94_reproduce_from_public_data.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 fresh randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under <code>figures/reproduced/</code>. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.</p>
+<p>New model checkpoints are written under <code>models/</code>; new numerical results go under <code>tables/reproduced/</code> and <code>tables/within_between_20261026_reproduced/</code>. Original publication exports are retained. Stages can also be run separately, for example <code>Rscript R/94_reproduce_from_public_data.R inputs environment windows</code>. The available stages are <code>inputs</code>, <code>environment</code>, <code>windows</code>, <code>models</code>, <code>temporal</code>, <code>exports</code>, <code>figures</code> and <code>verify</code>. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.</p>
+<p>The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.</p>
+<p>The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; fresh randomisations reproduce the procedure, not the exact historical permutations.</p>
 <p>Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).</p>
+</section>
+<section id="verified-model-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="verified-model-summaries">Verified model summaries</h2>
+<p>The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:</p>
+<ul>
+<li><a href="tables/reproduction_checks/model_summaries/clutch_baseline.txt">Clutch: baseline</a> · <a href="tables/reproduction_checks/model_summaries/clutch_within_between.txt">within–between</a> · <a href="tables/reproduction_checks/model_summaries/clutch_without_temperature.txt">without temperature</a></li>
+<li><a href="tables/reproduction_checks/model_summaries/fledging_baseline.txt">Fledging: baseline</a> · <a href="tables/reproduction_checks/model_summaries/fledging_within_between.txt">within–between</a> · <a href="tables/reproduction_checks/model_summaries/fledging_without_temperature.txt">without temperature</a></li>
+<li><a href="tables/reproduction_checks/session_info.txt">Reproduction-session software versions</a></li>
+</ul>
 </section>
 <section id="software-used-for-the-reported-fits" class="level2">
 <h2 class="anchored" data-anchor-id="software-used-for-the-reported-fits">Software used for the reported fits</h2>

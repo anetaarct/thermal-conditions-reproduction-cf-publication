@@ -26,8 +26,9 @@ Relative laying date is first-egg date minus the within-season median. Female ag
 
 ```r
 # Inspect the columns actually supplied to the fitted model.
-m <- readRDS("glmmTMB_comparison_20261016/clutch_counts/COM_selected.rds")
-d <- m$frame
+d <- read.csv("data_derived/analysis/clutch_model_data.csv")
+d$age_class <- factor(d$age_class, levels = c("YOUNG", "OLD"))
+d$year_f <- factor(d$year_f)
 str(d)
 summary(d)
 levels(d$age_class)
@@ -40,7 +41,7 @@ table(d$year_f)
 
 ## Saved results for this step
 
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. The loading code requires private curated records; these counts are the saved analysis-sample metadata.
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -62,11 +63,11 @@ table(d$year_f)
 - Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.
 - Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.
 
-The original raw-data cleaning script is not included; these pages start from the curated analysis files.
+The original raw-data cleaning history is not included; these pages start from the [public curated model-ready files](data_derived/analysis/README.md).
 
 ## Recalculate annual year–temperature correlations
 
-This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recomputing the VIFs needs individual records, which are not public.
+This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using `R/03_predictor_diagnostics.R`.
 
 {{< include _includes/lab-05_predictor_checks.qmd >}}
 

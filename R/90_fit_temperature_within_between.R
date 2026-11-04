@@ -1,14 +1,13 @@
 # Separate supplementary temperature within/between models, 26 October 2026.
-# The original fits/exports are read-only. Private data and fitted objects stay
-# under models/ (excluded from the public repository).
-# Run from the repository root with two private CSV input paths as arguments.
+# The original fits/exports are read-only. Public model-ready inputs are in
+# data_derived/analysis; regenerated fitted objects stay under models/.
 .libPaths(c(".Rlib", .libPaths()))
 Sys.setenv(OMP_NUM_THREADS = 1, OPENBLAS_NUM_THREADS = 1)
 suppressPackageStartupMessages(library(glmmTMB))
 
 run_within_between <- function(clutch_csv, reproduction_csv) {
-  model_dir <- "models/within_between_20261026"
-  output <- paste0("tables/within_between_20261026", Sys.getenv("WB_OUTPUT_SUFFIX"))
+  model_dir <- Sys.getenv("WB_MODEL_DIR", "models/within_between_20261026")
+  output <- paste0("tables/within_between_20261026", Sys.getenv("WB_OUTPUT_SUFFIX", "_reproduced"))
   dir.create(model_dir, recursive = TRUE, showWarnings = FALSE)
   dir.create(output, recursive = TRUE, showWarnings = FALSE)
   put <- function(x, name) write.csv(x, file.path(output, name), row.names = FALSE)
@@ -285,6 +284,7 @@ run_within_between <- function(clutch_csv, reproduction_csv) {
       selected <- candidates[[which.max(vapply(candidates, function(m) as.numeric(logLik(m)), numeric(1)))]]
       fits[[kind]] <- selected
       saveRDS(selected, file.path(model_dir, paste0(trait, "_", kind, "_selected.rds")))
+      capture.output(summary(selected), file=file.path(output,paste0(trait,"_",kind,"_summary.txt")))
       if (kind == "baseline") {
         expected <- if (trait == "clutch") -13768.5520704332 else -16632.056176958
         difference <- as.numeric(logLik(selected)) - expected
@@ -336,6 +336,8 @@ run_within_between <- function(clutch_csv, reproduction_csv) {
 
 if (sys.nframe() == 0L) {
   args <- commandArgs(trailingOnly = TRUE)
+  if (length(args) == 0L) args <- c("data_derived/analysis/clutch_model_data.csv",
+                                  "data_derived/analysis/fledging_model_data.csv")
   stopifnot(length(args) == 2L)
   run_within_between(args[1], args[2])
 }

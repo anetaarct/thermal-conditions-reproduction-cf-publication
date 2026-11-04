@@ -1,11 +1,11 @@
 ```{.r filename="R/91_export_temperature_within_between.R"}
 # Export within-between model results and prediction intervals from saved fits.
-# Fits and individual records remain private; only aggregate outputs are saved.
+# Public model inputs are in data_derived/analysis. Fits are regenerated locally.
 .libPaths(c(".Rlib", .libPaths()))
 suppressPackageStartupMessages({ library(glmmTMB); library(MASS) })
 set.seed(20261026)
-base <- "models/within_between_20261026"
-out <- paste0("tables/within_between_20261026", Sys.getenv("WB_OUTPUT_SUFFIX"))
+base <- Sys.getenv("WB_MODEL_DIR", "models/within_between_20261026")
+out <- Sys.getenv("WB_EXPORT_DIR", paste0("tables/within_between_20261026", Sys.getenv("WB_OUTPUT_SUFFIX", "_reproduced")))
 dir.create(out, recursive = TRUE, showWarnings = FALSE)
 put <- function(x, name) write.csv(x, file.path(out, name), row.names = FALSE)
 all_curves <- all_effects <- all_checks <- random_sd <- list()
@@ -150,4 +150,5 @@ saveRDS(list(fixed_effects = read.csv(file.path(out, "fixed_effects.csv")),
              curves = do.call(rbind, all_curves),
              reference_effects = do.call(rbind, all_effects)),
         file.path(out, "aggregate_results.rds"), version = 3)
+
 ```

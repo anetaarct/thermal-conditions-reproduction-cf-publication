@@ -102,7 +102,7 @@ Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial.
 
 
 
-The fits use the same private curated records as the single-temperature models and require R with glmmTMB. The public output includes aggregate estimates, not the fitted objects or individual records, so this full refit cannot run in the browser.
+The fits use the same [public curated records](workflow.qmd#refit-from-the-public-model-data) as the single-temperature models and require local R with glmmTMB. The standalone pipeline fits both formulations without historical fitted objects. The full mixed-model refit does not run in the browser.
 
 [Download fitting script](R/90_fit_temperature_within_between.R)
 
@@ -232,7 +232,7 @@ Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. Th
 
 These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.
 
-The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under `models/`, which are not public.
+The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under `models/`; generate them locally with the public-data runner.
 
 [Download year-effect export script](R/93_export_joint_calendar_year.R)
 

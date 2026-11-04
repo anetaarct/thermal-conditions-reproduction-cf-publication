@@ -24,7 +24,7 @@ The main reproductive models are additive. The site does not present exploratory
 | `tables/final_models_20261019/` | Final COM-Poisson coefficients, predictions, centring constants and diagnostics |
 | `tables/primary_ZIyear_ML_20261021/` | Final fledging-success estimates, prediction CIs, random-effect summaries and model checks; labelled tables also retain the simpler ML comparator |
 | `tables/temporal_models_20261022/` | Temporal models without temperature: coefficients, prediction CIs, random SDs, diagnostics and simulation checks |
-| `data_derived/` | Public aggregate environmental and annual summary data |
+| `data_derived/` | Public environmental summaries and final model-ready breeding records in `analysis/` |
 | `figures/` | Final published figure files |
 | `R/` | Retained ML fitting/verification/export scripts from the original workflow |
 | `scripts/` | Figure-generation code and fixed-design VIF check |
@@ -44,9 +44,14 @@ The website uses the archived final exports. Rendering does not refit the reprod
 
 ## Scope of reproducibility and data access
 
-Individual-level field records and fitted model objects are not included in this public repository. Curated brood-level data can be made available to reviewers on request. The retained R scripts record the original ML workflow and may refer to the authors' computational paths, saved inputs and fitted objects. They are not a standalone, one-command refit from the public files alone. Full model refitting requires the original curated individual-level data, centring constants, fitted starting objects where used, and the recorded software environment. The figure script uses public prediction exports and requires Python with pandas, NumPy and Matplotlib. Temporal figure updates can be rebuilt using `scripts/plot_temporal_models.py`; the original temperature, laying-date and age figures and numerical estimates remain unchanged.
+The final curated model-ready records are public in `data_derived/analysis/`, with model-only female identifiers preserving repeated observations across both traits. See its README for the variable dictionary and sample-specific centring. The larger preparation CSV is not interchangeable with a final model sample.
 
-Daily weather observations originate from the Swedish Meteorological and Hydrological Institute (SMHI). Field-data enquiries should be directed to the corresponding author listed in the manuscript.
+```sh
+Rscript R/95_validate_public_model_data.R
+Rscript R/94_reproduce_from_public_data.R
+```
+
+The runner starts from CSV records and public numerical starting values, refits the main reproductive models, and writes new objects and exports separately from the published results. Historical fitted objects are not needed. R with glmmTMB >= 1.1.14, Matrix and MASS is required. See the website's Data preparation page for stages, output paths and numerical-validation limits. Original software versions remain recorded in the historical session-info files. Raw field-data cleaning is outside this model-ready release; annual phenology-window inputs are separately public.
 
 ## Publication integrity
 
@@ -58,4 +63,4 @@ The 22 October 2026 temporal revision replaces the displayed year curves with es
 
 Run `Rscript R/04a_audit_recovered_climwin.R` and `Rscript R/04b_plot_recovered_climwin.R` from the repository root to rebuild the recovered-output tables and diagnostic figure with base R. The original full-search script requires the private raw bird input named in the script and its package environment. The website reads saved outputs and never repeats the expensive search during rendering.
 
-`R/03_predictor_diagnostics.R` computes fixed-design VIF and year-temperature correlations from the private curated input files, verifying their annual sample summaries against the final exports. Only aggregate diagnostics are public.
+`R/03_predictor_diagnostics.R` computes fixed-design VIF and year-temperature correlations from the public curated model-ready CSVs, verifying their annual sample summaries against the final exports. Both model-ready records and aggregate diagnostics are public.

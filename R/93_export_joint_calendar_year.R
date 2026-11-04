@@ -2,8 +2,8 @@
 # Run from the repository root; fitted objects and records stay in models/.
 .libPaths(c(".Rlib", .libPaths()))
 suppressPackageStartupMessages({library(glmmTMB); library(MASS)})
-base <- "models/within_between_20261026"
-out <- "tables/joint_calendar_year_20261027"
+base <- Sys.getenv("WB_MODEL_DIR", "models/within_between_20261026")
+out <- Sys.getenv("JOINT_YEAR_EXPORT_DIR", "tables/reproduced/joint_calendar_year")
 dir.create(out, recursive = TRUE, showWarnings = FALSE)
 curves <- contrasts <- coefficients <- list()
 for (trait in c("clutch", "fledging")) for (model in c("baseline", "within_between")) {

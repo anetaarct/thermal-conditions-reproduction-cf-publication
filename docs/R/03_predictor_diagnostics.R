@@ -1,5 +1,5 @@
 # Fixed-design VIF and year-temperature correlation; no model fitting.
-# Private inputs: clutch_size_model_data.csv and reproductive_model_data.csv.
+# Public inputs: final model-ready CSVs in data_derived/analysis/.
 # Run from the publication repository root:
 # Rscript R/03_predictor_diagnostics.R /path/to/clutch_size_model_data.csv \
 #   /path/to/reproductive_model_data.csv
@@ -19,7 +19,7 @@ run_predictor_diagnostics <- function(clutch_csv, reproduction_csv) {
   data <- list(clutch = clutch, fledging = fledging)
   reference <- read.csv("tables/temporal_models_20261022/observed_annual.csv")
   weather <- read.csv("data_derived/annual_main_window_temperature.csv")
-  output <- "tables/predictor_diagnostics"
+  output <- Sys.getenv("PREDICTOR_OUTPUT_DIR", "tables/reproduced/predictor_diagnostics")
   dir.create(output, recursive = TRUE, showWarnings = FALSE)
   fixed_vif <- correlations <- support <- list()
   for (trait in names(data)) {
@@ -78,6 +78,8 @@ run_predictor_diagnostics <- function(clutch_csv, reproduction_csv) {
 
 if (sys.nframe() == 0L) {
   args <- commandArgs(trailingOnly = TRUE)
+  if(length(args)==0L) args <- c("data_derived/analysis/clutch_model_data.csv",
+                                "data_derived/analysis/fledging_model_data.csv")
   stopifnot(length(args) == 2L)
   run_predictor_diagnostics(args[1], args[2])
 }
