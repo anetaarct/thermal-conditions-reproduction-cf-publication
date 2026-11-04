@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data preparation – Opposite climate effects on reproductive investment and success reveal hidden consistency patterns in a migratory bird</title>
+<title>A1. Data and reproduction workflow – Opposite climate effects on reproductive investment and success reveal hidden consistency patterns in a migratory bird</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,14 +65,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./climate_window.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./data_preparation.html" rel="next">
+<link href="./full_summaries.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,13 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-261e60fdf64a0e003ec2340fd2db30d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2f5524832805d734b96ee676820b2dda.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -110,21 +109,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Gotland flycatchers</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Start here</a></li><li class="breadcrumb-item"><a href="./workflow.html">Data preparation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Appendices</a></li><li class="breadcrumb-item"><a href="./workflow.html">A1. Data and reproduction workflow</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,14 +158,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Gotland flycatchers</a> 
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -158,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Start here</span></a>
+ <span class="menu-text">Main analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,14 +185,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Data preparation</span></a>
+  <a href="./climate_window.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S1. Sliding-window analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./climate_window.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sliding-window approach</span></a>
+  <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S2. Calendar-year analyses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clutch_size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3. Clutch-size models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fledging_success.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S4. Egg-to-fledging models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S5. Within–between temperature models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./model_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S6. Model structure and diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./full_summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S7. Full model summaries</span></a>
   </div>
 </li>
       </ul>
@@ -181,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyses &amp; results</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,55 +238,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year analyses</span></a>
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">A1. Data and reproduction workflow</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./clutch_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clutch size</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fledging_success.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Egg-to-fledging success</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Temperature: within &amp; between models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Methods &amp; reproducibility</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_preparation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Study sample &amp; predictors</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./model_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Model structure &amp; diagnostics</span></a>
+ <span class="menu-text">A2. Study sample and predictors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figure code</span></a>
+ <span class="menu-text">A3. Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -258,14 +272,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#verified-model-summaries" id="toc-verified-model-summaries" class="nav-link" data-scroll-target="#verified-model-summaries">Verified model summaries</a></li>
   <li><a href="#software-used-for-the-reported-fits" id="toc-software-used-for-the-reported-fits" class="nav-link" data-scroll-target="#software-used-for-the-reported-fits">Software used for the reported fits</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/workflow.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Start here</a></li><li class="breadcrumb-item"><a href="./workflow.html">Data preparation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./workflow.html">Appendices</a></li><li class="breadcrumb-item"><a href="./workflow.html">A1. Data and reproduction workflow</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data preparation</h1>
+<div class="quarto-title-block"><div><h1 class="title">A1. Data and reproduction workflow</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Public inputs, sample audits and model reproduction</p>
 </div>
 
 
@@ -430,6 +445,7 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
 </section>
 <section id="verified-model-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="verified-model-summaries">Verified model summaries</h2>
+<p><a href="./full_summaries.html">Read the complete model summaries in S7</a>, organised by response and model formulation.</p>
 <p>The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:</p>
 <ul>
 <li><a href="tables/reproduction_checks/model_summaries/clutch_baseline.txt">Clutch: baseline</a> · <a href="tables/reproduction_checks/model_summaries/clutch_within_between.txt">within–between</a> · <a href="tables/reproduction_checks/model_summaries/clutch_without_temperature.txt">without temperature</a></li>
@@ -442,6 +458,8 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
 <p>The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.</p>
 <p><strong>Next:</strong> <a href="./climate_window.html">Sliding-window approach</a> → <a href="./temporal_trends.html">Calendar-year trends</a> → <a href="./clutch_size.html">Reproductive analyses</a>.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -518,6 +536,57 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -850,19 +919,117 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Overview</span>
+      <a href="./full_summaries.html" class="pagination-link" aria-label="S7. Full model summaries">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">S7. Full model summaries</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./climate_window.html" class="pagination-link" aria-label="Sliding-window approach">
-        <span class="nav-page-text">Sliding-window approach</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data_preparation.html" class="pagination-link" aria-label="A2. Study sample and predictors">
+        <span class="nav-page-text">A2. Study sample and predictors</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "A1. Data and reproduction workflow"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Public inputs, sample audits and model reproduction"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> false</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Get the project files</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Download the <span class="co">[</span><span class="ot">repository ZIP</span><span class="co">](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip)</span> and unzip it without changing folder names. R scripts use paths relative to the project root.</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inputs <span class="pp">|</span> Used for <span class="pp">|</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/smhi_hoburg_daily_temperature.csv`</span> <span class="pp">|</span> Daily station observations used to build thermal windows <span class="pp">|</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_raw_median_laying_date.csv`</span> <span class="pp">|</span> Annual laying-date response for window selection <span class="pp">|</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_main_window_temperature.csv`</span> <span class="pp">|</span> Saved annual exposure used in reproductive models <span class="pp">|</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tables/…/*.csv`</span> and public aggregate <span class="in">`.rds`</span> files <span class="pp">|</span> Reproducing output tables, curves and figures without refitting <span class="pp">|</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/clutch_model_data.csv`</span> <span class="pp">|</span> Final curated clutch-size records <span class="pp">|</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/fledging_model_data.csv`</span> <span class="pp">|</span> Final curated egg-to-fledging records <span class="pp">|</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`R/`</span>, <span class="in">`R/browser/`</span>, <span class="in">`scripts/`</span> <span class="pp">|</span> Analysis and figure code <span class="pp">|</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-01_weather_inputs.qmd &gt;}}</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproduce each step</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Public inputs <span class="pp">|</span> What you can run or reproduce <span class="pp">|</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sliding-window selection <span class="pp">|</span> Daily SMHI data, annual laying-date summaries and aggregate cache <span class="pp">|</span> Candidate thermal windows, saved search diagnostics and held-out validation checks <span class="pp">|</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Calendar-year trends <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit models without temperature, export coefficients, predictions and diagnostics <span class="pp">|</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Temperature and reproductive traits <span class="pp">|</span> Curated model-ready records and public numerical starting values <span class="pp">|</span> Refit baseline models and export contrasts and predictions <span class="pp">|</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Within–between temperature models <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit decomposed models, compare coefficients and inspect diagnostics <span class="pp">|</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Refit from the public model data</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>The reproductive analyses used two curated datasets. Female identifiers were recoded consistently across both datasets, preserving the grouping of repeated observations. The model-ready files contain the responses and predictors used in the final analyses.</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download clutch-size data (CSV)</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download egg-to-fledging data (CSV)</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Variable dictionary and centring rules</span><span class="co">](data_derived/analysis/README.md)</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Author-side audit: 543 checks and SHA-256 checksums</span><span class="co">](tables/model_data_audit.json)</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Numerical reproduction report: all six main models</span><span class="co">](tables/reproduction_validation.json)</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the standalone reproduction runner</span><span class="co">](R/94_reproduce_from_public_data.R)</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the public-data validator</span><span class="co">](R/95_validate_public_model_data.R)</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>Download the repository ZIP above and run these commands from its root:</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"glmmTMB"</span>, <span class="st">"MASS"</span>))</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/95_validate_public_model_data.R</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/94_reproduce_from_public_data.R</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 independent randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under <span class="in">`figures/reproduced/`</span>. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>Model checkpoints are written under <span class="in">`models/`</span>; regenerated numerical results are stored under <span class="in">`tables/reproduced/`</span> and <span class="in">`tables/within_between_20261026_reproduced/`</span>. Original publication exports are retained. Stages can also be run separately, for example <span class="in">`Rscript R/94_reproduce_from_public_data.R inputs environment windows`</span>. The available stages are <span class="in">`inputs`</span>, <span class="in">`environment`</span>, <span class="in">`windows`</span>, <span class="in">`models`</span>, <span class="in">`temporal`</span>, <span class="in">`exports`</span>, <span class="in">`figures`</span> and <span class="in">`verify`</span>. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; independent randomisations reproduce the procedure, not the exact historical permutations.</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verified model summaries</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Read the complete model summaries in S7</span><span class="co">](full_summaries.qmd)</span>, organised by response and model formulation.</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Clutch: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Fledging: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Reproduction-session software versions</span><span class="co">](tables/reproduction_checks/session_info.txt)</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software used for the reported fits</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>**Next:** <span class="co">[</span><span class="ot">Sliding-window approach</span><span class="co">](climate_window.qmd)</span> → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span> → <span class="co">[</span><span class="ot">Reproductive analyses</span><span class="co">](clutch_size.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/workflow.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

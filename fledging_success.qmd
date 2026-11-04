@@ -1,5 +1,6 @@
 ---
-title: "Egg-to-fledging analysis"
+title: "S4. Egg-to-fledging models"
+subtitle: "Temperature associations with reproductive success"
 number-sections: false
 bibliography: references.bib
 execute:
@@ -10,7 +11,7 @@ execute:
 
 The analysis uses 9,790 attempts from 7,132 females. [Model-ready records](data_derived/analysis/fledging_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show R code</summary>
 
 ```r
@@ -200,7 +201,7 @@ head(pred)
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show saved output: ZIyear_fixed.csv</summary>
 
 | component | term | estimate | SE | lower | upper |
@@ -231,7 +232,7 @@ head(pred)
 | -1.4579 | YOUNG | 0.65688 | 0.62002 | 0.69066 |
 
 [Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show saved output: simulation_checks.csv</summary>
 
 | model | target | group | level | n | statistic | observed | predicted | lower | upper |

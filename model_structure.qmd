@@ -1,5 +1,6 @@
 ---
-title: "Model formulas and diagnostics"
+title: "S6. Model structure and diagnostics"
+subtitle: "Distributional assumptions, convergence and simulation checks"
 number-sections: false
 execute:
   enabled: false

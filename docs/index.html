@@ -30,13 +30,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
+<link href="./climate_window.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -46,13 +45,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f1da0acf685a82887288f7269e800838.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7ca5c87b2c3259e4a455bb1ab003b17b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -74,15 +73,40 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Gotland flycatchers</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -98,14 +122,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Gotland flycatchers</a> 
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -122,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Start here</span></a>
+ <span class="menu-text">Main analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -130,14 +149,44 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data preparation</span></a>
+  <a href="./climate_window.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S1. Sliding-window analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./climate_window.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sliding-window approach</span></a>
+  <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S2. Calendar-year analyses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clutch_size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S3. Clutch-size models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fledging_success.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S4. Egg-to-fledging models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S5. Within–between temperature models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./model_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S6. Model structure and diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./full_summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">S7. Full model summaries</span></a>
   </div>
 </li>
       </ul>
@@ -145,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Analyses &amp; results</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -153,55 +202,20 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./temporal_trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calendar-year analyses</span></a>
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1. Data and reproduction workflow</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./clutch_size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clutch size</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fledging_success.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Egg-to-fledging success</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./within_between.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Temperature: within &amp; between models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Methods &amp; reproducibility</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_preparation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Study sample &amp; predictors</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./model_structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Model structure &amp; diagnostics</span></a>
+ <span class="menu-text">A2. Study sample and predictors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./figure_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Figure code</span></a>
+ <span class="menu-text">A3. Figure code</span></a>
   </div>
 </li>
       </ul>
@@ -244,20 +258,31 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </div>
 </section>
-<section id="analysis-chapters" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-chapters">Analysis chapters</h2>
+<section id="website-structure" class="level2">
+<h2 class="anchored" data-anchor-id="website-structure">Website structure</h2>
+<p>The analyses are organised as a scientific supplement. Each analysis chapter presents its inputs, methods, code and saved results. Complete model output is collected in S7; data documentation and reproduction instructions are provided in the appendices.</p>
+<section id="main-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="main-analysis">Main analysis</h3>
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3 class="anchored">Data preparation</h3><p>Curated analysis samples, variable definitions and numerical checks.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3 class="anchored">01 · Sliding-window approach</h3><p>Selection and validation of the pre-laying thermal window using annual median laying dates.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">02 · Calendar-year trends</h3><p>Calendar-year associations with mean reproductive performance and reproductive consistency.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">03 · Clutch size</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
-<a class="overview-tile" href="fledging_success.html"><h3 class="anchored">04 · Egg-to-fledging success</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
-<a class="overview-tile" href="within_between.html"><h3 class="anchored">05 · Within–between comparison</h3><p>Within-female and among-female temperature associations with reproductive performance and consistency.</p></a>
-<a class="overview-tile" href="model_structure.html"><h3 class="anchored">Model equations &amp; checks</h3><p>Model specifications and diagnostic outputs.</p></a>
-<a class="overview-tile" href="figure_code.html"><h3 class="anchored">Figure code</h3><p>Figure-generation scripts and model-based prediction tables.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3 class="anchored">S1. Sliding-window analysis</h3><p>Selection and validation of the pre-laying thermal window.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3 class="anchored">S2. Calendar-year analyses</h3><p>Temporal changes in reproductive performance and consistency.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3 class="anchored">S3. Clutch-size models</h3><p>Temperature associations with reproductive investment.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3 class="anchored">S4. Egg-to-fledging models</h3><p>Temperature associations with reproductive success.</p></a>
+<a class="overview-tile" href="within_between.html"><h3 class="anchored">S5. Within–between temperature models</h3><p>Within-female and among-female temperature associations.</p></a>
+<a class="overview-tile" href="model_structure.html"><h3 class="anchored">S6. Model structure and diagnostics</h3><p>Distributional assumptions, convergence and simulation checks.</p></a>
+<a class="overview-tile" href="full_summaries.html"><h3 class="anchored">S7. Full model summaries</h3><p>Complete R output for the six reproductive models.</p></a>
+</div>
+</section>
+<section id="appendices" class="level3">
+<h3 class="anchored" data-anchor-id="appendices">Appendices</h3>
+<div class="overview-tiles">
+<a class="overview-tile" href="workflow.html"><h3 class="anchored">A1. Data and reproduction workflow</h3><p>Public inputs, sample audits and model reproduction.</p></a>
+<a class="overview-tile" href="data_preparation.html"><h3 class="anchored">A2. Study sample and predictors</h3><p>Breeding records, variable definitions and centring.</p></a>
+<a class="overview-tile" href="figure_code.html"><h3 class="anchored">A3. Figure code</h3><p>Prediction tables and scripts for the reported figures.</p></a>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -667,8 +692,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="Data preparation">
-        <span class="nav-page-text">Data preparation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./climate_window.html" class="pagination-link" aria-label="S1. Sliding-window analysis">
+        <span class="nav-page-text">S1. Sliding-window analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -677,4 +702,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

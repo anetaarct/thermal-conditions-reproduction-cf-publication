@@ -1,5 +1,6 @@
 ---
-title: "Figure code"
+title: "A3. Figure code"
+subtitle: "Prediction tables and scripts for the reported figures"
 number-sections: false
 bibliography: references.bib
 execute:
@@ -75,7 +76,7 @@ Rscript R/04b_plot_recovered_climwin.R
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show command</summary>
 
 ```bash
@@ -123,7 +124,7 @@ python scripts/plot_temporal_models.py
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show command</summary>
 
 ```bash

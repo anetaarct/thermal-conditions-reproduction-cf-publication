@@ -1,5 +1,6 @@
 ---
-title: "Temperature within and between females"
+title: "S5. Within–between temperature models"
+subtitle: "Within-female and among-female temperature associations"
 number-sections: false
 execute:
   enabled: false
@@ -9,7 +10,7 @@ execute:
 
 This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female's warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show temperature decomposition</summary>
 
 ```r
@@ -141,7 +142,7 @@ The short browser step below reads the public results and recalculates the withi
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show cached-output loading</summary>
 
 ```r
@@ -324,7 +325,7 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Numerical convergence and optimiser checks</summary>
 
 ::: {.table-responsive}
@@ -344,7 +345,7 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 </details>
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Conditional simulation checks</summary>
 
 ::: {.table-responsive}
@@ -366,7 +367,7 @@ The exported summary tables and curves below are recalculated from the saved mod
 
 Observed statistics outside the conditional 95% simulation intervals: clutch: `variance`; fledging: `variance_fraction`. These discrepancies remain visible in the diagnostics.
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Fixed-design VIF</summary>
 
 ::: {.table-responsive}

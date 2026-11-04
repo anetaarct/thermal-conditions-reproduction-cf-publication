@@ -35,17 +35,31 @@ Using long-term individual-based records of collared flycatchers (*Ficedula albi
 5. Associations of relative laying date and female age class (yearling versus older) with these reproductive traits.
 :::
 
-## Analysis chapters
+## Website structure
+
+The analyses are organised as a scientific supplement. Each analysis chapter presents its inputs, methods, code and saved results. Complete model output is collected in S7; data documentation and reproduction instructions are provided in the appendices.
+
+### Main analysis
 
 ```{=html}
 <div class="overview-tiles">
-<a class="overview-tile" href="workflow.html"><h3>Data preparation</h3><p>Curated analysis samples, variable definitions and numerical checks.</p></a>
-<a class="overview-tile" href="climate_window.html"><h3>01 · Sliding-window approach</h3><p>Selection and validation of the pre-laying thermal window using annual median laying dates.</p></a>
-<a class="overview-tile" href="temporal_trends.html"><h3>02 · Calendar-year trends</h3><p>Calendar-year associations with mean reproductive performance and reproductive consistency.</p></a>
-<a class="overview-tile" href="clutch_size.html"><h3>03 · Clutch size</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
-<a class="overview-tile" href="fledging_success.html"><h3>04 · Egg-to-fledging success</h3><p>Single-temperature and within–between models, exported estimates and predictions.</p></a>
-<a class="overview-tile" href="within_between.html"><h3>05 · Within–between comparison</h3><p>Within-female and among-female temperature associations with reproductive performance and consistency.</p></a>
-<a class="overview-tile" href="model_structure.html"><h3>Model equations & checks</h3><p>Model specifications and diagnostic outputs.</p></a>
-<a class="overview-tile" href="figure_code.html"><h3>Figure code</h3><p>Figure-generation scripts and model-based prediction tables.</p></a>
+<a class="overview-tile" href="climate_window.html"><h3>S1. Sliding-window analysis</h3><p>Selection and validation of the pre-laying thermal window.</p></a>
+<a class="overview-tile" href="temporal_trends.html"><h3>S2. Calendar-year analyses</h3><p>Temporal changes in reproductive performance and consistency.</p></a>
+<a class="overview-tile" href="clutch_size.html"><h3>S3. Clutch-size models</h3><p>Temperature associations with reproductive investment.</p></a>
+<a class="overview-tile" href="fledging_success.html"><h3>S4. Egg-to-fledging models</h3><p>Temperature associations with reproductive success.</p></a>
+<a class="overview-tile" href="within_between.html"><h3>S5. Within–between temperature models</h3><p>Within-female and among-female temperature associations.</p></a>
+<a class="overview-tile" href="model_structure.html"><h3>S6. Model structure and diagnostics</h3><p>Distributional assumptions, convergence and simulation checks.</p></a>
+<a class="overview-tile" href="full_summaries.html"><h3>S7. Full model summaries</h3><p>Complete R output for the six reproductive models.</p></a>
 </div>
 ```
+
+### Appendices
+
+```{=html}
+<div class="overview-tiles">
+<a class="overview-tile" href="workflow.html"><h3>A1. Data and reproduction workflow</h3><p>Public inputs, sample audits and model reproduction.</p></a>
+<a class="overview-tile" href="data_preparation.html"><h3>A2. Study sample and predictors</h3><p>Breeding records, variable definitions and centring.</p></a>
+<a class="overview-tile" href="figure_code.html"><h3>A3. Figure code</h3><p>Prediction tables and scripts for the reported figures.</p></a>
+</div>
+```
+

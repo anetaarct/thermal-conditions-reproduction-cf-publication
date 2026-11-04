@@ -1,5 +1,6 @@
 ---
-title: "Clutch-size analysis"
+title: "S3. Clutch-size models"
+subtitle: "Temperature associations with reproductive investment"
 number-sections: false
 bibliography: references.bib
 execute:
@@ -10,7 +11,7 @@ execute:
 
 The analysis uses 12,627 clutch records from 8,894 females. [Model-ready records](data_derived/analysis/clutch_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show R code</summary>
 
 ```r
@@ -197,7 +198,7 @@ head(temperature)
 
 
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show saved output: count_coefficients.csv</summary>
 
 | model | component | term | estimate | SE | lower | upper |

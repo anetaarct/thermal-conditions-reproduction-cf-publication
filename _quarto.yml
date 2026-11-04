@@ -13,6 +13,7 @@ project:
     - temporal_trends.qmd
     - within_between.qmd
     - figure_code.qmd
+    - full_summaries.qmd
   resources:
     - data_derived/analysis/
     - tables/model_data_audit.json
@@ -129,37 +130,45 @@ website:
   repo-branch: main
   title: "Opposite climate effects on reproductive investment and success reveal hidden consistency patterns in a migratory bird"
   page-navigation: true
-  sidebar:
+  repo-actions: [source, issue]
+  navbar:
+    pinned: true
     title: "Gotland flycatchers"
-    style: docked
+    right:
+      - text: "GitHub"
+        icon: github
+        href: https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication
+  sidebar:
+    title: "Scientific supplement"
+    style: floating
     search: true
     collapse-level: 2
     contents:
       - text: "Overview"
         href: index.qmd
-      - section: "Start here"
+      - section: "Main analysis"
         contents:
-          - text: "Data preparation"
-            href: workflow.qmd
-          - text: "Sliding-window approach"
+          - text: "S1. Sliding-window analysis"
             href: climate_window.qmd
-      - section: "Analyses & results"
-        contents:
-          - text: "Calendar-year analyses"
+          - text: "S2. Calendar-year analyses"
             href: temporal_trends.qmd
-          - text: "Clutch size"
+          - text: "S3. Clutch-size models"
             href: clutch_size.qmd
-          - text: "Egg-to-fledging success"
+          - text: "S4. Egg-to-fledging models"
             href: fledging_success.qmd
-          - text: "Temperature: within & between models"
+          - text: "S5. Within–between temperature models"
             href: within_between.qmd
-      - section: "Methods & reproducibility"
-        contents:
-          - text: "Study sample & predictors"
-            href: data_preparation.qmd
-          - text: "Model structure & diagnostics"
+          - text: "S6. Model structure and diagnostics"
             href: model_structure.qmd
-          - text: "Figure code"
+          - text: "S7. Full model summaries"
+            href: full_summaries.qmd
+      - section: "Appendices"
+        contents:
+          - text: "A1. Data and reproduction workflow"
+            href: workflow.qmd
+          - text: "A2. Study sample and predictors"
+            href: data_preparation.qmd
+          - text: "A3. Figure code"
             href: figure_code.qmd
 
 format:
@@ -170,7 +179,11 @@ format:
     number-sections: true
     code-fold: true
     code-summary: "Show code"
-    code-tools: false
+    code-tools: true
+    code-copy: true
+    code-overflow: wrap
+    toc-depth: 3
+    smooth-scroll: true
     fig-responsive: true
     include-after-body: _includes/r-runtime.html
 

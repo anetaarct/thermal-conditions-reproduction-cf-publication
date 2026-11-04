@@ -1,5 +1,6 @@
 ---
-title: "Data preparation"
+title: "A1. Data and reproduction workflow"
+subtitle: "Public inputs, sample audits and model reproduction"
 number-sections: false
 execute:
   enabled: false
@@ -79,6 +80,8 @@ The public files begin at the final curated analysis samples, not at the raw fie
 Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).
 
 ## Verified model summaries
+
+[Read the complete model summaries in S7](full_summaries.qmd), organised by response and model formulation.
 
 The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:
 

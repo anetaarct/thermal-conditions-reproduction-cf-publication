@@ -1,5 +1,6 @@
 ---
-title: "Sliding-window approach"
+title: "S1. Sliding-window analysis"
+subtitle: "Selection and validation of the pre-laying thermal window"
 number-sections: false
 execute:
   enabled: false
@@ -7,7 +8,7 @@ execute:
 
 ## Data preparation
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show R code</summary>
 
 ```r
@@ -120,7 +121,7 @@ The historical `climwin` script below includes preprocessing of the original fie
 
 ## Read the cached search results
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show R code</summary>
 
 ```r
@@ -167,7 +168,7 @@ The main 6–0-week search window contains **49 days**: 26 March–13 May in non
 
 ## Full-search randomisation
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Show R code</summary>
 
 ```r
@@ -271,7 +272,7 @@ audit$temporal_validation
 
 [Download validation output](tables/climwin_recovered/temporal_validation_audit.csv) · [Compare old and reconstructed exposures](tables/climwin_recovered/legacy_exposure_comparison.csv) · [Annual weekly inputs](tables/climwin_recovered/annual_weekly_exposure.csv)
 
-<details class="analysis-code" open>
+<details class="analysis-code">
 <summary>Original archived outputs and provenance</summary>
 
 The historical files are retained unchanged; they are not substituted for the checked validation above.

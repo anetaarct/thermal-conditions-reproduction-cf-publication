@@ -1,0 +1,352 @@
+---
+title: "S7. Full model summaries"
+subtitle: "Complete R output for the six reproductive models"
+number-sections: false
+toc-depth: 2
+execute:
+  enabled: false
+---
+
+::: lead
+The six reproductive models were fitted to the public curated breeding records. Complete R summaries document the formulas, estimated coefficients, uncertainty and random-effect variation for each response and temperature formulation.
+:::
+
+::: {.callout-note title="Interpretation and provenance"}
+Clutch size was modelled with a mean-parameterised COM-Poisson distribution. Egg-to-fledging success was modelled with a zero-inflated beta-binomial distribution. Dispersion parameters have distribution-specific interpretations; beta-binomial precision is not a standard deviation.
+
+These summaries were saved during the public-data reproduction check. Baseline and within–between coefficients matched the published exports within 9.4 × 10⁻¹¹; temporal-model coefficients matched within 2.6 × 10⁻⁷. [Numerical validation report](tables/reproduction_validation.json) · [Model specifications and diagnostics](model_structure.qmd).
+:::
+
+## Clutch size
+
+::: {.panel-tabset}
+
+### Single temperature
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/clutch_baseline.txt)
+
+```text
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + temp_mean_c + year_c + age_class + (1 | female_id) +  
+    (1 | year_f)
+Dispersion:              ~rel_LD + temp_mean_c + year_c + age_class
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  27561.1   27650.4  -13768.6   27537.1     12615 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance  Std.Dev.
+ female_id (Intercept) 0.0036342 0.06028 
+ year_f    (Intercept) 0.0004778 0.02186 
+Number of obs: 12627, groups:  female_id, 8894; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.8015006  0.0039731   453.4  < 2e-16 ***
+rel_LD       -0.0084151  0.0002456   -34.3  < 2e-16 ***
+temp_mean_c   0.0159318  0.0039557     4.0 5.64e-05 ***
+year_c        0.0009028  0.0003301     2.7  0.00625 ** 
+age_classOLD  0.0299908  0.0023773    12.6  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.814967   0.033822  -83.23  < 2e-16 ***
+rel_LD        0.052751   0.002921   18.06  < 2e-16 ***
+temp_mean_c  -0.026298   0.017867   -1.47 0.141061    
+year_c        0.002494   0.001664    1.50 0.134021    
+age_classOLD -0.125861   0.036005   -3.50 0.000473 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Within–between
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/clutch_within_between.txt)
+
+```text
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + temp_within + temp_between + year_c + age_class +  
+    (1 | female_id) + (1 | year_f)
+Dispersion:              
+~rel_LD + temp_within + temp_between + year_c + age_class
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  27556.8   27661.0  -13764.4   27528.8     12613 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.003674 0.06061 
+ year_f    (Intercept) 0.000476 0.02182 
+Number of obs: 12627, groups:  female_id, 8894; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.8015053  0.0039682   454.0  < 2e-16 ***
+rel_LD       -0.0084188  0.0002466   -34.1  < 2e-16 ***
+temp_within   0.0164739  0.0041885     3.9 8.38e-05 ***
+temp_between  0.0154198  0.0040473     3.8 0.000139 ***
+year_c        0.0009267  0.0003317     2.8 0.005205 ** 
+age_classOLD  0.0298652  0.0023860    12.5  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.817575   0.034210  -82.36  < 2e-16 ***
+rel_LD        0.052927   0.003023   17.51  < 2e-16 ***
+temp_within  -0.101388   0.032982   -3.07 0.002112 ** 
+temp_between  0.009349   0.021892    0.43 0.669323    
+year_c        0.001029   0.001753    0.59 0.557322    
+age_classOLD -0.122288   0.036168   -3.38 0.000722 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Calendar year without temperature
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)
+
+```text
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + year_c + age_class + (1 | female_id) + (1 |      year_f)
+Dispersion:              ~rel_LD + year_c + age_class
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  27573.2   27647.7  -13776.6   27553.2     12617 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance  Std.Dev.
+ female_id (Intercept) 0.0036303 0.06025 
+ year_f    (Intercept) 0.0006709 0.02590 
+Number of obs: 12627, groups:  female_id, 8894; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.7988756  0.0044506   404.2  < 2e-16 ***
+rel_LD       -0.0084210  0.0002454   -34.3  < 2e-16 ***
+year_c        0.0015977  0.0003255     4.9 9.16e-07 ***
+age_classOLD  0.0300621  0.0023787    12.6  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.810547   0.033132  -84.83  < 2e-16 ***
+rel_LD        0.052608   0.002907   18.09  < 2e-16 ***
+year_c        0.001416   0.001506    0.94 0.347171    
+age_classOLD -0.126215   0.035883   -3.52 0.000436 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+:::
+
+## Egg-to-fledging success
+
+::: {.panel-tabset}
+
+### Single temperature
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/fledging_baseline.txt)
+
+```text
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_mean_c +  
+    year_c + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + temp_mean_c + year_c + (1 | year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33294.1   33401.9  -16632.1   33264.1      9775 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09015  0.3002  
+ year_f    (Intercept) 0.09586  0.3096  
+Number of obs: 9790, groups:  female_id, 7132; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2768   0.5261  
+Number of obs: 9790, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.06201  0.249   
+Number of obs: 9790, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.082858   0.066497  16.284  < 2e-16 ***
+rel_LD       -0.075109   0.004568 -16.442  < 2e-16 ***
+age_classOLD  0.007452   0.044841   0.166  0.86801    
+temp_mean_c  -0.190955   0.059702  -3.198  0.00138 ** 
+year_c       -0.008604   0.005726  -1.502  0.13299    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.55237    0.09306  -16.68   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.155449   0.090468  12.772   <2e-16 ***
+rel_LD       -0.070222   0.006940 -10.119   <2e-16 ***
+age_classOLD  0.023947   0.084411   0.284   0.7766    
+temp_mean_c   0.077649   0.064309   1.207   0.2273    
+year_c       -0.010689   0.006321  -1.691   0.0908 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Within–between
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/fledging_within_between.txt)
+
+```text
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_within +  
+    temp_between + year_c + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + temp_within + temp_between + year_c + (1 |     year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33297.9   33420.1  -16631.9   33263.9      9773 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09008  0.3001  
+ year_f    (Intercept) 0.09594  0.3097  
+Number of obs: 9790, groups:  female_id, 7132; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2775   0.5268  
+Number of obs: 9790, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.06091  0.2468  
+Number of obs: 9790, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.081007   0.066628  16.225  < 2e-16 ***
+rel_LD       -0.075084   0.004569 -16.433  < 2e-16 ***
+age_classOLD  0.009656   0.045064   0.214  0.83033    
+temp_within  -0.205630   0.066790  -3.079  0.00208 ** 
+temp_between -0.183232   0.061703  -2.970  0.00298 ** 
+year_c       -0.009019   0.005788  -1.558  0.11920    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.55235    0.09317  -16.66   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.153528   0.090551  12.739   <2e-16 ***
+rel_LD       -0.070256   0.006944 -10.118   <2e-16 ***
+age_classOLD  0.026339   0.084770   0.311   0.7560    
+temp_within   0.065402   0.083852   0.780   0.4354    
+temp_between  0.086186   0.070064   1.230   0.2187    
+year_c       -0.011219   0.006500  -1.726   0.0843 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+### Calendar year without temperature
+
+[Download complete R summary](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)
+
+```text
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + year_c +  
+    (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + year_c + (1 | year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33301.4   33394.9  -16637.7   33275.4      9777 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.08756  0.2959  
+ year_f    (Intercept) 0.12946  0.3598  
+Number of obs: 9790, groups:  female_id, 7132; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2739   0.5234  
+Number of obs: 9790, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.07389  0.2718  
+Number of obs: 9790, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.081482   0.073514  14.711  < 2e-16 ***
+rel_LD       -0.075076   0.004563 -16.454  < 2e-16 ***
+age_classOLD  0.008090   0.044813   0.181  0.85673    
+year_c       -0.018067   0.005546  -3.258  0.00112 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -1.5537     0.0927  -16.76   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.154767   0.092256  12.517   <2e-16 ***
+rel_LD       -0.069589   0.006898 -10.088   <2e-16 ***
+age_classOLD  0.025058   0.084220   0.298    0.766    
+year_c       -0.006538   0.005655  -1.156    0.248    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+:::
+
+## Reproduction environment
+
+[Download the R session information](tables/reproduction_checks/session_info.txt). Instructions and software versions for the reported fits are documented in [Data and reproduction workflow](workflow.qmd#software-used-for-the-reported-fits).

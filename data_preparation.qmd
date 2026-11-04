@@ -1,5 +1,6 @@
 ---
-title: "Study sample and predictor checks"
+title: "A2. Study sample and predictors"
+subtitle: "Breeding records, variable definitions and centring"
 number-sections: false
 bibliography: references.bib
 execute:
