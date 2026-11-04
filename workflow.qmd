@@ -10,11 +10,28 @@ execute:
 
 The breeding records originated from the long-term nest-box monitoring of collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, established in 1980. Individually ringed females were linked to records of laying date, clutch size, fledgling number and female age class.
 
-The source breeding database is [**`Data/DB_MISMATCH.csv` in the Gotland flycatcher phenology GitHub repository**](https://github.com/anetaarct/gotland-flycatcher-phenology/blob/main/Data/DB_MISMATCH.csv). [Download the source CSV](https://raw.githubusercontent.com/anetaarct/gotland-flycatcher-phenology/main/Data/DB_MISMATCH.csv).
+### Original CF source dataset: 1980–2019
 
-The source database contains 15,984 records. The reproductive-data preparation workflow used a local derivative named `DB_MISMATCH_current_onset_1980-2025.csv`, which contained revised vegetation-onset fields. A row-by-row comparison of the two local files confirmed agreement in record ID, year, female ring, laying date, clutch size, fledgling number and female age class after normalising numeric formatting and missing-value notation. The reproductive analyses used these breeding variables and SMHI temperature, rather than the vegetation-onset fields.
+The original collared flycatcher (CF) source dataset is [**`CF_adult_birds_1980-2019.csv`**](data_raw/birds/CF_adult_birds_1980-2019.csv), containing 23,911 records from 1980–2019. [View the original source dataset on GitHub](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF_adult_birds_1980-2019.csv) · [Source-file documentation](data_raw/birds/README.md).
 
-The public model-ready files were derived from the curated, trait-specific samples. Original ring labels were replaced with consistent model-only female identifiers. These final samples contain the exact response and predictor columns required by the reported reproductive models; the source database precedes that sample selection and predictor preparation.
+The file was retained unchanged from the project archive. Its record identifiers, year, female ring, laying date, clutch size, hatchling number and fledgling number agreed with the corresponding fields in the original Excel workbook `RM_CF_adults_1980-2019_14.07.23.xlsx` across all 23,911 records. This file documents the original field records; it is not the final filtered analysis sample.
+
+### Later breeding dataset and preparation
+
+The preparation workflow for the present analyses read `DB_MISMATCH_current_onset_1980-2025.csv`, a later dataset containing 15,984 records and covering seasons through 2025. The corresponding breeding variables are also available in [`Data/DB_MISMATCH.csv` in the phenology project repository](https://github.com/anetaarct/gotland-flycatcher-phenology/blob/main/Data/DB_MISMATCH.csv). The historical filenames refer to that earlier project's phenological-mismatch analyses. The present reproductive analyses used breeding variables and SMHI temperature; NDVI and mismatch were not predictors in the final models.
+
+The later dataset is not identical to the original 1980–2019 source file. Matching by record ID and year identified 14,693 later-dataset records in the original file, with six differences in fledgling number among matched records. Thus, the original source CSV alone does not reproduce the present analysis samples or supply the post-2019 records. The available files do not document a complete record-by-record history of all changes between these versions.
+
+### Final inputs used to fit the reported models
+
+The final models were fitted to the curated, trait-specific samples derived during preparation of the later breeding dataset. Original ring labels were replaced with consistent model-only female identifiers in the public model-ready files.
+
+| Final model input | Records | Females | Seasons |
+|---|---:|---:|---|
+| [Clutch size](data_derived/analysis/clutch_model_data.csv) | 12,627 | 8,894 | 1981–2025, excluding 2020 |
+| [Egg-to-fledging success](data_derived/analysis/fledging_model_data.csv) | 9,790 | 7,132 | 1981–2019 |
+
+These final files contain the responses and prepared predictors used to reproduce the reported reproductive fits. [Variable dictionary and centring rules](data_derived/analysis/README.md) · [Reproduction instructions](#refit-from-the-public-model-data).
 
 Daily mean air temperatures originated from the [Swedish Meteorological and Hydrological Institute (SMHI) open meteorological observations](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn), using Hoburg (station 68550) and Hoburg A (station 68560). The preparation workflow combined their observations into the 1980–2025 daily series; overlapping observations were averaged. Annual pre-laying temperatures were calculated for 26 March–7 May.
 
@@ -26,6 +43,7 @@ Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-re
 
 | Inputs | Used for |
 |---|---|
+| `data_raw/birds/CF_adult_birds_1980-2019.csv` | Original field-record archive; provenance rather than direct model input |
 | `data_derived/smhi_hoburg_daily_temperature.csv` | Daily station observations used to build thermal windows |
 | `data_derived/annual_raw_median_laying_date.csv` | Annual laying-date response for window selection |
 | `data_derived/annual_main_window_temperature.csv` | Saved annual exposure used in reproductive models |

@@ -15,6 +15,7 @@ project:
     - figure_code.qmd
     - full_summaries.qmd
   resources:
+    - data_raw/birds/
     - data_derived/analysis/
     - tables/model_data_audit.json
     - tables/reproduction_validation.json

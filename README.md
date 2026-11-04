@@ -64,3 +64,7 @@ The 22 October 2026 temporal revision replaces the displayed year curves with es
 Run `Rscript R/04a_audit_recovered_climwin.R` and `Rscript R/04b_plot_recovered_climwin.R` from the repository root to rebuild the recovered-output tables and diagnostic figure with base R. The original full-search script requires the private raw bird input named in the script and its package environment. The website reads saved outputs and never repeats the expensive search during rendering.
 
 `R/03_predictor_diagnostics.R` computes fixed-design VIF and year-temperature correlations from the public curated model-ready CSVs, verifying their annual sample summaries against the final exports. Both model-ready records and aggregate diagnostics are public.
+
+## Original CF source archive
+
+The unchanged original 1980–2019 field-record file is provided in [data_raw/birds/CF_adult_birds_1980-2019.csv](data_raw/birds/CF_adult_birds_1980-2019.csv). See its [provenance documentation](data_raw/birds/README.md). It precedes the later breeding dataset used in preparation and is not a substitute for the final model-ready inputs in `data_derived/analysis/`.
