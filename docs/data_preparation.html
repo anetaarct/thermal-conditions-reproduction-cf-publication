@@ -296,6 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="./workflow.html#data-origin">Source data</a> · <a href="data_derived/analysis/README.md">Variable dictionary</a></p>
 <section id="curated-samples" class="level2">
 <h2 class="anchored" data-anchor-id="curated-samples">Curated samples</h2>
 <table class="caption-top table">
@@ -322,12 +323,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.</p>
 <p><a href="./workflow.html">Input files and loading code</a></p>
 </section>
 <section id="predictor-definitions" class="level2">
 <h2 class="anchored" data-anchor-id="predictor-definitions">Predictor definitions</h2>
-<p>Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. <code>year_f</code> identifies the random-effect groups.</p>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -341,17 +340,8 @@ Show R code
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
+<div id="result-data_preparation-1" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -381,7 +371,6 @@ Show R code
 </table>
 <p><a href="tables/within_between_20261026/sample_metadata.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
 </section>
 <section id="retained-checks" class="level2">
 <h2 class="anchored" data-anchor-id="retained-checks">Retained checks</h2>
@@ -390,11 +379,9 @@ Show R code
 <li>Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.</li>
 <li>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</li>
 </ul>
-<p>The original raw-data cleaning history is not included; these pages start from the <a href="data_derived/analysis/README.md">public curated model-ready files</a>. <a href="./workflow.html#data-origin">Data origin and source database</a> documents the field monitoring, project source file, source GitHub database and SMHI weather observations.</p>
 </section>
 <section id="recalculate-annual-yeartemperature-correlations" class="level2">
 <h2 class="anchored" data-anchor-id="recalculate-annual-yeartemperature-correlations">Recalculate annual year–temperature correlations</h2>
-<p>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using <code>R/03_predictor_diagnostics.R</code>.</p>
 <section class="r-lab" data-r-lab="05_predictor_checks" aria-label="Check temperature-year correlations and inspect VIF">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Check temperature-year correlations and inspect VIF</h3></div>
 <p class="r-lab-note">Recalculates annual correlations. Displays the saved brood-level VIFs; recalculating those VIFs requires the individual analysis records.</p>
@@ -415,17 +402,8 @@ print(vif, row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Predictor checks.</strong> Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.</p>
+<div id="result-data_preparation-2" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -479,7 +457,17 @@ print(vif, row.names = FALSE)
 </table>
 <p><a href="tables/predictor_diagnostics/fixed_design_vif.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
+<details class="method-notes">
+<summary>
+Method notes
+</summary>
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
+<p><strong>Predictor checks.</strong> Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.</p>
+<p>Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.</p>
+<p>Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. <code>year_f</code> identifies the random-effect groups.</p>
+<p>The original raw-data cleaning history is not included; these pages start from the <a href="data_derived/analysis/README.md">public curated model-ready files</a>. <a href="./workflow.html#data-origin">Data origin and source database</a> documents the field monitoring, project source file, source GitHub database and SMHI weather observations.</p>
+<p>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using <code>R/03_predictor_diagnostics.R</code>.</p>
+</details>
 
 
 <!-- -->
@@ -961,95 +949,93 @@ print(vif, row.names = FALSE)
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Curated samples</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Source data</span><span class="co">](workflow.qmd#data-origin)</span> · <span class="co">[</span><span class="ot">Variable dictionary</span><span class="co">](data_derived/analysis/README.md)</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Analysis <span class="pp">|</span> Records <span class="pp">|</span> Females <span class="pp">|</span> Seasons <span class="pp">|</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---|</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch size <span class="pp">|</span> 12,627 <span class="pp">|</span> 8,894 <span class="pp">|</span> 44 <span class="pp">|</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> 9,790 <span class="pp">|</span> 7,132 <span class="pp">|</span> 39 <span class="pp">|</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Curated samples</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Analysis <span class="pp">|</span> Records <span class="pp">|</span> Females <span class="pp">|</span> Seasons <span class="pp">|</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---|</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch size <span class="pp">|</span> 12,627 <span class="pp">|</span> 8,894 <span class="pp">|</span> 44 <span class="pp">|</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> 9,790 <span class="pp">|</span> 7,132 <span class="pp">|</span> 39 <span class="pp">|</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Input files and loading code</span><span class="co">](workflow.qmd)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictor definitions</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. <span class="in">`year_f`</span> identifies the random-effect groups.</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show R code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the columns actually supplied to the fitted model.</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/analysis/clutch_model_data.csv"</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>age_class <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>age_class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>year_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>year_f)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show R code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the columns actually supplied to the fitted model.</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data_derived/analysis/clutch_model_data.csv"</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>age_class <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>age_class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"YOUNG"</span>, <span class="st">"OLD"</span>))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>year_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(d<span class="sc">$</span>year_f)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d<span class="sc">$</span>age_class)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(d<span class="sc">$</span>year_f)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>::: {#result-data_preparation-1 .analysis-result}</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>**Result**</span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> females_varied_temperature <span class="pp">|</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> females_varied_temperature <span class="pp">|</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/sample_metadata.csv)</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/sample_metadata.csv)</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Retained checks</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clutch predictor VIFs: temperature 1.21; year 1.22.</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</span>
 <span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recalculate annual year–temperature correlations</span></span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Retained checks</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clutch predictor VIFs: temperature 1.21; year 1.22.</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>The original raw-data cleaning history is not included; these pages start from the <span class="co">[</span><span class="ot">public curated model-ready files</span><span class="co">](data_derived/analysis/README.md)</span>. <span class="co">[</span><span class="ot">Data origin and source database</span><span class="co">](workflow.qmd#data-origin)</span> documents the field monitoring, project source file, source GitHub database and SMHI weather observations.</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recalculate annual year–temperature correlations</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using <span class="in">`R/03_predictor_diagnostics.R`</span>.</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-05_predictor_checks.qmd &gt;}}</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-05_predictor_checks.qmd &gt;}}</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>::: {#result-data_preparation-2 .analysis-result}</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>**Result**</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> VIF <span class="pp">|</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.04257 <span class="pp">|</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.05186 <span class="pp">|</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 1.21357 <span class="pp">|</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> year_c <span class="pp">|</span> 1.21891 <span class="pp">|</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.04551 <span class="pp">|</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.05498 <span class="pp">|</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 1.26692 <span class="pp">|</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> year_c <span class="pp">|</span> 1.26909 <span class="pp">|</span></span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/predictor_diagnostics/fixed_design_vif.csv)</span></span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>**Predictor checks.** Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> VIF <span class="pp">|</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.04257 <span class="pp">|</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.05186 <span class="pp">|</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 1.21357 <span class="pp">|</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> year_c <span class="pp">|</span> 1.21891 <span class="pp">|</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.04551 <span class="pp">|</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.05498 <span class="pp">|</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 1.26692 <span class="pp">|</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> year_c <span class="pp">|</span> 1.26909 <span class="pp">|</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"method-notes"</span><span class="dt">&gt;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Method notes<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>**Predictor checks.** Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. <span class="in">`year_f`</span> identifies the random-effect groups.</span>
 <span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/predictor_diagnostics/fixed_design_vif.csv)</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>The original raw-data cleaning history is not included; these pages start from the <span class="co">[</span><span class="ot">public curated model-ready files</span><span class="co">](data_derived/analysis/README.md)</span>. <span class="co">[</span><span class="ot">Data origin and source database</span><span class="co">](workflow.qmd#data-origin)</span> documents the field monitoring, project source file, source GitHub database and SMHI weather observations.</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using <span class="in">`R/03_predictor_diagnostics.R`</span>.</span>
 <span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

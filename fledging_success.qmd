@@ -7,9 +7,9 @@ execute:
   enabled: false
 ---
 
-## Data preparation
+[Data](data_derived/analysis/fledging_model_data.csv) · [Refit](workflow.qmd#refit-from-the-public-model-data) · [Full summaries](full_summaries.qmd#egg-to-fledging-success)
 
-The analysis uses 9,790 attempts from 7,132 females. [Model-ready records](data_derived/analysis/fledging_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
+## Data preparation
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -23,11 +23,9 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-fledging_success-1 .analysis-result}
 
-## Saved results for this step
-
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
+**Result**
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -35,17 +33,10 @@ stopifnot(nobs(base) == 9790, base$fit$convergence == 0,
 | fledging | 9790 | 7132 | 39 | 1908 |
 
 [Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+
 :::
 
-
-
-
-
-
-
 ## Fit and verify the single-temperature model
-
-Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
 
 <details class="analysis-code">
 <summary>Historical extension code (provenance)</summary>
@@ -54,11 +45,9 @@ Zero-inflated beta-binomial, with year random intercepts in location, precision 
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-fledging_success-2 .analysis-result}
 
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+**Result**
 
 | component | term | estimate | SE | lower | upper |
 | --- | --- | --- | --- | --- | --- |
@@ -75,15 +64,8 @@ Zero-inflated beta-binomial, with year random intercepts in location, precision 
 | disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
 
 [Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+
 :::
-
-
-
-
-
-
-
-The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
 
 [Download fitting script](R/81_fit_ZIyear_fledging.R)
 
@@ -104,11 +86,9 @@ The script above is the historical extension workflow. For a clean refit from th
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-fledging_success-3 .analysis-result}
 
-## Saved results for this step
-
-**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+**Result**
 
 | x | age_class | estimate | CI_low | CI_high |
 | --- | --- | --- | --- | --- |
@@ -119,46 +99,14 @@ The script above is the historical extension workflow. For a clean refit from th
 | -1.45793 | YOUNG | 0.656876 | 0.620023 | 0.690662 |
 
 [Download complete results (CSV)](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)
+
 :::
-
-
-
-
-
-
 
 [Download prediction-export script](R/82_export_ZIyear_primary.R)
 
 {{< include _includes/lab-07_fledging_output.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
-
-| component | term | estimate | SE | lower | upper |
-| --- | --- | --- | --- | --- | --- |
-| cond | (Intercept) | 1.08286 | 0.0664973 | 0.952525 | 1.21319 |
-| cond | rel_LD | -0.0751094 | 0.00456819 | -0.0840629 | -0.0661559 |
-| cond | age_classOLD | 0.00745227 | 0.044841 | -0.0804346 | 0.0953391 |
-| cond | temp_mean_c | -0.190955 | 0.059702 | -0.307969 | -0.0739412 |
-| cond | year_c | -0.00860357 | 0.00572649 | -0.0198273 | 0.00262014 |
-| zi | (Intercept) | -1.55237 | 0.0930571 | -1.73476 | -1.36998 |
-| disp | (Intercept) | 1.15545 | 0.0904679 | 0.978135 | 1.33276 |
-| disp | rel_LD | -0.0702219 | 0.0069397 | -0.0838234 | -0.0566203 |
-| disp | age_classOLD | 0.0239467 | 0.0844113 | -0.141496 | 0.18939 |
-| disp | temp_mean_c | 0.0776495 | 0.0643088 | -0.0483935 | 0.203692 |
-| disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
-
-[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
-:::
-
-
-
-
-
-
+[Result](#result-fledging_success-2)
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -172,34 +120,7 @@ head(pred)
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
-
-| component | term | estimate | SE | lower | upper |
-| --- | --- | --- | --- | --- | --- |
-| cond | (Intercept) | 1.08286 | 0.0664973 | 0.952525 | 1.21319 |
-| cond | rel_LD | -0.0751094 | 0.00456819 | -0.0840629 | -0.0661559 |
-| cond | age_classOLD | 0.00745227 | 0.044841 | -0.0804346 | 0.0953391 |
-| cond | temp_mean_c | -0.190955 | 0.059702 | -0.307969 | -0.0739412 |
-| cond | year_c | -0.00860357 | 0.00572649 | -0.0198273 | 0.00262014 |
-| zi | (Intercept) | -1.55237 | 0.0930571 | -1.73476 | -1.36998 |
-| disp | (Intercept) | 1.15545 | 0.0904679 | 0.978135 | 1.33276 |
-| disp | rel_LD | -0.0702219 | 0.0069397 | -0.0838234 | -0.0566203 |
-| disp | age_classOLD | 0.0239467 | 0.0844113 | -0.141496 | 0.18939 |
-| disp | temp_mean_c | 0.0776495 | 0.0643088 | -0.0483935 | 0.203692 |
-| disp | year_c | -0.0106886 | 0.0063209 | -0.0230773 | 0.00170017 |
-
-[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
-:::
-
-
-
-
-
-
+[Result](#result-fledging_success-2)
 
 <details class="analysis-code">
 <summary>Show saved output: ZIyear_fixed.csv</summary>
@@ -219,7 +140,6 @@ head(pred)
 | disp | year_c | -0.010688 | 0.0063211 | -0.023077 | 0.0017014 |
 
 [Download CSV](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv)
-
 
 </details>
 
@@ -260,8 +180,6 @@ head(pred)
 
 ## Figure
 
-Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
-
 ![Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 
 [PDF](figures/Fig3_COM_M1_temperature.pdf) · [Figure code — final chapter](figure_code.qmd#temperature-date-and-age)
@@ -271,3 +189,22 @@ Both the single-temperature model and the within–between temperature model are
 - Warmer springs: lower success; temperature association with precision uncertain.
 - Later laying: lower success and lower precision. Age differences remained uncertain.
 - Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.
+
+<details class="method-notes">
+<summary>Method notes</summary>
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
+
+**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+
+The analysis uses 9,790 attempts from 7,132 females. [Model-ready records](data_derived/analysis/fledging_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
+
+Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.
+
+The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
+
+Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
+
+</details>

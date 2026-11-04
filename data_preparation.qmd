@@ -7,6 +7,8 @@ execute:
   enabled: false
 ---
 
+[Source data](workflow.qmd#data-origin) · [Variable dictionary](data_derived/analysis/README.md)
+
 ## Curated samples
 
 | Analysis | Records | Females | Seasons |
@@ -14,13 +16,9 @@ execute:
 | Clutch size | 12,627 | 8,894 | 44 |
 | Egg-to-fledging success | 9,790 | 7,132 | 39 |
 
-Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.
-
 [Input files and loading code](workflow.qmd)
 
 ## Predictor definitions
-
-Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. `year_f` identifies the random-effect groups.
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -38,11 +36,9 @@ table(d$year_f)
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-data_preparation-1 .analysis-result}
 
-## Saved results for this step
-
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
+**Result**
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -50,13 +46,8 @@ table(d$year_f)
 | fledging | 9790 | 7132 | 39 | 1908 |
 
 [Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+
 :::
-
-
-
-
-
-
 
 ## Retained checks
 
@@ -64,19 +55,13 @@ table(d$year_f)
 - Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.
 - Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.
 
-The original raw-data cleaning history is not included; these pages start from the [public curated model-ready files](data_derived/analysis/README.md). [Data origin and source database](workflow.qmd#data-origin) documents the field monitoring, project source file, source GitHub database and SMHI weather observations.
-
 ## Recalculate annual year–temperature correlations
-
-This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using `R/03_predictor_diagnostics.R`.
 
 {{< include _includes/lab-05_predictor_checks.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-data_preparation-2 .analysis-result}
 
-## Saved results for this step
-
-**Predictor checks.** Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.
+**Result**
 
 | trait | predictor | VIF |
 | --- | --- | --- |
@@ -90,10 +75,22 @@ This browser step recalculates the season-level correlations from the public ann
 | fledging | year_c | 1.26909 |
 
 [Download complete results (CSV)](tables/predictor_diagnostics/fixed_design_vif.csv)
+
 :::
 
+<details class="method-notes">
+<summary>Method notes</summary>
 
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
 
+**Predictor checks.** Saved VIFs are calculated from the curated brood records; annual correlations alone cannot recreate brood-level VIFs.
 
+Egg-to-fledging success is the number of fledglings in a brood divided by its initial clutch size (the number of eggs laid), representing the proportion of eggs that produced a fledgling. Throughout the analyses, “fledging success” is shorthand for this egg-based measure.
 
+Relative laying date is first-egg date minus the within-season median. Female age is yearling or older; continuous year and temperature are centred. `year_f` identifies the random-effect groups.
 
+The original raw-data cleaning history is not included; these pages start from the [public curated model-ready files](data_derived/analysis/README.md). [Data origin and source database](workflow.qmd#data-origin) documents the field monitoring, project source file, source GitHub database and SMHI weather observations.
+
+This browser step recalculates the season-level correlations from the public annual files and displays the saved brood-level VIF table. Recompute the brood-level VIFs from the public curated records using `R/03_predictor_diagnostics.R`.
+
+</details>

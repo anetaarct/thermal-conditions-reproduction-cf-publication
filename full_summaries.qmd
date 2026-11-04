@@ -7,15 +7,9 @@ execute:
   enabled: false
 ---
 
-::: lead
-The six reproductive models were fitted to the public curated breeding records. Complete R summaries document the formulas, estimated coefficients, uncertainty and random-effect variation for each response and temperature formulation.
-:::
+[Model inputs and refit](workflow.qmd#refit-from-the-public-model-data) · [Diagnostics](model_structure.qmd) · [Validation](tables/reproduction_validation.json)
 
-::: {.callout-note title="Interpretation and provenance"}
-Clutch size was modelled with a mean-parameterised COM-Poisson distribution. Egg-to-fledging success was modelled with a zero-inflated beta-binomial distribution. Dispersion parameters have distribution-specific interpretations; beta-binomial precision is not a standard deviation.
-
-These summaries were saved during the public-data reproduction check. Baseline and within–between coefficients matched the published exports within 9.4 × 10⁻¹¹; temporal-model coefficients matched within 2.6 × 10⁻⁷. [Numerical validation report](tables/reproduction_validation.json) · [Model specifications and diagnostics](model_structure.qmd).
-:::
+COM-Poisson (clutch) and zero-inflated beta-binomial (fledging). Dispersion is distribution-specific; beta-binomial precision is not SD.
 
 ## Clutch size
 

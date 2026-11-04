@@ -296,9 +296,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="./full_summaries.html">Model summaries</a> · <a href="./workflow.html#refit-from-the-public-model-data">Refit</a></p>
 <section id="reproductive-models" class="level2">
 <h2 class="anchored" data-anchor-id="reproductive-models">Reproductive models</h2>
-<p>Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the <a href="./clutch_size.html">clutch</a>, <a href="./fledging_success.html">fledging</a> and <a href="./within_between.html">within–between</a> pages.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -330,11 +330,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Fitting uses the public curated individual records in <code>data_derived/analysis/</code>. The <a href="R/94_reproduce_from_public_data.R">standalone runner</a> rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.</p>
 </section>
 <section id="spring-temperature-model" class="level2">
 <h2 class="anchored" data-anchor-id="spring-temperature-model">Spring-temperature model</h2>
-<p>The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:</p>
 <section class="r-lab" data-r-lab="04_environment_model" aria-label="Fit spring-temperature location and scale">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Fit spring-temperature location and scale</h3></div>
 <p class="r-lab-note">Fits the Gaussian mean and log-SD likelihood to 46 annual temperatures. Coefficients for time are per decade; this is not a reproductive model.</p>
@@ -361,24 +359,13 @@ print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_interc
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div id="result-model_structure-1" class="analysis-result">
+<p><strong>Result</strong></p>
 <p><strong>Environmental result.</strong> Mean spring temperature increased by 0.0439°C/year (95% CI 0.0248–0.0630). There was no clear change in residual interannual variability. The browser code reports time effects per decade; multiply annual slopes by ten when comparing. This is an environmental model, not a reproductive model.</p>
 </div>
-</div>
-<p>The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.</p>
 </section>
 <section id="fit-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="fit-diagnostics">Fit diagnostics</h2>
-<p>Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -471,7 +458,17 @@ print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_interc
 </tr>
 </tbody>
 </table>
+<details class="method-notes">
+<summary>
+Method notes
+</summary>
+<p>Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the <a href="./clutch_size.html">clutch</a>, <a href="./fledging_success.html">fledging</a> and <a href="./within_between.html">within–between</a> pages.</p>
+<p>Fitting uses the public curated individual records in <code>data_derived/analysis/</code>. The <a href="R/94_reproduce_from_public_data.R">standalone runner</a> rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.</p>
+<p>The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:</p>
+<p>The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.</p>
+<p>Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.</p>
 <p>The comparison adds two fixed effects and tests whether within- and between-female temperature associations differ in location and scale together. Full coefficient and optimizer outputs are on the <a href="./within_between.html">within–between results page</a>.</p>
+</details>
 
 
 <!-- -->
@@ -952,9 +949,9 @@ print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_interc
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproductive models</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Model summaries</span><span class="co">](full_summaries.qmd)</span> · <span class="co">[</span><span class="ot">Refit</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the <span class="co">[</span><span class="ot">clutch</span><span class="co">](clutch_size.qmd)</span>, <span class="co">[</span><span class="ot">fledging</span><span class="co">](fledging_success.qmd)</span> and <span class="co">[</span><span class="ot">within–between</span><span class="co">](within_between.qmd)</span> pages.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproductive models</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Response <span class="pp">|</span> Distribution and components <span class="pp">|</span> Random intercepts <span class="pp">|</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
@@ -962,50 +959,52 @@ print(data.frame(term = c("mean_intercept", "warming_per_decade", "log_SD_interc
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> Zero-inflated beta-binomial; predictors enter component logit mean and log precision <span class="pp">|</span> Female and year in mean; year in precision and extra-zero probability <span class="pp">|</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Calendar-year trends <span class="pp">|</span> Same response distributions as above, with temperature removed from location and scale <span class="pp">|</span> Retained from corresponding reproductive model <span class="pp">|</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Fitting uses the public curated individual records in <span class="in">`data_derived/analysis/`</span>. The <span class="co">[</span><span class="ot">standalone runner</span><span class="co">](R/94_reproduce_from_public_data.R)</span> rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spring-temperature model</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spring-temperature model</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-04_environment_model.qmd &gt;}}</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>::: {#result-model_structure-1 .analysis-result}</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-04_environment_model.qmd &gt;}}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>**Result**</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>**Environmental result.** Mean spring temperature increased by 0.0439°C/year (95% CI 0.0248–0.0630). There was no clear change in residual interannual variability. The browser code reports time effects per decade; multiply annual slopes by ten when comparing. This is an environmental model, not a reproductive model.</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>**Environmental result.** Mean spring temperature increased by 0.0439°C/year (95% CI 0.0248–0.0630). There was no clear change in residual interannual variability. The browser code reports time effects per decade; multiply annual slopes by ten when comparing. This is an environmental model, not a reproductive model.</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit diagnostics</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Model <span class="pp">|</span> Records <span class="pp">|</span> logLik <span class="pp">|</span> AIC <span class="pp">|</span> Converged <span class="pp">|</span> Positive-definite Hessian <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---:|---|---|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch, temperature <span class="pp">|</span> 12,627 <span class="pp">|</span> −13,768.55 <span class="pp">|</span> 27,561.10 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fledging, temperature <span class="pp">|</span> 9,790 <span class="pp">|</span> −16,632.06 <span class="pp">|</span> 33,294.11 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch, no temperature <span class="pp">|</span> 12,627 <span class="pp">|</span> −13,776.61 <span class="pp">|</span> 27,573.21 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fledging, no temperature <span class="pp">|</span> 9,790 <span class="pp">|</span> −16,637.70 <span class="pp">|</span> 33,301.41 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Clutch optimizer diagnostics</span><span class="co">](tables/final_models_20261019/COM_final_diagnostics.csv)</span> · <span class="co">[</span><span class="ot">Fledging diagnostics</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)</span> · <span class="co">[</span><span class="ot">Temporal model checks</span><span class="co">](tables/temporal_models_20261022/optimizer_comparison.csv)</span> · <span class="co">[</span><span class="ot">Simulation checks</span><span class="co">](tables/temporal_models_20261022/temporal_simulation_checks.csv)</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit diagnostics</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Within–between model comparison</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Model <span class="pp">|</span> Records <span class="pp">|</span> logLik <span class="pp">|</span> AIC <span class="pp">|</span> Converged <span class="pp">|</span> Positive-definite Hessian <span class="pp">|</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---:|---|---|</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch, temperature <span class="pp">|</span> 12,627 <span class="pp">|</span> −13,768.55 <span class="pp">|</span> 27,561.10 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fledging, temperature <span class="pp">|</span> 9,790 <span class="pp">|</span> −16,632.06 <span class="pp">|</span> 33,294.11 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch, no temperature <span class="pp">|</span> 12,627 <span class="pp">|</span> −13,776.61 <span class="pp">|</span> 27,573.21 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fledging, no temperature <span class="pp">|</span> 9,790 <span class="pp">|</span> −16,637.70 <span class="pp">|</span> 33,301.41 <span class="pp">|</span> yes <span class="pp">|</span> yes <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Clutch optimizer diagnostics</span><span class="co">](tables/final_models_20261019/COM_final_diagnostics.csv)</span> · <span class="co">[</span><span class="ot">Fledging diagnostics</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)</span> · <span class="co">[</span><span class="ot">Temporal model checks</span><span class="co">](tables/temporal_models_20261022/optimizer_comparison.csv)</span> · <span class="co">[</span><span class="ot">Simulation checks</span><span class="co">](tables/temporal_models_20261022/temporal_simulation_checks.csv)</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Within–between model comparison</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Trait <span class="pp">|</span> Single-temperature AIC <span class="pp">|</span> Within–between AIC <span class="pp">|</span> ΔAIC <span class="pp">|</span> Likelihood-ratio p <span class="pp">|</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---:|---:|</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch size <span class="pp">|</span> 27,561.10 <span class="pp">|</span> 27,556.80 <span class="pp">|</span> −4.31 <span class="pp">|</span> 0.0157 <span class="pp">|</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> 33,294.11 <span class="pp">|</span> 33,297.87 <span class="pp">|</span> +3.75 <span class="pp">|</span> 0.885 <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Trait <span class="pp">|</span> Single-temperature AIC <span class="pp">|</span> Within–between AIC <span class="pp">|</span> ΔAIC <span class="pp">|</span> Likelihood-ratio p <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---:|---:|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Clutch size <span class="pp">|</span> 27,561.10 <span class="pp">|</span> 27,556.80 <span class="pp">|</span> −4.31 <span class="pp">|</span> 0.0157 <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Egg-to-fledging success <span class="pp">|</span> 33,294.11 <span class="pp">|</span> 33,297.87 <span class="pp">|</span> +3.75 <span class="pp">|</span> 0.885 <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"method-notes"</span><span class="dt">&gt;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Method notes<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the <span class="co">[</span><span class="ot">clutch</span><span class="co">](clutch_size.qmd)</span>, <span class="co">[</span><span class="ot">fledging</span><span class="co">](fledging_success.qmd)</span> and <span class="co">[</span><span class="ot">within–between</span><span class="co">](within_between.qmd)</span> pages.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Fitting uses the public curated individual records in <span class="in">`data_derived/analysis/`</span>. The <span class="co">[</span><span class="ot">standalone runner</span><span class="co">](R/94_reproduce_from_public_data.R)</span> rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.</span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>The comparison adds two fixed effects and tests whether within- and between-female temperature associations differ in location and scale together. Full coefficient and optimizer outputs are on the <span class="co">[</span><span class="ot">within–between results page</span><span class="co">](within_between.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>The comparison adds two fixed effects and tests whether within- and between-female temperature associations differ in location and scale together. Full coefficient and optimizer outputs are on the <span class="co">[</span><span class="ot">within–between results page</span><span class="co">](within_between.qmd)</span>.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -346,3 +346,12 @@ pre { max-height:620px; overflow:auto; }
 .r-output { padding:.8rem; background:#eef3ef; min-height:2.5rem; max-height:440px; overflow:auto; white-space:pre; font-size:.8rem; }
 .r-plots canvas { display:block; width:100%; height:auto; margin-top:.7rem; background:white; }
 .r-session-note { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem; padding:.8rem 1rem; background:#edf4ed; border-left:4px solid #61856d; margin:1rem 0; }
+
+/* Compact scientific supplement. */
+.overview-tile { min-height:0; padding:1rem 1.2rem; }
+.overview-tile h3 { margin:0; font-size:1.08rem; }
+.method-notes { margin:1.5rem 0; border-top:1px solid #dce3d6; padding-top:.8rem; font-size:.9rem; }
+.method-notes > summary { cursor:pointer; color:#496351; }
+.review-summary h3 { font-size:1rem; }
+
+.analysis-result { margin:.8rem 0 1.4rem; border-left:3px solid #dce3d6; padding:.2rem 1rem; }

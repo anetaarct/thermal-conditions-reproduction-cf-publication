@@ -7,13 +7,11 @@ execute:
   enabled: false
 ---
 
+[Repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) · Inputs: `tables/` · Outputs: `figures/`
+
 ## Files and packages
 
-Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip). The scripts read CSV prediction tables in `tables/` and write figures to `figures/`; no model fitting is required. Python packages: pandas, matplotlib (and their dependencies).
-
 ## Sliding-window diagnostics {#sliding-window-diagnostics}
-
-The plotting script reads the candidate-window and randomisation CSV files. Figures were generated from the numerical search results using base R.
 
 <details class="analysis-code">
 <summary>Show plotting code: window-search diagnostics</summary>
@@ -22,33 +20,9 @@ The plotting script reads the candidate-window and randomisation CSV files. Figu
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
-
 ```bash
 Rscript R/04b_plot_recovered_climwin.R
 ```
-
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
 
 ![Recovered window-search and randomisation diagnostics.](figures/Fig_climwin_recovered.png)
 
@@ -63,19 +37,6 @@ Rscript R/04b_plot_recovered_climwin.R
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
-
 <details class="analysis-code">
 <summary>Show command</summary>
 
@@ -84,19 +45,6 @@ python scripts/plot_temporal_models.py
 ```
 
 </details>
-
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
 
 ![Saved calendar-year figure.](figures/Fig4_COM_M1_time.png)
 
@@ -111,19 +59,6 @@ python scripts/plot_temporal_models.py
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
-
 <details class="analysis-code">
 <summary>Show command</summary>
 
@@ -132,19 +67,6 @@ python scripts/plot_final_models.py
 ```
 
 </details>
-
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
 
 ### Temperature
 
@@ -173,33 +95,9 @@ python scripts/plot_final_models.py
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
-
 ```r
 source("R/92_plot_temperature_within_between.R")
 ```
-
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
 
 ![Additional clutch-size model.](figures/Fig_within_between_clutch.png)
 
@@ -214,25 +112,21 @@ source("R/92_plot_temperature_within_between.R")
 <details class="analysis-code">
 <summary>Show retained R plotting block</summary>
 
-This block uses `annual`, `plot_data` and `scale_data` produced by the [temperature-model code](model_structure.qmd#spring-temperature-model). It draws the mean and residual-SD panels. The saved publication image also includes a within-window daily-SD panel; the code for assembling that extra panel is not retained here.
-
 {{< include _includes/25_environment_plot.qmd >}}
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Figure output.** This code draws saved estimates and pointwise 95% confidence intervals; it does not refit the models. The figure and its downloadable PDF are shown below. See the corresponding analysis chapter for coefficients and diagnostic limitations.
-:::
-
-
-
-
-
-
-
 ![Saved spring-temperature figure.](figures/Fig2_temperature_location_scale_time.png)
 
 [PDF](figures/Fig2_temperature_location_scale_time.pdf)
+
+<details class="method-notes">
+<summary>Method notes</summary>
+
+Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip). The scripts read CSV prediction tables in `tables/` and write figures to `figures/`; no model fitting is required. Python packages: pandas, matplotlib (and their dependencies).
+
+The plotting script reads the candidate-window and randomisation CSV files. Figures were generated from the numerical search results using base R.
+
+This block uses `annual`, `plot_data` and `scale_data` produced by the [temperature-model code](model_structure.qmd#spring-temperature-model). It draws the mean and residual-SD panels. The saved publication image also includes a within-window daily-SD panel; the code for assembling that extra panel is not retained here.
+
+</details>

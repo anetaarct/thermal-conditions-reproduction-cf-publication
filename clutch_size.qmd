@@ -7,9 +7,9 @@ execute:
   enabled: false
 ---
 
-## Data preparation
+[Data](data_derived/analysis/clutch_model_data.csv) · [Refit](workflow.qmd#refit-from-the-public-model-data) · [Full summaries](full_summaries.qmd#clutch-size)
 
-The analysis uses 12,627 clutch records from 8,894 females. [Model-ready records](data_derived/analysis/clutch_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
+## Data preparation
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -22,11 +22,9 @@ m <- readRDS(file.path(out, "clutch_baseline_selected.rds")) # after the public 
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-clutch_size-1 .analysis-result}
 
-## Saved results for this step
-
-**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
+**Result**
 
 | trait | records | females | seasons | females_varied_temperature |
 | --- | --- | --- | --- | --- |
@@ -34,17 +32,10 @@ m <- readRDS(file.path(out, "clutch_baseline_selected.rds")) # after the public 
 | fledging | 9790 | 7132 | 39 | 1908 |
 
 [Download complete results (CSV)](tables/within_between_20261026/sample_metadata.csv)
+
 :::
 
-
-
-
-
-
-
 ## Fit and verify the single-temperature model
-
-COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
 
 <details class="analysis-code">
 <summary>Historical verification code (provenance)</summary>
@@ -53,11 +44,9 @@ COM-Poisson location and dispersion use laying date, temperature, year and age. 
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-clutch_size-2 .analysis-result}
 
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+**Result**
 
 | component | term | estimate | SE | lower | upper |
 | --- | --- | --- | --- | --- | --- |
@@ -73,15 +62,8 @@ COM-Poisson location and dispersion use laying date, temperature, year and age. 
 | disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
 
 [Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
+
 :::
-
-
-
-
-
-
-
-The script above is the historical verification workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
 
 [Download fitting script](R/75_verify_COM_Poisson.R)
 
@@ -103,11 +85,9 @@ The script above is the historical verification workflow. For a clean refit from
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-clutch_size-3 .analysis-result}
 
-## Saved results for this step
-
-**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+**Result**
 
 | x | age_class | estimate | CI_low | CI_high |
 | --- | --- | --- | --- | --- |
@@ -118,45 +98,14 @@ The script above is the historical verification workflow. For a clean refit from
 | 3.62171 | YOUNG | 5.91464 | 5.83885 | 5.993 |
 
 [Download complete results (CSV)](tables/final_models_20261019/COM_temperature_mean.csv)
+
 :::
-
-
-
-
-
-
 
 [Download prediction-export script](R/76_export_COM_predictions.R)
 
 {{< include _includes/lab-06_clutch_output.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
-
-| component | term | estimate | SE | lower | upper |
-| --- | --- | --- | --- | --- | --- |
-| cond | (Intercept) | 1.8015 | 0.00397308 | 1.79371 | 1.80929 |
-| cond | rel_LD | -0.00841514 | 0.000245586 | -0.00889648 | -0.0079338 |
-| cond | temp_mean_c | 0.0159318 | 0.00395571 | 0.00817875 | 0.0236848 |
-| cond | year_c | 0.00090279 | 0.000330135 | 0.000255736 | 0.00154984 |
-| cond | age_classOLD | 0.0299908 | 0.00237729 | 0.0253313 | 0.0346502 |
-| disp | (Intercept) | -2.81497 | 0.0338217 | -2.88126 | -2.74868 |
-| disp | rel_LD | 0.0527507 | 0.00292108 | 0.0470254 | 0.0584759 |
-| disp | temp_mean_c | -0.0262978 | 0.0178672 | -0.0613168 | 0.00872117 |
-| disp | year_c | 0.00249383 | 0.0016643 | -0.000768125 | 0.00575579 |
-| disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
-
-[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
-:::
-
-
-
-
-
-
+[Result](#result-clutch_size-2)
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -170,33 +119,7 @@ head(temperature)
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
-
-| component | term | estimate | SE | lower | upper |
-| --- | --- | --- | --- | --- | --- |
-| cond | (Intercept) | 1.8015 | 0.00397308 | 1.79371 | 1.80929 |
-| cond | rel_LD | -0.00841514 | 0.000245586 | -0.00889648 | -0.0079338 |
-| cond | temp_mean_c | 0.0159318 | 0.00395571 | 0.00817875 | 0.0236848 |
-| cond | year_c | 0.00090279 | 0.000330135 | 0.000255736 | 0.00154984 |
-| cond | age_classOLD | 0.0299908 | 0.00237729 | 0.0253313 | 0.0346502 |
-| disp | (Intercept) | -2.81497 | 0.0338217 | -2.88126 | -2.74868 |
-| disp | rel_LD | 0.0527507 | 0.00292108 | 0.0470254 | 0.0584759 |
-| disp | temp_mean_c | -0.0262978 | 0.0178672 | -0.0613168 | 0.00872117 |
-| disp | year_c | 0.00249383 | 0.0016643 | -0.000768125 | 0.00575579 |
-| disp | age_classOLD | -0.125861 | 0.0360049 | -0.196429 | -0.0552926 |
-
-[Download complete results (CSV)](tables/within_between_20261026/fixed_effects.csv)
-:::
-
-
-
-
-
-
+[Result](#result-clutch_size-2)
 
 <details class="analysis-code">
 <summary>Show saved output: count_coefficients.csv</summary>
@@ -221,7 +144,6 @@ head(temperature)
 
 [Download CSV](tables/final_models_20261019/count_coefficients.csv)
 
-
 </details>
 
 | x | age_class | estimate | CI_low | CI_high |
@@ -236,8 +158,6 @@ head(temperature)
 
 ## Figure
 
-Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
-
 ![Saved temperature predictions for both reproductive traits: clutch mean and SD (A–B), fledging success and precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)
 
 [PDF](figures/Fig3_COM_M1_temperature.pdf) · [Figure code — final chapter](figure_code.qmd#temperature-date-and-age)
@@ -247,3 +167,22 @@ Both the single-temperature model and the within–between temperature model are
 - Warmer springs: larger clutches; association with clutch-size consistency uncertain.
 - Later laying: smaller and more variable clutches. Older females: larger and more consistent clutches.
 - COM-Poisson improved on Poisson, but conditional variance and some count frequencies remained imperfectly reproduced.
+
+<details class="method-notes">
+<summary>Method notes</summary>
+
+**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.
+
+**Saved model summary.** Warmer springs were associated with larger clutches. The single-temperature consistency association remains uncertain. COM-Poisson dispersion is log inverse shape, not log residual SD. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. `cond` = location, `disp` = dispersion, `zi` = extra-zero probability.
+
+**Saved prediction output (first five rows).** `estimate` is the reference-condition expected outcome; `CI_low` and `CI_high` are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.
+
+The analysis uses 12,627 clutch records from 8,894 females. [Model-ready records](data_derived/analysis/clutch_model_data.csv) are public. [Run the standalone reproduction pipeline](workflow.qmd#refit-from-the-public-model-data) to generate fitted objects locally.
+
+COM-Poisson location and dispersion use laying date, temperature, year and age. Female and year random intercepts enter location.
+
+The script above is the historical verification workflow. For a clean refit from the public records without historical starting objects, use [R/94_reproduce_from_public_data.R](R/94_reproduce_from_public_data.R).
+
+Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in [Temperature within and between females](within_between.qmd).
+
+</details>

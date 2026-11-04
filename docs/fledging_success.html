@@ -297,9 +297,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="data_derived/analysis/fledging_model_data.csv">Data</a> · <a href="./workflow.html#refit-from-the-public-model-data">Refit</a> · <a href="./full_summaries.html#egg-to-fledging-success">Full summaries</a></p>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>The analysis uses 9,790 attempts from 7,132 females. <a href="data_derived/analysis/fledging_model_data.csv">Model-ready records</a> are public. <a href="./workflow.html#refit-from-the-public-model-data">Run the standalone reproduction pipeline</a> to generate fitted objects locally.</p>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -309,17 +309,8 @@ Show R code
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nobs</span>(base) <span class="sc">==</span> <span class="dv">9790</span>, base<span class="sc">$</span>fit<span class="sc">$</span>convergence <span class="sc">==</span> <span class="dv">0</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">isTRUE</span>(base<span class="sc">$</span>sdr<span class="sc">$</span>pdHess))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
+<div id="result-fledging_success-1" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -349,11 +340,9 @@ Show R code
 </table>
 <p><a href="tables/within_between_20261026/sample_metadata.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
 </section>
 <section id="fit-and-verify-the-single-temperature-model" class="level2">
 <h2 class="anchored" data-anchor-id="fit-and-verify-the-single-temperature-model">Fit and verify the single-temperature model</h2>
-<p>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</p>
 <details class="analysis-code">
 <summary>
 Historical extension code (provenance)
@@ -425,17 +414,8 @@ Historical extension code (provenance)
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(original_hash,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'Completed isolated sensitivity comparison; primary models, manuscript and website unchanged.'</span>,<span class="st">'AIC comparison is in-sample, not held-out validation. Variance-component boundary precludes ordinary chi-square LRT interpretation.'</span>,<span class="st">'Simulation intervals are plug-in and omit parameter-estimation uncertainty. Conditional calibration uses fitted year effects and is not out-of-sample performance.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">logmsg</span>(<span class="st">'COMPLETE'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
+<div id="result-fledging_success-2" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -540,8 +520,6 @@ Historical extension code (provenance)
 </table>
 <p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
-<p>The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use <a href="R/94_reproduce_from_public_data.R">R/94_reproduce_from_public_data.R</a>.</p>
 <p><a href="R/81_fit_ZIyear_fledging.R">Download fitting script</a></p>
 <table class="caption-top table">
 <thead>
@@ -609,17 +587,8 @@ Show prediction-export script (run locally)
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">identical</span>(h,tools<span class="sc">::</span><span class="fu">md5sum</span>(p)));<span class="fu">capture.output</span>(<span class="fu">sessionInfo</span>(),<span class="at">file=</span><span class="fu">file.path</span>(out,<span class="st">'session_info.txt'</span>));<span class="fu">writeLines</span>(<span class="fu">c</span>(<span class="st">'8000 joint asymptotic coefficient draws; point estimates are ML, not draw medians.'</span>,<span class="st">'All random effects zero for curves, including zero-year and precision-year. Temperature x centred at 5.098595980711215 C.'</span>,<span class="st">'Original selected fit unchanged.'</span>),<span class="fu">file.path</span>(out,<span class="st">'COMPLETE.txt'</span>));<span class="fu">print</span>(rs);<span class="fu">cat</span>(<span class="st">'COMPLETE</span><span class="sc">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved prediction output (first five rows).</strong> <code>estimate</code> is the reference-condition expected outcome; <code>CI_low</code> and <code>CI_high</code> are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.</p>
+<div id="result-fledging_success-3" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -670,7 +639,6 @@ Show prediction-export script (run locally)
 </table>
 <p><a href="tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
 <p><a href="R/82_export_ZIyear_primary.R">Download prediction-export script</a></p>
 <section class="r-lab" data-r-lab="07_fledging_output" aria-label="Read the fledging model and calculate expected success">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read the fledging model and calculate expected success</h3></div>
@@ -692,122 +660,7 @@ print(data.frame(temperature_deviation, expected), row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>component</th>
-<th>term</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cond</td>
-<td>(Intercept)</td>
-<td>1.08286</td>
-<td>0.0664973</td>
-<td>0.952525</td>
-<td>1.21319</td>
-</tr>
-<tr class="even">
-<td>cond</td>
-<td>rel_LD</td>
-<td>-0.0751094</td>
-<td>0.00456819</td>
-<td>-0.0840629</td>
-<td>-0.0661559</td>
-</tr>
-<tr class="odd">
-<td>cond</td>
-<td>age_classOLD</td>
-<td>0.00745227</td>
-<td>0.044841</td>
-<td>-0.0804346</td>
-<td>0.0953391</td>
-</tr>
-<tr class="even">
-<td>cond</td>
-<td>temp_mean_c</td>
-<td>-0.190955</td>
-<td>0.059702</td>
-<td>-0.307969</td>
-<td>-0.0739412</td>
-</tr>
-<tr class="odd">
-<td>cond</td>
-<td>year_c</td>
-<td>-0.00860357</td>
-<td>0.00572649</td>
-<td>-0.0198273</td>
-<td>0.00262014</td>
-</tr>
-<tr class="even">
-<td>zi</td>
-<td>(Intercept)</td>
-<td>-1.55237</td>
-<td>0.0930571</td>
-<td>-1.73476</td>
-<td>-1.36998</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>(Intercept)</td>
-<td>1.15545</td>
-<td>0.0904679</td>
-<td>0.978135</td>
-<td>1.33276</td>
-</tr>
-<tr class="even">
-<td>disp</td>
-<td>rel_LD</td>
-<td>-0.0702219</td>
-<td>0.0069397</td>
-<td>-0.0838234</td>
-<td>-0.0566203</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>age_classOLD</td>
-<td>0.0239467</td>
-<td>0.0844113</td>
-<td>-0.141496</td>
-<td>0.18939</td>
-</tr>
-<tr class="even">
-<td>disp</td>
-<td>temp_mean_c</td>
-<td>0.0776495</td>
-<td>0.0643088</td>
-<td>-0.0483935</td>
-<td>0.203692</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>year_c</td>
-<td>-0.0106886</td>
-<td>0.0063209</td>
-<td>-0.0230773</td>
-<td>0.00170017</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-fledging_success-2">Result</a></p>
 <details class="analysis-code">
 <summary>
 Show R code
@@ -817,122 +670,7 @@ Show R code
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fixed</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>component</th>
-<th>term</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>cond</td>
-<td>(Intercept)</td>
-<td>1.08286</td>
-<td>0.0664973</td>
-<td>0.952525</td>
-<td>1.21319</td>
-</tr>
-<tr class="even">
-<td>cond</td>
-<td>rel_LD</td>
-<td>-0.0751094</td>
-<td>0.00456819</td>
-<td>-0.0840629</td>
-<td>-0.0661559</td>
-</tr>
-<tr class="odd">
-<td>cond</td>
-<td>age_classOLD</td>
-<td>0.00745227</td>
-<td>0.044841</td>
-<td>-0.0804346</td>
-<td>0.0953391</td>
-</tr>
-<tr class="even">
-<td>cond</td>
-<td>temp_mean_c</td>
-<td>-0.190955</td>
-<td>0.059702</td>
-<td>-0.307969</td>
-<td>-0.0739412</td>
-</tr>
-<tr class="odd">
-<td>cond</td>
-<td>year_c</td>
-<td>-0.00860357</td>
-<td>0.00572649</td>
-<td>-0.0198273</td>
-<td>0.00262014</td>
-</tr>
-<tr class="even">
-<td>zi</td>
-<td>(Intercept)</td>
-<td>-1.55237</td>
-<td>0.0930571</td>
-<td>-1.73476</td>
-<td>-1.36998</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>(Intercept)</td>
-<td>1.15545</td>
-<td>0.0904679</td>
-<td>0.978135</td>
-<td>1.33276</td>
-</tr>
-<tr class="even">
-<td>disp</td>
-<td>rel_LD</td>
-<td>-0.0702219</td>
-<td>0.0069397</td>
-<td>-0.0838234</td>
-<td>-0.0566203</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>age_classOLD</td>
-<td>0.0239467</td>
-<td>0.0844113</td>
-<td>-0.141496</td>
-<td>0.18939</td>
-</tr>
-<tr class="even">
-<td>disp</td>
-<td>temp_mean_c</td>
-<td>0.0776495</td>
-<td>0.0643088</td>
-<td>-0.0483935</td>
-<td>0.203692</td>
-</tr>
-<tr class="odd">
-<td>disp</td>
-<td>year_c</td>
-<td>-0.0106886</td>
-<td>0.0063209</td>
-<td>-0.0230773</td>
-<td>0.00170017</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/fixed_effects.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-fledging_success-2">Result</a></p>
 <details class="analysis-code">
 <summary>
 Show saved output: ZIyear_fixed.csv
@@ -1321,7 +1059,6 @@ Show saved output: simulation_checks.csv
 </section>
 <section id="figure" class="level2">
 <h2 class="anchored" data-anchor-id="figure">Figure</h2>
-<p>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <a href="./within_between.html">Temperature within and between females</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig3_COM_M1_temperature.png" class="img-fluid figure-img"></p>
@@ -1337,6 +1074,18 @@ Show saved output: simulation_checks.csv
 <li>Later laying: lower success and lower precision. Age differences remained uncertain.</li>
 <li>Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.</li>
 </ul>
+<details class="method-notes">
+<summary>
+Method notes
+</summary>
+<p><strong>Sample check.</strong> Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</p>
+<p><strong>Saved model summary.</strong> Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <code>cond</code> = location, <code>disp</code> = dispersion, <code>zi</code> = extra-zero probability.</p>
+<p><strong>Saved prediction output (first five rows).</strong> <code>estimate</code> is the reference-condition expected outcome; <code>CI_low</code> and <code>CI_high</code> are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.</p>
+<p>The analysis uses 9,790 attempts from 7,132 females. <a href="data_derived/analysis/fledging_model_data.csv">Model-ready records</a> are public. <a href="./workflow.html#refit-from-the-public-model-data">Run the standalone reproduction pipeline</a> to generate fitted objects locally.</p>
+<p>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</p>
+<p>The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use <a href="R/94_reproduce_from_public_data.R">R/94_reproduce_from_public_data.R</a>.</p>
+<p>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <a href="./within_between.html">Temperature within and between females</a>.</p>
+</details>
 
 
 <!-- -->
@@ -1818,9 +1567,9 @@ Show saved output: simulation_checks.csv
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data preparation</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Data</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> · <span class="co">[</span><span class="ot">Refit</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span> · <span class="co">[</span><span class="ot">Full summaries</span><span class="co">](full_summaries.qmd#egg-to-fledging-success)</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>The analysis uses 9,790 attempts from 7,132 females. <span class="co">[</span><span class="ot">Model-ready records</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> are public. <span class="co">[</span><span class="ot">Run the standalone reproduction pipeline</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span> to generate fitted objects locally.</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data preparation</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show R code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
@@ -1834,254 +1583,191 @@ Show saved output: simulation_checks.csv
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>::: {#result-fledging_success-1 .analysis-result}</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>**Result**</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> females_varied_temperature <span class="pp">|</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> females_varied_temperature <span class="pp">|</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/sample_metadata.csv)</span></span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/sample_metadata.csv)</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit and verify the single-temperature model</span></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Historical extension code (provenance)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/81_fit_ZIyear_fledging.qmd &gt;}}</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit and verify the single-temperature model</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>::: {#result-fledging_success-2 .analysis-result}</span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Historical extension code (provenance)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/81_fit_ZIyear_fledging.qmd &gt;}}</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <span class="in">`cond`</span> = location, <span class="in">`disp`</span> = dispersion, <span class="in">`zi`</span> = extra-zero probability.</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.08286 <span class="pp">|</span> 0.0664973 <span class="pp">|</span> 0.952525 <span class="pp">|</span> 1.21319 <span class="pp">|</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0751094 <span class="pp">|</span> 0.00456819 <span class="pp">|</span> -0.0840629 <span class="pp">|</span> -0.0661559 <span class="pp">|</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.00745227 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.0804346 <span class="pp">|</span> 0.0953391 <span class="pp">|</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.190955 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.307969 <span class="pp">|</span> -0.0739412 <span class="pp">|</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.00860357 <span class="pp">|</span> 0.00572649 <span class="pp">|</span> -0.0198273 <span class="pp">|</span> 0.00262014 <span class="pp">|</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.55237 <span class="pp">|</span> 0.0930571 <span class="pp">|</span> -1.73476 <span class="pp">|</span> -1.36998 <span class="pp">|</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.15545 <span class="pp">|</span> 0.0904679 <span class="pp">|</span> 0.978135 <span class="pp">|</span> 1.33276 <span class="pp">|</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0702219 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.0838234 <span class="pp">|</span> -0.0566203 <span class="pp">|</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0239467 <span class="pp">|</span> 0.0844113 <span class="pp">|</span> -0.141496 <span class="pp">|</span> 0.18939 <span class="pp">|</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.0776495 <span class="pp">|</span> 0.0643088 <span class="pp">|</span> -0.0483935 <span class="pp">|</span> 0.203692 <span class="pp">|</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.0106886 <span class="pp">|</span> 0.0063209 <span class="pp">|</span> -0.0230773 <span class="pp">|</span> 0.00170017 <span class="pp">|</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>**Result**</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.08286 <span class="pp">|</span> 0.0664973 <span class="pp">|</span> 0.952525 <span class="pp">|</span> 1.21319 <span class="pp">|</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0751094 <span class="pp">|</span> 0.00456819 <span class="pp">|</span> -0.0840629 <span class="pp">|</span> -0.0661559 <span class="pp">|</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.00745227 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.0804346 <span class="pp">|</span> 0.0953391 <span class="pp">|</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.190955 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.307969 <span class="pp">|</span> -0.0739412 <span class="pp">|</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.00860357 <span class="pp">|</span> 0.00572649 <span class="pp">|</span> -0.0198273 <span class="pp">|</span> 0.00262014 <span class="pp">|</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.55237 <span class="pp">|</span> 0.0930571 <span class="pp">|</span> -1.73476 <span class="pp">|</span> -1.36998 <span class="pp">|</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.15545 <span class="pp">|</span> 0.0904679 <span class="pp">|</span> 0.978135 <span class="pp">|</span> 1.33276 <span class="pp">|</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0702219 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.0838234 <span class="pp">|</span> -0.0566203 <span class="pp">|</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0239467 <span class="pp">|</span> 0.0844113 <span class="pp">|</span> -0.141496 <span class="pp">|</span> 0.18939 <span class="pp">|</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.0776495 <span class="pp">|</span> 0.0643088 <span class="pp">|</span> -0.0483935 <span class="pp">|</span> 0.203692 <span class="pp">|</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.0106886 <span class="pp">|</span> 0.0063209 <span class="pp">|</span> -0.0230773 <span class="pp">|</span> 0.00170017 <span class="pp">|</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download fitting script</span><span class="co">](R/81_fit_ZIyear_fledging.R)</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> model <span class="pp">|</span> n <span class="pp">|</span> logLik <span class="pp">|</span> AIC <span class="pp">|</span> convergence <span class="pp">|</span> pdHess <span class="pp">|</span> scaled_gradient <span class="pp">|</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year_primary_ML <span class="pp">|</span> 9790 <span class="pp">|</span> -16632 <span class="pp">|</span> 33294 <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00036322 <span class="pp">|</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Full validated R summary</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_baseline.txt)</span> · <span class="co">[</span><span class="ot">Public-data refit instructions</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span></span>
 <span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Export predictions from the saved fit</span></span>
 <span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show prediction-export script (run locally)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use <span class="co">[</span><span class="ot">R/94_reproduce_from_public_data.R</span><span class="co">](R/94_reproduce_from_public_data.R)</span>.</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download fitting script</span><span class="co">](R/81_fit_ZIyear_fledging.R)</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> model <span class="pp">|</span> n <span class="pp">|</span> logLik <span class="pp">|</span> AIC <span class="pp">|</span> convergence <span class="pp">|</span> pdHess <span class="pp">|</span> scaled_gradient <span class="pp">|</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year_primary_ML <span class="pp">|</span> 9790 <span class="pp">|</span> -16632 <span class="pp">|</span> 33294 <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00036322 <span class="pp">|</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_diagnostics.csv)</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Full validated R summary</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_baseline.txt)</span> · <span class="co">[</span><span class="ot">Public-data refit instructions</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Export predictions from the saved fit</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show prediction-export script (run locally)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/82_export_ZIyear_primary.qmd &gt;}}</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>::: {#result-fledging_success-3 .analysis-result}</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>**Result**</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> x <span class="pp">|</span> age_class <span class="pp">|</span> estimate <span class="pp">|</span> CI_low <span class="pp">|</span> CI_high <span class="pp">|</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.57069 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.659743 <span class="pp">|</span> 0.621865 <span class="pp">|</span> 0.694275 <span class="pp">|</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5425 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65903 <span class="pp">|</span> 0.621595 <span class="pp">|</span> 0.693344 <span class="pp">|</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.51431 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.658314 <span class="pp">|</span> 0.62102 <span class="pp">|</span> 0.69256 <span class="pp">|</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.48612 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.657596 <span class="pp">|</span> 0.620572 <span class="pp">|</span> 0.691627 <span class="pp">|</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.45793 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.656876 <span class="pp">|</span> 0.620023 <span class="pp">|</span> 0.690662 <span class="pp">|</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)</span></span>
 <span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/82_export_ZIyear_primary.qmd &gt;}}</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download prediction-export script</span><span class="co">](R/82_export_ZIyear_primary.R)</span></span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-07_fledging_output.qmd &gt;}}</span>
 <span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-fledging_success-2)</span></span>
 <span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>**Saved prediction output (first five rows).** <span class="in">`estimate`</span> is the reference-condition expected outcome; <span class="in">`CI_low`</span> and <span class="in">`CI_high`</span> are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.</span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> x <span class="pp">|</span> age_class <span class="pp">|</span> estimate <span class="pp">|</span> CI_low <span class="pp">|</span> CI_high <span class="pp">|</span></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.57069 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.659743 <span class="pp">|</span> 0.621865 <span class="pp">|</span> 0.694275 <span class="pp">|</span></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5425 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65903 <span class="pp">|</span> 0.621595 <span class="pp">|</span> 0.693344 <span class="pp">|</span></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.51431 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.658314 <span class="pp">|</span> 0.62102 <span class="pp">|</span> 0.69256 <span class="pp">|</span></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.48612 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.657596 <span class="pp">|</span> 0.620572 <span class="pp">|</span> 0.691627 <span class="pp">|</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.45793 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.656876 <span class="pp">|</span> 0.620023 <span class="pp">|</span> 0.690662 <span class="pp">|</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show R code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv"</span>)</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv"</span>)</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>fixed</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)</span></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-fledging_success-2)</span></span>
 <span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show saved output: ZIyear_fixed.csv<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download prediction-export script</span><span class="co">](R/82_export_ZIyear_primary.R)</span></span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-07_fledging_output.qmd &gt;}}</span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <span class="in">`cond`</span> = location, <span class="in">`disp`</span> = dispersion, <span class="in">`zi`</span> = extra-zero probability.</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.08286 <span class="pp">|</span> 0.0664973 <span class="pp">|</span> 0.952525 <span class="pp">|</span> 1.21319 <span class="pp">|</span></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0751094 <span class="pp">|</span> 0.00456819 <span class="pp">|</span> -0.0840629 <span class="pp">|</span> -0.0661559 <span class="pp">|</span></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.00745227 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.0804346 <span class="pp">|</span> 0.0953391 <span class="pp">|</span></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.190955 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.307969 <span class="pp">|</span> -0.0739412 <span class="pp">|</span></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.00860357 <span class="pp">|</span> 0.00572649 <span class="pp">|</span> -0.0198273 <span class="pp">|</span> 0.00262014 <span class="pp">|</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.55237 <span class="pp">|</span> 0.0930571 <span class="pp">|</span> -1.73476 <span class="pp">|</span> -1.36998 <span class="pp">|</span></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.15545 <span class="pp">|</span> 0.0904679 <span class="pp">|</span> 0.978135 <span class="pp">|</span> 1.33276 <span class="pp">|</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0702219 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.0838234 <span class="pp">|</span> -0.0566203 <span class="pp">|</span></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0239467 <span class="pp">|</span> 0.0844113 <span class="pp">|</span> -0.141496 <span class="pp">|</span> 0.18939 <span class="pp">|</span></span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.0776495 <span class="pp">|</span> 0.0643088 <span class="pp">|</span> -0.0483935 <span class="pp">|</span> 0.203692 <span class="pp">|</span></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.0106886 <span class="pp">|</span> 0.0063209 <span class="pp">|</span> -0.0230773 <span class="pp">|</span> 0.00170017 <span class="pp">|</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.0829 <span class="pp">|</span> 0.066497 <span class="pp">|</span> 0.95253 <span class="pp">|</span> 1.2132 <span class="pp">|</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.07511 <span class="pp">|</span> 0.0045682 <span class="pp">|</span> -0.084063 <span class="pp">|</span> -0.066157 <span class="pp">|</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0074456 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.080441 <span class="pp">|</span> 0.095332 <span class="pp">|</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.19096 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.30797 <span class="pp">|</span> -0.073942 <span class="pp">|</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.0086032 <span class="pp">|</span> 0.0057265 <span class="pp">|</span> -0.019827 <span class="pp">|</span> 0.0026205 <span class="pp">|</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.5524 <span class="pp">|</span> 0.093054 <span class="pp">|</span> -1.7348 <span class="pp">|</span> -1.37 <span class="pp">|</span></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.1555 <span class="pp">|</span> 0.09047 <span class="pp">|</span> 0.97815 <span class="pp">|</span> 1.3328 <span class="pp">|</span></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.070223 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.083825 <span class="pp">|</span> -0.056621 <span class="pp">|</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.023935 <span class="pp">|</span> 0.084412 <span class="pp">|</span> -0.14151 <span class="pp">|</span> 0.18938 <span class="pp">|</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.077644 <span class="pp">|</span> 0.064312 <span class="pp">|</span> -0.048404 <span class="pp">|</span> 0.20369 <span class="pp">|</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.010688 <span class="pp">|</span> 0.0063211 <span class="pp">|</span> -0.023077 <span class="pp">|</span> 0.0017014 <span class="pp">|</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv)</span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> x <span class="pp">|</span> age_class <span class="pp">|</span> estimate <span class="pp">|</span> CI_low <span class="pp">|</span> CI_high <span class="pp">|</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5707 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65974 <span class="pp">|</span> 0.62186 <span class="pp">|</span> 0.69427 <span class="pp">|</span></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5425 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65903 <span class="pp">|</span> 0.6216 <span class="pp">|</span> 0.69334 <span class="pp">|</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5143 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65831 <span class="pp">|</span> 0.62102 <span class="pp">|</span> 0.69256 <span class="pp">|</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.4861 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.6576 <span class="pp">|</span> 0.62057 <span class="pp">|</span> 0.69163 <span class="pp">|</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.4579 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65688 <span class="pp">|</span> 0.62002 <span class="pp">|</span> 0.69066 <span class="pp">|</span></span>
 <span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show saved output: simulation_checks.csv<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show R code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv"</span>)</span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv"</span>)</span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>fixed</span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pred)</span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> model <span class="pp">|</span> target <span class="pp">|</span> group <span class="pp">|</span> level <span class="pp">|</span> n <span class="pp">|</span> statistic <span class="pp">|</span> observed <span class="pp">|</span> predicted <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.57868 <span class="pp">|</span> 0.57137 <span class="pp">|</span> 0.58614 <span class="pp">|</span></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.22524 <span class="pp">|</span> 0.21726 <span class="pp">|</span> 0.23371 <span class="pp">|</span></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28622 <span class="pp">|</span> 0.27793 <span class="pp">|</span> 0.29479 <span class="pp">|</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15133 <span class="pp">|</span> 0.14907 <span class="pp">|</span> 0.1537 <span class="pp">|</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58465 <span class="pp">|</span> 0.55988 <span class="pp">|</span> 0.60644 <span class="pp">|</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.21568 <span class="pp">|</span> 0.20245 <span class="pp">|</span> 0.22994 <span class="pp">|</span></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.29049 <span class="pp">|</span> 0.25381 <span class="pp">|</span> 0.32249 <span class="pp">|</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.14873 <span class="pp">|</span> 0.14324 <span class="pp">|</span> 0.15387 <span class="pp">|</span></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58094 <span class="pp">|</span> 0.57376 <span class="pp">|</span> 0.58866 <span class="pp">|</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.23176 <span class="pp">|</span> 0.22339 <span class="pp">|</span> 0.24004 <span class="pp">|</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28586 <span class="pp">|</span> 0.27712 <span class="pp">|</span> 0.29449 <span class="pp">|</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15191 <span class="pp">|</span> 0.14962 <span class="pp">|</span> 0.1543 <span class="pp">|</span></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58639 <span class="pp">|</span> 0.55829 <span class="pp">|</span> 0.61511 <span class="pp">|</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.2212 <span class="pp">|</span> 0.19325 <span class="pp">|</span> 0.24997 <span class="pp">|</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28786 <span class="pp">|</span> 0.25811 <span class="pp">|</span> 0.31768 <span class="pp">|</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.14907 <span class="pp">|</span> 0.14096 <span class="pp">|</span> 0.15661 <span class="pp">|</span></span>
 <span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/simulation_checks.csv)</span></span>
 <span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <span class="in">`cond`</span> = location, <span class="in">`disp`</span> = dispersion, <span class="in">`zi`</span> = extra-zero probability.</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.08286 <span class="pp">|</span> 0.0664973 <span class="pp">|</span> 0.952525 <span class="pp">|</span> 1.21319 <span class="pp">|</span></span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0751094 <span class="pp">|</span> 0.00456819 <span class="pp">|</span> -0.0840629 <span class="pp">|</span> -0.0661559 <span class="pp">|</span></span>
-<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.00745227 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.0804346 <span class="pp">|</span> 0.0953391 <span class="pp">|</span></span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.190955 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.307969 <span class="pp">|</span> -0.0739412 <span class="pp">|</span></span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.00860357 <span class="pp">|</span> 0.00572649 <span class="pp">|</span> -0.0198273 <span class="pp">|</span> 0.00262014 <span class="pp">|</span></span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.55237 <span class="pp">|</span> 0.0930571 <span class="pp">|</span> -1.73476 <span class="pp">|</span> -1.36998 <span class="pp">|</span></span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.15545 <span class="pp">|</span> 0.0904679 <span class="pp">|</span> 0.978135 <span class="pp">|</span> 1.33276 <span class="pp">|</span></span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.0702219 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.0838234 <span class="pp">|</span> -0.0566203 <span class="pp">|</span></span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0239467 <span class="pp">|</span> 0.0844113 <span class="pp">|</span> -0.141496 <span class="pp">|</span> 0.18939 <span class="pp">|</span></span>
-<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.0776495 <span class="pp">|</span> 0.0643088 <span class="pp">|</span> -0.0483935 <span class="pp">|</span> 0.203692 <span class="pp">|</span></span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.0106886 <span class="pp">|</span> 0.0063209 <span class="pp">|</span> -0.0230773 <span class="pp">|</span> 0.00170017 <span class="pp">|</span></span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span></span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Figure</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="al">![Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span> · <span class="co">[</span><span class="ot">Figure code — final chapter</span><span class="co">](figure_code.qmd#temperature-date-and-age)</span></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main conclusions</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Warmer springs: lower success; temperature association with precision uncertain.</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Later laying: lower success and lower precision. Age differences remained uncertain.</span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"method-notes"</span><span class="dt">&gt;</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Method notes<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>**Sample check.** Clutch size: 12,627 attempts, 8,894 females, 44 seasons. Egg-to-fledging success: 9,790 attempts, 7,132 females, 39 seasons. Public model-ready CSVs are available in data_derived/analysis; these counts are the saved analysis-sample metadata.</span>
 <span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>**Saved model summary.** Warmer springs were associated with lower egg-to-fledging success. Temperature associations with precision remain uncertain. Precision describes the beta-binomial component; it is not full-mixture variance. Coefficients below are on the link scale; these are exported estimates, not a fresh model fit. <span class="in">`cond`</span> = location, <span class="in">`disp`</span> = dispersion, <span class="in">`zi`</span> = extra-zero probability.</span>
 <span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>**Saved prediction output (first five rows).** <span class="in">`estimate`</span> is the reference-condition expected outcome; <span class="in">`CI_low`</span> and <span class="in">`CI_high`</span> are pointwise 95% confidence limits. These are predictions, not model coefficients. Other predictors and random effects are held at the reference values specified in the chapter.</span>
 <span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>The analysis uses 9,790 attempts from 7,132 females. <span class="co">[</span><span class="ot">Model-ready records</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> are public. <span class="co">[</span><span class="ot">Run the standalone reproduction pipeline</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span> to generate fitted objects locally.</span>
 <span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show saved output: ZIyear_fixed.csv<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.0829 <span class="pp">|</span> 0.066497 <span class="pp">|</span> 0.95253 <span class="pp">|</span> 1.2132 <span class="pp">|</span></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.07511 <span class="pp">|</span> 0.0045682 <span class="pp">|</span> -0.084063 <span class="pp">|</span> -0.066157 <span class="pp">|</span></span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.0074456 <span class="pp">|</span> 0.044841 <span class="pp">|</span> -0.080441 <span class="pp">|</span> 0.095332 <span class="pp">|</span></span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> temp_mean_c <span class="pp">|</span> -0.19096 <span class="pp">|</span> 0.059702 <span class="pp">|</span> -0.30797 <span class="pp">|</span> -0.073942 <span class="pp">|</span></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cond <span class="pp">|</span> year_c <span class="pp">|</span> -0.0086032 <span class="pp">|</span> 0.0057265 <span class="pp">|</span> -0.019827 <span class="pp">|</span> 0.0026205 <span class="pp">|</span></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> zi <span class="pp">|</span> (Intercept) <span class="pp">|</span> -1.5524 <span class="pp">|</span> 0.093054 <span class="pp">|</span> -1.7348 <span class="pp">|</span> -1.37 <span class="pp">|</span></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> (Intercept) <span class="pp">|</span> 1.1555 <span class="pp">|</span> 0.09047 <span class="pp">|</span> 0.97815 <span class="pp">|</span> 1.3328 <span class="pp">|</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> rel_LD <span class="pp">|</span> -0.070223 <span class="pp">|</span> 0.0069397 <span class="pp">|</span> -0.083825 <span class="pp">|</span> -0.056621 <span class="pp">|</span></span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> age_classOLD <span class="pp">|</span> 0.023935 <span class="pp">|</span> 0.084412 <span class="pp">|</span> -0.14151 <span class="pp">|</span> 0.18938 <span class="pp">|</span></span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> temp_mean_c <span class="pp">|</span> 0.077644 <span class="pp">|</span> 0.064312 <span class="pp">|</span> -0.048404 <span class="pp">|</span> 0.20369 <span class="pp">|</span></span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> year_c <span class="pp">|</span> -0.010688 <span class="pp">|</span> 0.0063211 <span class="pp">|</span> -0.023077 <span class="pp">|</span> 0.0017014 <span class="pp">|</span></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_fixed.csv)</span></span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> x <span class="pp">|</span> age_class <span class="pp">|</span> estimate <span class="pp">|</span> CI_low <span class="pp">|</span> CI_high <span class="pp">|</span></span>
-<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5707 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65974 <span class="pp">|</span> 0.62186 <span class="pp">|</span> 0.69427 <span class="pp">|</span></span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5425 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65903 <span class="pp">|</span> 0.6216 <span class="pp">|</span> 0.69334 <span class="pp">|</span></span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.5143 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65831 <span class="pp">|</span> 0.62102 <span class="pp">|</span> 0.69256 <span class="pp">|</span></span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.4861 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.6576 <span class="pp">|</span> 0.62057 <span class="pp">|</span> 0.69163 <span class="pp">|</span></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> -1.4579 <span class="pp">|</span> YOUNG <span class="pp">|</span> 0.65688 <span class="pp">|</span> 0.62002 <span class="pp">|</span> 0.69066 <span class="pp">|</span></span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/ZIyear_temperature_success.csv)</span></span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show saved output: simulation_checks.csv<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> model <span class="pp">|</span> target <span class="pp">|</span> group <span class="pp">|</span> level <span class="pp">|</span> n <span class="pp">|</span> statistic <span class="pp">|</span> observed <span class="pp">|</span> predicted <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.57868 <span class="pp">|</span> 0.57137 <span class="pp">|</span> 0.58614 <span class="pp">|</span></span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.22524 <span class="pp">|</span> 0.21726 <span class="pp">|</span> 0.23371 <span class="pp">|</span></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28622 <span class="pp">|</span> 0.27793 <span class="pp">|</span> 0.29479 <span class="pp">|</span></span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15133 <span class="pp">|</span> 0.14907 <span class="pp">|</span> 0.1537 <span class="pp">|</span></span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58465 <span class="pp">|</span> 0.55988 <span class="pp">|</span> 0.60644 <span class="pp">|</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.21568 <span class="pp">|</span> 0.20245 <span class="pp">|</span> 0.22994 <span class="pp">|</span></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.29049 <span class="pp">|</span> 0.25381 <span class="pp">|</span> 0.32249 <span class="pp">|</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Current_ML <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.14873 <span class="pp">|</span> 0.14324 <span class="pp">|</span> 0.15387 <span class="pp">|</span></span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58094 <span class="pp">|</span> 0.57376 <span class="pp">|</span> 0.58866 <span class="pp">|</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.23176 <span class="pp">|</span> 0.22339 <span class="pp">|</span> 0.24004 <span class="pp">|</span></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28586 <span class="pp">|</span> 0.27712 <span class="pp">|</span> 0.29449 <span class="pp">|</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> conditional_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15191 <span class="pp">|</span> 0.14962 <span class="pp">|</span> 0.1543 <span class="pp">|</span></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58639 <span class="pp">|</span> 0.55829 <span class="pp">|</span> 0.61511 <span class="pp">|</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> zero_fraction <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.2212 <span class="pp">|</span> 0.19325 <span class="pp">|</span> 0.24997 <span class="pp">|</span></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28786 <span class="pp">|</span> 0.25811 <span class="pp">|</span> 0.31768 <span class="pp">|</span></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ZI_year <span class="pp">|</span> new_groups_plugin <span class="pp">|</span> overall <span class="pp">|</span> all <span class="pp">|</span> 9790 <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.14907 <span class="pp">|</span> 0.14096 <span class="pp">|</span> 0.15661 <span class="pp">|</span></span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete CSV</span><span class="co">](tables/primary_ZIyear_ML_20261021/simulation_checks.csv)</span></span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a><span class="fu">## Figure</span></span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <span class="co">[</span><span class="ot">Temperature within and between females</span><span class="co">](within_between.qmd)</span>.</span>
-<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a><span class="al">![Saved temperature predictions: clutch mean and SD (A–B), full-mixture egg-to-fledging success and component precision (C–D); pointwise 95% CIs.](figures/Fig3_COM_M1_temperature.png)</span></span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">PDF</span><span class="co">](figures/Fig3_COM_M1_temperature.pdf)</span> · <span class="co">[</span><span class="ot">Figure code — final chapter</span><span class="co">](figure_code.qmd#temperature-date-and-age)</span></span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main conclusions</span></span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Warmer springs: lower success; temperature association with precision uncertain.</span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Later laying: lower success and lower precision. Age differences remained uncertain.</span>
-<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Precision measures consistency at fixed component mean and clutch size; conditional simulation variance remained underestimated.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>Zero-inflated beta-binomial, with year random intercepts in location, precision and extra-zero probability; female random intercepts in location.</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>The script above is the historical extension workflow. For a clean refit from the public records without historical starting objects, use <span class="co">[</span><span class="ot">R/94_reproduce_from_public_data.R</span><span class="co">](R/94_reproduce_from_public_data.R)</span>.</span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>Both the single-temperature model and the within–between temperature model are reported in the paper. The second formulation and its direct comparison with this model are shown in <span class="co">[</span><span class="ot">Temperature within and between females</span><span class="co">](within_between.qmd)</span>.</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

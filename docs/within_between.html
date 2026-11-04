@@ -302,9 +302,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><a href="data_derived/analysis/clutch_model_data.csv">Clutch data</a> · <a href="data_derived/analysis/fledging_model_data.csv">Fledging data</a> · <a href="./workflow.html#refit-from-the-public-model-data">Refit</a></p>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data preparation</h2>
-<p>This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female’s warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.</p>
 <details class="analysis-code">
 <summary>
 Show temperature decomposition
@@ -315,17 +315,8 @@ Show temperature decomposition
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>temp_within <span class="ot">&lt;-</span> d<span class="sc">$</span>temp_mean_c <span class="sc">-</span> d<span class="sc">$</span>temp_between</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">max</span>(<span class="fu">abs</span>(d<span class="sc">$</span>temp_within <span class="sc">+</span> d<span class="sc">$</span>temp_between <span class="sc">-</span> d<span class="sc">$</span>temp_mean_c)) <span class="sc">&lt;</span> <span class="fl">1e-8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<div id="result-within_between-1" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -428,7 +419,6 @@ Show temperature decomposition
 </table>
 <p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
 </div>
-</div>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -469,11 +459,9 @@ Show temperature decomposition
 </tbody>
 </table>
 </div>
-<p>Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.</p>
 </section>
 <section id="fit-the-withinbetween-models" class="level2">
 <h2 class="anchored" data-anchor-id="fit-the-withinbetween-models">Fit the within–between models</h2>
-<p>Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.</p>
 <details class="analysis-code">
 <summary>
 Show fitting script (run locally)
@@ -827,126 +815,11 @@ Show fitting script (run locally)
 <span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>baseline_AIC</th>
-<th>within_between_AIC</th>
-<th>delta_AIC</th>
-<th>LR</th>
-<th>df</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>27561.1</td>
-<td>27556.8</td>
-<td>-4.30555</td>
-<td>8.30555</td>
-<td>2</td>
-<td>0.0157207</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>33294.1</td>
-<td>33297.9</td>
-<td>3.75495</td>
-<td>0.245052</td>
-<td>2</td>
-<td>0.884683</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>component</th>
-<th>contrast</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>0.00105414</td>
-<td>0.00226567</td>
-<td>-0.0033865</td>
-<td>0.00549478</td>
-<td>0.641741</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.110737</td>
-<td>0.0395268</td>
-<td>-0.188208</td>
-<td>-0.0332663</td>
-<td>0.00508534</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>-0.0223986</td>
-<td>0.0454329</td>
-<td>-0.111445</td>
-<td>0.0666482</td>
-<td>0.62201</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.0207843</td>
-<td>0.0823427</td>
-<td>-0.182173</td>
-<td>0.140605</td>
-<td>0.800723</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
-<p>The fits use the same <a href="./workflow.html#refit-from-the-public-model-data">public curated records</a> as the single-temperature models and require local R with glmmTMB. The standalone pipeline fits both formulations without historical fitted objects. The full mixed-model refit does not run in the browser.</p>
+<p><a href="#result-within_between-1">Result</a></p>
 <p><a href="R/90_fit_temperature_within_between.R">Download fitting script</a></p>
 </section>
 <section id="read-saved-results" class="level2">
 <h2 class="anchored" data-anchor-id="read-saved-results">Read saved results</h2>
-<p>The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.</p>
 <section class="r-lab" data-r-lab="08_within_between_output" aria-label="Recalculate within-between summaries">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Recalculate within-between summaries</h3></div>
 <p class="r-lab-note">Uses real aggregate model outputs. A lower clutch SD means greater consistency; a higher fledging component precision means greater consistency.</p>
@@ -964,120 +837,7 @@ print(effects[, c("trait", "predictor", "mean_change_per_C", "consistency_measur
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>baseline_AIC</th>
-<th>within_between_AIC</th>
-<th>delta_AIC</th>
-<th>LR</th>
-<th>df</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>27561.1</td>
-<td>27556.8</td>
-<td>-4.30555</td>
-<td>8.30555</td>
-<td>2</td>
-<td>0.0157207</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>33294.1</td>
-<td>33297.9</td>
-<td>3.75495</td>
-<td>0.245052</td>
-<td>2</td>
-<td>0.884683</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>component</th>
-<th>contrast</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>0.00105414</td>
-<td>0.00226567</td>
-<td>-0.0033865</td>
-<td>0.00549478</td>
-<td>0.641741</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.110737</td>
-<td>0.0395268</td>
-<td>-0.188208</td>
-<td>-0.0332663</td>
-<td>0.00508534</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>-0.0223986</td>
-<td>0.0454329</td>
-<td>-0.111445</td>
-<td>0.0666482</td>
-<td>0.62201</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.0207843</td>
-<td>0.0823427</td>
-<td>-0.182173</td>
-<td>0.140605</td>
-<td>0.800723</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-within_between-1">Result</a></p>
 <details class="analysis-code">
 <summary>
 Show cached-output loading
@@ -1086,120 +846,7 @@ Show cached-output loading
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>fixed_effects</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>contrasts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>baseline_AIC</th>
-<th>within_between_AIC</th>
-<th>delta_AIC</th>
-<th>LR</th>
-<th>df</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>27561.1</td>
-<td>27556.8</td>
-<td>-4.30555</td>
-<td>8.30555</td>
-<td>2</td>
-<td>0.0157207</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>33294.1</td>
-<td>33297.9</td>
-<td>3.75495</td>
-<td>0.245052</td>
-<td>2</td>
-<td>0.884683</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>component</th>
-<th>contrast</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>0.00105414</td>
-<td>0.00226567</td>
-<td>-0.0033865</td>
-<td>0.00549478</td>
-<td>0.641741</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.110737</td>
-<td>0.0395268</td>
-<td>-0.188208</td>
-<td>-0.0332663</td>
-<td>0.00508534</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>-0.0223986</td>
-<td>0.0454329</td>
-<td>-0.111445</td>
-<td>0.0666482</td>
-<td>0.62201</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.0207843</td>
-<td>0.0823427</td>
-<td>-0.182173</td>
-<td>0.140605</td>
-<td>0.800723</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-within_between-1">Result</a></p>
 <div class="table-responsive">
 <table class="caption-top table">
 <thead>
@@ -1280,7 +927,6 @@ Show cached-output loading
 </tbody>
 </table>
 </div>
-<p>Location (<code>cond</code>): log clutch mean or logit beta-binomial mean. Scale (<code>disp</code>): log COM-Poisson inverse shape or log beta-binomial precision. Response-scale consistency curves below account for both clutch components.</p>
 <p><a href="tables/within_between_20261026/fixed_effects.csv">All fixed effects</a> · <a href="tables/within_between_20261026/aggregate_results.rds">Aggregate RDS output</a></p>
 </section>
 <section id="within-versus-between-direct-tests" class="level2">
@@ -1333,7 +979,6 @@ Show cached-output loading
 </tbody>
 </table>
 </div>
-<p>Each contrast is <strong>within minus between</strong> on its component’s link scale. A significant coefficient alongside a non-significant coefficient is not itself evidence that the effects differ.</p>
 </section>
 <section id="comparison-with-the-single-temperature-model" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-with-the-single-temperature-model">Comparison with the single-temperature model</h2>
@@ -1372,12 +1017,9 @@ Show cached-output loading
 </tbody>
 </table>
 </div>
-<p>Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. The baseline likelihoods were checked against the original final fits. Splitting temperature adds two fixed coefficients in total; the nested comparison tests equality of within and between effects in both components.</p>
 </section>
 <section id="year-coefficients-in-the-temperature-models" class="level2">
 <h2 class="anchored" data-anchor-id="year-coefficients-in-the-temperature-models">Year coefficients in the temperature models</h2>
-<p>These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.</p>
-<p>The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under <code>models/</code>; generate them locally with the public-data runner.</p>
 <p><a href="R/93_export_joint_calendar_year.R">Download year-effect export script</a></p>
 <section class="r-lab" data-r-lab="09_joint_year_output" aria-label="Read year effects from both temperature models">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Read year effects from both temperature models</h3></div>
@@ -1392,17 +1034,8 @@ print(change, row.names = FALSE)
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Temperature-adjusted calendar-year results.</strong> Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</p>
+<div id="result-within_between-2" class="analysis-result">
+<p><strong>Result</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 12%">
@@ -1470,7 +1103,6 @@ print(change, row.names = FALSE)
 </tbody>
 </table>
 <p><a href="tables/joint_calendar_year_20261027/contrasts.csv">Download complete results (CSV)</a></p>
-</div>
 </div>
 <section class="r-lab" data-r-lab="10_draw_joint_year" aria-label="Draw the calendar-year figure">
 <div class="r-lab-heading"><span class="r-lab-badge">Run R</span><h3 class="anchored">Draw the calendar-year figure</h3></div>
@@ -1501,86 +1133,7 @@ for (trait in c("clutch", "fledging")) for (component in c("mean", "consistency"
 <div class="r-output-label">Output appears here after running.</div><pre class="r-output" tabindex="0"></pre><div class="r-plots"></div>
 <noscript>JavaScript is required to run R here. Download the R script and run it locally.</noscript>
 </section>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Temperature-adjusted calendar-year results.</strong> Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>model</th>
-<th>mean_change</th>
-<th>mean_lower</th>
-<th>mean_upper</th>
-<th>consistency_ratio</th>
-<th>ratio_lower</th>
-<th>ratio_upper</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>baseline</td>
-<td>0.240769</td>
-<td>0.067762</td>
-<td>0.411234</td>
-<td>1.07938</td>
-<td>0.997301</td>
-<td>1.16789</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>within_between</td>
-<td>0.247153</td>
-<td>0.0681042</td>
-<td>0.421956</td>
-<td>1.04321</td>
-<td>0.960493</td>
-<td>1.12916</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>baseline</td>
-<td>-0.0500468</td>
-<td>-0.11212</td>
-<td>0.0162065</td>
-<td>0.6662</td>
-<td>0.410643</td>
-<td>1.07155</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>within_between</td>
-<td>-0.0524622</td>
-<td>-0.114463</td>
-<td>0.011854</td>
-<td>0.652904</td>
-<td>0.407307</td>
-<td>1.06583</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/joint_calendar_year_20261027/contrasts.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-within_between-2">Result</a></p>
 </section>
 <section id="prediction-export-and-checks" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-export-and-checks">Prediction export and checks</h2>
@@ -1746,120 +1299,7 @@ Show prediction export and conditional-simulation code
 <span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>        <span class="fu">file.path</span>(out, <span class="st">"aggregate_results.rds"</span>), <span class="at">version =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
-<div class="review-summary callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Saved results for this step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>baseline_AIC</th>
-<th>within_between_AIC</th>
-<th>delta_AIC</th>
-<th>LR</th>
-<th>df</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>27561.1</td>
-<td>27556.8</td>
-<td>-4.30555</td>
-<td>8.30555</td>
-<td>2</td>
-<td>0.0157207</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>33294.1</td>
-<td>33297.9</td>
-<td>3.75495</td>
-<td>0.245052</td>
-<td>2</td>
-<td>0.884683</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/model_comparison.csv">Download complete results (CSV)</a></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>trait</th>
-<th>component</th>
-<th>contrast</th>
-<th>estimate</th>
-<th>SE</th>
-<th>lower</th>
-<th>upper</th>
-<th>p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clutch</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>0.00105414</td>
-<td>0.00226567</td>
-<td>-0.0033865</td>
-<td>0.00549478</td>
-<td>0.641741</td>
-</tr>
-<tr class="even">
-<td>clutch</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.110737</td>
-<td>0.0395268</td>
-<td>-0.188208</td>
-<td>-0.0332663</td>
-<td>0.00508534</td>
-</tr>
-<tr class="odd">
-<td>fledging</td>
-<td>cond</td>
-<td>within_minus_between</td>
-<td>-0.0223986</td>
-<td>0.0454329</td>
-<td>-0.111445</td>
-<td>0.0666482</td>
-<td>0.62201</td>
-</tr>
-<tr class="even">
-<td>fledging</td>
-<td>disp</td>
-<td>within_minus_between</td>
-<td>-0.0207843</td>
-<td>0.0823427</td>
-<td>-0.182173</td>
-<td>0.140605</td>
-<td>0.800723</td>
-</tr>
-</tbody>
-</table>
-<p><a href="tables/within_between_20261026/within_between_contrasts.csv">Download complete results (CSV)</a></p>
-</div>
-</div>
+<p><a href="#result-within_between-1">Result</a></p>
 <details class="analysis-code">
 <summary>
 Numerical convergence and optimiser checks
@@ -2048,7 +1488,6 @@ Conditional simulation checks
 </table>
 </div>
 </details>
-<p>Observed statistics outside the conditional 95% simulation intervals: clutch: <code>variance</code>; fledging: <code>variance_fraction</code>. These discrepancies remain visible in the diagnostics.</p>
 <details class="analysis-code">
 <summary>
 Fixed-design VIF
@@ -2117,11 +1556,9 @@ Fixed-design VIF
 </table>
 </div>
 </details>
-<p>Simulation intervals use 300 plug-in datasets at fitted parameters and group modes; they are not cross-validation or parameter-uncertainty intervals. Full model and coefficient outputs are retained even when evidence is uncertain.</p>
 </section>
 <section id="figures" class="level2">
 <h2 class="anchored" data-anchor-id="figures">Figures</h2>
-<p>Curves hold year and relative laying date at zero, age at yearling and all random effects at zero. Bands are pointwise 95% CIs from 4,000 joint coefficient draws. In the within panels, the female’s mean temperature is held at the sample centre; in between panels, within deviation is zero.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/Fig_within_between_clutch.png" class="img-fluid figure-img"></p>
@@ -2145,7 +1582,6 @@ Fixed-design VIF
 <li><strong>Fledging success, location:</strong> no clear within/between difference (direct contrast p = 0.622).</li>
 <li><strong>Fledging success, scale:</strong> no clear within/between difference (direct contrast p = 0.801).</li>
 </ul>
-<p>At the reference conditions above, for a +1°C change: mean differences are in eggs for clutch size and proportions for fledging success. Consistency ratios compare conditional SD or component precision after versus before that change.</p>
 <div class="table-responsive">
 <table class="caption-top table">
 <colgroup>
@@ -2199,8 +1635,29 @@ Fixed-design VIF
 </section>
 <section id="interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
-<p>These are adjusted associations from the within–between formulation. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</p>
 <p><a href="tables/within_between_20261026/session_info.txt">Session information</a> · <a href="tables/within_between_20261026/export_session_info.txt">Export session</a> · <a href="tables/within_between_20261026/reference_effects_per_degree.csv">Reference effects per degree</a></p>
+<details class="method-notes">
+<summary>
+Method notes
+</summary>
+<p><strong>Saved within–between comparison.</strong> Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</p>
+<p><strong>Temperature-adjusted calendar-year results.</strong> Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</p>
+<p>This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female’s warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.</p>
+<p>Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.</p>
+<p>Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.</p>
+<p>The fits use the same <a href="./workflow.html#refit-from-the-public-model-data">public curated records</a> as the single-temperature models and require local R with glmmTMB. The standalone pipeline fits both formulations without historical fitted objects. The full mixed-model refit does not run in the browser.</p>
+<p>The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.</p>
+<p>Location (<code>cond</code>): log clutch mean or logit beta-binomial mean. Scale (<code>disp</code>): log COM-Poisson inverse shape or log beta-binomial precision. Response-scale consistency curves below account for both clutch components.</p>
+<p>Each contrast is <strong>within minus between</strong> on its component’s link scale. A significant coefficient alongside a non-significant coefficient is not itself evidence that the effects differ.</p>
+<p>Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. The baseline likelihoods were checked against the original final fits. Splitting temperature adds two fixed coefficients in total; the nested comparison tests equality of within and between effects in both components.</p>
+<p>These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.</p>
+<p>The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under <code>models/</code>; generate them locally with the public-data runner.</p>
+<p>Observed statistics outside the conditional 95% simulation intervals: clutch: <code>variance</code>; fledging: <code>variance_fraction</code>. These discrepancies remain visible in the diagnostics.</p>
+<p>Simulation intervals use 300 plug-in datasets at fitted parameters and group modes; they are not cross-validation or parameter-uncertainty intervals. Full model and coefficient outputs are retained even when evidence is uncertain.</p>
+<p>Curves hold year and relative laying date at zero, age at yearling and all random effects at zero. Bands are pointwise 95% CIs from 4,000 joint coefficient draws. In the within panels, the female’s mean temperature is held at the sample centre; in between panels, within deviation is zero.</p>
+<p>At the reference conditions above, for a +1°C change: mean differences are in eggs for clutch size and proportions for fledging success. Consistency ratios compare conditional SD or component precision after versus before that change.</p>
+<p>These are adjusted associations from the within–between formulation. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</p>
+</details>
 
 
 <!-- -->
@@ -2681,9 +2138,9 @@ Fixed-design VIF
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">  enabled: false</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data preparation</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Clutch data</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span> · <span class="co">[</span><span class="ot">Fledging data</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> · <span class="co">[</span><span class="ot">Refit</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female's warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data preparation</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show temperature decomposition<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
@@ -2698,411 +2155,280 @@ Fixed-design VIF
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>::: {#result-within_between-1 .analysis-result}</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>**Result**</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> Females with temperature variation <span class="pp">|</span> Their records <span class="pp">|</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span> 6278 <span class="pp">|</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span> 4566 <span class="pp">|</span></span>
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> records <span class="pp">|</span> females <span class="pp">|</span> seasons <span class="pp">|</span> Females with temperature variation <span class="pp">|</span> Their records <span class="pp">|</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 12627 <span class="pp">|</span> 8894 <span class="pp">|</span> 44 <span class="pp">|</span> 2547 <span class="pp">|</span> 6278 <span class="pp">|</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 9790 <span class="pp">|</span> 7132 <span class="pp">|</span> 39 <span class="pp">|</span> 1908 <span class="pp">|</span> 4566 <span class="pp">|</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit the within–between models</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show fitting script (run locally)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/90_fit_temperature_within_between.qmd &gt;}}</span>
 <span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit the within–between models</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-within_between-1)</span></span>
 <span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download fitting script</span><span class="co">](R/90_fit_temperature_within_between.R)</span></span>
 <span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show fitting script (run locally)<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/90_fit_temperature_within_between.qmd &gt;}}</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read saved results</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-08_within_between_output.qmd &gt;}}</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-within_between-1)</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show cached-output loading<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"tables/within_between_20261026/aggregate_results.rds"</span>)</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>fixed_effects</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>contrasts</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-within_between-1)</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> temp_within <span class="pp">|</span> 0.016474 <span class="pp">|</span> 0.0082647 <span class="pp">|</span> 0.024683 <span class="pp">|</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> temp_between <span class="pp">|</span> 0.01542 <span class="pp">|</span> 0.0074873 <span class="pp">|</span> 0.023352 <span class="pp">|</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> temp_within <span class="pp">|</span> -0.10139 <span class="pp">|</span> -0.16603 <span class="pp">|</span> -0.036745 <span class="pp">|</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> temp_between <span class="pp">|</span> 0.0093495 <span class="pp">|</span> -0.033558 <span class="pp">|</span> 0.052257 <span class="pp">|</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> temp_within <span class="pp">|</span> -0.20563 <span class="pp">|</span> -0.33654 <span class="pp">|</span> -0.074723 <span class="pp">|</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> temp_between <span class="pp">|</span> -0.18323 <span class="pp">|</span> -0.30417 <span class="pp">|</span> -0.062296 <span class="pp">|</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> temp_within <span class="pp">|</span> 0.065402 <span class="pp">|</span> -0.098944 <span class="pp">|</span> 0.22975 <span class="pp">|</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> temp_between <span class="pp">|</span> 0.086186 <span class="pp">|</span> -0.051136 <span class="pp">|</span> 0.22351 <span class="pp">|</span></span>
 <span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">All fixed effects</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span> · <span class="co">[</span><span class="ot">Aggregate RDS output</span><span class="co">](tables/within_between_20261026/aggregate_results.rds)</span></span>
 <span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>The fits use the same <span class="co">[</span><span class="ot">public curated records</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span> as the single-temperature models and require local R with glmmTMB. The standalone pipeline fits both formulations without historical fitted objects. The full mixed-model refit does not run in the browser.</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Within versus between: direct tests</span></span>
 <span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download fitting script</span><span class="co">](R/90_fit_temperature_within_between.R)</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
 <span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read saved results</span></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-08_within_between_output.qmd &gt;}}</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> estimate <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> 0.0010541 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.0054948 <span class="pp">|</span> 0.64174 <span class="pp">|</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> -0.11074 <span class="pp">|</span> -0.18821 <span class="pp">|</span> -0.033266 <span class="pp">|</span> 0.0050853 <span class="pp">|</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> -0.022399 <span class="pp">|</span> -0.11145 <span class="pp">|</span> 0.066648 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> -0.020784 <span class="pp">|</span> -0.18217 <span class="pp">|</span> 0.1406 <span class="pp">|</span> 0.80072 <span class="pp">|</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison with the single-temperature model</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline AIC <span class="pp">|</span> within between AIC <span class="pp">|</span> delta AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561 <span class="pp">|</span> 27557 <span class="pp">|</span> -4.3056 <span class="pp">|</span> 8.3056 <span class="pp">|</span> 2 <span class="pp">|</span> 0.015721 <span class="pp">|</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294 <span class="pp">|</span> 33298 <span class="pp">|</span> 3.7549 <span class="pp">|</span> 0.24505 <span class="pp">|</span> 2 <span class="pp">|</span> 0.88468 <span class="pp">|</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## Year coefficients in the temperature models</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download year-effect export script</span><span class="co">](R/93_export_joint_calendar_year.R)</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-09_joint_year_output.qmd &gt;}}</span>
 <span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>::: {#result-within_between-2 .analysis-result}</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>**Result**</span>
 <span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show cached-output loading<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"tables/within_between_20261026/aggregate_results.rds"</span>)</span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>fixed_effects</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>results<span class="sc">$</span>contrasts</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> model <span class="pp">|</span> mean_change <span class="pp">|</span> mean_lower <span class="pp">|</span> mean_upper <span class="pp">|</span> consistency_ratio <span class="pp">|</span> ratio_lower <span class="pp">|</span> ratio_upper <span class="pp">|</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> 0.240769 <span class="pp">|</span> 0.067762 <span class="pp">|</span> 0.411234 <span class="pp">|</span> 1.07938 <span class="pp">|</span> 0.997301 <span class="pp">|</span> 1.16789 <span class="pp">|</span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> 0.247153 <span class="pp">|</span> 0.0681042 <span class="pp">|</span> 0.421956 <span class="pp">|</span> 1.04321 <span class="pp">|</span> 0.960493 <span class="pp">|</span> 1.12916 <span class="pp">|</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> -0.0500468 <span class="pp">|</span> -0.11212 <span class="pp">|</span> 0.0162065 <span class="pp">|</span> 0.6662 <span class="pp">|</span> 0.410643 <span class="pp">|</span> 1.07155 <span class="pp">|</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> -0.0524622 <span class="pp">|</span> -0.114463 <span class="pp">|</span> 0.011854 <span class="pp">|</span> 0.652904 <span class="pp">|</span> 0.407307 <span class="pp">|</span> 1.06583 <span class="pp">|</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/joint_calendar_year_20261027/contrasts.csv)</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-10_draw_joint_year.qmd &gt;}}</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-within_between-2)</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction export and checks</span></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download prediction and diagnostic export</span><span class="co">](R/91_export_temperature_within_between.R)</span> · <span class="co">[</span><span class="ot">Download figure script</span><span class="co">](R/92_plot_temperature_within_between.R)</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show prediction export and conditional-simulation code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
 <span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/91_export_temperature_within_between.qmd &gt;}}</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Result</span><span class="co">](#result-within_between-1)</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Numerical convergence and optimiser checks<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> model <span class="pp">|</span> optimizer <span class="pp">|</span> convergence <span class="pp">|</span> pdHess <span class="pp">|</span> scaled gradient <span class="pp">|</span> logLik <span class="pp">|</span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00069105 <span class="pp">|</span> -13769 <span class="pp">|</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.5695e-07 <span class="pp">|</span> -13769 <span class="pp">|</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> expanded_BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.4237e-06 <span class="pp">|</span> -13764 <span class="pp">|</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> whitened_NLMINB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.4237e-06 <span class="pp">|</span> -13764 <span class="pp">|</span></span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00013246 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.044e-09 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00022226 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.9068e-09 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
 <span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> term <span class="pp">|</span> estimate <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> temp_within <span class="pp">|</span> 0.016474 <span class="pp">|</span> 0.0082647 <span class="pp">|</span> 0.024683 <span class="pp">|</span></span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> temp_between <span class="pp">|</span> 0.01542 <span class="pp">|</span> 0.0074873 <span class="pp">|</span> 0.023352 <span class="pp">|</span></span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> temp_within <span class="pp">|</span> -0.10139 <span class="pp">|</span> -0.16603 <span class="pp">|</span> -0.036745 <span class="pp">|</span></span>
-<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> temp_between <span class="pp">|</span> 0.0093495 <span class="pp">|</span> -0.033558 <span class="pp">|</span> 0.052257 <span class="pp">|</span></span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> temp_within <span class="pp">|</span> -0.20563 <span class="pp">|</span> -0.33654 <span class="pp">|</span> -0.074723 <span class="pp">|</span></span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> temp_between <span class="pp">|</span> -0.18323 <span class="pp">|</span> -0.30417 <span class="pp">|</span> -0.062296 <span class="pp">|</span></span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> temp_within <span class="pp">|</span> 0.065402 <span class="pp">|</span> -0.098944 <span class="pp">|</span> 0.22975 <span class="pp">|</span></span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> temp_between <span class="pp">|</span> 0.086186 <span class="pp">|</span> -0.051136 <span class="pp">|</span> 0.22351 <span class="pp">|</span></span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>Location (<span class="in">`cond`</span>): log clutch mean or logit beta-binomial mean. Scale (<span class="in">`disp`</span>): log COM-Poisson inverse shape or log beta-binomial precision. Response-scale consistency curves below account for both clutch components.</span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">All fixed effects</span><span class="co">](tables/within_between_20261026/fixed_effects.csv)</span> · <span class="co">[</span><span class="ot">Aggregate RDS output</span><span class="co">](tables/within_between_20261026/aggregate_results.rds)</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Conditional simulation checks<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> statistic <span class="pp">|</span> observed <span class="pp">|</span> predicted <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> mean <span class="pp">|</span> 6.1919 <span class="pp">|</span> 6.1961 <span class="pp">|</span> 6.1848 <span class="pp">|</span> 6.2075 <span class="pp">|</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> variance <span class="pp">|</span> 0.65595 <span class="pp">|</span> 0.56404 <span class="pp">|</span> 0.54822 <span class="pp">|</span> 0.57893 <span class="pp">|</span></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> fraction_six <span class="pp">|</span> 0.51231 <span class="pp">|</span> 0.51992 <span class="pp">|</span> 0.51009 <span class="pp">|</span> 0.52952 <span class="pp">|</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> outside_2_9 <span class="pp">|</span> 0 <span class="pp">|</span> 5.8077e-06 <span class="pp">|</span> 0 <span class="pp">|</span> 7.9195e-05 <span class="pp">|</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58075 <span class="pp">|</span> 0.57304 <span class="pp">|</span> 0.58827 <span class="pp">|</span></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15193 <span class="pp">|</span> 0.14954 <span class="pp">|</span> 0.15404 <span class="pp">|</span></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> complete_failure <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.23176 <span class="pp">|</span> 0.22322 <span class="pp">|</span> 0.23995 <span class="pp">|</span></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28582 <span class="pp">|</span> 0.27804 <span class="pp">|</span> 0.29377 <span class="pp">|</span></span>
 <span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Within versus between: direct tests</span></span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> estimate <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> 0.0010541 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.0054948 <span class="pp">|</span> 0.64174 <span class="pp">|</span></span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> -0.11074 <span class="pp">|</span> -0.18821 <span class="pp">|</span> -0.033266 <span class="pp">|</span> 0.0050853 <span class="pp">|</span></span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> -0.022399 <span class="pp">|</span> -0.11145 <span class="pp">|</span> 0.066648 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> -0.020784 <span class="pp">|</span> -0.18217 <span class="pp">|</span> 0.1406 <span class="pp">|</span> 0.80072 <span class="pp">|</span></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>Each contrast is **within minus between** on its component's link scale. A significant coefficient alongside a non-significant coefficient is not itself evidence that the effects differ.</span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison with the single-temperature model</span></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline AIC <span class="pp">|</span> within between AIC <span class="pp">|</span> delta AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561 <span class="pp">|</span> 27557 <span class="pp">|</span> -4.3056 <span class="pp">|</span> 8.3056 <span class="pp">|</span> 2 <span class="pp">|</span> 0.015721 <span class="pp">|</span></span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294 <span class="pp">|</span> 33298 <span class="pp">|</span> 3.7549 <span class="pp">|</span> 0.24505 <span class="pp">|</span> 2 <span class="pp">|</span> 0.88468 <span class="pp">|</span></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Fixed-design VIF<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> VIF <span class="pp">|</span></span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.0426 <span class="pp">|</span></span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_within <span class="pp">|</span> 1.0053 <span class="pp">|</span></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_between <span class="pp">|</span> 1.3014 <span class="pp">|</span></span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> year_c <span class="pp">|</span> 1.3121 <span class="pp">|</span></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.0557 <span class="pp">|</span></span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.0455 <span class="pp">|</span></span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.0601 <span class="pp">|</span></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_within <span class="pp">|</span> 1.0074 <span class="pp">|</span></span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_between <span class="pp">|</span> 1.3602 <span class="pp">|</span></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> year_c <span class="pp">|</span> 1.3691 <span class="pp">|</span></span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
 <span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. The baseline likelihoods were checked against the original final fits. Splitting temperature adds two fixed coefficients in total; the nested comparison tests equality of within and between effects in both components.</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a><span class="fu">## Figures</span></span>
 <span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## Year coefficients in the temperature models</span></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="al">![Additional clutch-size model: within and between mean responses and conditional SD.](figures/Fig_within_between_clutch.png)</span></span>
 <span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.</span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Clutch PDF</span><span class="co">](figures/Fig_within_between_clutch.pdf)</span></span>
 <span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under <span class="in">`models/`</span>; generate them locally with the public-data runner.</span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="al">![Additional fledging-success model: within and between mean responses and component precision.](figures/Fig_within_between_fledging.png)</span></span>
 <span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download year-effect export script</span><span class="co">](R/93_export_joint_calendar_year.R)</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Fledging PDF</span><span class="co">](figures/Fig_within_between_fledging.pdf)</span> · <span class="co">[</span><span class="ot">Figure code — final chapter</span><span class="co">](figure_code.qmd#temperature-within-between)</span></span>
 <span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-09_joint_year_output.qmd &gt;}}</span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main results</span></span>
 <span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>**Temperature-adjusted calendar-year results.** Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> model <span class="pp">|</span> mean_change <span class="pp">|</span> mean_lower <span class="pp">|</span> mean_upper <span class="pp">|</span> consistency_ratio <span class="pp">|</span> ratio_lower <span class="pp">|</span> ratio_upper <span class="pp">|</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> 0.240769 <span class="pp">|</span> 0.067762 <span class="pp">|</span> 0.411234 <span class="pp">|</span> 1.07938 <span class="pp">|</span> 0.997301 <span class="pp">|</span> 1.16789 <span class="pp">|</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> 0.247153 <span class="pp">|</span> 0.0681042 <span class="pp">|</span> 0.421956 <span class="pp">|</span> 1.04321 <span class="pp">|</span> 0.960493 <span class="pp">|</span> 1.12916 <span class="pp">|</span></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> -0.0500468 <span class="pp">|</span> -0.11212 <span class="pp">|</span> 0.0162065 <span class="pp">|</span> 0.6662 <span class="pp">|</span> 0.410643 <span class="pp">|</span> 1.07155 <span class="pp">|</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> -0.0524622 <span class="pp">|</span> -0.114463 <span class="pp">|</span> 0.011854 <span class="pp">|</span> 0.652904 <span class="pp">|</span> 0.407307 <span class="pp">|</span> 1.06583 <span class="pp">|</span></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/joint_calendar_year_20261027/contrasts.csv)</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Clutch size, location:** no clear within/between difference (direct contrast p = 0.642).</span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Clutch size, scale:** evidence of a within/between difference (direct contrast p = 0.00509).</span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fledging success, location:** no clear within/between difference (direct contrast p = 0.622).</span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fledging success, scale:** no clear within/between difference (direct contrast p = 0.801).</span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> Mean change (95% CI) <span class="pp">|</span> consistency measure <span class="pp">|</span> Consistency ratio (95% CI) <span class="pp">|</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_within <span class="pp">|</span> 0.101 (0.0515, 0.151) <span class="pp">|</span> conditional_SD <span class="pp">|</span> 0.955 (0.920, 0.989) <span class="pp">|</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_between <span class="pp">|</span> 0.0941 (0.0468, 0.142) <span class="pp">|</span> conditional_SD <span class="pp">|</span> 1.013 (0.990, 1.036) <span class="pp">|</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_within <span class="pp">|</span> -0.0337 (-0.0576, -0.0122) <span class="pp">|</span> component_precision <span class="pp">|</span> 1.068 (0.911, 1.260) <span class="pp">|</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_between <span class="pp">|</span> -0.0299 (-0.0503, -0.00989) <span class="pp">|</span> component_precision <span class="pp">|</span> 1.090 (0.949, 1.254) <span class="pp">|</span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretation</span></span>
 <span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Session information</span><span class="co">](tables/within_between_20261026/session_info.txt)</span> · <span class="co">[</span><span class="ot">Export session</span><span class="co">](tables/within_between_20261026/export_session_info.txt)</span> · <span class="co">[</span><span class="ot">Reference effects per degree</span><span class="co">](tables/within_between_20261026/reference_effects_per_degree.csv)</span></span>
 <span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-10_draw_joint_year.qmd &gt;}}</span>
-<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a>**Temperature-adjusted calendar-year results.** Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> model <span class="pp">|</span> mean_change <span class="pp">|</span> mean_lower <span class="pp">|</span> mean_upper <span class="pp">|</span> consistency_ratio <span class="pp">|</span> ratio_lower <span class="pp">|</span> ratio_upper <span class="pp">|</span></span>
-<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> 0.240769 <span class="pp">|</span> 0.067762 <span class="pp">|</span> 0.411234 <span class="pp">|</span> 1.07938 <span class="pp">|</span> 0.997301 <span class="pp">|</span> 1.16789 <span class="pp">|</span></span>
-<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> 0.247153 <span class="pp">|</span> 0.0681042 <span class="pp">|</span> 0.421956 <span class="pp">|</span> 1.04321 <span class="pp">|</span> 0.960493 <span class="pp">|</span> 1.12916 <span class="pp">|</span></span>
-<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> -0.0500468 <span class="pp">|</span> -0.11212 <span class="pp">|</span> 0.0162065 <span class="pp">|</span> 0.6662 <span class="pp">|</span> 0.410643 <span class="pp">|</span> 1.07155 <span class="pp">|</span></span>
-<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> -0.0524622 <span class="pp">|</span> -0.114463 <span class="pp">|</span> 0.011854 <span class="pp">|</span> 0.652904 <span class="pp">|</span> 0.407307 <span class="pp">|</span> 1.06583 <span class="pp">|</span></span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"method-notes"</span><span class="dt">&gt;</span></span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Method notes<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a>**Temperature-adjusted calendar-year results.** Both formulations retain temperature. Mean changes are eggs or success proportions; consistency ratios describe clutch SD or fledging component precision.</span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a>This second temperature formulation is reported in the main paper alongside the single-temperature model. It separates the association of a female's warmer-than-usual breeding attempts from differences between females with different observed thermal histories. Temperature is split in both location and scale; continuous year, laying date, age and existing random-effect structures are retained.</span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a>Single-record females have zero within deviation. The between predictor describes the seasons in which a female was observed, not a stable thermal preference.</span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a>Clutch size uses COM-Poisson; fledging success uses zero-inflated beta-binomial. The extra-zero equation retains an intercept and year random effect, without temperature slopes.</span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a>The fits use the same <span class="co">[</span><span class="ot">public curated records</span><span class="co">](workflow.qmd#refit-from-the-public-model-data)</span> as the single-temperature models and require local R with glmmTMB. The standalone pipeline fits both formulations without historical fitted objects. The full mixed-model refit does not run in the browser.</span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a>The short browser step below reads the public results and recalculates the within-minus-between contrasts and reference-condition summaries.</span>
 <span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/joint_calendar_year_20261027/contrasts.csv)</span></span>
-<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a>Location (<span class="in">`cond`</span>): log clutch mean or logit beta-binomial mean. Scale (<span class="in">`disp`</span>): log COM-Poisson inverse shape or log beta-binomial precision. Response-scale consistency curves below account for both clutch components.</span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>Each contrast is **within minus between** on its component's link scale. A significant coefficient alongside a non-significant coefficient is not itself evidence that the effects differ.</span>
 <span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>Both members of each comparison were fitted under R 4.6.1 / glmmTMB 1.1.15.2. The baseline likelihoods were checked against the original final fits. Splitting temperature adds two fixed coefficients in total; the nested comparison tests equality of within and between effects in both components.</span>
 <span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>These continuous-year terms come from the two models that include temperature. They describe year associations conditional on temperature; the reported temporal trends above come from separate fits with temperature removed from both location and scale.</span>
 <span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction export and checks</span></span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download prediction and diagnostic export</span><span class="co">](R/91_export_temperature_within_between.R)</span> · <span class="co">[</span><span class="ot">Download figure script</span><span class="co">](R/92_plot_temperature_within_between.R)</span></span>
-<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Show prediction export and conditional-simulation code<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>The exported summary tables and curves below are recalculated from the saved model fits. The export script reads fitted objects under <span class="in">`models/`</span>; generate them locally with the public-data runner.</span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>Observed statistics outside the conditional 95% simulation intervals: clutch: <span class="in">`variance`</span>; fledging: <span class="in">`variance_fraction`</span>. These discrepancies remain visible in the diagnostics.</span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>Simulation intervals use 300 plug-in datasets at fitted parameters and group modes; they are not cross-validation or parameter-uncertainty intervals. Full model and coefficient outputs are retained even when evidence is uncertain.</span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>Curves hold year and relative laying date at zero, age at yearling and all random effects at zero. Bands are pointwise 95% CIs from 4,000 joint coefficient draws. In the within panels, the female's mean temperature is held at the sample centre; in between panels, within deviation is zero.</span>
 <span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/91_export_temperature_within_between.qmd &gt;}}</span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>At the reference conditions above, for a +1°C change: mean differences are in eggs for clutch size and proportions for fledging success. Consistency ratios compare conditional SD or component precision after versus before that change.</span>
 <span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>These are adjusted associations from the within–between formulation. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</span>
 <span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>**Saved within–between comparison.** Splitting temperature improved clutch-model fit; it did not improve fledging-model fit. The direct clutch dispersion contrast supports a difference between levels; between-female exposure reflects observation history.</span>
-<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> baseline_AIC <span class="pp">|</span> within_between_AIC <span class="pp">|</span> delta_AIC <span class="pp">|</span> LR <span class="pp">|</span> df <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> 27561.1 <span class="pp">|</span> 27556.8 <span class="pp">|</span> -4.30555 <span class="pp">|</span> 8.30555 <span class="pp">|</span> 2 <span class="pp">|</span> 0.0157207 <span class="pp">|</span></span>
-<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> 33294.1 <span class="pp">|</span> 33297.9 <span class="pp">|</span> 3.75495 <span class="pp">|</span> 0.245052 <span class="pp">|</span> 2 <span class="pp">|</span> 0.884683 <span class="pp">|</span></span>
-<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/model_comparison.csv)</span></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> component <span class="pp">|</span> contrast <span class="pp">|</span> estimate <span class="pp">|</span> SE <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span> p <span class="pp">|</span></span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> 0.00105414 <span class="pp">|</span> 0.00226567 <span class="pp">|</span> -0.0033865 <span class="pp">|</span> 0.00549478 <span class="pp">|</span> 0.641741 <span class="pp">|</span></span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.110737 <span class="pp">|</span> 0.0395268 <span class="pp">|</span> -0.188208 <span class="pp">|</span> -0.0332663 <span class="pp">|</span> 0.00508534 <span class="pp">|</span></span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> cond <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0223986 <span class="pp">|</span> 0.0454329 <span class="pp">|</span> -0.111445 <span class="pp">|</span> 0.0666482 <span class="pp">|</span> 0.62201 <span class="pp">|</span></span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> disp <span class="pp">|</span> within_minus_between <span class="pp">|</span> -0.0207843 <span class="pp">|</span> 0.0823427 <span class="pp">|</span> -0.182173 <span class="pp">|</span> 0.140605 <span class="pp">|</span> 0.800723 <span class="pp">|</span></span>
-<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download complete results (CSV)</span><span class="co">](tables/within_between_20261026/within_between_contrasts.csv)</span></span>
-<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Numerical convergence and optimiser checks<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> model <span class="pp">|</span> optimizer <span class="pp">|</span> convergence <span class="pp">|</span> pdHess <span class="pp">|</span> scaled gradient <span class="pp">|</span> logLik <span class="pp">|</span></span>
-<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00069105 <span class="pp">|</span> -13769 <span class="pp">|</span></span>
-<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> baseline <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.5695e-07 <span class="pp">|</span> -13769 <span class="pp">|</span></span>
-<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> expanded_BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.4237e-06 <span class="pp">|</span> -13764 <span class="pp">|</span></span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> within_between <span class="pp">|</span> whitened_NLMINB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.4237e-06 <span class="pp">|</span> -13764 <span class="pp">|</span></span>
-<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00013246 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> baseline <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.044e-09 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
-<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> LBFGSB <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 0.00022226 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> within_between <span class="pp">|</span> BFGS <span class="pp">|</span> 0 <span class="pp">|</span> TRUE <span class="pp">|</span> 1.9068e-09 <span class="pp">|</span> -16632 <span class="pp">|</span></span>
-<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Conditional simulation checks<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> statistic <span class="pp">|</span> observed <span class="pp">|</span> predicted <span class="pp">|</span> lower <span class="pp">|</span> upper <span class="pp">|</span></span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> mean <span class="pp">|</span> 6.1919 <span class="pp">|</span> 6.1961 <span class="pp">|</span> 6.1848 <span class="pp">|</span> 6.2075 <span class="pp">|</span></span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> variance <span class="pp">|</span> 0.65595 <span class="pp">|</span> 0.56404 <span class="pp">|</span> 0.54822 <span class="pp">|</span> 0.57893 <span class="pp">|</span></span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> fraction_six <span class="pp">|</span> 0.51231 <span class="pp">|</span> 0.51992 <span class="pp">|</span> 0.51009 <span class="pp">|</span> 0.52952 <span class="pp">|</span></span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> outside_2_9 <span class="pp">|</span> 0 <span class="pp">|</span> 5.8077e-06 <span class="pp">|</span> 0 <span class="pp">|</span> 7.9195e-05 <span class="pp">|</span></span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> mean_fraction <span class="pp">|</span> 0.58607 <span class="pp">|</span> 0.58075 <span class="pp">|</span> 0.57304 <span class="pp">|</span> 0.58827 <span class="pp">|</span></span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> variance_fraction <span class="pp">|</span> 0.15455 <span class="pp">|</span> 0.15193 <span class="pp">|</span> 0.14954 <span class="pp">|</span> 0.15404 <span class="pp">|</span></span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> complete_failure <span class="pp">|</span> 0.23647 <span class="pp">|</span> 0.23176 <span class="pp">|</span> 0.22322 <span class="pp">|</span> 0.23995 <span class="pp">|</span></span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> complete_success <span class="pp">|</span> 0.28856 <span class="pp">|</span> 0.28582 <span class="pp">|</span> 0.27804 <span class="pp">|</span> 0.29377 <span class="pp">|</span></span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>Observed statistics outside the conditional 95% simulation intervals: clutch: <span class="in">`variance`</span>; fledging: <span class="in">`variance_fraction`</span>. These discrepancies remain visible in the diagnostics.</span>
-<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">details</span><span class="ot"> class</span><span class="op">=</span><span class="st">"analysis-code"</span><span class="dt">&gt;</span></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">summary</span><span class="dt">&gt;</span>Fixed-design VIF<span class="dt">&lt;/</span><span class="kw">summary</span><span class="dt">&gt;</span></span>
-<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> VIF <span class="pp">|</span></span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.0426 <span class="pp">|</span></span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_within <span class="pp">|</span> 1.0053 <span class="pp">|</span></span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_between <span class="pp">|</span> 1.3014 <span class="pp">|</span></span>
-<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> year_c <span class="pp">|</span> 1.3121 <span class="pp">|</span></span>
-<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.0557 <span class="pp">|</span></span>
-<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> rel_LD <span class="pp">|</span> 1.0455 <span class="pp">|</span></span>
-<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> age_classOLD <span class="pp">|</span> 1.0601 <span class="pp">|</span></span>
-<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_within <span class="pp">|</span> 1.0074 <span class="pp">|</span></span>
-<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_between <span class="pp">|</span> 1.3602 <span class="pp">|</span></span>
-<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> year_c <span class="pp">|</span> 1.3691 <span class="pp">|</span></span>
-<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span>
-<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>Simulation intervals use 300 plug-in datasets at fitted parameters and group modes; they are not cross-validation or parameter-uncertainty intervals. Full model and coefficient outputs are retained even when evidence is uncertain.</span>
-<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a><span class="fu">## Figures</span></span>
-<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a>Curves hold year and relative laying date at zero, age at yearling and all random effects at zero. Bands are pointwise 95% CIs from 4,000 joint coefficient draws. In the within panels, the female's mean temperature is held at the sample centre; in between panels, within deviation is zero.</span>
-<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a><span class="al">![Additional clutch-size model: within and between mean responses and conditional SD.](figures/Fig_within_between_clutch.png)</span></span>
-<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Clutch PDF</span><span class="co">](figures/Fig_within_between_clutch.pdf)</span></span>
-<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a><span class="al">![Additional fledging-success model: within and between mean responses and component precision.](figures/Fig_within_between_fledging.png)</span></span>
-<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Fledging PDF</span><span class="co">](figures/Fig_within_between_fledging.pdf)</span> · <span class="co">[</span><span class="ot">Figure code — final chapter</span><span class="co">](figure_code.qmd#temperature-within-between)</span></span>
-<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main results</span></span>
-<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Clutch size, location:** no clear within/between difference (direct contrast p = 0.642).</span>
-<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Clutch size, scale:** evidence of a within/between difference (direct contrast p = 0.00509).</span>
-<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fledging success, location:** no clear within/between difference (direct contrast p = 0.622).</span>
-<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fledging success, scale:** no clear within/between difference (direct contrast p = 0.801).</span>
-<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a>At the reference conditions above, for a +1°C change: mean differences are in eggs for clutch size and proportions for fledging success. Consistency ratios compare conditional SD or component precision after versus before that change.</span>
-<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a>::: {.table-responsive}</span>
-<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> trait <span class="pp">|</span> predictor <span class="pp">|</span> Mean change (95% CI) <span class="pp">|</span> consistency measure <span class="pp">|</span> Consistency ratio (95% CI) <span class="pp">|</span></span>
-<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a><span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">| ---</span> <span class="pp">|</span></span>
-<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_within <span class="pp">|</span> 0.101 (0.0515, 0.151) <span class="pp">|</span> conditional_SD <span class="pp">|</span> 0.955 (0.920, 0.989) <span class="pp">|</span></span>
-<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> clutch <span class="pp">|</span> temp_between <span class="pp">|</span> 0.0941 (0.0468, 0.142) <span class="pp">|</span> conditional_SD <span class="pp">|</span> 1.013 (0.990, 1.036) <span class="pp">|</span></span>
-<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_within <span class="pp">|</span> -0.0337 (-0.0576, -0.0122) <span class="pp">|</span> component_precision <span class="pp">|</span> 1.068 (0.911, 1.260) <span class="pp">|</span></span>
-<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> fledging <span class="pp">|</span> temp_between <span class="pp">|</span> -0.0299 (-0.0503, -0.00989) <span class="pp">|</span> component_precision <span class="pp">|</span> 1.090 (0.949, 1.254) <span class="pp">|</span></span>
-<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretation</span></span>
-<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a>These are adjusted associations from the within–between formulation. Lower clutch SD and higher fledging precision indicate greater consistency; fledging precision is conditional on component mean and clutch size. Between-female temperature differences may reflect sampling years and observation histories, so the decomposition does not establish causation or individual thermal preferences.</span>
-<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Session information</span><span class="co">](tables/within_between_20261026/session_info.txt)</span> · <span class="co">[</span><span class="ot">Export session</span><span class="co">](tables/within_between_20261026/export_session_info.txt)</span> · <span class="co">[</span><span class="ot">Reference effects per degree</span><span class="co">](tables/within_between_20261026/reference_effects_per_degree.csv)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">details</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -6,91 +6,28 @@ execute:
   enabled: false
 ---
 
-## Data origin and source database {#data-origin}
+## Data {#data-origin}
 
-The breeding records originated from the long-term nest-box monitoring of collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, established in 1980. Individually ringed females were linked to records of laying date, clutch size, fledgling number and female age class.
+Collared flycatcher nest-box monitoring, Gotland, Sweden.
 
-### Collared flycatcher (CF) source dataset: 1980–2025
+| Dataset | Records | Coverage |
+|---|---:|---|
+| [CF source dataset](data_raw/birds/CF21980-2025.csv) · [GitHub](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF21980-2025.csv) | 15,984 | 1980–2025 |
+| [Clutch model input](data_derived/analysis/clutch_model_data.csv) | 12,627 | 1981–2025, excluding 2020 |
+| [Fledging model input](data_derived/analysis/fledging_model_data.csv) | 9,790 | 1981–2019 |
+| [Annual laying dates](data_derived/annual_raw_median_laying_date.csv) | 45 seasons | Sliding-window response |
+| [Daily temperature](data_derived/smhi_hoburg_daily_temperature.csv) | 46 seasons | 1980–2025 |
+| [Annual temperature](data_derived/annual_main_window_temperature.csv) | 46 seasons | 26 March–7 May |
 
-The source breeding dataset for this analysis lineage is [**`CF21980-2025.csv`**](data_raw/birds/CF21980-2025.csv), containing 15,984 records from seasons spanning 1980–2025. [View the CF source dataset on GitHub](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF21980-2025.csv) · [Source-file documentation and checksum](data_raw/birds/README.md).
+[Source provenance and checksum](data_raw/birds/README.md) · [Variables and centring](data_derived/analysis/README.md) · [SMHI observations](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn)
 
-This is an unchanged copy of the file [uploaded to the phenology repository on 28 January 2026](https://github.com/anetaarct/gotland-flycatcher-phenology/commit/7c5344958c18a81e853838c0b7ad9fea751bec57). The CSV uses a semicolon delimiter. Its 14,693 records from 1980–2019 agree in the checked analysis variables (LD, CS, HS, FLEDGE, NEWRECRUIT and FAGE_CAT) with the sheet **Corrected for CS,FL,NEWR** in `CF_non-exp_breeding_events_1980-2019_RM_28.01.26.xlsx`. The file also contains records from later seasons.
+The source CSV is semicolon-delimited. Final model inputs contain the selected records and prepared predictors; NDVI and mismatch were not model predictors.
 
-### Preparation and final model inputs
+## Refit {#refit-from-the-public-model-data}
 
-The data lineage was `CF21980-2025.csv` → `DB_MISMATCH.csv` → the local derivative `DB_MISMATCH_current_onset_1980-2025.csv` → the final trait-specific model-ready files. A comparison of the saved Git versions found no changes to FLEDGE from the January source through these later versions. The DB_MISMATCH filenames reflect the earlier phenology project; NDVI and mismatch were not predictors in the final reproductive models reported here.
+[Repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) · [Runner](R/94_reproduce_from_public_data.R) · [Validator](R/95_validate_public_model_data.R)
 
-The original source upload contains incomplete records, which were retained in the archive. For 2025, 198 records have LD observed and 179 records enter the final clutch-size sample. FLEDGE is missing for 2025; the reported fledging sample covers 1981–2019.
-
-### Final inputs used to fit the reported models
-
-The final models were fitted to the curated, trait-specific samples derived during preparation of the later breeding dataset. Original ring labels were replaced with consistent model-only female identifiers in the public model-ready files.
-
-| Final model input | Records | Females | Seasons |
-|---|---:|---:|---|
-| [Clutch size](data_derived/analysis/clutch_model_data.csv) | 12,627 | 8,894 | 1981–2025, excluding 2020 |
-| [Egg-to-fledging success](data_derived/analysis/fledging_model_data.csv) | 9,790 | 7,132 | 1981–2019 |
-
-These final files contain the responses and prepared predictors used to reproduce the reported reproductive fits. [Variable dictionary and centring rules](data_derived/analysis/README.md) · [Reproduction instructions](#refit-from-the-public-model-data).
-
-Daily mean air temperatures originated from the [Swedish Meteorological and Hydrological Institute (SMHI) open meteorological observations](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn), using Hoburg (station 68550) and Hoburg A (station 68560). The preparation workflow combined their observations into the 1980–2025 daily series; overlapping observations were averaged. Annual pre-laying temperatures were calculated for 26 March–7 May.
-
-The [clutch-size records](data_derived/analysis/clutch_model_data.csv), [egg-to-fledging records](data_derived/analysis/fledging_model_data.csv) and [variable dictionary](data_derived/analysis/README.md) contain the inputs required to reproduce the reported reproductive models.
-
-## Get the project files
-
-Download the [repository ZIP](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip) and unzip it without changing folder names. R scripts use paths relative to the project root.
-
-| Inputs | Used for |
-|---|---|
-| `data_raw/birds/CF21980-2025.csv` | Source breeding dataset preceding preparation of the final model inputs |
-| `data_derived/smhi_hoburg_daily_temperature.csv` | Daily station observations used to build thermal windows |
-| `data_derived/annual_raw_median_laying_date.csv` | Annual laying-date response for window selection |
-| `data_derived/annual_main_window_temperature.csv` | Saved annual exposure used in reproductive models |
-| `tables/…/*.csv` and public aggregate `.rds` files | Reproducing output tables, curves and figures without refitting |
-| `data_derived/analysis/clutch_model_data.csv` | Final curated clutch-size records |
-| `data_derived/analysis/fledging_model_data.csv` | Final curated egg-to-fledging records |
-| `R/`, `R/browser/`, `scripts/` | Analysis and figure code |
-
-The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.
-
-{{< include _includes/lab-01_weather_inputs.qmd >}}
-
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.
-:::
-
-
-
-
-
-
-
-## Reproduce each step
-
-| Step | Public inputs | What you can run or reproduce |
-|---|---|---|
-| Sliding-window selection | Daily SMHI data, annual laying-date summaries and aggregate cache | Candidate thermal windows, saved search diagnostics and held-out validation checks |
-| Calendar-year trends | Curated model-ready records | Refit models without temperature, export coefficients, predictions and diagnostics |
-| Temperature and reproductive traits | Curated model-ready records and public numerical starting values | Refit baseline models and export contrasts and predictions |
-| Within–between temperature models | Curated model-ready records | Refit decomposed models, compare coefficients and inspect diagnostics |
-
-## Refit from the public model data
-
-The reproductive analyses used two curated datasets. Female identifiers were recoded consistently across both datasets, preserving the grouping of repeated observations. The model-ready files contain the responses and predictors used in the final analyses.
-
-- [Download clutch-size data (CSV)](data_derived/analysis/clutch_model_data.csv)
-- [Download egg-to-fledging data (CSV)](data_derived/analysis/fledging_model_data.csv)
-- [Variable dictionary and centring rules](data_derived/analysis/README.md)
-- [Author-side audit: 543 checks and SHA-256 checksums](tables/model_data_audit.json)
-- [Numerical reproduction report: all six main models](tables/reproduction_validation.json)
-- [Download the standalone reproduction runner](R/94_reproduce_from_public_data.R)
-- [Download the public-data validator](R/95_validate_public_model_data.R)
-
-Download the repository ZIP above and run these commands from its root:
+Run from the repository root in local R:
 
 ```r
 install.packages(c("glmmTMB", "MASS"))
@@ -101,28 +38,19 @@ Rscript R/95_validate_public_model_data.R
 Rscript R/94_reproduce_from_public_data.R
 ```
 
-The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 independent randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under `figures/reproduced/`. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.
+Outputs: `models/`, `tables/reproduced/`, `tables/within_between_20261026_reproduced/`, `figures/reproduced/`.
 
-Model checkpoints are written under `models/`; regenerated numerical results are stored under `tables/reproduced/` and `tables/within_between_20261026_reproduced/`. Original publication exports are retained. Stages can also be run separately, for example `Rscript R/94_reproduce_from_public_data.R inputs environment windows`. The available stages are `inputs`, `environment`, `windows`, `models`, `temporal`, `exports`, `figures` and `verify`. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.
+Browser R controls perform the indicated checks and calculations; mixed-model refits require local R. The window search uses annual laying-date summaries and 500 independent randomisations.
 
-The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.
+## Validation
 
-The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; independent randomisations reproduce the procedure, not the exact historical permutations.
+| Check | Result |
+|---|---|
+| [Input audit](tables/model_data_audit.json) | 543 checks passed |
+| [Coefficient reproduction](tables/reproduction_validation.json) | 46 baseline/within–between coefficients: maximum difference <9.4 × 10⁻¹¹; 17 temporal coefficients: <2.6 × 10⁻⁷ |
 
-Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).
+[Full model summaries](full_summaries.qmd) · [Session information](tables/reproduction_checks/session_info.txt)
 
-## Verified model summaries
+## Software {#software-used-for-the-reported-fits}
 
-[Read the complete model summaries in S7](full_summaries.qmd), organised by response and model formulation.
-
-The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:
-
-- [Clutch: baseline](tables/reproduction_checks/model_summaries/clutch_baseline.txt) · [within–between](tables/reproduction_checks/model_summaries/clutch_within_between.txt) · [without temperature](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)
-- [Fledging: baseline](tables/reproduction_checks/model_summaries/fledging_baseline.txt) · [within–between](tables/reproduction_checks/model_summaries/fledging_within_between.txt) · [without temperature](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)
-- [Reproduction-session software versions](tables/reproduction_checks/session_info.txt)
-
-## Software used for the reported fits
-
-The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.
-
-**Next:** [Sliding-window approach](climate_window.qmd) → [Calendar-year trends](temporal_trends.qmd) → [Reproductive analyses](clutch_size.qmd).
+Reported fits: R 4.6.1; glmmTMB 1.1.14 (baseline), 1.1.15.2 (within–between refits). Reproduction runner: glmmTMB ≥1.1.14. Figure scripts: Python, pandas, matplotlib.

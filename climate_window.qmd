@@ -6,6 +6,8 @@ execute:
   enabled: false
 ---
 
+[Laying dates](data_derived/annual_raw_median_laying_date.csv) · [Daily temperature](data_derived/smhi_hoburg_daily_temperature.csv)
+
 ## Data preparation
 
 <details class="analysis-code">
@@ -20,30 +22,21 @@ stopifnot(nrow(annual) == 45L, nrow(cache$randomised) == 500L)
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-climate_window-1 .analysis-result}
 
-## Saved results for this step
+**Result**
 
-**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.
+16,802 daily records; 46 temperature seasons; 45 laying-date seasons. Reproductive exposure: 26 March–7 May (43 days).
+
 :::
-
-
-
-
-
-
 
 ## Candidate-window calculation
 
-The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 independent randomisations. This can take longer than the input check; nothing runs until you press **Run code**.
-
 {{< include _includes/lab-02_window_search.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-climate_window-2 .analysis-result}
 
-## Saved results for this step
-
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
+**Result**
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -52,17 +45,10 @@ The browser step below rebuilds the eligible-window search from the public daily
 | second22 | 4 | 1 | -8.47412 | -2.04377 | 0.561699 | 09 Apr | 06 May | 08 Apr | 05 May | 28 |
 
 [Download complete results (CSV)](tables/climwin_recovered/selected_windows_audit.csv)
+
 :::
 
-
-
-
-
-
-
 ## Full fitting script
-
-The historical `climwin` script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 independent randomisations. Original cached searches remain available separately.
 
 <details class="analysis-code">
 <summary>Show full `climwin` script</summary>
@@ -71,51 +57,13 @@ The historical `climwin` script below includes preprocessing of the original fie
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
-
-| analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| main | 6 | 0 | -38.6016 | -3.44925 | 0.432136 | 26 Mar | 13 May | 25 Mar | 12 May | 49 |
-| first23 | 9 | 0 | -19.8915 | -3.30513 | 0.558755 | 05 Mar | 13 May | 04 Mar | 12 May | 70 |
-| second22 | 4 | 1 | -8.47412 | -2.04377 | 0.561699 | 09 Apr | 06 May | 08 Apr | 05 May | 28 |
-
-[Download complete results (CSV)](tables/climwin_recovered/selected_windows_audit.csv)
-:::
-
-
-
-
-
-
+[Result](#result-climate_window-2)
 
 ## Inspect the saved search output
 
 {{< include _includes/lab-03_window_results.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
-
-| analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| main | 6 | 0 | -38.6016 | -3.44925 | 0.432136 | 26 Mar | 13 May | 25 Mar | 12 May | 49 |
-| first23 | 9 | 0 | -19.8915 | -3.30513 | 0.558755 | 05 Mar | 13 May | 04 Mar | 12 May | 70 |
-| second22 | 4 | 1 | -8.47412 | -2.04377 | 0.561699 | 09 Apr | 06 May | 08 Apr | 05 May | 28 |
-
-[Download complete results (CSV)](tables/climwin_recovered/selected_windows_audit.csv)
-:::
-
-
-
-
-
-
+[Result](#result-climate_window-2)
 
 [Download R script](R/04_climwin_laying_date.R) · [Download aggregate RDS results](cache/climwin/recovered_search_data.rds)
 
@@ -135,26 +83,7 @@ read.csv("tables/climwin_recovered/selected_windows_audit.csv")
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
-
-| analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | SE | non_leap_start | non_leap_end | leap_start | leap_end | n_days |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| main | 6 | 0 | -38.6016 | -3.44925 | 0.432136 | 26 Mar | 13 May | 25 Mar | 12 May | 49 |
-| first23 | 9 | 0 | -19.8915 | -3.30513 | 0.558755 | 05 Mar | 13 May | 04 Mar | 12 May | 70 |
-| second22 | 4 | 1 | -8.47412 | -2.04377 | 0.561699 | 09 Apr | 06 May | 08 Apr | 05 May | 28 |
-
-[Download complete results (CSV)](tables/climwin_recovered/selected_windows_audit.csv)
-:::
-
-
-
-
-
-
+[Result](#result-climate_window-2)
 
 | analysis | open_weeks | close_weeks | delta_AICc | temperature_beta | n_days |
 | --- | --- | --- | --- | --- | --- |
@@ -163,8 +92,6 @@ read.csv("tables/climwin_recovered/selected_windows_audit.csv")
 | second22 | 4 | 1 | -8.47412 | -2.04377 | 28 |
 
 [Download selected-window output](tables/climwin_recovered/selected_windows_audit.csv) · [All candidate windows](tables/climwin_recovered/candidate_windows.csv)
-
-The main 6–0-week search window contains **49 days**: 26 March–13 May in non-leap years, 25 March–12 May in leap years. The reproductive models retain their separate operational **26 March–7 May (43-day)** exposure.
 
 ## Full-search randomisation
 
@@ -180,20 +107,15 @@ c(exceedances = exceedances, p_plus_one = p_plus_one)
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-climate_window-3 .analysis-result}
 
-## Saved results for this step
+**Result**
 
 **Saved randomisation check.** None of 500 cached searches exceeded the observed improvement; the plus-one empirical probability is 1/501 = 0.001996.
 
 [Download all 500 saved searches](tables/climwin_recovered/randomised_windows.csv).
+
 :::
-
-
-
-
-
-
 
 | observed_delta_AICc | repeats | exceedances | plus_one_p | null_min | null_max |
 | --- | --- | --- | --- | --- | --- |
@@ -201,11 +123,7 @@ c(exceedances = exceedances, p_plus_one = p_plus_one)
 
 [Download 500 cached randomised-search outputs](tables/climwin_recovered/randomised_windows.csv)
 
-The old package output `<0.001` is preserved in the archive; the plus-one empirical probability from **0/500** exceedances is **1/501 = 0.001996**.
-
 ## Temporal-validation check
-
-The archived `singlewin` call used a different exposure series and returned +0.370 days/°C. The separate audit below reconstructs the complete-week bins and verifies the main, training and second-period slopes against the cached search output before evaluating the held-out years. It does not repeat the search.
 
 <details class="analysis-code">
 <summary>Show recovery audit code: weekly bins, cached checks and held-out validation</summary>
@@ -214,24 +132,17 @@ The archived `singlewin` call used a different exposure series and returned +0.3
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-climate_window-4 .analysis-result}
 
-## Saved results for this step
-
-**Saved validation.** The held-out association remains negative; prediction uses the training coefficients. This validates the phenology window, not the reproductive models.
+**Result**
 
 | training_seasons | held_out_seasons | training_beta | held_out_beta | held_out_CI_low | held_out_CI_high | held_out_R_squared | held_out_p | prediction_RMSE | baseline_RMSE | prediction_bias | legacy_singlewin_beta | max_legacy_exposure_difference |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 23 | 22 | -3.30513 | -1.56553 | -2.734 | -0.397058 | 0.280857 | 0.011185 | 3.18671 | 5.22643 | 1.52055 | 0.370329 | 15.3507 |
 
 [Download complete results (CSV)](tables/climwin_recovered/temporal_validation_audit.csv)
+
 :::
-
-
-
-
-
-
 
 <details class="analysis-code">
 <summary>Show R code</summary>
@@ -243,24 +154,7 @@ audit$temporal_validation
 
 </details>
 
-::: {.callout-note .review-summary appearance="simple"}
-
-## Saved results for this step
-
-**Saved validation.** The held-out association remains negative; prediction uses the training coefficients. This validates the phenology window, not the reproductive models.
-
-| training_seasons | held_out_seasons | training_beta | held_out_beta | held_out_CI_low | held_out_CI_high | held_out_R_squared | held_out_p | prediction_RMSE | baseline_RMSE | prediction_bias | legacy_singlewin_beta | max_legacy_exposure_difference |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 23 | 22 | -3.30513 | -1.56553 | -2.734 | -0.397058 | 0.280857 | 0.011185 | 3.18671 | 5.22643 | 1.52055 | 0.370329 | 15.3507 |
-
-[Download complete results (CSV)](tables/climwin_recovered/temporal_validation_audit.csv)
-:::
-
-
-
-
-
-
+[Result](#result-climate_window-4)
 
 | training_seasons | held_out_seasons | training_beta | held_out_beta | held_out_CI_low | held_out_CI_high |
 | --- | --- | --- | --- | --- | --- |
@@ -275,8 +169,6 @@ audit$temporal_validation
 <details class="analysis-code">
 <summary>Original archived outputs and provenance</summary>
 
-The historical files are retained unchanged; they are not substituted for the checked validation above.
-
 - [Original window-selection table](tables/climwin_recovered/archive/climwin_windows.csv): calendar labels express offsets from 7 May, rather than all days in the complete-week bins.
 - [Original false-positive table](tables/climwin_recovered/archive/climwin_false_positive_tests.csv).
 - [Original out-of-sample table](tables/climwin_recovered/archive/climwin_out_of_sample.csv): historical +0.370 result.
@@ -284,8 +176,6 @@ The historical files are retained unchanged; they are not substituted for the ch
 - [Original settings](tables/climwin_recovered/archive/climwin_settings.csv) and [median-window boundaries](tables/climwin_recovered/archive/climwin_medwin.csv).
 - [Recovery provenance and source checksums](tables/climwin_recovered/recovery_provenance.json).
 - [Recovery-audit session information](tables/climwin_recovered/recovery_session_info.txt).
-
-The public RDS contains aggregate search data extracted from the original caches; fitting environments and individual field records are excluded.
 
 </details>
 
@@ -300,3 +190,26 @@ The public RDS contains aggregate search data extracted from the original caches
 - The selected complete-week window associates warmer springs with earlier annual laying dates.
 - None of the 500 cached randomised searches was as extreme as the observed result.
 - The negative association persists in held-out years when the training window's complete-week exposure is used; this does not independently validate reproductive models.
+
+<details class="method-notes">
+<summary>Method notes</summary>
+
+**Saved window-search results.** The selected complete-week search window is 6–0 weeks (49 days), distinct from the 43-day reproductive exposure. These are the archived results; independent randomisations may yield different null distributions.
+
+**Saved validation.** The held-out association remains negative; prediction uses the training coefficients. This validates the phenology window, not the reproductive models.
+
+The browser step below rebuilds the eligible-window search from the public daily temperature and annual laying-date inputs, then compares its selected window with the saved result. It also runs 500 independent randomisations. This can take longer than the input check; nothing runs until you press **Run code**.
+
+The historical `climwin` script below includes preprocessing of the original field archive, which is outside this model-ready data release. For a standalone window search, the public-data runner uses the 45 annual laying-date summaries and daily weather observations to reconstruct the eligible-window calculation and run 500 independent randomisations. Original cached searches remain available separately.
+
+The main 6–0-week search window contains **49 days**: 26 March–13 May in non-leap years, 25 March–12 May in leap years. The reproductive models retain their separate operational **26 March–7 May (43-day)** exposure.
+
+The old package output `<0.001` is preserved in the archive; the plus-one empirical probability from **0/500** exceedances is **1/501 = 0.001996**.
+
+The archived `singlewin` call used a different exposure series and returned +0.370 days/°C. The separate audit below reconstructs the complete-week bins and verifies the main, training and second-period slopes against the cached search output before evaluating the held-out years. It does not repeat the search.
+
+The historical files are retained unchanged; they are not substituted for the checked validation above.
+
+The public RDS contains aggregate search data extracted from the original caches; fitting environments and individual field records are excluded.
+
+</details>

@@ -6,9 +6,9 @@ execute:
   enabled: false
 ---
 
-## Reproductive models
+[Model summaries](full_summaries.qmd) · [Refit](workflow.qmd#refit-from-the-public-model-data)
 
-Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the [clutch](clutch_size.qmd), [fledging](fledging_success.qmd) and [within–between](within_between.qmd) pages.
+## Reproductive models
 
 | Response | Distribution and components | Random intercepts |
 |---|---|---|
@@ -16,32 +16,19 @@ Both temperature formulations appear in the main analysis. The single-temperatur
 | Egg-to-fledging success | Zero-inflated beta-binomial; predictors enter component logit mean and log precision | Female and year in mean; year in precision and extra-zero probability |
 | Calendar-year trends | Same response distributions as above, with temperature removed from location and scale | Retained from corresponding reproductive model |
 
-Fitting uses the public curated individual records in `data_derived/analysis/`. The [standalone runner](R/94_reproduce_from_public_data.R) rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.
-
 ## Spring-temperature model
-
-The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:
 
 {{< include _includes/lab-04_environment_model.qmd >}}
 
-::: {.callout-note .review-summary appearance="simple"}
+::: {#result-model_structure-1 .analysis-result}
 
-## Saved results for this step
+**Result**
 
 **Environmental result.** Mean spring temperature increased by 0.0439°C/year (95% CI 0.0248–0.0630). There was no clear change in residual interannual variability. The browser code reports time effects per decade; multiply annual slopes by ten when comparing. This is an environmental model, not a reproductive model.
+
 :::
 
-
-
-
-
-
-
-The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.
-
 ## Fit diagnostics
-
-Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.
 
 | Model | Records | logLik | AIC | Converged | Positive-definite Hessian |
 |---|---:|---:|---:|---|---|
@@ -59,4 +46,19 @@ Saved optimizer and conditional-simulation outputs are shown below. Simulation c
 | Clutch size | 27,561.10 | 27,556.80 | −4.31 | 0.0157 |
 | Egg-to-fledging success | 33,294.11 | 33,297.87 | +3.75 | 0.885 |
 
+<details class="method-notes">
+<summary>Method notes</summary>
+
+Both temperature formulations appear in the main analysis. The single-temperature model estimates one temperature association; the within–between model replaces it with separate within-female and between-female terms. The complete formulas and scripts are on the [clutch](clutch_size.qmd), [fledging](fledging_success.qmd) and [within–between](within_between.qmd) pages.
+
+Fitting uses the public curated individual records in `data_derived/analysis/`. The [standalone runner](R/94_reproduce_from_public_data.R) rebuilds baseline, within–between and temporal models locally from public numerical starting values, without historical fitted objects.
+
+The environmental model is a Gaussian location–scale fit to the 46 annual mean temperatures. Calendar year enters both the mean and log standard deviation. This light model can be rerun in the browser from the public annual file:
+
+The fitted warming trend was 0.0439°C per year (95% CI 0.0248–0.0630); residual interannual variability showed no clear temporal change.
+
+Saved optimizer and conditional-simulation outputs are shown below. Simulation checks condition on fitted parameters and group effects; they are descriptive checks, not cross-validation.
+
 The comparison adds two fixed effects and tests whether within- and between-female temperature associations differ in location and scale together. Full coefficient and optimizer outputs are on the [within–between results page](within_between.qmd).
+
+</details>
