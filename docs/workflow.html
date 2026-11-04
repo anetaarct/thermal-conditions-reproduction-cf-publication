@@ -268,8 +268,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#data-origin" id="toc-data-origin" class="nav-link active" data-scroll-target="#data-origin">Data origin and source database</a>
   <ul class="collapse">
-  <li><a href="#original-cf-source-dataset-19802019" id="toc-original-cf-source-dataset-19802019" class="nav-link" data-scroll-target="#original-cf-source-dataset-19802019">Original CF source dataset: 1980–2019</a></li>
-  <li><a href="#later-breeding-dataset-and-preparation" id="toc-later-breeding-dataset-and-preparation" class="nav-link" data-scroll-target="#later-breeding-dataset-and-preparation">Later breeding dataset and preparation</a></li>
+  <li><a href="#collared-flycatcher-cf-source-dataset-19802025" id="toc-collared-flycatcher-cf-source-dataset-19802025" class="nav-link" data-scroll-target="#collared-flycatcher-cf-source-dataset-19802025">Collared flycatcher (CF) source dataset: 1980–2025</a></li>
+  <li><a href="#preparation-and-final-model-inputs" id="toc-preparation-and-final-model-inputs" class="nav-link" data-scroll-target="#preparation-and-final-model-inputs">Preparation and final model inputs</a></li>
+  <li><a href="#earlier-field-data-archive-19802019" id="toc-earlier-field-data-archive-19802019" class="nav-link" data-scroll-target="#earlier-field-data-archive-19802019">Earlier field-data archive: 1980–2019</a></li>
   <li><a href="#final-inputs-used-to-fit-the-reported-models" id="toc-final-inputs-used-to-fit-the-reported-models" class="nav-link" data-scroll-target="#final-inputs-used-to-fit-the-reported-models">Final inputs used to fit the reported models</a></li>
   </ul></li>
   <li><a href="#get-the-project-files" id="toc-get-the-project-files" class="nav-link" data-scroll-target="#get-the-project-files">Get the project files</a></li>
@@ -306,15 +307,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-origin" class="level2">
 <h2 class="anchored" data-anchor-id="data-origin">Data origin and source database</h2>
 <p>The breeding records originated from the long-term nest-box monitoring of collared flycatchers (<em>Ficedula albicollis</em>) on Gotland, Sweden, established in 1980. Individually ringed females were linked to records of laying date, clutch size, fledgling number and female age class.</p>
-<section id="original-cf-source-dataset-19802019" class="level3">
-<h3 class="anchored" data-anchor-id="original-cf-source-dataset-19802019">Original CF source dataset: 1980–2019</h3>
-<p>The original collared flycatcher (CF) source dataset is <a href="data_raw/birds/CF_adult_birds_1980-2019.csv"><strong><code>CF_adult_birds_1980-2019.csv</code></strong></a>, containing 23,911 records from 1980–2019. <a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF_adult_birds_1980-2019.csv">View the original source dataset on GitHub</a> · <a href="data_raw/birds/README.md">Source-file documentation</a>.</p>
-<p>The file was retained unchanged from the project archive. Its record identifiers, year, female ring, laying date, clutch size, hatchling number and fledgling number agreed with the corresponding fields in the original Excel workbook <code>RM_CF_adults_1980-2019_14.07.23.xlsx</code> across all 23,911 records. This file documents the original field records; it is not the final filtered analysis sample.</p>
+<section id="collared-flycatcher-cf-source-dataset-19802025" class="level3">
+<h3 class="anchored" data-anchor-id="collared-flycatcher-cf-source-dataset-19802025">Collared flycatcher (CF) source dataset: 1980–2025</h3>
+<p>The source breeding dataset for this analysis lineage is <a href="data_raw/birds/CF21980-2025.csv"><strong><code>CF21980-2025.csv</code></strong></a>, containing 15,984 records from seasons spanning 1980–2025. <a href="https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF21980-2025.csv">View the CF source dataset on GitHub</a> · <a href="data_raw/birds/README.md">Source-file documentation and checksum</a>.</p>
+<p>This is an unchanged copy of the file <a href="https://github.com/anetaarct/gotland-flycatcher-phenology/commit/7c5344958c18a81e853838c0b7ad9fea751bec57">uploaded to the phenology repository on 28 January 2026</a>. The CSV uses a semicolon delimiter. Its 14,693 records from 1980–2019 agree in the checked analysis variables (LD, CS, HS, FLEDGE, NEWRECRUIT and FAGE_CAT) with the sheet <strong>Corrected for CS,FL,NEWR</strong> in <code>CF_non-exp_breeding_events_1980-2019_RM_28.01.26.xlsx</code>. The file also contains records from later seasons.</p>
 </section>
-<section id="later-breeding-dataset-and-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="later-breeding-dataset-and-preparation">Later breeding dataset and preparation</h3>
-<p>The preparation workflow for the present analyses read <code>DB_MISMATCH_current_onset_1980-2025.csv</code>, a later dataset containing 15,984 records and covering seasons through 2025. The corresponding breeding variables are also available in <a href="https://github.com/anetaarct/gotland-flycatcher-phenology/blob/main/Data/DB_MISMATCH.csv"><code>Data/DB_MISMATCH.csv</code> in the phenology project repository</a>. The historical filenames refer to that earlier project’s phenological-mismatch analyses. The present reproductive analyses used breeding variables and SMHI temperature; NDVI and mismatch were not predictors in the final models.</p>
-<p>The later dataset is not identical to the original 1980–2019 source file. Matching by year, female ring, area and nest box identified 14,692 unambiguous record matches, including 312 differences in fledgling number: 247 missing values were populated, 57 observed values differed and eight observed values were missing in the later dataset. Most differences occurred in 2018–2019. The earlier ID-and-year comparison was unreliable because some record IDs were missing. Thus, the original source CSV alone does not reproduce the present analysis samples or supply the post-2019 records. The available files do not document a complete record-by-record history of all changes between these versions.</p>
+<section id="preparation-and-final-model-inputs" class="level3">
+<h3 class="anchored" data-anchor-id="preparation-and-final-model-inputs">Preparation and final model inputs</h3>
+<p>The data lineage was <code>CF21980-2025.csv</code> → <code>DB_MISMATCH.csv</code> → the local derivative <code>DB_MISMATCH_current_onset_1980-2025.csv</code> → the final trait-specific model-ready files. A comparison of the saved Git versions found no changes to FLEDGE from the January source through these later versions. The DB_MISMATCH filenames reflect the earlier phenology project; NDVI and mismatch were not predictors in the final reproductive models reported here.</p>
+<p>The original source upload contains incomplete records, which were retained in the archive. For 2025, 198 records have LD observed and 179 records enter the final clutch-size sample. FLEDGE is missing for 2025; the reported fledging sample covers 1981–2019.</p>
+</section>
+<section id="earlier-field-data-archive-19802019" class="level3">
+<h3 class="anchored" data-anchor-id="earlier-field-data-archive-19802019">Earlier field-data archive: 1980–2019</h3>
+<p><a href="data_raw/birds/CF_adult_birds_1980-2019.csv"><code>CF_adult_birds_1980-2019.csv</code></a> is an earlier archive of 23,911 field records, consistent in the checked breeding fields with <code>RM_CF_adults_1980-2019_14.07.23.xlsx</code>. It is retained for provenance, rather than identified as the source version used to prepare the present models.</p>
+<p>Compared with that earlier archive, 14,692 unambiguously matched records contain 312 FLEDGE differences: 247 missing-to-observed, 57 observed-to-different-observed and eight observed-to-missing. The 247 populated values and 57 revised counts were already present in the updated workbook dated 23 January 2026. Of the eight later missing values, one was already missing in that workbook and seven resulted from the documented January selection/correction stage. The corrected sheet documents 14 FLEDGE values cleared because the fledgling count was below the recruit count. The underlying field-log basis of the January 2026 updates is not documented in the available files.</p>
 </section>
 <section id="final-inputs-used-to-fit-the-reported-models" class="level3">
 <h3 class="anchored" data-anchor-id="final-inputs-used-to-fit-the-reported-models">Final inputs used to fit the reported models</h3>
@@ -364,34 +370,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>data_raw/birds/CF_adult_birds_1980-2019.csv</code></td>
-<td>Original field-record archive; provenance rather than direct model input</td>
+<td><code>data_raw/birds/CF21980-2025.csv</code></td>
+<td>Source breeding dataset preceding preparation of the final model inputs</td>
 </tr>
 <tr class="even">
+<td><code>data_raw/birds/CF_adult_birds_1980-2019.csv</code></td>
+<td>Earlier field-record archive, retained for provenance</td>
+</tr>
+<tr class="odd">
 <td><code>data_derived/smhi_hoburg_daily_temperature.csv</code></td>
 <td>Daily station observations used to build thermal windows</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>data_derived/annual_raw_median_laying_date.csv</code></td>
 <td>Annual laying-date response for window selection</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>data_derived/annual_main_window_temperature.csv</code></td>
 <td>Saved annual exposure used in reproductive models</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>tables/…/*.csv</code> and public aggregate <code>.rds</code> files</td>
 <td>Reproducing output tables, curves and figures without refitting</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>data_derived/analysis/clutch_model_data.csv</code></td>
 <td>Final curated clutch-size records</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>data_derived/analysis/fledging_model_data.csv</code></td>
 <td>Final curated egg-to-fledging records</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>R/</code>, <code>R/browser/</code>, <code>scripts/</code></td>
 <td>Analysis and figure code</td>
 </tr>
@@ -996,122 +1006,129 @@ cat("Daily records:", nrow(daily), "\nYears:", nrow(rebuilt),
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>The breeding records originated from the long-term nest-box monitoring of collared flycatchers (*Ficedula albicollis*) on Gotland, Sweden, established in 1980. Individually ringed females were linked to records of laying date, clutch size, fledgling number and female age class.</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Original CF source dataset: 1980–2019</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Collared flycatcher (CF) source dataset: 1980–2025</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>The original collared flycatcher (CF) source dataset is <span class="co">[</span><span class="ot">**`CF_adult_birds_1980-2019.csv`**</span><span class="co">](data_raw/birds/CF_adult_birds_1980-2019.csv)</span>, containing 23,911 records from 1980–2019. <span class="co">[</span><span class="ot">View the original source dataset on GitHub</span><span class="co">](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF_adult_birds_1980-2019.csv)</span> · <span class="co">[</span><span class="ot">Source-file documentation</span><span class="co">](data_raw/birds/README.md)</span>.</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>The source breeding dataset for this analysis lineage is <span class="co">[</span><span class="ot">**`CF21980-2025.csv`**</span><span class="co">](data_raw/birds/CF21980-2025.csv)</span>, containing 15,984 records from seasons spanning 1980–2025. <span class="co">[</span><span class="ot">View the CF source dataset on GitHub</span><span class="co">](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/blob/main/data_raw/birds/CF21980-2025.csv)</span> · <span class="co">[</span><span class="ot">Source-file documentation and checksum</span><span class="co">](data_raw/birds/README.md)</span>.</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>The file was retained unchanged from the project archive. Its record identifiers, year, female ring, laying date, clutch size, hatchling number and fledgling number agreed with the corresponding fields in the original Excel workbook <span class="in">`RM_CF_adults_1980-2019_14.07.23.xlsx`</span> across all 23,911 records. This file documents the original field records; it is not the final filtered analysis sample.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>This is an unchanged copy of the file <span class="co">[</span><span class="ot">uploaded to the phenology repository on 28 January 2026</span><span class="co">](https://github.com/anetaarct/gotland-flycatcher-phenology/commit/7c5344958c18a81e853838c0b7ad9fea751bec57)</span>. The CSV uses a semicolon delimiter. Its 14,693 records from 1980–2019 agree in the checked analysis variables (LD, CS, HS, FLEDGE, NEWRECRUIT and FAGE_CAT) with the sheet **Corrected for CS,FL,NEWR** in <span class="in">`CF_non-exp_breeding_events_1980-2019_RM_28.01.26.xlsx`</span>. The file also contains records from later seasons.</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Later breeding dataset and preparation</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparation and final model inputs</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>The preparation workflow for the present analyses read <span class="in">`DB_MISMATCH_current_onset_1980-2025.csv`</span>, a later dataset containing 15,984 records and covering seasons through 2025. The corresponding breeding variables are also available in <span class="co">[</span><span class="ot">`Data/DB_MISMATCH.csv` in the phenology project repository</span><span class="co">](https://github.com/anetaarct/gotland-flycatcher-phenology/blob/main/Data/DB_MISMATCH.csv)</span>. The historical filenames refer to that earlier project's phenological-mismatch analyses. The present reproductive analyses used breeding variables and SMHI temperature; NDVI and mismatch were not predictors in the final models.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>The data lineage was <span class="in">`CF21980-2025.csv`</span> → <span class="in">`DB_MISMATCH.csv`</span> → the local derivative <span class="in">`DB_MISMATCH_current_onset_1980-2025.csv`</span> → the final trait-specific model-ready files. A comparison of the saved Git versions found no changes to FLEDGE from the January source through these later versions. The DB_MISMATCH filenames reflect the earlier phenology project; NDVI and mismatch were not predictors in the final reproductive models reported here.</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>The later dataset is not identical to the original 1980–2019 source file. Matching by year, female ring, area and nest box identified 14,692 unambiguous record matches, including 312 differences in fledgling number: 247 missing values were populated, 57 observed values differed and eight observed values were missing in the later dataset. Most differences occurred in 2018–2019. The earlier ID-and-year comparison was unreliable because some record IDs were missing. Thus, the original source CSV alone does not reproduce the present analysis samples or supply the post-2019 records. The available files do not document a complete record-by-record history of all changes between these versions.</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>The original source upload contains incomplete records, which were retained in the archive. For 2025, 198 records have LD observed and 179 records enter the final clutch-size sample. FLEDGE is missing for 2025; the reported fledging sample covers 1981–2019.</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Final inputs used to fit the reported models</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Earlier field-data archive: 1980–2019</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>The final models were fitted to the curated, trait-specific samples derived during preparation of the later breeding dataset. Original ring labels were replaced with consistent model-only female identifiers in the public model-ready files.</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`CF_adult_birds_1980-2019.csv`</span><span class="co">](data_raw/birds/CF_adult_birds_1980-2019.csv)</span> is an earlier archive of 23,911 field records, consistent in the checked breeding fields with <span class="in">`RM_CF_adults_1980-2019_14.07.23.xlsx`</span>. It is retained for provenance, rather than identified as the source version used to prepare the present models.</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Final model input <span class="pp">|</span> Records <span class="pp">|</span> Females <span class="pp">|</span> Seasons <span class="pp">|</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---|</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Clutch size</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span> <span class="pp">|</span> 12,627 <span class="pp">|</span> 8,894 <span class="pp">|</span> 1981–2025, excluding 2020 <span class="pp">|</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Egg-to-fledging success</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> <span class="pp">|</span> 9,790 <span class="pp">|</span> 7,132 <span class="pp">|</span> 1981–2019 <span class="pp">|</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>These final files contain the responses and prepared predictors used to reproduce the reported reproductive fits. <span class="co">[</span><span class="ot">Variable dictionary and centring rules</span><span class="co">](data_derived/analysis/README.md)</span> · <span class="co">[</span><span class="ot">Reproduction instructions</span><span class="co">](#refit-from-the-public-model-data)</span>.</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>Daily mean air temperatures originated from the <span class="co">[</span><span class="ot">Swedish Meteorological and Hydrological Institute (SMHI) open meteorological observations</span><span class="co">](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn)</span>, using Hoburg (station 68550) and Hoburg A (station 68560). The preparation workflow combined their observations into the 1980–2025 daily series; overlapping observations were averaged. Annual pre-laying temperatures were calculated for 26 March–7 May.</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">clutch-size records</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span>, <span class="co">[</span><span class="ot">egg-to-fledging records</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> and <span class="co">[</span><span class="ot">variable dictionary</span><span class="co">](data_derived/analysis/README.md)</span> contain the inputs required to reproduce the reported reproductive models.</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>Compared with that earlier archive, 14,692 unambiguously matched records contain 312 FLEDGE differences: 247 missing-to-observed, 57 observed-to-different-observed and eight observed-to-missing. The 247 populated values and 57 revised counts were already present in the updated workbook dated 23 January 2026. Of the eight later missing values, one was already missing in that workbook and seven resulted from the documented January selection/correction stage. The corrected sheet documents 14 FLEDGE values cleared because the fledgling count was below the recruit count. The underlying field-log basis of the January 2026 updates is not documented in the available files.</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Final inputs used to fit the reported models</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>The final models were fitted to the curated, trait-specific samples derived during preparation of the later breeding dataset. Original ring labels were replaced with consistent model-only female identifiers in the public model-ready files.</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Final model input <span class="pp">|</span> Records <span class="pp">|</span> Females <span class="pp">|</span> Seasons <span class="pp">|</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|---|</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Clutch size</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span> <span class="pp">|</span> 12,627 <span class="pp">|</span> 8,894 <span class="pp">|</span> 1981–2025, excluding 2020 <span class="pp">|</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Egg-to-fledging success</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> <span class="pp">|</span> 9,790 <span class="pp">|</span> 7,132 <span class="pp">|</span> 1981–2019 <span class="pp">|</span></span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Get the project files</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>These final files contain the responses and prepared predictors used to reproduce the reported reproductive fits. <span class="co">[</span><span class="ot">Variable dictionary and centring rules</span><span class="co">](data_derived/analysis/README.md)</span> · <span class="co">[</span><span class="ot">Reproduction instructions</span><span class="co">](#refit-from-the-public-model-data)</span>.</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>Download the <span class="co">[</span><span class="ot">repository ZIP</span><span class="co">](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip)</span> and unzip it without changing folder names. R scripts use paths relative to the project root.</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>Daily mean air temperatures originated from the <span class="co">[</span><span class="ot">Swedish Meteorological and Hydrological Institute (SMHI) open meteorological observations</span><span class="co">](https://www.smhi.se/data/sok-oppna-data-i-utforskaren/se-acmf-meteorologiska-observationer-lufttemperatur-medelvarde-1-dygn)</span>, using Hoburg (station 68550) and Hoburg A (station 68560). The preparation workflow combined their observations into the 1980–2025 daily series; overlapping observations were averaged. Annual pre-laying temperatures were calculated for 26 March–7 May.</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inputs <span class="pp">|</span> Used for <span class="pp">|</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_raw/birds/CF_adult_birds_1980-2019.csv`</span> <span class="pp">|</span> Original field-record archive; provenance rather than direct model input <span class="pp">|</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/smhi_hoburg_daily_temperature.csv`</span> <span class="pp">|</span> Daily station observations used to build thermal windows <span class="pp">|</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_raw_median_laying_date.csv`</span> <span class="pp">|</span> Annual laying-date response for window selection <span class="pp">|</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_main_window_temperature.csv`</span> <span class="pp">|</span> Saved annual exposure used in reproductive models <span class="pp">|</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tables/…/*.csv`</span> and public aggregate <span class="in">`.rds`</span> files <span class="pp">|</span> Reproducing output tables, curves and figures without refitting <span class="pp">|</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/clutch_model_data.csv`</span> <span class="pp">|</span> Final curated clutch-size records <span class="pp">|</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/fledging_model_data.csv`</span> <span class="pp">|</span> Final curated egg-to-fledging records <span class="pp">|</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`R/`</span>, <span class="in">`R/browser/`</span>, <span class="in">`scripts/`</span> <span class="pp">|</span> Analysis and figure code <span class="pp">|</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-01_weather_inputs.qmd &gt;}}</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">clutch-size records</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span>, <span class="co">[</span><span class="ot">egg-to-fledging records</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span> and <span class="co">[</span><span class="ot">variable dictionary</span><span class="co">](data_derived/analysis/README.md)</span> contain the inputs required to reproduce the reported reproductive models.</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Get the project files</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>Download the <span class="co">[</span><span class="ot">repository ZIP</span><span class="co">](https://github.com/anetaarct/thermal-conditions-reproduction-cf-publication/archive/refs/heads/main.zip)</span> and unzip it without changing folder names. R scripts use paths relative to the project root.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Inputs <span class="pp">|</span> Used for <span class="pp">|</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_raw/birds/CF21980-2025.csv`</span> <span class="pp">|</span> Source breeding dataset preceding preparation of the final model inputs <span class="pp">|</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_raw/birds/CF_adult_birds_1980-2019.csv`</span> <span class="pp">|</span> Earlier field-record archive, retained for provenance <span class="pp">|</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/smhi_hoburg_daily_temperature.csv`</span> <span class="pp">|</span> Daily station observations used to build thermal windows <span class="pp">|</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_raw_median_laying_date.csv`</span> <span class="pp">|</span> Annual laying-date response for window selection <span class="pp">|</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/annual_main_window_temperature.csv`</span> <span class="pp">|</span> Saved annual exposure used in reproductive models <span class="pp">|</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tables/…/*.csv`</span> and public aggregate <span class="in">`.rds`</span> files <span class="pp">|</span> Reproducing output tables, curves and figures without refitting <span class="pp">|</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/clutch_model_data.csv`</span> <span class="pp">|</span> Final curated clutch-size records <span class="pp">|</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`data_derived/analysis/fledging_model_data.csv`</span> <span class="pp">|</span> Final curated egg-to-fledging records <span class="pp">|</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`R/`</span>, <span class="in">`R/browser/`</span>, <span class="in">`scripts/`</span> <span class="pp">|</span> Analysis and figure code <span class="pp">|</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>The short input check below runs in this page using WebR (R in your browser); no installation is needed. The first run downloads the runtime to your browser.</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/lab-01_weather_inputs.qmd &gt;}}</span>
 <span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>::: {.callout-note .review-summary appearance="simple"}</span>
 <span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Saved results for this step</span></span>
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproduce each step</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>**Input check.** Public inputs contain 16,802 daily records, 46 annual temperatures and 45 annual laying-date summaries. The operational exposure is 26 March–7 May, 43 days each year. Run the code to check your downloaded files; execution results are displayed when the code is run.</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Public inputs <span class="pp">|</span> What you can run or reproduce <span class="pp">|</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sliding-window selection <span class="pp">|</span> Daily SMHI data, annual laying-date summaries and aggregate cache <span class="pp">|</span> Candidate thermal windows, saved search diagnostics and held-out validation checks <span class="pp">|</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Calendar-year trends <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit models without temperature, export coefficients, predictions and diagnostics <span class="pp">|</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Temperature and reproductive traits <span class="pp">|</span> Curated model-ready records and public numerical starting values <span class="pp">|</span> Refit baseline models and export contrasts and predictions <span class="pp">|</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Within–between temperature models <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit decomposed models, compare coefficients and inspect diagnostics <span class="pp">|</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproduce each step</span></span>
 <span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Refit from the public model data</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>The reproductive analyses used two curated datasets. Female identifiers were recoded consistently across both datasets, preserving the grouping of repeated observations. The model-ready files contain the responses and predictors used in the final analyses.</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download clutch-size data (CSV)</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download egg-to-fledging data (CSV)</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Variable dictionary and centring rules</span><span class="co">](data_derived/analysis/README.md)</span></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Author-side audit: 543 checks and SHA-256 checksums</span><span class="co">](tables/model_data_audit.json)</span></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Numerical reproduction report: all six main models</span><span class="co">](tables/reproduction_validation.json)</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the standalone reproduction runner</span><span class="co">](R/94_reproduce_from_public_data.R)</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the public-data validator</span><span class="co">](R/95_validate_public_model_data.R)</span></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>Download the repository ZIP above and run these commands from its root:</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"glmmTMB"</span>, <span class="st">"MASS"</span>))</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/95_validate_public_model_data.R</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/94_reproduce_from_public_data.R</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 independent randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under <span class="in">`figures/reproduced/`</span>. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> Public inputs <span class="pp">|</span> What you can run or reproduce <span class="pp">|</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sliding-window selection <span class="pp">|</span> Daily SMHI data, annual laying-date summaries and aggregate cache <span class="pp">|</span> Candidate thermal windows, saved search diagnostics and held-out validation checks <span class="pp">|</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Calendar-year trends <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit models without temperature, export coefficients, predictions and diagnostics <span class="pp">|</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Temperature and reproductive traits <span class="pp">|</span> Curated model-ready records and public numerical starting values <span class="pp">|</span> Refit baseline models and export contrasts and predictions <span class="pp">|</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Within–between temperature models <span class="pp">|</span> Curated model-ready records <span class="pp">|</span> Refit decomposed models, compare coefficients and inspect diagnostics <span class="pp">|</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Refit from the public model data</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>The reproductive analyses used two curated datasets. Female identifiers were recoded consistently across both datasets, preserving the grouping of repeated observations. The model-ready files contain the responses and predictors used in the final analyses.</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download clutch-size data (CSV)</span><span class="co">](data_derived/analysis/clutch_model_data.csv)</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download egg-to-fledging data (CSV)</span><span class="co">](data_derived/analysis/fledging_model_data.csv)</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Variable dictionary and centring rules</span><span class="co">](data_derived/analysis/README.md)</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Author-side audit: 543 checks and SHA-256 checksums</span><span class="co">](tables/model_data_audit.json)</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Numerical reproduction report: all six main models</span><span class="co">](tables/reproduction_validation.json)</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the standalone reproduction runner</span><span class="co">](R/94_reproduce_from_public_data.R)</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Download the public-data validator</span><span class="co">](R/95_validate_public_model_data.R)</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>Download the repository ZIP above and run these commands from its root:</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"glmmTMB"</span>, <span class="st">"MASS"</span>))</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>Model checkpoints are written under <span class="in">`models/`</span>; regenerated numerical results are stored under <span class="in">`tables/reproduced/`</span> and <span class="in">`tables/within_between_20261026_reproduced/`</span>. Original publication exports are retained. Stages can also be run separately, for example <span class="in">`Rscript R/94_reproduce_from_public_data.R inputs environment windows`</span>. The available stages are <span class="in">`inputs`</span>, <span class="in">`environment`</span>, <span class="in">`windows`</span>, <span class="in">`models`</span>, <span class="in">`temporal`</span>, <span class="in">`exports`</span>, <span class="in">`figures`</span> and <span class="in">`verify`</span>. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; independent randomisations reproduce the procedure, not the exact historical permutations.</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verified model summaries</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Read the complete model summaries in S7</span><span class="co">](full_summaries.qmd)</span>, organised by response and model formulation.</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:</span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Clutch: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Fledging: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)</span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Reproduction-session software versions</span><span class="co">](tables/reproduction_checks/session_info.txt)</span></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software used for the reported fits</span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>**Next:** <span class="co">[</span><span class="ot">Sliding-window approach</span><span class="co">](climate_window.qmd)</span> → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span> → <span class="co">[</span><span class="ot">Reproductive analyses</span><span class="co">](clutch_size.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/95_validate_public_model_data.R</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/94_reproduce_from_public_data.R</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>The runner checks the model samples, refits the environmental model, repeats the eligible-window search with 500 independent randomisations, fits the baseline and within–between reproductive models, fits the separate temporal models, and exports contrasts, curves and conditional simulation checks. Regenerated figures are written under <span class="in">`figures/reproduced/`</span>. It compares regenerated reproductive coefficients with the published exports. Published coefficients are numerical starting values; likelihood optimisation and convergence checks are rerun. No historical fitted-model object is needed.</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>Model checkpoints are written under <span class="in">`models/`</span>; regenerated numerical results are stored under <span class="in">`tables/reproduced/`</span> and <span class="in">`tables/within_between_20261026_reproduced/`</span>. Original publication exports are retained. Stages can also be run separately, for example <span class="in">`Rscript R/94_reproduce_from_public_data.R inputs environment windows`</span>. The available stages are <span class="in">`inputs`</span>, <span class="in">`environment`</span>, <span class="in">`windows`</span>, <span class="in">`models`</span>, <span class="in">`temporal`</span>, <span class="in">`exports`</span>, <span class="in">`figures`</span> and <span class="in">`verify`</span>. The main mixed-model fits can take substantial time; checkpoints allow completed optimisations to be reused.</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>The browser controls remain lightweight checks and calculations. Full mixed-model refitting uses local R, not the browser. Historical scripts that refer to earlier private paths are retained as provenance; use the standalone runner for a clean refit.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>The public files begin at the final curated analysis samples, not at the raw field-data cleaning stage. The phenology-window analysis uses public annual laying-date summaries for 45 seasons, rather than the trait-specific reproductive samples. The original 500 randomised searches remain in the public cache; independent randomisations reproduce the procedure, not the exact historical permutations.</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>Weather covers 1980–2025 (46 seasons), the sliding-window laying-date series covers 45 seasons, clutch-size data cover 12,627 breeding attempts from 8,894 females (1981–2025, excluding 2020), and fledging data cover 9,790 attempts from 7,132 females (1981–2019).</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verified model summaries</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Read the complete model summaries in S7</span><span class="co">](full_summaries.qmd)</span>, organised by response and model formulation.</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>The reproduction check matched 46 baseline/within–between coefficients to within 9.4 × 10⁻¹¹ and 17 temporal-model coefficients to within 2.6 × 10⁻⁷. Monte Carlo confidence limits can vary across numerical environments. Full R summaries from this check:</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Clutch: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/clutch_without_temperature.txt)</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Fledging: baseline</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_baseline.txt)</span> · <span class="co">[</span><span class="ot">within–between</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_within_between.txt)</span> · <span class="co">[</span><span class="ot">without temperature</span><span class="co">](tables/reproduction_checks/model_summaries/fledging_without_temperature.txt)</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Reproduction-session software versions</span><span class="co">](tables/reproduction_checks/session_info.txt)</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software used for the reported fits</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>The reported reproductive fits used R 4.6.1 and glmmTMB 1.1.14. The within–between refits and exports used R 4.6.1 and glmmTMB 1.1.15.2. Browser calculations run in WebR and base R; they reproduce the indicated checks from public files, not the historical glmmTMB fits.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>**Next:** <span class="co">[</span><span class="ot">Sliding-window approach</span><span class="co">](climate_window.qmd)</span> → <span class="co">[</span><span class="ot">Calendar-year trends</span><span class="co">](temporal_trends.qmd)</span> → <span class="co">[</span><span class="ot">Reproductive analyses</span><span class="co">](clutch_size.qmd)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

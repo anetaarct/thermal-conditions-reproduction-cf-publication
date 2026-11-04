@@ -1,22 +1,28 @@
-# Original collared flycatcher (CF) source dataset
+# Collared flycatcher (CF) source datasets
 
-`CF_adult_birds_1980-2019.csv` contains 23,911 original adult-bird breeding records from the Gotland, Sweden, nest-box monitoring programme, covering 1980–2019. The CSV was copied unchanged from the project source archive.
+## Source dataset used in the analysis lineage
 
-SHA-256: `e1d7e3a6827b8c3d51afa26f6a8a4e3c06086c9ab7f3ba321fb53f583a5f6612`
+`CF21980-2025.csv`: 15,984 records spanning seasons 1980–2025. Semicolon-delimited CSV, preserved byte-for-byte from the original GitHub upload.
 
-The checked fields (ID, YEAR, FRING, LD, CS, HS and FLEDGE) agree across all records with the original workbook `RM_CF_adults_1980-2019_14.07.23.xlsx`, after normalising numeric formatting and missing values. Ring identifiers and the original field columns are retained in this source archive. The check establishes agreement in these fields, rather than bytewise identity of the Excel and CSV files.
+- Source repository: https://github.com/anetaarct/gotland-flycatcher-phenology
+- Source commit: `7c5344958c18a81e853838c0b7ad9fea751bec57` (28 January 2026).
+- Original path at that commit: `CF21980-2025.csv`.
+- SHA-256: `c7f9a9981cbcba9b065fa67e77e00ee40d5612a9fd990aa1fbcf1b2b157c62e6`.
 
-## Relationship to the publication analyses
+The 14,693 records from 1980–2019 agree in LD, CS, HS, FLEDGE, NEWRECRUIT and FAGE_CAT with the sheet `Corrected for CS,FL,NEWR` in `CF_non-exp_breeding_events_1980-2019_RM_28.01.26.xlsx`. The file includes later-season records as well. Its import notes specify LD relative to 1 May, NEWRECRUIT rather than RECRUIT, and warn that HD contains errors. Missing observations were retained.
 
-This original file is not the final model input. The reproductive preparation workflow used the later `DB_MISMATCH_current_onset_1980-2025.csv` dataset. That version contains 15,984 records, includes post-2019 seasons and differs from this archive. Matching by YEAR, FRING, AREA and BOX identified 14,692 unambiguous record matches and 312 FLEDGE differences: 247 missing-to-observed, 57 observed-to-different-observed and eight observed-to-missing. Most occurred in 2018–2019. A previous ID/YEAR-only comparison was unreliable because some IDs were missing. A complete change history is not available in the published materials.
+Data lineage: CF21980-2025.csv -> DB_MISMATCH.csv -> local DB_MISMATCH_current_onset_1980-2025.csv -> final trait-specific samples. Saved Git versions showed no FLEDGE changes across those transitions. NDVI and mismatch were not predictors in the final reproductive models.
 
-Use `data_derived/analysis/clutch_model_data.csv` and `data_derived/analysis/fledging_model_data.csv` to reproduce the final models. These contain the final sample selection and prepared predictors. Their README documents variables and centring. The final models did not use NDVI or phenological mismatch as predictors.
+For 2025, LD is observed in 198 source records and 179 records enter the final clutch-size sample. FLEDGE is not observed in 2025.
 
-## Selected original fields
+## Earlier field archive
 
-- ID: original record identifier; YEAR: breeding season.
-- FRING: original female ring identifier; MRING: original male ring identifier.
-- LD: laying date in the source coding; CS: clutch size; HS: hatchling number; FLEDGE: fledgling number.
-- Other field columns are preserved as supplied. Their original coding should not be reinterpreted without the field-data documentation.
+`CF_adult_birds_1980-2019.csv` contains 23,911 earlier field records, consistent in the checked breeding fields with `RM_CF_adults_1980-2019_14.07.23.xlsx`. It is an earlier archive, not the source version directly preceding the present model preparation.
 
-Data provenance and the distinction between the original archive, the later breeding dataset and the final model inputs are described on the website's A1 page.
+SHA-256: `e1d7e3a6827b8c3d51afa26f6a8a4e3c06086c9ab7f3ba321fb53f583a5f6612`.
+
+Of 14,692 unambiguously matched records, 312 differ in FLEDGE: 247 missing-to-observed, 57 observed-to-different-observed and eight observed-to-missing. The 247 populated values and 57 revised counts were already present in the January 23, 2026 workbook. Of the eight later missing values, one was already missing in that update and seven resulted from the documented selection/correction stage. The January 28 corrected sheet documents 14 counts cleared because FLEDGE was lower than NEWRECRUIT. The field-log basis for the January updates is not documented in the available files.
+
+## Reproducing the models
+
+Use `data_derived/analysis/clutch_model_data.csv` and `data_derived/analysis/fledging_model_data.csv` for the final reproductive fits. These include the final sample selection and prepared predictors; their README documents variables and centring. The source archives retain original ring identifiers and original field columns. They do not replace the final model inputs.
