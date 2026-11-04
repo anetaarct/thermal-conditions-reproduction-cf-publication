@@ -64,7 +64,7 @@ table(d$year_f)
 - Fledging VIFs: relative date 1.046; age 1.055; temperature 1.267; year 1.269.
 - Individual-window and female-specific thermal-slope extensions did not yield admissible fits; they are not used for inference.
 
-The original raw-data cleaning history is not included; these pages start from the [public curated model-ready files](data_derived/analysis/README.md). [Data origin and source database](workflow.qmd#data-origin) documents the field monitoring, project source file, related Dryad deposit and SMHI weather observations.
+The original raw-data cleaning history is not included; these pages start from the [public curated model-ready files](data_derived/analysis/README.md). [Data origin and source database](workflow.qmd#data-origin) documents the field monitoring, project source file, source GitHub database and SMHI weather observations.
 
 ## Recalculate annual year–temperature correlations
 
