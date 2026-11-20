@@ -1,0 +1,4 @@
+   trait    model      optimizer convergence    logLik logLik_difference
+1 clutch baseline NLMINB_restart           0 -6508.325     -6.530172e-10
+  scaled_gradient                  message
+1    1.374599e-08 relative convergence (4)

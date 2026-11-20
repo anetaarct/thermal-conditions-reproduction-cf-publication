@@ -1,0 +1,24 @@
+2026-11-20 06:27:11 scale_year_clutch_within_between START
+  0:     13518.710:  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000
+  5:     13476.504: -4.07365 -0.000567678 -0.00552671 -0.00580400 0.00866527 -0.00111106 -0.00203303 -0.000129183 -3.03739e-05 0.00337980 0.000534828 -0.000713502 -0.00109526 0.000271423 0.00115310
+ 10:     13475.620: -7.55388 1.27907e-07 -4.65707e-06 -4.91684e-06 8.20223e-06 4.14863e-07 2.09026e-06 -9.44890e-08 1.01381e-07 -1.85019e-06 2.40312e-07 2.93990e-07 -1.58065e-07 5.35838e-08 -8.77585e-07
+ 15:     13475.593: -11.0200 6.49618e-08 -2.80098e-07 -9.07827e-07 2.84396e-09 3.11159e-07 1.96644e-07 -1.51008e-07 5.54635e-08 -9.11608e-08 -6.95933e-08 1.43636e-07 -5.42681e-08 1.40276e-07 3.66947e-09
+ 20:     13475.592: -14.4858 6.49216e-08 -2.77604e-07 -9.05625e-07 -1.87918e-09 3.11218e-07 1.95737e-07 -1.51056e-07 5.54548e-08 -8.98960e-08 -6.98224e-08 1.43570e-07 -5.40036e-08 1.40341e-07 4.19725e-09
+       check  trait          model optimizer     n convergence pdHess    logLik
+1 scale_year clutch within_between    NLMINB 12344           1   TRUE -13475.59
+  objective      AIC scaled_gradient
+1  13475.59 26981.18     0.001313344
+initial  value 13475.591713 
+final  value 13475.591711 
+converged
+       check  trait          model optimizer     n convergence pdHess    logLik
+1 scale_year clutch within_between      BFGS 12344           0   TRUE -13475.59
+  objective      AIC scaled_gradient
+1  13475.59 26981.18    0.0001029442
+scale_year_clutch_within_between COMPLETE
+Warning message:
+In finalizeTMB(TMBStruc, obj, fit, h, data.tmb.old) :
+  Model convergence problem; singular convergence (7). See vignette('troubleshooting'), help('diagnose')
+REMAINING ROBUSTNESS COMPLETE
+Error: unexpected ')' in "nt=tryCatch(max(abs(m$sdr$gradient.fixed*sqrt(diag(m$sdr$cov.fixed)))),error=function(e)NA_real_))"
+Execution halted

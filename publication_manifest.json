@@ -1,5 +1,5 @@
 {
-  "description": "Current corrected reproductive results are in revision_20261120; earlier exports are archived. Corrected sample excludes entire experimental-female histories and ambiguous duplicate female-season groups. Outstanding robustness checks and reproduction limits are documented on the current results page.",
+  "description": "Current corrected analyses and Supplementary Materials synchronized with the current manuscript. Environmental variability is descriptive context; temporal and exact-age analyses remain supplementary. Numerical validation and reproduction limits are documented on the current results page.",
   "sha256": {
     "data_derived/annual_adjusted_laying_date.csv": "8c88b264824c37259a4c3e4b22a4c711d00ee554f26baccf15a885cd896c5117",
     "data_derived/annual_clutch_summary.csv": "cb6058588e7cb0352de6a3565bbeed1b01193f14d617e00285c264f4b442b98a",
@@ -72,7 +72,7 @@
     "R/76_export_COM_predictions.R": "8ab38e13e8054d3cb0e76a05e7d418aad908354da5dd8c6dbbe469e65a34c218",
     "R/81_fit_ZIyear_fledging.R": "63bf6bff56df7e35ae8680f19d229647369b3980b1e9a31e33545a56216907a5",
     "R/82_export_ZIyear_primary.R": "83a59d56e876cb7815b358b90869cf2fe1eaccaa6bdfe7c847f73e4efe2d184e",
-    "R/83_fit_temporal_without_temperature.R": "2ee346c32038754bf383c12a2fb3b59db97ed7633e65fc434d80d8360f133548",
+    "R/83_fit_temporal_without_temperature.R": "a2e5abc548855cf3bdf23563bb22b6be1525b0c2b5dcbc18e8de120a9361508b",
     "R/84_export_temporal_without_temperature.R": "465ecded3efe311614994ce547d0cd89de2ca0c3d3f916bc240ee282639688d4",
     "scripts/check_fledging_vif.R": "a1a236044cf085924d7d4b58cd1036406369721a42ab6327890b39a5f84492ca",
     "scripts/plot_final_models.py": "acaf297cd75a0e168c11ef8bf404f20933e64f31ced444e0d0927240b3c657ec",
@@ -215,7 +215,7 @@
     "revision_20261120/Fig_within_between_clutch_20261119.png": "6649cda13d6ee5a4306400ea3c802e2853cc1c958a073027c640ec3aa1f6e44c",
     "revision_20261120/Fig_within_between_fledging_20261119.pdf": "0eb37571f6db249fc6871a88b6710d61265dd4ee01c86ecb37a4526d82dbbdb9",
     "revision_20261120/Fig_within_between_fledging_20261119.png": "4748fbf7962ea0ccfbc4ff584f54d01adcc9bb653b1ad38a3623eb4afa9e0481",
-    "revision_20261120/Supplement_20261120.pdf": "b661d54f91f9622f0f4e4fcaec4f4a51442ceae519a59a0bfd11acb80fa550a1",
+    "revision_20261120/Supplement_20261120.pdf": "9c56bf88299d5f9ed5ed027fe2f3cda559d1b6f9cbc405bddec87466fe1a80b0",
     "revision_20261120/Supplementary_Data_20261119.zip": "0be7805483018bec80e1c664dfe0dc7f40ae06b84b8cefd31ada8aff74c7f973",
     "revision_20261120/analysis/R/revision_20261119/audit_repeated_clutch_objective.R": "d40fa48725970b896b1664a4ec29888b8ea4c8c7479b272254f9e23d872a382f",
     "revision_20261120/analysis/R/revision_20261119/export_scale_boundary_audit.R": "b00c7ec4874a4d8893ed66ac1ce18a04bc98183473eecbb2c18d4bbefb6581c8",
@@ -288,7 +288,7 @@
     "revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.initial_BFGS_audit.log": "0fe611c7fddad9db44f201e0dd67703730abfd10e2120dd82feed4c7f0fa9f38",
     "revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.log": "49fc4e585bdec764bd7d590ea01a49be04e8e13cefff9d65d8dfd44f8124938d",
     "revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.scaling_audit.log": "bff060580732d5f283f254ec7f7da767f329f03923fdf2cee7f988262e910357",
-    "revision_20261120/Supplement_20261120.tex": "670a2ab973cc3c1348ca9c94d2249a11d07d451f3fbb184a299a4941212858d3"
+    "revision_20261120/Supplement_20261120.tex": "60fa57aa71b1d0a2357b44c8e7cdd8dc707cc4056200ea2f8fc5a4ba25d181c6"
   },
   "model_data_release": "4 November 2026: final curated model-ready records and standalone refitting code, with numerical reproduction checks. Original numerical exports retained."
 }

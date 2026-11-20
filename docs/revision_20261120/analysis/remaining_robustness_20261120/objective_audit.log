@@ -1,0 +1,6 @@
+1 objective 6508.325 maxgradient 213.6224 elapsed 0.097 
+2 objective 6508.325 maxgradient 213.6224 elapsed 0.099 
+3 objective 6508.325 maxgradient 213.6224 elapsed 0.099 
+Timing stopped at: 6.729 0.028 6.755
+Error in (function (par, fn, gr, control = list(), ...)  : 
+  Objective audit complete; no fit requested

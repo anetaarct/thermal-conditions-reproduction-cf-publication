@@ -1,0 +1,4 @@
+"trait","model","n","df","logLik","AIC","convergence","pdHess","scaled_gradient"
+"clutch","with_temperature",12344,12,-13479.5400412391,26983.0800824782,0,TRUE,4.18899289884122e-06
+"clutch","without_temperature_whitened_BFGS",12344,10,-13487.7820958569,26995.5641917138,0,TRUE,1.32056923905908e-05
+"clutch","without_temperature_BFGS",12344,10,-13487.7820958567,26995.5641917135,0,NA,1.11007820115044e-05

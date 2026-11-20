@@ -1,0 +1,77 @@
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_mean_c +  
+    year_c + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + temp_mean_c + year_c + (1 | year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33275.4   33383.2  -16622.7   33245.4      9770 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09021  0.3004  
+ year_f    (Intercept) 0.09604  0.3099  
+Number of obs: 9785, groups:  female_id, 7128; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2745   0.5239  
+Number of obs: 9785, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.06173  0.2485  
+Number of obs: 9785, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.085119   0.066564  16.302   <2e-16 ***
+rel_LD       -0.074992   0.004570 -16.409   <2e-16 ***
+age_classOLD  0.005315   0.044880   0.118   0.9057    
+temp_mean_c  -0.190881   0.059749  -3.195   0.0014 ** 
+year_c       -0.008573   0.005732  -1.496   0.1347    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.55080    0.09273  -16.72   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.156469   0.090565  12.769   <2e-16 ***
+rel_LD       -0.070153   0.006943 -10.104   <2e-16 ***
+age_classOLD  0.022082   0.084538   0.261   0.7939    
+temp_mean_c   0.077692   0.064253   1.209   0.2266    
+year_c       -0.010775   0.006318  -1.706   0.0881 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Unusually large Z-statistics (|x|>5):
+
+        (Intercept)              rel_LD      zi~(Intercept)    disp~(Intercept) 
+          16.301841          -16.409180          -16.724279           12.769483 
+        disp~rel_LD theta_1|female_id.1    theta_1|year_f.1    theta_1|year_f.1 
+         -10.104334           -6.765475           -8.936630           -6.254022 
+
+Large Z-statistics (estimate/std err) suggest a *possible* failure of
+the Wald approximation - often also associated with parameters that are
+at or near the edge of their range (e.g. random-effects standard
+deviations approaching 0).  (Alternately, they may simply represent
+very well-estimated parameters; intercepts of non-centered models may
+fall in this category.) While the Wald p-values and standard errors
+listed in summary() may be unreliable, profile confidence intervals
+(see ?confint.glmmTMB) and likelihood ratio test p-values derived by
+comparing models (e.g. ?drop1) are probably still OK.  (Note that the
+LRT is conservative when the null value is on the boundary, e.g. a
+variance or zero-inflation value of 0 (Self and Liang 1987; Stram and
+Lee 1994; Goldman and Whelan 2000); in simple cases these p-values are
+approximately twice as large as they should be.)
+
+

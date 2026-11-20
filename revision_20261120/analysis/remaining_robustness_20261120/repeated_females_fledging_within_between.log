@@ -1,0 +1,15 @@
+2026-11-20 06:22:09 repeated_females_fledging_within_between START
+initial  value 7805.410436 
+iter  20 value 7799.223655
+final  value 7799.223083 
+converged
+             check    trait          model optimizer    n convergence pdHess
+1 repeated_females fledging within_between      BFGS 4564           0   TRUE
+     logLik objective      AIC scaled_gradient
+1 -7799.223  7799.223 15632.45    2.100033e-07
+             check    trait          model optimizer    n convergence pdHess
+1 repeated_females fledging within_between    NLMINB 4564           0   TRUE
+     logLik objective      AIC scaled_gradient
+1 -7799.223  7799.223 15632.45    2.099992e-07
+repeated_females_fledging_within_between COMPLETE
+REMAINING ROBUSTNESS COMPLETE

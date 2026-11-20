@@ -1,0 +1,20 @@
+2026-11-20 06:27:11 repeated_females_clutch_baseline START
+  0:     6513.5003:  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000
+  5:     6508.3262: 0.195798 -1.35886 0.589910 -2.41206 -2.04418 0.790340 0.546418 0.0670319 0.352037  1.87642 -1.19084 -1.81458
+ 10:     6508.3249: 0.204244 -1.40383 0.625300 -2.36265 -2.05453 0.794522 0.539806 0.104744 0.364575  1.86771 -1.20473 -1.79855
+             check  trait    model optimizer    n convergence pdHess    logLik
+1 repeated_females clutch baseline    NLMINB 6169           1   TRUE -6508.325
+  objective      AIC scaled_gradient
+1  6508.325 13040.65    0.0001078696
+initial  value 6508.324875 
+final  value 6508.324875 
+converged
+             check  trait    model optimizer    n convergence pdHess    logLik
+1 repeated_females clutch baseline      BFGS 6169           0   TRUE -6508.325
+  objective      AIC scaled_gradient
+1  6508.325 13040.65    1.380366e-08
+repeated_females_clutch_baseline COMPLETE
+Warning message:
+In finalizeTMB(TMBStruc, obj, fit, h, data.tmb.old) :
+  Model convergence problem; singular convergence (7). See vignette('troubleshooting'), help('diagnose')
+REMAINING ROBUSTNESS COMPLETE

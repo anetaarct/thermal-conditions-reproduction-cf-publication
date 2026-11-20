@@ -1,0 +1,56 @@
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + year_c + age_class + (1 | female_id) + (1 |      year_f)
+Dispersion:              ~rel_LD + year_c + age_class
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  26995.6   27069.8  -13487.8   26975.6     12334 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance  Std.Dev.
+ female_id (Intercept) 0.0036526 0.06044 
+ year_f    (Intercept) 0.0006422 0.02534 
+Number of obs: 12344, groups:  female_id, 8675; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.8030573  0.0045127   399.6  < 2e-16 ***
+rel_LD       -0.0084024  0.0002478   -33.9  < 2e-16 ***
+year_c        0.0015214  0.0003264     4.7 3.14e-06 ***
+age_classOLD  0.0298756  0.0024067    12.4  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.800535   0.033306  -84.09  < 2e-16 ***
+rel_LD        0.052940   0.002887   18.34  < 2e-16 ***
+year_c        0.002696   0.001514    1.78 0.074950 .  
+age_classOLD -0.131651   0.036203   -3.64 0.000276 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Unusually large Z-statistics (|x|>5):
+
+        (Intercept)              rel_LD        age_classOLD    disp~(Intercept) 
+          399.55356           -33.90649            12.41356           -84.08593 
+        disp~rel_LD theta_1|female_id.1    theta_1|year_f.1 
+           18.33563          -104.60678           -31.14118 
+
+Large Z-statistics (estimate/std err) suggest a *possible* failure of
+the Wald approximation - often also associated with parameters that are
+at or near the edge of their range (e.g. random-effects standard
+deviations approaching 0).  (Alternately, they may simply represent
+very well-estimated parameters; intercepts of non-centered models may
+fall in this category.) While the Wald p-values and standard errors
+listed in summary() may be unreliable, profile confidence intervals
+(see ?confint.glmmTMB) and likelihood ratio test p-values derived by
+comparing models (e.g. ?drop1) are probably still OK.  (Note that the
+LRT is conservative when the null value is on the boundary, e.g. a
+variance or zero-inflation value of 0 (Self and Liang 1987; Stram and
+Lee 1994; Goldman and Whelan 2000); in simple cases these p-values are
+approximately twice as large as they should be.)
+
+

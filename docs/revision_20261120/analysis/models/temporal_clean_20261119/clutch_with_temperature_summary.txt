@@ -1,0 +1,59 @@
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + temp_mean_c + year_c + age_class + (1 | female_id) +  
+    (1 | year_f)
+Dispersion:              ~rel_LD + temp_mean_c + year_c + age_class
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  26983.1   27072.1  -13479.5   26959.1     12332 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance  Std.Dev.
+ female_id (Intercept) 0.0036710 0.06059 
+ year_f    (Intercept) 0.0004458 0.02111 
+Number of obs: 12344, groups:  female_id, 8675; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.8034634  0.0039549   456.0  < 2e-16 ***
+rel_LD       -0.0083954  0.0002481   -33.8  < 2e-16 ***
+temp_mean_c   0.0156645  0.0038520     4.1 4.77e-05 ***
+year_c        0.0008150  0.0003299     2.5   0.0135 *  
+age_classOLD  0.0298051  0.0024049    12.4  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.802556   0.034161  -82.04  < 2e-16 ***
+rel_LD        0.053196   0.002958   17.98  < 2e-16 ***
+temp_mean_c  -0.028272   0.017932   -1.58 0.114886    
+year_c        0.003924   0.001699    2.31 0.020919 *  
+age_classOLD -0.131958   0.036440   -3.62 0.000293 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Unusually large Z-statistics (|x|>5):
+
+        (Intercept)              rel_LD        age_classOLD    disp~(Intercept) 
+          456.00255           -33.83461            12.39362           -82.04048 
+        disp~rel_LD theta_1|female_id.1    theta_1|year_f.1 
+           17.98356           -99.61970           -31.59239 
+
+Large Z-statistics (estimate/std err) suggest a *possible* failure of
+the Wald approximation - often also associated with parameters that are
+at or near the edge of their range (e.g. random-effects standard
+deviations approaching 0).  (Alternately, they may simply represent
+very well-estimated parameters; intercepts of non-centered models may
+fall in this category.) While the Wald p-values and standard errors
+listed in summary() may be unreliable, profile confidence intervals
+(see ?confint.glmmTMB) and likelihood ratio test p-values derived by
+comparing models (e.g. ?drop1) are probably still OK.  (Note that the
+LRT is conservative when the null value is on the boundary, e.g. a
+variance or zero-inflation value of 0 (Self and Liang 1987; Stram and
+Lee 1994; Goldman and Whelan 2000); in simple cases these p-values are
+approximately twice as large as they should be.)
+
+

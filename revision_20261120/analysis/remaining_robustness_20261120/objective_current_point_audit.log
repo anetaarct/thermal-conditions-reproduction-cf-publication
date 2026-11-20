@@ -1,0 +1,7 @@
+Target parameters 1.807566 -0.008004194 0.01492891 0.01346277 0.001303874 0.02896195 -2.894107 0.0570971 -0.1150645 -0.04098851 0.001997086 -0.06902368 -2.811324 -3.893807 
+1 objective 6503.213 maxgradient 91977002 elapsed 5.046 
+2 objective 6503.201 maxgradient 91977002 elapsed 1.313 
+3 objective 6503.201 maxgradient 91977002 elapsed 0.099 
+Timing stopped at: 13.76 0.04 13.8
+Error in (function (par, fn, gr, control = list(), ...)  : 
+  Objective audit complete; no fit requested

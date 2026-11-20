@@ -1,0 +1,24 @@
+2026-11-20 06:27:11 scale_year_clutch_baseline START
+  0:     13522.180:  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000
+  5:     13480.444: -4.05998 -0.000337580 0.00413182 0.00498883 -0.000549438 0.000229455 0.000210820 -8.27937e-05 0.00185149 0.000246493 -6.48990e-05 -0.000262459 0.00198681
+ 10:     13479.568: -7.53891 -1.50301e-07 5.50078e-07 1.53442e-06 -2.17077e-07 -6.13256e-07 5.22196e-07 5.20418e-08 -2.94871e-07 -8.49582e-07 1.59878e-06 -2.69967e-07 4.22740e-06
+ 15:     13479.541: -11.0051 -2.20183e-07 -4.53763e-07 -1.09429e-07 3.14181e-07 4.23791e-07 3.67625e-07 1.17595e-08 1.43606e-06 -7.41268e-07 1.26155e-06 -2.70423e-07 3.94797e-06
+ 20:     13479.540: -14.4708 -2.20204e-07 -4.53297e-07 -1.08054e-07 3.14689e-07 4.23871e-07 3.67557e-07 1.17416e-08 1.43728e-06 -7.41207e-07 1.26151e-06 -2.70424e-07 3.94776e-06
+       check  trait    model optimizer     n convergence pdHess    logLik
+1 scale_year clutch baseline    NLMINB 12344           1   TRUE -13479.54
+  objective      AIC scaled_gradient
+1  13479.54 26985.08     0.001307753
+initial  value 13479.540043 
+final  value 13479.540041 
+converged
+       check  trait    model optimizer     n convergence pdHess    logLik
+1 scale_year clutch baseline      BFGS 12344           0   TRUE -13479.54
+  objective      AIC scaled_gradient
+1  13479.54 26985.08    0.0001024928
+scale_year_clutch_baseline COMPLETE
+Warning message:
+In finalizeTMB(TMBStruc, obj, fit, h, data.tmb.old) :
+  Model convergence problem; singular convergence (7). See vignette('troubleshooting'), help('diagnose')
+REMAINING ROBUSTNESS COMPLETE
+Error: unexpected ')' in "nt=tryCatch(max(abs(m$sdr$gradient.fixed*sqrt(diag(m$sdr$cov.fixed)))),error=function(e)NA_real_))"
+Execution halted

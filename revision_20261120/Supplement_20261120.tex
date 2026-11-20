@@ -145,7 +145,7 @@ Fledging & age\_classOLD & 1.055\\
 
 \paragraph{Window-selection procedure}
 
-Given documented among-population and among-species variation in climate-sensitive periods \citep{samplonius2018phenological}, we identified the pre-laying thermal window using a sliding-window analysis \citep{vandepol2016identifying}. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly. 
+Given documented among-population and among-species variation in climate-sensitive periods \citep{samplonius2018phenological}, we identified the pre-laying thermal window using a sliding-window analysis \citep{vandepol2016identifying}. The unit of analysis was the breeding season, the response was the annual median laying date across all valid broods, and the reference model contained an intercept only. Candidate windows were searched at weekly resolution from 17 to 0 weeks before a fixed calendar reference date of 7 May. The fixed end date was set before the analysis and preceded the fifth percentile of laying dates in each season. The weekly search used complete calendar-week bins; the reproductive analyses used the fixed daily interval described below. Temperature was aggregated within each candidate window as an arithmetic mean and entered the model linearly.
 
 Because sliding-window searches can capitalise on chance, we assessed the selected window in two ways. First, we repeated the entire search 500 times with the response randomised relative to the temperature series, and compared the observed improvement in fit against the resulting null distribution. Second, we summarised the stability of the selection by taking the median opening and closing days across the 95\% confidence set of candidate windows, which indicates whether support is concentrated on a narrow optimum or distributed across a broad plateau. Window selection used the 45 seasons for which an annual median laying date was available, namely 1980 to 2019 and 2021 to 2025. No field data were collected in 2020 because of the COVID-19 pandemic.
 
@@ -162,6 +162,10 @@ Fixed-window sensitivity analyses of both corrected reproductive models are repo
 \paragraph{Station agreement and construction}
 
 Daily SMHI records from Hoburg and Hoburg A overlapped for 1,186 days from June 2009 to August 2012. The mean difference was 0.042 \si{\degreeCelsius}, SD of differences 0.166 \si{\degreeCelsius}, root mean squared error 0.171 \si{\degreeCelsius} and correlation 0.9998. On overlapping days we used their arithmetic mean; on other days we used the available station. The combined record spanned 1 January 1980--31 December 2025 and comprised 16,802 days. This agreement supports combining the records, but does not by itself exclude every possible source of inhomogeneity.
+
+\paragraph{Environmental model and descriptive results}
+
+As environmental context, we analysed the 46 annual mean temperatures in the 26 March--7 May window (1980--2025) using a Gaussian model with linear calendar-year associations in the mean and log residual SD. Calendar year was centred on the midpoint of the study period; no random effects were included. Mean spring temperature increased by 0.0439 \si{\degreeCelsius} per year (95\% CI 0.0248--0.0630). The log residual SD slope was -0.0111 per year (95\% CI [-0.0277, 0.0055]), providing no clear evidence of a change in interannual variability around the warming trend. This uncertainty does not establish constant variability. The analysis describes environmental change; it does not test an effect of temperature variability on reproduction or the reliability of early temperature as a cue to later food conditions.
 
 \paragraph{Environmental location--scale diagnostics and 2020 sensitivity}
 
@@ -337,6 +341,9 @@ Fledging & within--between & -5.224 & [-11.687, 1.271] & 0.651 & [0.404, 1.062]\
 Both temporal fits converged with positive-definite Hessians and independent optimiser agreement. Temporal simulations used 500 conditional plug-in datasets per trait; their group checks and limitations accompany the exports. These analyses address trends conditional on age class and relative laying date, rather than causal warming effects.
 
 \subsection{S1.11 Exact-age sensitivity and scope of inference}
+
+The main models used two age classes: yearlings and older females. The full clutch-size sample comprised 3,723 yearling and 8,621 older-female attempts; the known-age subset comprised 3,704 and 3,573, respectively. For fledging success, the corresponding counts were 2,986 and 6,799 in the full sample, and 2,977 and 2,929 in the known-age subset. Thus, restricting analyses to exact age disproportionately removed older-female records, changing age composition as well as sample size. These are counts of breeding attempts; the same female may contribute to both age classes in different years.
+
 
 Known or reconstructable age was derived by combining recorded female hatch years, observations classified as yearling, and explicit integer AGEF values from 1 to 10. Half-integer values and codes containing plus signs or uncertainty markers were not treated as exact ages. All evidence for a female had to imply the same hatch year; histories producing impossible ages or disagreement with recorded age class were excluded from the known-age subset. The integer-code interpretation is an explicit audit assumption.
 

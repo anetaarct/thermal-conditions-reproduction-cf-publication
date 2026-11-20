@@ -1,0 +1,7 @@
+"trait","model","n","df","logLik","AIC","convergence","pdHess","scaled_gradient"
+"clutch","with_temperature",12344,12,-13479.5400412391,26983.0800824782,0,TRUE,4.18899289884122e-06
+"clutch","without_temperature_whitened_BFGS",12344,10,-13487.7820958569,26995.5641917138,0,TRUE,1.32056923905908e-05
+"clutch","without_temperature_BFGS",12344,10,-13487.7820958567,26995.5641917135,0,NA,1.11007820115044e-05
+"fledging","with_temperature",9785,15,-16622.6870065651,33275.3740131302,0,TRUE,8.07457490339327e-08
+"fledging","without_temperature_whitened_BFGS",9785,13,-16628.3275319322,33282.6550638644,0,TRUE,1.45912481372226e-05
+"fledging","without_temperature_BFGS",9785,13,-16628.3275319321,33282.6550638642,0,NA,7.49480164301566e-06

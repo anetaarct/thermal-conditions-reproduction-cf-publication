@@ -1,0 +1,6 @@
+COMPLETE: original final models unchanged. No manuscript or site changes.
+New models remove temperature from conditional and dispersion formulas; retain age, relative laying date, and all random effects.
+Reference curves: young females, relative laying date zero, all random effects zero; temperature zero in old model.
+Model trends are still adjusted for age and relative laying date; observed annual summaries are descriptive and unadjusted.
+Dispersion is COM-Poisson inverse shape or beta-binomial precision, not total response variability.
+Intervals are approximate 95% confidence intervals from joint asymptotic coefficient draws.
