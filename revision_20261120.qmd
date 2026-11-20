@@ -28,7 +28,9 @@ Climate change alters not only mean reproductive performance but also how consis
 
 We examined how early-spring temperature was associated with mean reproductive performance and reproductive consistency, and whether these associations differed within and among females. Temporal changes in reproduction, relative laying date and female age class provide complementary context.
 
-A positive temperature association with mean clutch size is evaluated as a biologically motivated hypothesis, rather than represented as a preregistered or demonstrably a priori prediction. No directional prediction is specified for egg-to-fledging success, reproductive variability or differences between within- and between-female temperature slopes. Clutch-size consistency denotes lower conditional variation among breeding attempts, not female-specific repeatability. Fledging component precision is distinguished from full-mixture variation.
+A location–scale framework examines mean reproductive performance and variation among breeding attempts together. Trait-specific interpretations are introduced with the study questions and detailed in Methods. Warmer conditions could favour egg production if feeding conditions improve before laying. No directional prediction is specified for subsequent success, reproductive variability or differences between within- and between-female temperature slopes.
+
+We define **fledging success** as the proportion of eggs laid that produce fledglings. After this definition, the shorter term is used in the main text and figures. The abstract retains the full term “egg-to-fledging success”. Greater clutch-size consistency means lower conditional clutch-size variation; fledging component precision is distinguished from overall variation in fledging success.
 
 ## Environmental context — SM S1.5
 
@@ -36,7 +38,7 @@ Mean spring temperature increased by 0.0439°C per year (95% CI 0.0248–0.0630)
 
 ## Main temperature associations
 
-For a +1°C contrast, the pooled mean clutch-size change is approximately +0.096 eggs. The primary-window within-female conditional clutch-SD ratio is 0.954 (95% CI 0.918–0.990), corresponding to 0.624 to 0.596 eggs at the reference conditions. This is conditional variation among attempts, not female-specific repeatability or demonstrated plasticity. Pooled full-mixture egg-to-fledging success changes from 61.67% to 58.56% (−3.11 percentage points, 95% CI −5.14 to −1.13).
+For a +1°C contrast, the pooled mean clutch-size change is approximately +0.096 eggs. The primary-window within-female conditional clutch-SD ratio is 0.954 (95% CI 0.918–0.990), corresponding to 0.624 to 0.596 eggs at the reference conditions. This is conditional variation among attempts, not female-specific repeatability or demonstrated plasticity. Pooled fledging success changes from 61.67% to 58.56% (−3.11 percentage points, 95% CI −5.14 to −1.13).
 
 ## Fixed-window sensitivity — SM S1.13
 
@@ -50,19 +52,19 @@ Restricting the analysis to females of known or consistently reconstructable exa
 
 ## Temporal models — supplementary context, SM S1.10
 
-Expected clutch size increases from 5.85 to 6.25 eggs over 1981–2025 (+0.405, 95% CI 0.243–0.576). Conditional clutch-SD increases (ratio 1.093, 95% CI 1.021–1.169). Expected full-mixture fledging success declines from 67.5% to 57.2% over 1981–2019 (−10.3 percentage points, 95% CI −16.4 to −4.0); component-precision change is uncertain. These models retain age class and relative laying date. They provide temporal context and do not identify a causal warming effect. Full results: Tables S8–S9 and Fig. S5; brief interpretation: Discussion 4.3, final paragraph.
+Expected clutch size increases from 5.85 to 6.25 eggs over 1981–2025 (+0.405, 95% CI 0.243–0.576). Conditional clutch-SD increases (ratio 1.093, 95% CI 1.021–1.169). Expected fledging success declines from 67.5% to 57.2% over 1981–2019 (−10.3 percentage points, 95% CI −16.4 to −4.0); component-precision change is uncertain. These models retain age class and relative laying date. They provide temporal context and do not identify a causal warming effect. Full results: Tables S8–S9 and Fig. S5; brief interpretation: Discussion 4.3, final paragraph.
 
 Temperature-adjusted calendar-year contrasts are also provided in SM Table S9. They are conditional temporal contrasts, not a causal decomposition of warming. Temporal trends are omitted from the current abstract.
 
 ## Temperature in the additional-zero component — SM S1.12
 
-Adding temperature to the additional-zero equation improves AIC by 4.67. The full-mixture success contrast is −5.41 percentage points per +1°C (95% CI −8.12 to −2.79). For a reference six-egg clutch, full-mixture failure probability increases from 19.52% to 23.14%. The association remains negative, but its magnitude depends on this specification. Component precision is distinct from full-mixture variability; additional zeros are not assigned a separate biological failure mechanism. See Tables S14–S15.
+Adding temperature to the additional-zero equation improves AIC by 4.67. The fledging success contrast is −5.41 percentage points per +1°C (95% CI −8.12 to −2.79). For a reference six-egg clutch, brood-failure probability increases from 19.52% to 23.14%. The association remains negative, but its magnitude depends on this specification. Component precision is distinct from overall variation in fledging success; additional zeros are not assigned a separate biological failure mechanism. See Tables S14–S15.
 
 ## Additional robustness checks — SM S1.14
 
 Both previously outstanding checks have now been attempted on the corrected samples. Five specifications were numerically validated. The repeated-female samples contain **6,169 clutch records from 2,500 females** and **4,564 fledging records from 1,907 females**, preserving full-sample centring and thermal decomposition.
 
-The validated pooled clutch model retains a positive mean association (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971 (0.941–1.001). Full-mixture fledging associations remain negative: pooled −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60 to −2.04), and between females −3.48 (−6.02 to −1.07). Component-precision ratios remain uncertain.
+The validated pooled clutch model retains a positive mean association (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971 (0.941–1.001). Fledging-success associations remain negative: pooled −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60 to −2.04), and between females −3.48 (−6.02 to −1.07). Component-precision ratios remain uncertain.
 
 The **repeated-female clutch within–between model did not yield a numerically validated fit** after multiple optimiser and gradient checks. A candidate-region audit found an extremely large gradient and instability of the evaluated objective. Affected or stalled trials were terminated. No estimate from that specification is reported, and the validated pooled result does not establish robustness of the primary within-female clutch-SD association. This check remains numerically inconclusive.
 

@@ -19,7 +19,7 @@ draw <- function(data, specs, name, ncol = 2) {
     stopifnot(!anyNA(x), all(is.finite(z$estimate)), all(is.finite(z$lower)), all(is.finite(z$upper)))
     ord <- order(x); x <- x[ord]; z <- z[ord, ]
     ylabel <- if (spec$component == 'mean') {
-      if (spec$trait == 'clutch') 'Expected clutch size (eggs)' else 'Expected egg-to-fledging success (%)'
+      if (spec$trait == 'clutch') 'Expected clutch size (eggs)' else 'Expected fledging success (%)'
     } else if (spec$trait == 'clutch') 'Conditional clutch-size SD (eggs)' else 'Beta-binomial precision'
     xlabel <- switch(spec$predictor, temp_mean_c = 'Spring temperature deviation (degrees C)',
       temp_within = 'Within-female temperature deviation (degrees C)',
