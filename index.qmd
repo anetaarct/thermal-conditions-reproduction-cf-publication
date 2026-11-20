@@ -20,7 +20,7 @@ The reproductive results below use the earlier sample and are retained for audit
 <section class="title-hero">
 <video class="title-hero-video" autoplay muted loop playsinline preload="metadata" poster="images/cover-flycatcher.jpg" aria-hidden="true"><source src="media/gotland-background.mp4" type="video/mp4"></video>
 <div class="title-hero-text">
-<h1>Opposite climate effects on reproductive investment and success reveal hidden consistency patterns in a migratory bird</h1>
+<h1>Warmer springs are associated with greater reproductive consistency in a migratory flycatcher: a four-decade study</h1>
 <p class="title-subtitle">Spring temperature and reproductive consistency in Gotland's collared flycatchers</p>
 <p class="title-authors">Aneta Arct · Santiago Ortega · Rafał Martyka · Lars Gustafsson · Szymon M. Drobniak · Shinichi Nakagawa</p>
 <p class="title-notes">Data, analysis workflow and results · Gotland, Sweden</p>
@@ -30,6 +30,10 @@ The reproductive results below use the earlier sample and are retained for audit
 ## Current revision
 
 [Corrected results, sensitivity analyses, data, code and revised Supplementary Materials](revision_20261120.qmd)
+
+## Study summary
+
+Warmer springs may change both how much birds invest in breeding and how successfully they raise young. Understanding these changes also requires asking how much reproductive outcomes vary among breeding attempts. We examined these relationships using more than four decades of collared flycatcher records from Gotland, Sweden. Warmer springs were associated with larger clutches but a lower proportion of eggs producing fledglings. Clutch sizes also varied less in seasons that were warmer than those typically experienced by the recorded females. This pattern emerged when differences among females' temperature histories were taken into account, and depended on the period used to describe spring conditions. Our findings reveal that the same early-season conditions can be associated with greater initial investment, poorer subsequent success and changes in reproductive variation. Larger clutches alone can therefore give an incomplete picture of breeding performance. For other populations, these findings highlight the value of examining investment, success and variation together, while testing locally which seasonal conditions matter. This approach can reveal reproductive changes that remain unclear when average investment or success is considered alone.
 
 ## Study objectives
 

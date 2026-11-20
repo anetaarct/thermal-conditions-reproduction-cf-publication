@@ -1,4 +1,4 @@
-# Warmer springs and reproductive performance in collared flycatchers
+# Warmer springs are associated with greater reproductive consistency in a migratory flycatcher: a four-decade study
 
 ## Corrected analysis — 20 November 2026
 
@@ -6,7 +6,7 @@ The current reproductive results, corrected anonymous model-ready samples, sensi
 
 The remainder of this README documents the earlier release.
 
-Publication materials for *Larger clutches but lower egg-to-fledging success in warmer springs in a migratory passerine*.
+Publication materials for *Warmer springs are associated with greater reproductive consistency in a migratory flycatcher: a four-decade study*.
 
 **Results website:** https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/
 
