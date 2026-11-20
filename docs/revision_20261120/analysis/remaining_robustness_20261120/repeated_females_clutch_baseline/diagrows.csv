@@ -1,0 +1,3 @@
+"check","trait","model","optimizer","n","convergence","pdHess","logLik","objective","AIC","scaled_gradient"
+"repeated_females","clutch","baseline","NLMINB",6169,1,TRUE,-6508.32487509262,6508.32487509262,13040.6497501852,0.000107869625388364
+"repeated_females","clutch","baseline","BFGS",6169,0,TRUE,-6508.32487506705,6508.32487506705,13040.6497501341,1.38036643911045e-08

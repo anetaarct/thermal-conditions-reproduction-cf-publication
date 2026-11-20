@@ -1,0 +1,2 @@
+"trait","model","optimizer","convergence","logLik","logLik_difference","scaled_gradient","message"
+"clutch","baseline","NLMINB_restart",0,-6508.32487506771,-6.53017195872962e-10,1.37459879595789e-08,"relative convergence (4)"

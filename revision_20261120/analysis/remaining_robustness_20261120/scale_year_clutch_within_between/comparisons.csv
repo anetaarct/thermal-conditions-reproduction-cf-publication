@@ -1,0 +1,2 @@
+"check","trait","model","reference_n","sensitivity_n","reference_AIC","sensitivity_AIC","AIC_comparable","delta_AIC","optimizer_logLik_range"
+"scale_year","clutch","within_between",12344,12344,26979.1834228472,26981.1834228689,TRUE,2.00000002171146,0

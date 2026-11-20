@@ -1,0 +1,3 @@
+"check","trait","model","optimizer","n","convergence","pdHess","logLik","objective","AIC","scaled_gradient"
+"repeated_females","fledging","within_between","BFGS",4564,0,TRUE,-7799.22308307601,7799.22308307601,15632.446166152,2.10003316416914e-07
+"repeated_females","fledging","within_between","NLMINB",4564,0,TRUE,-7799.2230830769,7799.2230830769,15632.4461661538,2.09999232602511e-07

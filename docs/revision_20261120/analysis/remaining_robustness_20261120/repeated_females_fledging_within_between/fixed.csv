@@ -1,0 +1,14 @@
+"check","trait","model","component","term","estimate","SE","lower","upper"
+"repeated_females","fledging","within_between","cond","(Intercept)",1.11426497780439,0.0855406285820054,0.946605345783661,1.28192460982512
+"repeated_females","fledging","within_between","cond","rel_LD",-0.0822562654110235,0.00698328562047741,-0.0959435052271592,-0.0685690255948878
+"repeated_females","fledging","within_between","cond","age_classOLD",-0.0441703941439189,0.0757762906308938,-0.192691923780471,0.104351135492633
+"repeated_females","fledging","within_between","cond","temp_within",-0.25188563232252,0.0640500829588635,-0.377423794921893,-0.126347469723148
+"repeated_females","fledging","within_between","cond","temp_between",-0.207651375570056,0.0723489678296782,-0.349455352516226,-0.065847398623887
+"repeated_females","fledging","within_between","cond","year_c",-0.00942324431178833,0.00615794653008125,-0.0214928195107476,0.00264633088717093
+"repeated_females","fledging","within_between","zi","(Intercept)",-1.78981573931953,0.112514758190726,-2.01034466537335,-1.56928681326571
+"repeated_females","fledging","within_between","disp","(Intercept)",1.27409281455092,0.149245322592981,0.981571982268683,1.56661364683317
+"repeated_females","fledging","within_between","disp","rel_LD",-0.0838770027018369,0.0111613256401234,-0.105753200956479,-0.0620008044471951
+"repeated_females","fledging","within_between","disp","age_classOLD",-0.0716833815473372,0.149094837356649,-0.363909262766369,0.220542499671695
+"repeated_females","fledging","within_between","disp","temp_within",0.0165886340267425,0.0949715710821504,-0.169555645294272,0.202732913347757
+"repeated_females","fledging","within_between","disp","temp_between",0.195967631491272,0.114495797522516,-0.0284441316528591,0.420379394635403
+"repeated_females","fledging","within_between","disp","year_c",-0.017467422419377,0.00919426706899187,-0.0354881858746011,0.000553341035847046

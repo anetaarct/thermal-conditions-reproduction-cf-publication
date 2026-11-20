@@ -38,9 +38,21 @@ Expected clutch size increases from 5.85 to 6.25 eggs over 1981–2025 (+0.405, 
 
 Adding temperature to the additional-zero equation improves AIC by 4.67. The full-mixture success contrast is −5.41 percentage points per +1°C (95% CI −8.12 to −2.79). For a reference six-egg clutch, full-mixture failure probability increases from 19.52% to 23.14%. The association remains negative, but its magnitude depends on this specification. Component precision is distinct from full-mixture variability; additional zeros are not assigned a separate biological failure mechanism. See Tables S14–S15.
 
+## Additional robustness checks — SM S1.14
+
+Both previously outstanding checks have now been attempted on the corrected samples. Five specifications were numerically validated. The repeated-female samples contain **6,169 clutch records from 2,500 females** and **4,564 fledging records from 1,907 females**, preserving full-sample centring and thermal decomposition.
+
+The validated pooled clutch model retains a positive mean association (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971 (0.941–1.001). Full-mixture fledging associations remain negative: pooled −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60 to −2.04), and between females −3.48 (−6.02 to −1.07). Component-precision ratios remain uncertain.
+
+The **repeated-female clutch within–between model did not yield a numerically validated fit** after multiple optimiser and gradient checks. A candidate-region audit found an extremely large gradient and instability of the evaluated objective. Affected or stalled trials were terminated. No estimate from that specification is reported, and the validated pooled result does not establish robustness of the primary within-female clutch-SD association. This check remains numerically inconclusive.
+
+Adding an independent year random intercept to clutch scale on the full corrected sample, in both temperature formulations, gives SD about **7 × 10⁻⁷**, negligible likelihood/coefficient changes, and ΔAIC about +2. Initial singular-convergence warnings occurred near zero variance; BFGS refinements reproduced the primary models with convergence code zero and positive-definite Hessians. The simpler primary structures are retained. The fledging model already has a year random intercept in precision.
+
+See SM S1.14, Tables S19–S21, and the [full numerical and failed-attempt audit](revision_20261120/analysis/remaining_robustness_20261120/README.txt). These checks do not remove exposure-window or sample-composition limitations.
+
 ## Verification and limits
 
-The primary corrected models, temperature-free temporal models, exact-age specifications, additional-zero comparison and fixed-window sensitivity models have fresh fitting outputs and numerical checks. Diagnostic exports include failed attempts for audit; only validated retained fits support inference. The earlier scale-year random-effect attempt used the previous sample. A new scale-year random-effect fit and a repeated-females-only primary-temperature fit have **not yet been completed on the corrected sample**. No robustness claim is made for those checks. Environmental temperature analyses use independent annual weather records and are unchanged by female exclusions.
+The corrected main models and retained sensitivity fits have numerical checks and independent optimisation diagnostics. Failed attempts are documented and excluded from inference. The assembled public wrapper has not been rerun end-to-end after extraction into a further fresh checkout. Environmental temperature analyses use independent annual weather records and are unchanged by female exclusions.
 
 ## Revised figures
 
@@ -218,3 +230,71 @@ All files below also appear in the downloadable archive. Model-ready records hav
 - [revision_diagnostics.R](revision_20261120/analysis/R/revision_20261119/revision_diagnostics.R)
 - [validate_age.R](revision_20261120/analysis/R/revision_20261119/validate_age.R)
 
+
+## Additional robustness exports
+
+- [baseline_restart.log](revision_20261120/analysis/remaining_robustness_20261120/baseline_restart.log)
+- [objective_audit.log](revision_20261120/analysis/remaining_robustness_20261120/objective_audit.log)
+- [objective_current_point_audit.log](revision_20261120/analysis/remaining_robustness_20261120/objective_current_point_audit.log)
+- [README.txt](revision_20261120/analysis/remaining_robustness_20261120/README.txt)
+- [repeated_clutch_bounded.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_clutch_bounded.log)
+- [repeated_clutch_numeric.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_clutch_numeric.log)
+- [repeated_females_clutch_baseline/comparisons.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/comparisons.csv)
+- [repeated_females_clutch_baseline/diagrows.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/diagrows.csv)
+- [repeated_females_clutch_baseline/effects.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/effects.csv)
+- [repeated_females_clutch_baseline/fixed.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/fixed.csv)
+- [repeated_females_clutch_baseline/independent_restart_diagnostics.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/independent_restart_diagnostics.csv)
+- [repeated_females_clutch_baseline/random.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/random.csv)
+- [repeated_females_clutch_baseline/repeated_females_clutch_baseline_summary.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/repeated_females_clutch_baseline_summary.txt)
+- [repeated_females_clutch_baseline/samples.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/samples.csv)
+- [repeated_females_clutch_baseline/session_info.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline/session_info.txt)
+- [repeated_females_clutch_baseline.initial_BFGS_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline.initial_BFGS_audit.log)
+- [repeated_females_clutch_baseline.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline.log)
+- [repeated_females_clutch_baseline.scaling_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_baseline.scaling_audit.log)
+- [repeated_females_clutch_within_between.cold_mode_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.cold_mode_audit.log)
+- [repeated_females_clutch_within_between.initial_BFGS_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.initial_BFGS_audit.log)
+- [repeated_females_clutch_within_between.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.log)
+- [repeated_females_clutch_within_between.pooled_BFGS_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.pooled_BFGS_audit.log)
+- [repeated_females_clutch_within_between.reference_start_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.reference_start_audit.log)
+- [repeated_females_clutch_within_between.scaling_audit.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.scaling_audit.log)
+- [repeated_females_fledging_baseline/comparisons.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/comparisons.csv)
+- [repeated_females_fledging_baseline/diagrows.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/diagrows.csv)
+- [repeated_females_fledging_baseline/effects.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/effects.csv)
+- [repeated_females_fledging_baseline/fixed.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/fixed.csv)
+- [repeated_females_fledging_baseline/random.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/random.csv)
+- [repeated_females_fledging_baseline/repeated_females_fledging_baseline_summary.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/repeated_females_fledging_baseline_summary.txt)
+- [repeated_females_fledging_baseline/samples.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/samples.csv)
+- [repeated_females_fledging_baseline/session_info.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline/session_info.txt)
+- [repeated_females_fledging_baseline.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_baseline.log)
+- [repeated_females_fledging_within_between/comparisons.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/comparisons.csv)
+- [repeated_females_fledging_within_between/diagrows.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/diagrows.csv)
+- [repeated_females_fledging_within_between/effects.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/effects.csv)
+- [repeated_females_fledging_within_between/fixed.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/fixed.csv)
+- [repeated_females_fledging_within_between/random.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/random.csv)
+- [repeated_females_fledging_within_between/repeated_females_fledging_within_between_summary.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/repeated_females_fledging_within_between_summary.txt)
+- [repeated_females_fledging_within_between/samples.csv](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/samples.csv)
+- [repeated_females_fledging_within_between/session_info.txt](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between/session_info.txt)
+- [repeated_females_fledging_within_between.log](revision_20261120/analysis/remaining_robustness_20261120/repeated_females_fledging_within_between.log)
+- [scale_boundary_audit.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_boundary_audit.csv)
+- [scale_year_clutch_baseline/comparisons.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/comparisons.csv)
+- [scale_year_clutch_baseline/diagrows.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/diagrows.csv)
+- [scale_year_clutch_baseline/effects.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/effects.csv)
+- [scale_year_clutch_baseline/fixed.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/fixed.csv)
+- [scale_year_clutch_baseline/random.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/random.csv)
+- [scale_year_clutch_baseline/samples.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/samples.csv)
+- [scale_year_clutch_baseline/scale_year_clutch_baseline_summary.txt](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/scale_year_clutch_baseline_summary.txt)
+- [scale_year_clutch_baseline/session_info.txt](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline/session_info.txt)
+- [scale_year_clutch_baseline.initial_BFGS_audit.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline.initial_BFGS_audit.log)
+- [scale_year_clutch_baseline.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline.log)
+- [scale_year_clutch_baseline.scaling_audit.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_baseline.scaling_audit.log)
+- [scale_year_clutch_within_between/comparisons.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/comparisons.csv)
+- [scale_year_clutch_within_between/diagrows.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/diagrows.csv)
+- [scale_year_clutch_within_between/effects.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/effects.csv)
+- [scale_year_clutch_within_between/fixed.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/fixed.csv)
+- [scale_year_clutch_within_between/random.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/random.csv)
+- [scale_year_clutch_within_between/samples.csv](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/samples.csv)
+- [scale_year_clutch_within_between/scale_year_clutch_within_between_summary.txt](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/scale_year_clutch_within_between_summary.txt)
+- [scale_year_clutch_within_between/session_info.txt](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between/session_info.txt)
+- [scale_year_clutch_within_between.initial_BFGS_audit.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.initial_BFGS_audit.log)
+- [scale_year_clutch_within_between.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.log)
+- [scale_year_clutch_within_between.scaling_audit.log](revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.scaling_audit.log)

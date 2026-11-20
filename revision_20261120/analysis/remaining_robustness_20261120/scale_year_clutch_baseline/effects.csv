@@ -1,0 +1,2 @@
+"check","trait","model","predictor","mean_change","lower","upper","consistency_ratio","ratio_lower","ratio_upper"
+"scale_year","clutch","baseline","temp_mean_c",0.0958419298388788,0.05003328009099,0.1434796838855,0.993303076371394,0.974094474704199,1.01259839390607

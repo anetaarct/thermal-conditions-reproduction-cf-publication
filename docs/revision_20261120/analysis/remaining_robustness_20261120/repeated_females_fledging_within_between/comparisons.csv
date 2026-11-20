@@ -1,0 +1,2 @@
+"check","trait","model","reference_n","sensitivity_n","reference_AIC","sensitivity_AIC","AIC_comparable","delta_AIC","optimizer_logLik_range"
+"repeated_females","fledging","within_between",9785,4564,33279.1225188157,15632.446166152,FALSE,NA,8.9130480773747e-10

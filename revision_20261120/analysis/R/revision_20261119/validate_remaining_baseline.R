@@ -1,0 +1,18 @@
+.libPaths(c(path.expand('~/R/cf_model_comparison_20261013_R46'),path.expand('~/R/x86_64-pc-linux-gnu-library/4.5'),.libPaths()))
+library(glmmTMB)
+dir<-'remaining_robustness_20261120/repeated_females_clutch_baseline'
+m<-readRDS(file.path(dir,'repeated_females_clutch_baseline_selected.rds'))
+p<-m$obj$env$parList(par=m$fit$parfull);st<-p[intersect(c('beta','betadisp','theta','b'),names(p))]
+V<-m$sdr$cov.fixed;e<-eigen(V,symmetric=TRUE);S<-e$vectors%*%diag(sqrt(e$values))
+optimizer<-function(par,fn,gr,control=list(),...){
+ inner<-environment(fn)$inner.control;inner$maxit<-100L;inner$grad.tol<-1e-7;environment(fn)$inner.control<-inner
+ ff<-function(q)fn(drop(par+S%*%q));gg<-function(q)drop(crossprod(S,gr(drop(par+S%*%q))))
+ z<-nlminb(rep(0,length(par)),ff,gg,control=list(iter.max=1500,eval.max=3000,rel.tol=1e-9,x.tol=1e-8))
+ list(par=drop(par+S%*%z$par),objective=z$objective,convergence=z$convergence,message=z$message)
+}
+trait<-'clutch';d<-model.frame(m)
+ans<-update(m,data=d,family=compois(),start=st,se=FALSE,control=glmmTMBControl(optimizer=optimizer,parallel=1))
+gradient<-max(abs(ans$obj$gr(ans$fit$par)*sqrt(diag(V))))
+dg<-data.frame(trait='clutch',model='baseline',optimizer='NLMINB_restart',convergence=ans$fit$convergence,logLik=-ans$fit$objective,logLik_difference=-ans$fit$objective-as.numeric(logLik(m)),scaled_gradient=gradient,message=ans$fit$message)
+write.csv(dg,file.path(dir,'independent_restart_diagnostics.csv'),row.names=FALSE);print(dg)
+saveRDS(ans,file.path(dir,'independent_NLMINB_restart.rds'))

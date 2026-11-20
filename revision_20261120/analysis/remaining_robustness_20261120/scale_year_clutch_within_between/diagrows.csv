@@ -1,0 +1,3 @@
+"check","trait","model","optimizer","n","convergence","pdHess","logLik","objective","AIC","scaled_gradient"
+"scale_year","clutch","within_between","NLMINB",12344,1,TRUE,-13475.5917131487,13475.5917131487,26981.1834262974,0.00131334421539729
+"scale_year","clutch","within_between","BFGS",12344,0,TRUE,-13475.5917114344,13475.5917114344,26981.1834228689,0.000102944208491617

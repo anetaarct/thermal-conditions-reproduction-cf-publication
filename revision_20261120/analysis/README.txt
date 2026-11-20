@@ -73,3 +73,11 @@ Failed checks are audit records, not inferential fits. Exact-age and temperature
 free temporal results are supplementary analyses. The latter provide temporal
 context without identifying the causal contribution of warming.
 
+
+Additional robustness update — 20 November 2026
+
+Five additional specifications were numerically validated; the repeated-female
+clutch within-between model was attempted but not validated. See
+remaining_robustness_20261120/README.txt and SM S1.14, Tables S19–S21.
+The added scale-year variance approached zero. No robustness claim is made
+for the failed repeated-female clutch within-between specification.
