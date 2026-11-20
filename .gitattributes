@@ -4,3 +4,7 @@ data_derived/analysis/*.csv -text
 docs/data_derived/analysis/*.csv -text
 data_raw/birds/*.csv -text
 docs/data_raw/birds/*.csv -text
+
+# Preserve corrected release bytes and package checksums.
+revision_20261120/** -text
+docs/revision_20261120/** -text
