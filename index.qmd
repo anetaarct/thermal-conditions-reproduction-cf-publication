@@ -8,6 +8,13 @@ execute:
   enabled: false
 ---
 
+::: {.callout-warning}
+## Archived analysis before sample correction
+The reproductive results below use the earlier sample and are retained for audit. Use the [corrected analysis and sensitivity checks](revision_20261120.qmd) for the current results, model-ready data, scripts and Supplementary Materials.
+:::
+
+
+
 ```{=html}
 <style>#title-block-header { display:none; }</style>
 <section class="title-hero">
@@ -19,6 +26,10 @@ execute:
 <p class="title-notes">Data, analysis workflow and results · Gotland, Sweden</p>
 </div></section>
 ```
+
+## Current revision
+
+[Corrected results, sensitivity analyses, data, code and revised Supplementary Materials](revision_20261120.qmd)
 
 ## Study objectives
 

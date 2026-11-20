@@ -1,0 +1,4 @@
+"model","n","convergence","pdHess","logLik","AIC","scaled_gradient"
+"year_only",9785,0,TRUE,-16622.6870065651,33275.3740131302,8.07457490339327e-08
+"constant",9785,1,FALSE,NA,NA,NA
+"temperature",9785,0,TRUE,-16619.3520344627,33270.7040689255,0.000361984959878939

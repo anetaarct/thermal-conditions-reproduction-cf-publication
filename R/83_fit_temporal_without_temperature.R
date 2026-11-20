@@ -49,21 +49,20 @@ for(trait in names(paths)) {
  form <- if(trait=='clutch') clutch~rel_LD+year_c+age_class+(1|female_id)+(1|year_f) else cbind(fledged,clutch-fledged)~rel_LD+age_class+year_c+(1|female_id)+(1|year_f)
  disp <- if(trait=='clutch') ~rel_LD+year_c+age_class else ~rel_LD+age_class+year_c+(1|year_f)
  if(trait=='clutch') {
-  lo<-c(1.6,-.03,-.008,-.15,-5,rep(-.5,3),rep(-10,2));hi<-c(2,.01,.008,.15,0,rep(.5,3),rep(0,2));ps<-c(1,.01,.005,.1,1,.01,.005,.1,1,1)
+  lo<-c(1.6,-.03,-.008,-.15,-5,rep(-.5,3),rep(-10,2));hi<-c(2,.01,.008,.15,0,rep(.5,3),rep(0,2))
  } else {
-  lo<-c(rep(-10,9),rep(-9,4));hi<-c(rep(10,9),rep(log(10),4));ps<-c(1,1/30,1,1/100,1,1,1/30,1,1/100,rep(1,4))
+  lo<-c(rep(-10,9),rep(-9,4));hi<-c(rep(10,9),rep(log(10),4))
  }
- ctl <- glmmTMBControl(optimizer=optim,optArgs=list(method='L-BFGS-B',lower=lo,upper=hi),optCtrl=list(maxit=10000,factr=1e4,pgtol=1e-7,parscale=ps),parallel=1)
  ctl<-glmmTMBControl(optimizer=whitened,parallel=1)
- file_a<-file.path(out,paste0(trait,'_LBFGS.rds'))
+ file_a<-file.path(out,paste0(trait,'_whitened_BFGS.rds'))
  if(file.exists(file_a)) a<-readRDS(file_a) else {a<-update(old,formula=form,dispformula=disp,data=d,start=st,control=ctl);saveRDS(a,file_a)}
- print(diagrow(a,trait,'without_temperature_LBFGS'));msg('Bound distance',min(pmin(a$fit$par-lo,hi-a$fit$par)/(hi-lo)))
+ print(diagrow(a,trait,'without_temperature_whitened_BFGS'));msg('Bound distance',min(pmin(a$fit$par-lo,hi-a$fit$par)/(hi-lo)))
  pl2<-a$obj$env$parList(par=a$fit$parfull)
  st2<-pl2[intersect(c('beta','betadisp','betazi','theta','thetadisp','thetazi','b','bdisp','bzi'),names(pl2))];st2<-st2[vapply(st2,length,integer(1))>0]
  file_b<-file.path(out,paste0(trait,'_BFGS.rds'))
  msg('Independent optimizer check',trait)
  if(file.exists(file_b)) b<-readRDS(file_b) else {b<-update(a,data=d,start=st2,se=FALSE,control=glmmTMBControl(optimizer=optim,optArgs=list(method='BFGS'),optCtrl=list(maxit=10000,reltol=1e-12),parallel=1));saveRDS(b,file_b)}
- dg<-rbind(diagrow(old,trait,'with_temperature'),diagrow(a,trait,'without_temperature_LBFGS'),diagrow(b,trait,'without_temperature_BFGS',reference=a))
+ dg<-rbind(diagrow(old,trait,'with_temperature'),diagrow(a,trait,'without_temperature_whitened_BFGS'),diagrow(b,trait,'without_temperature_BFGS',reference=a))
  print(dg,digits=10);put(dg,paste0(trait,'_diagnostics.csv'));all_diag[[trait]]<-dg
  stopifnot(good(a),b$fit$convergence==0,dg$scaled_gradient[3]<.005,abs(as.numeric(logLik(a)-logLik(b)))<.01)
  new<-a

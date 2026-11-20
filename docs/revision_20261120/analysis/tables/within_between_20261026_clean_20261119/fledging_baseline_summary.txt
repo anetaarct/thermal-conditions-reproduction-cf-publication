@@ -1,0 +1,55 @@
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_mean_c +  
+    year_c + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + temp_mean_c + year_c + (1 | year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33275.4   33383.2  -16622.7   33245.4      9770 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09021  0.3004  
+ year_f    (Intercept) 0.09604  0.3099  
+Number of obs: 9785, groups:  female_id, 7128; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2745   0.5239  
+Number of obs: 9785, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.06173  0.2485  
+Number of obs: 9785, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.085119   0.066564  16.302   <2e-16 ***
+rel_LD       -0.074992   0.004570 -16.409   <2e-16 ***
+age_classOLD  0.005315   0.044880   0.118   0.9057    
+temp_mean_c  -0.190881   0.059749  -3.195   0.0014 ** 
+year_c       -0.008573   0.005732  -1.496   0.1347    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.55080    0.09273  -16.72   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.156469   0.090565  12.769   <2e-16 ***
+rel_LD       -0.070153   0.006943 -10.104   <2e-16 ***
+age_classOLD  0.022082   0.084538   0.261   0.7939    
+temp_mean_c   0.077692   0.064253   1.209   0.2266    
+year_c       -0.010775   0.006318  -1.706   0.0881 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

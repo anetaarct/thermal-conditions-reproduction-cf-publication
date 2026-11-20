@@ -1,0 +1,42 @@
+ Family: compois  ( log )
+Formula:          
+clutch ~ rel_LD + temp_within + temp_between + year_c + age_c +  
+    age_c2 + (1 | female_id) + (1 | year_f)
+Dispersion:              
+~rel_LD + temp_within + temp_between + year_c + age_c + age_c2
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  16047.6   16157.9   -8007.8   16015.6      7261 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance  Std.Dev.
+ female_id (Intercept) 0.0038833 0.06232 
+ year_f    (Intercept) 0.0005096 0.02258 
+Number of obs: 7277, groups:  female_id, 4957; year_f, 44
+
+Conditional model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.8236914  0.0041536   439.1  < 2e-16 ***
+rel_LD       -0.0090979  0.0003238   -28.1  < 2e-16 ***
+temp_within   0.0165813  0.0045850     3.6 0.000299 ***
+temp_between  0.0142290  0.0044152     3.2 0.001270 ** 
+year_c        0.0009819  0.0003851     2.5 0.010794 *  
+age_c         0.0160838  0.0018283     8.8  < 2e-16 ***
+age_c2       -0.0051942  0.0008026    -6.5 9.71e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -2.9309650  0.0397929  -73.66  < 2e-16 ***
+rel_LD        0.0545074  0.0048621   11.21  < 2e-16 ***
+temp_within  -0.0008234  0.0405389   -0.02  0.98380    
+temp_between -0.0170020  0.0284573   -0.60  0.55020    
+year_c        0.0019869  0.0022601    0.88  0.37932    
+age_c        -0.0918704  0.0303002   -3.03  0.00243 ** 
+age_c2        0.0353952  0.0124449    2.84  0.00445 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

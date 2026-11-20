@@ -6,6 +6,13 @@ execute:
   enabled: false
 ---
 
+::: {.callout-warning}
+## Archived analysis before sample correction
+The reproductive results below use the earlier sample and are retained for audit. Use the [corrected analysis and sensitivity checks](revision_20261120.qmd) for the current results, model-ready data, scripts and Supplementary Materials.
+:::
+
+
+
 ## Data {#data-origin}
 
 Collared flycatcher nest-box monitoring, Gotland, Sweden.

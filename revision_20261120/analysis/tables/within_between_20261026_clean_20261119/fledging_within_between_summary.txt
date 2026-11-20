@@ -1,0 +1,57 @@
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + age_class + temp_within +  
+    temp_between + year_c + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + age_class + temp_within + temp_between + year_c + (1 |     year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  33279.1   33401.3  -16622.6   33245.1      9768 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09014  0.3002  
+ year_f    (Intercept) 0.09613  0.3100  
+Number of obs: 9785, groups:  female_id, 7128; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.2752   0.5246  
+Number of obs: 9785, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.06063  0.2462  
+Number of obs: 9785, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.083254   0.066695  16.242  < 2e-16 ***
+rel_LD       -0.074966   0.004571 -16.400  < 2e-16 ***
+age_classOLD  0.007539   0.045102   0.167  0.86725    
+temp_within  -0.205765   0.066836  -3.079  0.00208 ** 
+temp_between -0.183056   0.061750  -2.964  0.00303 ** 
+year_c       -0.008993   0.005793  -1.552  0.12059    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.55078    0.09284   -16.7   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.154567   0.090644  12.737   <2e-16 ***
+rel_LD       -0.070187   0.006947 -10.103   <2e-16 ***
+age_classOLD  0.024468   0.084892   0.288   0.7732    
+temp_within   0.065457   0.083812   0.781   0.4348    
+temp_between  0.086257   0.070013   1.232   0.2179    
+year_c       -0.011307   0.006496  -1.741   0.0817 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

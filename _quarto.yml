@@ -3,6 +3,7 @@ project:
   output-dir: docs
   execute-dir: project
   render:
+    - revision_20261120.qmd
     - index.qmd
     - workflow.qmd
     - climate_window.qmd
@@ -15,6 +16,7 @@ project:
     - figure_code.qmd
     - full_summaries.qmd
   resources:
+    - revision_20261120/
     - data_raw/birds/
     - data_derived/analysis/
     - tables/model_data_audit.json
@@ -145,6 +147,8 @@ website:
     search: true
     collapse-level: 2
     contents:
+      - text: "Current corrected analysis"
+        href: revision_20261120.qmd
       - text: "Overview"
         href: index.qmd
       - section: "Main analysis"

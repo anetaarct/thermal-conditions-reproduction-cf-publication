@@ -1,5 +1,11 @@
 # Warmer springs and reproductive performance in collared flycatchers
 
+## Corrected analysis — 20 November 2026
+
+The current reproductive results, corrected anonymous model-ready samples, sensitivity analyses and revised Supplementary Materials are in [`revision_20261120/`](revision_20261120/). See the [current results page](https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/revision_20261120.html). Earlier result folders and pages are archived, not the current corrected results. Exact-age sensitivity remains in SM S1.11; its restricted sample changes the scope of inference. The two outstanding robustness checks and the untested end-to-end assembled-wrapper status are explicitly documented on the current page and in the package README.
+
+The remainder of this README documents the earlier release.
+
 Publication materials for *Larger clutches but lower egg-to-fledging success in warmer springs in a migratory passerine*.
 
 **Results website:** https://anetaarct.github.io/thermal-conditions-reproduction-cf-publication/

@@ -1,0 +1,9 @@
+"trait","term","VIF"
+"clutch","rel_LD",1.04132941631155
+"clutch","temp_mean_c",1.21217876898091
+"clutch","year_c",1.21747896976425
+"clutch","age_classOLD",1.05062834264067
+"fledging","rel_LD",1.04547340537409
+"fledging","temp_mean_c",1.26635901732588
+"fledging","year_c",1.2685615028204
+"fledging","age_classOLD",1.05496189543285

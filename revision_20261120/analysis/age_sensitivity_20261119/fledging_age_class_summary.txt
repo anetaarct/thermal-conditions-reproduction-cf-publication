@@ -1,0 +1,57 @@
+ Family: betabinomial  ( logit )
+Formula:          
+cbind(fledged, clutch - fledged) ~ rel_LD + temp_within + temp_between +  
+    year_c + age_class + (1 | female_id) + (1 | year_f)
+Zero inflation:                                    ~1 + (1 | year_f)
+Dispersion:                                        
+~rel_LD + temp_within + temp_between + year_c + age_class + (1 |     year_f)
+Data: d
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+  19881.8   19995.4   -9923.9   19847.8      5889 
+
+Random effects:
+
+Conditional model:
+ Groups    Name        Variance Std.Dev.
+ female_id (Intercept) 0.09026  0.3004  
+ year_f    (Intercept) 0.09633  0.3104  
+Number of obs: 5906, groups:  female_id, 4186; year_f, 39
+
+Zero-inflation model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.274    0.5234  
+Number of obs: 5906, groups:  year_f, 39
+
+Dispersion model:
+ Groups Name        Variance Std.Dev.
+ year_f (Intercept) 0.09419  0.3069  
+Number of obs: 5906, groups:  year_f, 39
+
+Conditional model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.080801   0.068173  15.854  < 2e-16 ***
+rel_LD       -0.066297   0.005852 -11.330  < 2e-16 ***
+temp_within  -0.238528   0.072919  -3.271 0.001071 ** 
+temp_between -0.225281   0.066631  -3.381 0.000722 ***
+year_c       -0.009164   0.006209  -1.476 0.139983    
+age_classOLD  0.062608   0.053467   1.171 0.241616    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Zero-inflation model:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.49190    0.09771  -15.27   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Dispersion model:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   1.187117   0.103859  11.430  < 2e-16 ***
+rel_LD       -0.066208   0.009112  -7.266 3.69e-13 ***
+temp_within  -0.001934   0.106120  -0.018    0.985    
+temp_between  0.054064   0.091177   0.593    0.553    
+year_c       -0.008537   0.008457  -1.009    0.313    
+age_classOLD  0.064375   0.104762   0.614    0.539    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

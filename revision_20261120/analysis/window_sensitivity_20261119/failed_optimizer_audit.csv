@@ -1,0 +1,5 @@
+check,convergence,positive_Hessian,reason
+"Initial nlminb, cold random-effect start",1,FALSE,Incorrect inner random-effect optimum; inadmissible likelihood/Hessian.
+Initial L-BFGS-B exploration,error,not available,Nonfinite objective encountered; no retained fit.
+"Bounded L-BFGS-B, cold random-effect start",0,FALSE,Incorrect inner optimum despite unchanged fixed parameters; excluded.
+"L-BFGS-B, fitted random-effect start",52,TRUE,Correct likelihood but abnormal line-search termination; excluded.
