@@ -113,12 +113,12 @@ Reproductive samples were re-audited against the experimental-treatment flags in
 \subsection{S1.2 Model comparison and repeated observations}
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Matched-sample temperature model comparisons after curation. AIC comparisons are within each trait.}\label{tab:temperature-model-comparison}
+\caption{Matched-sample temperature model comparisons after curation. AIC comparisons are within each trait. Temperature denotes the model with a single spring-temperature term; within--between denotes the model separating within- and between-female temperature associations.}\label{tab:temperature-model-comparison}
 \begin{tabular}{lll}\toprule
 Trait & Formulation & AIC\\\midrule
-Clutch & Pooled & 26983.08\\
+Clutch & Temperature & 26983.08\\
 Clutch & Within--between & 26979.18\\
-Fledging & Pooled & 33275.37\\
+Fledging & Temperature & 33275.37\\
 Fledging & Within--between & 33279.12\\
 \bottomrule\end{tabular}\end{table}
 For clutch size, $\Delta\mathrm{AIC}=-3.90$, LR=7.90, $df=2$, $p=0.019$; for fledging success, $\Delta\mathrm{AIC}=3.75$, LR=0.251, $df=2$, $p=0.882$. Clutch records include 2500 females with repeated observations and 2500 with variation in annual temperature; the corresponding fledging counts are 1907 and 1907. Earlier exploratory individual 42-day windows and female thermal random slopes yielded inadmissible fits on a previous sample. These do not validate the corrected models' robustness to alternative windows or random slopes.
@@ -128,7 +128,7 @@ For clutch size, $\Delta\mathrm{AIC}=-3.90$, LR=7.90, $df=2$, $p=0.019$; for fle
 VIFs were calculated as $1/(1-R_j^2)$ by regressing each non-intercept design column on the other columns in the corrected sample. These diagnose linear redundancy, not the effective number of independent seasons. Within--between designs were also checked for full rank; their complete VIFs accompany the numerical exports.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Pooled-model VIFs after curation. Location and scale share these predictors.}\label{tab:revised-vif}
+\caption{Model with spring temperature VIFs after curation. Location and scale share these predictors.}\label{tab:revised-vif}
 \begin{tabular}{lll}\toprule
 Trait & Predictor & VIF\\\midrule
 Clutch & rel\_LD & 1.041\\
@@ -175,10 +175,10 @@ The model converged with a positive-definite Hessian; two optimisers agreed in l
 
 \subsection{S1.6 Fledging success after curation}
 
-The retained zero-inflated beta-binomial model includes female and year location intercepts and independent year intercepts in precision and extra-zero probability. Both zero-generating components contribute to complete failure. The extra-zero year-only specification is retained as the pooled reference, with a temperature-slope sensitivity in S1.12.
+The retained zero-inflated beta-binomial model includes female and year location intercepts and independent year intercepts in precision and extra-zero probability. Both zero-generating components contribute to complete failure. The extra-zero year-only specification is retained as the reference model with spring temperature, with a temperature-slope sensitivity in S1.12.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Pooled fledging fixed effects after curation. Location and extra-zero coefficients use logit links; scale uses log precision.}\label{tab:primary-ZIyear-fixed}
+\caption{Fledging fixed effects from the model with spring temperature after curation. Location and extra-zero coefficients use logit links; scale uses log precision.}\label{tab:primary-ZIyear-fixed}
 \begin{tabular}{lllll}\toprule
 Trait & Component & Term & Estimate & 95\% CI\\\midrule
 Fledging & Location & Intercept & 1.08512 & [0.95466, 1.21558]\\
@@ -200,7 +200,7 @@ At reference conditions, a 1\,\si{\degreeCelsius} contrast changed expected full
 The COM-Poisson analysis uses 12,344 records from 8,675 females. Mean clutch size is 6.1867 eggs and observed variance is 0.6577. The model is mean-parameterised, with log mean and log inverse shape and female/year random intercepts in location. Conditional SD is calculated from the fitted distribution, not equated with inverse shape.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Pooled COM-Poisson fixed effects after curation.}\label{tab:count-coefficients}
+\caption{COM-Poisson fixed effects from the model with spring temperature after curation.}\label{tab:count-coefficients}
 \begin{tabular}{lllll}\toprule
 Trait & Component & Term & Estimate & 95\% CI\\\midrule
 Clutch & Location & Intercept & 1.80346 & [1.79571, 1.81121]\\
@@ -217,7 +217,7 @@ Clutch & Scale & Older female & -0.13196 & [-0.20338, -0.06054]\\
 A Poisson comparator on the same corrected records had AIC 46554.41, versus 26983.08 for COM-Poisson. The added year random intercept in clutch scale was refitted on the corrected sample for both temperature formulations; it approached zero variance with negligible likelihood or coefficient change (Section S1.14).
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Pooled-model plug-in checks. Conditional simulations hold fitted group modes fixed; new-group simulations redraw shared group effects. Both use 300 datasets and omit parameter uncertainty. Intervals are simulated 2.5th--97.5th percentiles.}\label{tab:revised-checks}
+\caption{Model with spring temperature plug-in checks. Conditional simulations hold fitted group modes fixed; new-group simulations redraw shared group effects. Both use 300 datasets and omit parameter uncertainty. Intervals are simulated 2.5th--97.5th percentiles.}\label{tab:revised-checks}
 \begin{tabular}{lllll}\toprule
 Trait & Target & Statistic & Observed & Simulation interval\\\midrule
 Clutch & Conditional & mean & 6.1867 & [6.1809, 6.2031]\\
@@ -249,7 +249,7 @@ E(K_r/n_r)&=(1-\pi_{y[r]})\mu_r,\\
 These are conditional quantities; the extra-zero component is not a biological failure class. Because its equation has no covariate slopes, a covariate's direction of association with $\mu_r$ also determines its direction for expected full-mixture success at fixed year and other predictors.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{Pooled-model random-intercept SDs after curation.}\label{tab:pooled-random}
+\caption{Model with spring temperature random-intercept SDs after curation.}\label{tab:pooled-random}
 \begin{tabular}{llll}\toprule
 Trait & Component & Group & SD\\\midrule
 Clutch & cond & female\_id & 0.06059\\
@@ -263,10 +263,12 @@ Fledging & disp & year\_f & 0.24845\\
 \paragraph{Uncertainty and interpretation}
 Fixed-effect intervals are asymptotic Wald 95\% CIs. Temperature curves and standard contrasts use 4,000 joint coefficient draws; temporal models without temperature and explicit SD, age-sensitivity and full-mixture failure contrasts use 6,000. Complementary temperature-adjusted year contrasts use 4,000. Draws preserve cross-component covariance. All reference predictions set random effects to zero and age to yearling unless stated otherwise. The bands are pointwise coefficient-uncertainty intervals, not individual-brood prediction intervals. Plug-in simulations omit parameter uncertainty and are in-sample checks. Interannual residual temperature SD measures variation around the trend, rather than daily variation or cue predictability.
 
+Mean spring temperatures in figures are displayed on the original Celsius scale. For models with a single temperature term, the trait-specific centring constant is added to the centred prediction grid: 5.1231932659\,\si{\degreeCelsius} for clutch size and 5.0980029946\,\si{\degreeCelsius} for fledging success. Between-female grids already contain female mean temperatures on the original scale and are not shifted again. Within-female grids remain deviations from each female\textquotesingle s observed mean. This changes only the displayed horizontal coordinates; predictions and confidence intervals are unchanged.
+
 \subsection{S1.9 Within--between temperature models}
 \label{sec:within-between-supplement}
 
-Within- and between-female temperature components were recomputed from each corrected trait-specific sample and sum to the centred pooled predictor. Within deviations compare an attempt's temperature with the female's observed mean; between differences compare observed female mean exposures. These associations can reflect observation histories and do not identify individual plasticity or stable thermal preferences. All other predictors and random-effect structures match the pooled model.
+Within- and between-female temperature components were recomputed from each corrected trait-specific sample and sum to the centred spring-temperature predictor. Within deviations compare an attempt's temperature with the female's observed mean; between differences compare observed female mean exposures. These associations can reflect observation histories and do not identify individual plasticity or stable thermal preferences. All other predictors and random-effect structures match the model with spring temperature.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
 \caption{Complete within--between fixed effects after curation.}\label{tab:within-between-fixed}
@@ -438,7 +440,7 @@ Corrected model-ready CSVs, fitting scripts, coefficient and prediction exports,
 
 \subsection{S1.13 Fixed spring-window sensitivity}
 
-We tested fixed-window sensitivity by refitting both pooled and within--between temperature models with 1 April--7 May, 1--30 April and 15 April--7 May exposures, alongside the original 26 March--7 May window. The same corrected trait-specific records, non-temperature covariates and random-effect structures were retained. These checks change the seasonal exposure while holding sample composition fixed; they do not substitute for analyses of incubation or nestling weather.
+We tested fixed-window sensitivity by refitting models with spring temperature and models separating within- and between-female temperature associations with 1 April--7 May, 1--30 April and 15 April--7 May exposures, alongside the original 26 March--7 May window. The same corrected trait-specific records, non-temperature covariates and random-effect structures were retained. These checks change the seasonal exposure while holding sample composition fixed; they do not substitute for analyses of incubation or nestling weather.
 
 Daily mean air temperatures were averaged over all days in each fixed interval: 43, 37, 30 and 23 days, respectively. Every required daily observation was available. The clutch sample remained 12,344 records from 8,675 females in 44 seasons, and the fledging sample 9,785 records from 7,128 females in 39 seasons. Temperature was recentered within each trait-specific sample, and female means and within-female deviations were recalculated for each window. Models were not selected by searching for the strongest association. The three alternatives were specified as revision sensitivity checks before fitting them. They are correlated seasonal exposures, not independent replications or independent validation of the original window.
 
@@ -446,10 +448,10 @@ Daily mean air temperatures were averaged over all days in each fixed interval: 
 \caption{Fixed-window clutch contrasts per 1-degree increase from the centred reference. Mean changes use eggs; consistency is conditional clutch-size SD. Intervals use 6,000 joint coefficient draws. Other covariates are centred, age is yearling and all random effects are zero.}\label{tab:window-clutch}
 \resizebox{\linewidth}{!}{\begin{tabular}{llllll}\toprule
 Window & Temperature contrast & Mean change & 95\% CI & Consistency ratio & 95\% CI\\\midrule
-26 Mar--7 May & Pooled & 0.096 & [0.050, 0.140] & 0.993 & [0.974, 1.012]\\
-1 Apr--7 May & Pooled & 0.086 & [0.043, 0.128] & 0.999 & [0.981, 1.018]\\
-1--30 Apr & Pooled & 0.074 & [0.033, 0.117] & 0.996 & [0.979, 1.013]\\
-15 Apr--7 May & Pooled & 0.054 & [0.021, 0.088] & 1.007 & [0.991, 1.022]\\
+26 Mar--7 May & Temperature & 0.096 & [0.050, 0.140] & 0.993 & [0.974, 1.012]\\
+1 Apr--7 May & Temperature & 0.086 & [0.043, 0.128] & 0.999 & [0.981, 1.018]\\
+1--30 Apr & Temperature & 0.074 & [0.033, 0.117] & 0.996 & [0.979, 1.013]\\
+15 Apr--7 May & Temperature & 0.054 & [0.021, 0.088] & 1.007 & [0.991, 1.022]\\
 26 Mar--7 May & Within female & 0.099 & [0.050, 0.147] & 0.954 & [0.920, 0.990]\\
 26 Mar--7 May & Between female & 0.093 & [0.045, 0.139] & 1.012 & [0.988, 1.036]\\
 1 Apr--7 May & Within female & 0.088 & [0.042, 0.134] & 0.974 & [0.942, 1.007]\\
@@ -464,10 +466,10 @@ Window & Temperature contrast & Mean change & 95\% CI & Consistency ratio & 95\%
 \caption{Fixed-window fledging contrasts per 1-degree increase from the centred reference. Mean changes use percentage points in full-mixture success; consistency is beta-binomial component precision. Intervals use 6,000 joint coefficient draws. Other covariates are centred, age is yearling and all random effects are zero.}\label{tab:window-fledging}
 \resizebox{\linewidth}{!}{\begin{tabular}{llllll}\toprule
 Window & Temperature contrast & Mean change & 95\% CI & Consistency ratio & 95\% CI\\\midrule
-26 Mar--7 May & Pooled & -3.110 & [-5.182, -1.165] & 1.081 & [0.950, 1.225]\\
-1 Apr--7 May & Pooled & -2.425 & [-4.381, -0.607] & 1.064 & [0.943, 1.201]\\
-1--30 Apr & Pooled & -2.402 & [-4.251, -0.680] & 1.041 & [0.928, 1.168]\\
-15 Apr--7 May & Pooled & -1.303 & [-2.780, 0.104] & 1.048 & [0.954, 1.146]\\
+26 Mar--7 May & Temperature & -3.110 & [-5.182, -1.165] & 1.081 & [0.950, 1.225]\\
+1 Apr--7 May & Temperature & -2.425 & [-4.381, -0.607] & 1.064 & [0.943, 1.201]\\
+1--30 Apr & Temperature & -2.402 & [-4.251, -0.680] & 1.041 & [0.928, 1.168]\\
+15 Apr--7 May & Temperature & -1.303 & [-2.780, 0.104] & 1.048 & [0.954, 1.146]\\
 26 Mar--7 May & Within female & -3.367 & [-5.734, -1.234] & 1.068 & [0.908, 1.260]\\
 26 Mar--7 May & Between female & -2.980 & [-5.034, -0.989] & 1.090 & [0.950, 1.251]\\
 1 Apr--7 May & Within female & -3.074 & [-5.281, -0.952] & 1.029 & [0.880, 1.200]\\
@@ -479,9 +481,9 @@ Window & Temperature contrast & Mean change & 95\% CI & Consistency ratio & 95\%
 \bottomrule\end{tabular}}\end{table}
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
-\caption{AIC for models fitted to identical records within each trait. The last column is within--between minus pooled AIC. These descriptive comparisons do not select a causal exposure window.}\label{tab:window-aic}
+\caption{AIC for models fitted to identical records within each trait. The last column is AIC for the model separating within- and between-female associations minus AIC for the model with spring temperature. These descriptive comparisons do not select a causal exposure window.}\label{tab:window-aic}
 \resizebox{\linewidth}{!}{\begin{tabular}{lllll}\toprule
-Trait & Window & Pooled AIC & Within--between AIC & $\Delta$AIC\\\midrule
+Trait & Window & Temperature AIC & Within--between AIC & $\Delta$AIC\\\midrule
 Clutch & 26 Mar--7 May & 26983.08 & 26979.18 & -3.90\\
 Clutch & 1 Apr--7 May & 26985.86 & 26986.10 & 0.24\\
 Clutch & 1--30 Apr & 26987.77 & 26986.61 & -1.17\\
@@ -492,13 +494,13 @@ Fledging & 1--30 Apr & 33279.06 & 33281.61 & 2.55\\
 Fledging & 15 Apr--7 May & 33282.08 & 33284.77 & 2.69\\
 \bottomrule\end{tabular}}\end{table}
 
-Mean clutch-size associations remained positive in every specification and window. Fledging-success estimates were negative throughout. Within-female intervals excluded zero in every window; pooled and between-female intervals included zero for the shortest, latest window. Component-precision associations remained uncertain. For clutch SD, the within-female ratio was below one with an interval excluding one for the original and April-only windows, but intervals included one for 1 April--7 May and 15 April--7 May. The evidence for changing conditional variability therefore depends on exposure definition and should not be described as uniformly robust.
+Mean clutch-size associations remained positive in every specification and window. Fledging-success estimates were negative throughout. Within-female intervals excluded zero in every window; intervals from the model with spring temperature and the between-female component included zero for the shortest, latest window. Component-precision associations remained uncertain. For clutch SD, the within-female ratio was below one with an interval excluding one for the original and April-only windows, but intervals included one for 1 April--7 May and 15 April--7 May. The evidence for changing conditional variability therefore depends on exposure definition and should not be described as uniformly robust.
 
 All retained fits had convergence code zero, positive-definite Hessians and scaled gradients below 0.005. Each alternative-window fit was checked with BFGS and nlminb, agreeing to less than 0.001 log-likelihood units. Initial independent checks of the fledging within--between model in the 15 April--7 May window were inadmissible because the inner random-effect optimisation failed or an independent line search terminated abnormally. Repeating the nlminb check with the fitted random effects as starting values reproduced the correct likelihood and yielded an admissible fit. Failed checks are retained in the audit, excluded from inference and not counted as confirming fits. Original-window fits were the independently validated corrected reference models. These numerical checks do not establish out-of-sample prediction or remove uncertainty about the most relevant biological exposure.
 
 \subsection{S1.14 Repeated-female and scale-year robustness checks}
 
-We performed two additional checks on the corrected samples using the primary 26 March--7 May exposure. First, we retained only females with at least two observations in the relevant trait-specific corrected sample and refitted the pooled and within--between temperature models. The original full-sample centring constants, relative laying dates and thermal decomposition were retained, as were all fixed-effect terms and random-effect structures. This changes inclusion rather than the definition of temperature exposure. The restricted samples contain 6,169 clutch records from 2,500 females and 4,564 fledging records from 1,907 females. Restriction to repeatedly observed females changes the scope of inference and does not remove selective survival or observation processes. AIC is not compared between full and restricted samples.
+We performed two additional checks on the corrected samples using the primary 26 March--7 May exposure. First, we retained only females with at least two observations in the relevant trait-specific corrected sample and refitted the models with spring temperature and models separating within- and between-female associations temperature models. The original full-sample centring constants, relative laying dates and thermal decomposition were retained, as were all fixed-effect terms and random-effect structures. This changes inclusion rather than the definition of temperature exposure. The restricted samples contain 6,169 clutch records from 2,500 females and 4,564 fledging records from 1,907 females. Restriction to repeatedly observed females changes the scope of inference and does not remove selective survival or observation processes. AIC is not compared between full and restricted samples.
 
 \begin{table}[!ht]\centering\scriptsize\singlespacing
 \caption{Corrected full and repeated-female samples for the additional robustness checks.}\label{tab:repeat-samples}
@@ -512,13 +514,13 @@ Fledging & 9785 & 7128 & 4564 & 1907\\
 \caption{Validated temperature contrasts on the repeated-female samples. Mean changes are eggs or percentage points of full-mixture fledging success per 1-degree increase. Consistency ratios refer to conditional clutch-size SD or beta-binomial component precision. Other continuous covariates and random effects are zero, and reference age class is yearling. Intervals use 6,000 joint coefficient draws. The clutch within--between fit did not pass numerical validation and is not reported.}\label{tab:repeat-temperature}
 \resizebox{\linewidth}{!}{\begin{tabular}{llllll}\toprule
 Trait & Temperature contrast & Mean change & 95\% CI & Consistency ratio & 95\% CI\\\midrule
-Clutch & Pooled & 0.086 & [0.036, 0.134] & 0.971 & [0.941, 1.001]\\
-Fledging & Pooled & -3.992 & [-6.154, -1.946] & 1.085 & [0.917, 1.268]\\
+Clutch & Temperature & 0.086 & [0.036, 0.134] & 0.971 & [0.941, 1.001]\\
+Fledging & Temperature & -3.992 & [-6.154, -1.946] & 1.085 & [0.917, 1.268]\\
 Fledging & Within female & -4.264 & [-6.598, -2.036] & 1.017 & [0.850, 1.228]\\
 Fledging & Between female & -3.480 & [-6.021, -1.073] & 1.216 & [0.972, 1.526]\\
 \bottomrule\end{tabular}}\end{table}
 
-The repeated-female clutch within--between model did not yield a numerically validated fit. Attempts using BFGS, nlminb and L-BFGS-B with analytic or finite-difference gradients did not provide a stable independently verified solution. One near-stationary optimiser trajectory entered a numerically unstable region: repeated evaluations at a reconstructed nearby fixed parameter vector changed the negative log-likelihood by approximately 0.012, while the maximum absolute analytic gradient was approximately $9.2\times10^7$. The affected and stalled trials were terminated, and no coefficient, SD contrast or AIC from this specification is used for inference. This check therefore remains inconclusive for the key within-female clutch-SD association; the validated pooled fit is not a substitute for that missing within--between result.
+The repeated-female clutch within--between model did not yield a numerically validated fit. Attempts using BFGS, nlminb and L-BFGS-B with analytic or finite-difference gradients did not provide a stable independently verified solution. One near-stationary optimiser trajectory entered a numerically unstable region: repeated evaluations at a reconstructed nearby fixed parameter vector changed the negative log-likelihood by approximately 0.012, while the maximum absolute analytic gradient was approximately $9.2\times10^7$. The affected and stalled trials were terminated, and no coefficient, SD contrast or AIC from this specification is used for inference. This check therefore remains inconclusive for the key within-female clutch-SD association; the validated model with spring temperature is not a substitute for that missing within--between result.
 
 Second, we added an independent year random intercept to the scale equation of each clutch temperature model on all 12,344 corrected records. The primary fledging model already includes a year random intercept in precision, so that structure was not added a second time. In both clutch formulations the additional scale-year SD approached zero, and the marginal likelihood and fixed coefficients approached those of the model without the added term. The initial nlminb fits issued singular-convergence warnings at very small SDs; BFGS refinements returned convergence code zero and positive-definite Hessians. The likelihood differences between optimisers were below 0.001. These are numerical boundary solutions, rather than evidence of a separately estimable non-zero annual scale component. We retain the simpler primary models and do not use an ordinary interior-parameter likelihood-ratio test for a variance at zero.
 
@@ -526,7 +528,7 @@ Second, we added an independent year random intercept to the scale equation of e
 \caption{Added year random intercept in clutch scale on the full corrected sample. SD is on the log inverse-shape predictor scale. AIC difference is extended minus primary; likelihood gain is extended minus primary and is numerically zero at the boundary.}\label{tab:scale-year-boundary}
 \begin{tabular}{lllll}\toprule
 Model & Scale-year SD & Likelihood gain & $\Delta$AIC & Maximum fixed-coefficient change\\\midrule
-Pooled & 7.06e-07 & -1.07e-08 & 2.000 & 1.68e-08\\
+Temperature & 7.06e-07 & -1.07e-08 & 2.000 & 1.68e-08\\
 Within--between & 7.01e-07 & -1.09e-08 & 2.000 & 2.91e-08\\
 \bottomrule\end{tabular}\end{table}
 
@@ -564,7 +566,7 @@ Complete coefficients, random-effect SDs, optimiser diagnostics, restart checks 
 \end{figure}
 
 \begin{figure}[p]\centering\includegraphics[width=.98\linewidth]{Fig_window_sensitivity_20261119.pdf}
-\caption{Fixed-window sensitivity of pooled (left) and within-female (right) temperature associations. Points show contrasts per 1-degree increase from the centred reference and lines show 95\% coefficient-uncertainty intervals. Rows show mean clutch-size change, conditional clutch-size SD ratio, full-mixture fledging-success change and beta-binomial component-precision ratio. Every window uses identical trait-specific records. Vertical dashed lines indicate no mean change or a consistency ratio of one.}
+\caption{Fixed-window sensitivity of spring-temperature (left) and within-female (right) temperature associations. Points show contrasts per 1-degree increase from the centred reference and lines show 95\% coefficient-uncertainty intervals. Rows show mean clutch-size change, conditional clutch-size SD ratio, full-mixture fledging-success change and beta-binomial component-precision ratio. Every window uses identical trait-specific records. Vertical dashed lines indicate no mean change or a consistency ratio of one.}
 \label{fig:window-sensitivity}\end{figure}
 
 \clearpage

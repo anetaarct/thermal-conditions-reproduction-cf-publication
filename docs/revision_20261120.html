@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Corrected analysis and sensitivity checks — Gotland flycatchers</title>
+<title>Current analysis and sensitivity checks — Gotland flycatchers</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -227,12 +227,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
 
 <!-- main -->
-<main class="content" id="quarto-document-content"><h1>Corrected analysis and sensitivity checks</h1><section id="current-corrected-analysis-20-november-2026"
+<main class="content" id="quarto-document-content"><h1>Current analysis and sensitivity checks</h1><section id="current-current-analysis-20-november-2026"
 class="callout-important">
-<h2>Current corrected analysis — 20 November 2026</h2>
+<h2>Analysis and sensitivity checks</h2>
 <p>The reproductive results on this page replace the earlier release.
 Entire recorded histories of experimental females and all records in
-ambiguous duplicate female-season groups were excluded. The corrected
+ambiguous duplicate female-season groups were excluded. The current
 samples contain <strong>12,344 clutch records from 8,675
 females</strong> and <strong>9,785 fledging records from 7,128
 females</strong>. Earlier analysis pages are retained as clearly marked
@@ -243,7 +243,7 @@ archives.</p>
 <li><a href="revision_20261120/Supplement_20261120.pdf">Revised
 Supplementary Materials</a></li>
 <li><a
-href="revision_20261120/Supplementary_Data_20261119.zip">Corrected
+href="revision_20261120/Supplementary_Data_20261119.zip">Current
 model-ready data, results and analysis scripts</a></li>
 <li><a href="revision_20261120/analysis/README.txt">Package README and
 reproduction instructions</a></li>
@@ -294,22 +294,22 @@ methods and checks remain in SM S1.5; a brief result remains in Results
 3.1.</p>
 <h2 id="main-temperature-associations">Main temperature
 associations</h2>
-<p>For a +1°C contrast, the pooled mean clutch-size change is
+<p>For a +1°C contrast, the expected clutch-size change in the model with spring temperature is
 approximately +0.096 eggs. The primary-window within-female conditional
 clutch-SD ratio is 0.954 (95% CI 0.918–0.990), corresponding to 0.624 to
 0.596 eggs at the reference conditions. This is conditional variation
 among attempts, not female-specific repeatability or demonstrated
-plasticity. Pooled fledging success changes from 61.67% to 58.56% (−3.11
+plasticity. Fledging success changes from 61.67% to 58.56% (−3.11
 percentage points, 95% CI −5.14 to −1.13).</p>
 <h2 id="fixed-window-sensitivity-sm-s1.13">Fixed-window sensitivity — SM
 S1.13</h2>
 <p>The primary window remains <strong>26 March–7 May</strong>.
 Alternative fixed windows are <strong>1 April–7 May</strong>,
 <strong>1–30 April</strong>, and <strong>15 April–7 May</strong>, using
-identical corrected trait-specific records. The positive association
+identical trait-specific records. The positive association
 with mean clutch size persists in all windows. Fledging-success
 estimates remain negative; within-female intervals exclude zero in all
-windows, whereas pooled and between-female intervals include zero in the
+windows, whereas intervals from the model with spring temperature and the between-female component include zero in the
 shortest/latest window. The within-female clutch-SD association is
 supported for the primary and April-only windows, but is uncertain for
 the other two. Thus, the other results depend more on exposure
@@ -368,14 +368,14 @@ mechanism. See Tables S14–S15.</p>
 <h2 id="additional-robustness-checks-sm-s1.14">Additional robustness
 checks — SM S1.14</h2>
 <p>Both previously outstanding checks have now been attempted on the
-corrected samples. Five specifications were numerically validated. The
+current samples. Five specifications were numerically validated. The
 repeated-female samples contain <strong>6,169 clutch records from 2,500
 females</strong> and <strong>4,564 fledging records from 1,907
 females</strong>, preserving full-sample centring and thermal
 decomposition.</p>
-<p>The validated pooled clutch model retains a positive mean association
+<p>The validated clutch model with spring temperature retains a positive mean association
 (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971
-(0.941–1.001). Fledging-success associations remain negative: pooled
+(0.941–1.001). Fledging-success associations remain negative: model with spring temperature
 −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60
 to −2.04), and between females −3.48 (−6.02 to −1.07).
 Component-precision ratios remain uncertain.</p>
@@ -384,11 +384,11 @@ a numerically validated fit</strong> after multiple optimiser and
 gradient checks. A candidate-region audit found an extremely large
 gradient and instability of the evaluated objective. Affected or stalled
 trials were terminated. No estimate from that specification is reported,
-and the validated pooled result does not establish robustness of the
+and the validated result from the model with spring temperature does not establish robustness of the
 primary within-female clutch-SD association. This check remains
 numerically inconclusive.</p>
 <p>Adding an independent year random intercept to clutch scale on the
-full corrected sample, in both temperature formulations, gives SD about
+full current sample, in both temperature formulations, gives SD about
 <strong>7 × 10⁻⁷</strong>, negligible likelihood/coefficient changes,
 and ΔAIC about +2. Initial singular-convergence warnings occurred near
 zero variance; BFGS refinements reproduced the primary models with
@@ -400,14 +400,14 @@ href="revision_20261120/analysis/remaining_robustness_20261120/README.txt">full
 numerical and failed-attempt audit</a>. These checks do not remove
 exposure-window or sample-composition limitations.</p>
 <h2 id="verification-and-limits">Verification and limits</h2>
-<p>The corrected main models and retained sensitivity fits have
+<p>The current main models and retained sensitivity fits have
 numerical checks and independent optimisation diagnostics. Failed
 attempts are documented and excluded from inference. The assembled
 public wrapper has not been rerun end-to-end after extraction into a
 further fresh checkout. Environmental temperature analyses use
 independent annual weather records and are unchanged by female
 exclusions.</p>
-<h2 id="revised-figures">Revised figures</h2>
+<h2 id="revised-figures">Revised figures</h2><p>Mean spring temperature and female mean spring temperature are displayed in °C on their original scales. Within-female temperature is displayed as the difference from the female’s observed mean. Only the horizontal display coordinates have changed; model predictions and confidence intervals are unchanged.</p>
 <h3 id="main-temperature-associations-1">Main temperature
 associations</h3>
 <figure>
@@ -763,7 +763,7 @@ href="revision_20261120/analysis/remaining_robustness_20261120/repeated_females_
 <li><a
 href="revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.log">repeated_females_clutch_within_between.log</a></li>
 <li><a
-href="revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.pooled_BFGS_audit.log">repeated_females_clutch_within_between.pooled_BFGS_audit.log</a></li>
+href="revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.pooled_BFGS_audit.log">Within-female clutch model: optimiser audit</a></li>
 <li><a
 href="revision_20261120/analysis/remaining_robustness_20261120/repeated_females_clutch_within_between.reference_start_audit.log">repeated_females_clutch_within_between.reference_start_audit.log</a></li>
 <li><a

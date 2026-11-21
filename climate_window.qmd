@@ -6,13 +6,6 @@ execute:
   enabled: false
 ---
 
-::: {.callout-warning}
-## Archived analysis before sample correction
-The reproductive results below use the earlier sample and are retained for audit. Use the [corrected analysis and sensitivity checks](revision_20261120.qmd) for the current results, model-ready data, scripts and Supplementary Materials.
-:::
-
-
-
 [Laying dates](data_derived/annual_raw_median_laying_date.csv) · [Daily temperature](data_derived/smhi_hoburg_daily_temperature.csv)
 
 ## Data preparation

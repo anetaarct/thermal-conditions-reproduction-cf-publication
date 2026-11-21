@@ -4,10 +4,17 @@ dir.create(out, recursive = TRUE, showWarnings = FALSE)
 baseline <- read.csv(file.path(root, 'tables/reproduced/baseline_predictions/curves.csv'))
 within <- read.csv(file.path(root, 'tables/within_between_20261026_clean_20261119/prediction_curves.csv'))
 
+metadata <- read.csv(file.path(root, 'tables/within_between_20261026_clean_20261119/sample_metadata.csv'))
+centres <- setNames(metadata$temperature_center, metadata$trait)
+for (trait in names(centres)) {
+ d <- read.csv(file.path(file.path(root, 'data_derived/analysis_clean_20261119'), paste0(trait, '_model_data.csv')))
+ stopifnot(max(abs(d$temp_mean - d$temp_mean_c - centres[[trait]])) < 1e-8)
+}
+
 draw <- function(data, specs, name, ncol = 2) {
   panel_rows <- ceiling(length(specs) / ncol)
-  pdf(file.path(out, name), width = 9, height = 3.5 * panel_rows, useDingbats = FALSE)
-  par(mfrow = c(panel_rows, ncol), mar = c(4.1, 4.8, 2, 1), mgp = c(2.8, .8, 0), las = 1)
+  cairo_pdf(file.path(out, name), width = 10, height = 4.2 * panel_rows, family = 'Arial')
+  par(mfrow = c(panel_rows, ncol), mar = c(6.2, 6.2, 2.8, 1), mgp = c(2.8, .8, 0), las = 1)
   for (i in seq_along(specs)) {
     spec <- specs[[i]]
     z <- subset(data, trait == spec$trait & predictor == spec$predictor & component == spec$component)
@@ -17,13 +24,14 @@ draw <- function(data, specs, name, ncol = 2) {
     discrete <- spec$predictor == 'age_class'
     x <- if (discrete) match(z$x, c('YOUNG', 'OLD')) else as.numeric(z$x)
     stopifnot(!anyNA(x), all(is.finite(z$estimate)), all(is.finite(z$lower)), all(is.finite(z$upper)))
+    if (spec$predictor == 'temp_mean_c') x <- x + centres[[spec$trait]]
     ord <- order(x); x <- x[ord]; z <- z[ord, ]
     ylabel <- if (spec$component == 'mean') {
       if (spec$trait == 'clutch') 'Expected clutch size (eggs)' else 'Expected fledging success (%)'
-    } else if (spec$trait == 'clutch') 'Conditional clutch-size SD (eggs)' else 'Beta-binomial precision'
-    xlabel <- switch(spec$predictor, temp_mean_c = 'Spring temperature deviation (degrees C)',
-      temp_within = 'Within-female temperature deviation (degrees C)',
-      temp_between = 'Female mean spring temperature (degrees C)',
+    } else if (spec$trait == 'clutch') 'Conditional SD of clutch size (eggs)' else 'Beta-binomial precision'
+    xlabel <- switch(spec$predictor, temp_mean_c = expression('Mean spring temperature ('*degree*C*')'),
+      temp_within = "Spring temperature relative to\nfemale's mean (\u00b0C)",
+      temp_between = expression("Female's mean spring temperature ("*degree*C*")"),
       rel_LD = 'Relative laying date (days)', age_class = 'Female age class', year = 'Calendar year')
     plot(x, z$estimate * mult, type = 'n', ylim = range(z$lower, z$upper) * mult,
       xlim = if (discrete) c(.5, 2.5) else range(x), xlab = xlabel, ylab = ylabel,
