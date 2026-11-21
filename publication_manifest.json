@@ -111,7 +111,7 @@
     "revision_20261120/analysis/age_sensitivity_20261119/session_info.txt": "efbff80b7a4cb301734b4c1485c2dc0ddf57328bca9da47981584dfe5bc420eb",
     "revision_20261120/analysis/age_sensitivity_20261119/validated_diagnostics.csv": "d461088258648ff1d9fe955098cea89e5e0b6d3144827e8f5e379666744eafed",
     "revision_20261120/analysis/age_sensitivity_20261119/validated_fixed_effects.csv": "7eefecc82fac5a2625fdf1b75dc030dd0f3aadfdf7ad9b128750c7132c699c4c",
-    "revision_20261120/analysis/checksums.json": "bada6cd5f90a1ce6410df8e74bf2aa2a7854f3a8f88111db1c81f707ee168f36",
+    "revision_20261120/analysis/checksums.json": "cba8e5af39ea70ba61d8608e5f34b72d64b5798fa2ec5080ba30b9bb519b0d05",
     "revision_20261120/analysis/data_derived/analysis_clean_20261119/clutch_model_data.csv": "bd08b569e95f0af633e78f5de0f32a62c7f261f02a5ccf374123657d44200e53",
     "revision_20261120/analysis/data_derived/analysis_clean_20261119/curation_audit.csv": "180915cbd179a234df31c7f0466e7705065189f39eb1ff8cf694cf4f08f709f7",
     "revision_20261120/analysis/data_derived/analysis_clean_20261119/expected_annual.csv": "0949c370055e9300f2acc39c331e546fc7cc61647af1e91839444ac56ebe1ddc",
@@ -216,7 +216,7 @@
     "revision_20261120/Fig_within_between_fledging_20261119.pdf": "6783a430d3b33e4e2dcfa345764f47813fc42a6a01dc3f1d6dbcac75ff987722",
     "revision_20261120/Fig_within_between_fledging_20261119.png": "cef2b94724cb5ed70f75b7ad0fe10403f7071a419442846bea484b8af4f38996",
     "revision_20261120/Supplement_20261120.pdf": "f3b4e09265cdf0cea12745a9ba7415ec8c9bb4bd33ed9f089b4154048f4986a2",
-    "revision_20261120/Supplementary_Data_20261119.zip": "587933e5286cc314253db0f9e2580044b5122651295af811d2472ca3a2b1fbb2",
+    "revision_20261120/Supplementary_Data_20261119.zip": "55f6870af779eaffc5a0fdaabbbf3b7e989cbcfc414f00f874072901b41e285c",
     "revision_20261120/analysis/R/revision_20261119/audit_repeated_clutch_objective.R": "d40fa48725970b896b1664a4ec29888b8ea4c8c7479b272254f9e23d872a382f",
     "revision_20261120/analysis/R/revision_20261119/export_scale_boundary_audit.R": "b00c7ec4874a4d8893ed66ac1ce18a04bc98183473eecbb2c18d4bbefb6581c8",
     "revision_20261120/analysis/R/revision_20261119/fit_remaining_robustness.R": "64e6fa93fa9e09d99d1baf86e7a691ed999d8caebb2d60d82896a37be23e3d86",
@@ -289,7 +289,7 @@
     "revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.log": "49fc4e585bdec764bd7d590ea01a49be04e8e13cefff9d65d8dfd44f8124938d",
     "revision_20261120/analysis/remaining_robustness_20261120/scale_year_clutch_within_between.scaling_audit.log": "bff060580732d5f283f254ec7f7da767f329f03923fdf2cee7f988262e910357",
     "revision_20261120/Supplement_20261120.tex": "42feac20fa3de1ce74f0c34de250cecae2bcd35718c00b3b0b52c119fb4f4d35",
-    "revision_20261120/analysis/temperature_axis_audit_20261121.json": "9a1f3c655d9aaf3edb22da1675fd436ad8630b02f9f2ae42c6bd54dccab2cc62"
+    "revision_20261120/analysis/temperature_axis_audit_20261121.json": "552d17a3bc9f2670a6ab0c4e1e2ab37c13ea2ca5f2f0c8fe125e3054c6da4b94"
   },
   "model_data_release": "4 November 2026: final curated model-ready records and standalone refitting code, with numerical reproduction checks. Original numerical exports retained."
 }
