@@ -64,7 +64,7 @@ Adding temperature to the additional-zero equation improves AIC by 4.67. The fle
 
 Both previously outstanding checks have now been attempted on the current samples. Five specifications were numerically validated. The repeated-female samples contain **6,169 clutch records from 2,500 females** and **4,564 fledging records from 1,907 females**, preserving full-sample centring and thermal decomposition.
 
-The validated clutch model with spring temperature retains a positive mean association (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971 (0.941–1.001). Fledging-success associations remain negative: model with spring temperature −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60 to −2.04), and between females −3.48 (−6.02 to −1.07). Component-precision ratios remain uncertain.
+The validated clutch model with spring temperature retains a positive mean association (+0.086 eggs/°C, 95% CI 0.036–0.134); its SD ratio is 0.971 (0.941–1.001). Fledging-success associations remain negative: model with model with spring temperature −3.99 percentage points/°C (−6.15 to −1.95), within female −4.26 (−6.60 to −2.04), and between females −3.48 (−6.02 to −1.07). Component-precision ratios remain uncertain.
 
 The **repeated-female clutch within–between model did not yield a numerically validated fit** after multiple optimiser and gradient checks. A candidate-region audit found an extremely large gradient and instability of the evaluated objective. Affected or stalled trials were terminated. No estimate from that specification is reported, and the validated result from the model with spring temperature does not establish robustness of the primary within-female clutch-SD association. This check remains numerically inconclusive.
 
