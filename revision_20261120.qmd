@@ -94,7 +94,7 @@ Mean spring temperature and female mean spring temperature are displayed in °C 
 
 ### Within and between females — clutch size
 
-![Within and between females — clutch size](revision_20261120/Fig_within_between_clutch_20261119.png)
+![Spring-temperature associations with clutch size within and between females. Panels A and C show within-female associations; panels B and D show between-female associations. The vertical axis shows expected clutch size (number of eggs) in A and B, and conditional standard deviation (SD, in eggs) in C and D. Lower SD indicates less variation among breeding attempts after accounting for the predictors and random effects in the model, and thus greater clutch-size consistency. In A and C, the horizontal axis is spring temperature minus the female's mean across her observed breeding seasons (°C): zero denotes her mean, and +1 denotes a season 1°C warmer than her mean. In B and D, it is the female's mean spring temperature across those seasons, in original °C. Lines show model predictions and shaded bands show pointwise 95% confidence intervals.](revision_20261120/Fig_within_between_clutch_20261119.png){fig-alt="Within and between females — clutch size"}
 
 [Download figure PDF](revision_20261120/Fig_within_between_clutch_20261119.pdf)
 
